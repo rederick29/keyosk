@@ -1,5 +1,9 @@
 # Aston University Team Project Group 46 2024/2025
 
+## Description
+
+Our project includes a search function for easy product lookup and product tagging for improved navigation. Users can read reviews, explore trending items, and filter out unwanted products. A custom keyboard maker allows for tailored orders, complemented by a compatibility checker for part integration. We offer a streamlined e-commerce system for cart, checkout, and payments, alongside a rewards system using virtual currency to boost engagement. Users can also test keyboard performance, while admins manage stock levels and inventory replenishment.
+
 ## Installation Guide
 
 ### Prerequisites
@@ -23,23 +27,15 @@ Ensure you have the following installed:
     composer install
     ```
 
-3. Set up environment file:
+3. Set up environment file and generate `APP_KEY`:
     ```bash
     cp .env.example .env
-    ```
-
-4. Generate and assign `APP_KEY` in `.env`:
-    ```bash
     php artisan key:generate
     ```
-    
-6. Build assets:
+
+4. Build assets and start the application:
     ```bash
     npm run dev
-    ```
-
-7. Start the application:
-    ```bash
     php artisan migrate
     php artisan serve
     ```
