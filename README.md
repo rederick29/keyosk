@@ -1,38 +1,49 @@
 # Aston University Team Project Group 46 2024/2025
+
 ## Installation Guide
 
-## Prerequisites
+### Prerequisites
 
-Make sure you have the following installed:
-- [Node.js](https://nodejs.org/) (for npm)
-- [Composer](https://getcomposer.org/) (for PHP dependencies)
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/)
+- [Composer](https://getcomposer.org/)
 - [PHP](https://www.php.net/)
 
-First, clone the repository to your local machine:
-```bash
-git clone <repository-url>
-cd <repository-directory>
-```
+### Steps
 
-Install the required dependencies using npm and Composer:
-```bash
-npm i
-composer install
-```
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/rederick29/team-project
+    cd team-project
+    ```
 
-Clone the `.env.example` file and rename it to `.env`:
-```bash
-cp .env.example .env
-```
+2. Install dependencies:
+    ```bash
+    npm install
+    composer install
+    ```
 
-Run the following command to build the assets:
-```bash
-npm run dev
-```
+3. Set up environment file:
+    ```bash
+    cp .env.example .env
+    ```
 
-Finally, start the application using the Artisan server:
-```bash
-php artisan serve
-```
+4. Assign `APP_KEY` in `.env`:
+    ```bash
+    ...
+    APP_KEY=acquire_from_trusted_party
+    ...
+    ```
+
+6. Build assets:
+    ```bash
+    npm run dev
+    ```
+
+7. Start the application:
+    ```bash
+    php artisan migrate
+    php artisan serve
+    ```
 
 The website should now be running locally.
