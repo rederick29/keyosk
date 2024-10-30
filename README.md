@@ -5,9 +5,9 @@
 ### Prerequisites
 
 Ensure you have the following installed:
-- [Node.js](https://nodejs.org/)
-- [Composer](https://getcomposer.org/)
-- [PHP](https://www.php.net/)
+- [Node.js](https://nodejs.org/) - Used for running JavaScript on the server and managing frontend dependencies.
+- [PHP](https://www.php.net/) - Used for the backend of the application.
+- [Composer](https://getcomposer.org/) - Dependency manager for PHP, used to install and manage libraries.
 
 ### Steps
 
@@ -28,13 +28,11 @@ Ensure you have the following installed:
     cp .env.example .env
     ```
 
-4. Assign `APP_KEY` in `.env`:
+4. Generate and assign `APP_KEY` in `.env`:
     ```bash
-    ...
-    APP_KEY=acquire_from_trusted_party
-    ...
+    php artisan key:generate
     ```
-
+    
 6. Build assets:
     ```bash
     npm run dev
