@@ -17,6 +17,8 @@ return new class extends Migration
             $table->float('rating');
             $table->string('subject')->nullable();
             $table->string('body')->nullable();
+            $table->foreignId('user_id')->constrained('users', 'id', 'idx_reviews_u_id');
+            $table->foreignId('product_id')->constrained('products', 'id', 'idx_reviews_p_id');
             $table->timestamps();
         });
 
