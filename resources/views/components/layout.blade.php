@@ -15,12 +15,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    @vite('resources/css/app.css')
-    <script src="../../js/app.js" defer></script>
+    {{--
+     Also slightly random but things included up here will be added into the site if the syntax is off, found this
+     out the hard way :/
+    --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Title can be passed as <x-slot:title>, however by default it will use "Keytamine" --}}
     <title>{{ $title ?? "Keytamine" }}</title>
 </head>
-<body class="bg-zinc-900 relative">
+<body class="bg-black relative">
     <x-navbar />
     {{ $slot }}
 </body>
