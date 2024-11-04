@@ -24,7 +24,7 @@
     {{-- Title can be passed as <x-slot:title>, however by default it will use "Keytamine" --}}
     <title>{{ $title ?? "Keytamine" }}</title>
 </head>
-<body class="bg-black relative">
+<body class="bg-zinc-950 relative">
     <x-navbar />
     {{ $slot }}
 </body>

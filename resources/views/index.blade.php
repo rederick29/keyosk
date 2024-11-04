@@ -8,5 +8,5 @@
 <x-layout>
     {{-- Ability to slot in a title to the layout for modularity --}}
     {{-- <x-slot:title>Example Title</x-slot:title> --}}
-    <x-imagescroll test="Print this" />
+    <x-imagescroll />
 </x-layout>
