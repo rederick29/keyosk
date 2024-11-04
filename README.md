@@ -37,6 +37,7 @@ Ensure you have the following installed:
     ```bash
     npm run dev
     php artisan migrate
+    php artisan db:seed # Optional: fill the database with some placeholder data
     php artisan serve
     ```
 
