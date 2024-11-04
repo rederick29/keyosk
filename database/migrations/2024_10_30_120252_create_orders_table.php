@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Order\OrderStatus;
 
 return new class extends Migration
 {
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pending', 'processing', 'dispatched', 'shipped', 'completed', 'cancelled'])->default('pending');
+            $table->enum('status', OrderStatus::getEnumValues())->default('pending');
             $table->foreignId('user_id')->constrained('users', 'id', 'idx_orders_u_id');
             $table->decimal('total_price', 8, 4);
             $table->timestamps();

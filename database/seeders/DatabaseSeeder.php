@@ -1,23 +1,26 @@
 <?php
-
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ColourTag;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Product;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+           AttributeTagSeeder::class,
+           ColourTagSeeder::class,
+           CompatibilityTagSeeder::class,
+           ProductSeeder::class,
+           UserSeeder::class,
+           OrderSeeder::class,
+           ReviewSeeder::class,
         ]);
     }
 }
