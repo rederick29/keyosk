@@ -19,9 +19,9 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $this->faker->randomElement(OrderStatus::getEnumValues()),
-            'user_id' => $this->faker->randomElement(DB::Table('users')->pluck('id')),
-            'total_price' => $this->faker->randomFloat(2, 10, 100),
+            'status' => fake()->randomElement(OrderStatus::getEnumValues()),
+            'user_id' => fake()->randomElement(DB::Table('users')->pluck('id')),
+            'total_price' => fake()->randomFloat(2, 10, 100),
         ];
     }
 }

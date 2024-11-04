@@ -18,11 +18,11 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'rating' => $this->faker->randomFloat(1,0,5),
-            'subject' => $this->faker->realText(100),
-            'comment' => $this->faker->realText(1000),
-            'user_id' => $this->faker->randomElement(DB::table('users')->pluck('id')),
-            'product_id' => $this->faker->randomElement(DB::table('products')->pluck('id')),
+            'rating' => fake()->randomFloat(1,0,5),
+            'subject' => fake()->realText(100),
+            'comment' => fake()->realText(1000),
+            'user_id' => fake()->randomElement(DB::table('users')->pluck('id')),
+            'product_id' => fake()->randomElement(DB::table('products')->pluck('id')),
         ];
     }
 }
