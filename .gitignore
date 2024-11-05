@@ -1,20 +1,44 @@
+# Dependency directories
+/vendor/
+node_modules/
+
+# Log files
+npm-debug.log
+yarn-error.log
+
+# PHPUnit and other test files
+.phpunit.result.cache
 /.phpunit.cache
-/node_modules
+
+# PHP Actor
+.phpactor.json
+
+# Laravel specific
+bootstrap/compiled.php
+app/storage/
+public/storage
+public/hot
+public_html/storage
+public_html/hot
+
+# Build directories
 /public/build
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
+
+# Storage and environment files
+storage/*.key
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-Homestead.json
-Homestead.yaml
 auth.json
-npm-debug.log
-yarn-error.log
+
+# Homestead files
+Homestead.yaml
+Homestead.json
+
+# Vagrant files
+/.vagrant
+
+# IDE and tool specific
 /.fleet
 /.idea
 /.vscode

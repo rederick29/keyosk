@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 
-Route::get('/', function () {
-    return view('welcome');
+// Default route for site.
+Route::get('/', function() {
+    return view('index');
 });
 
 Route::get('/development', function () {
