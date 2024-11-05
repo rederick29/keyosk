@@ -8,8 +8,8 @@ Route::get('/', function() {
     return view('index');
 });
 
-Route::get('/development', function () {
+Route::get('/contact', function () {
     return view('contact-us');
 });
 
-Route::post('/development', [MailController::class, 'send'])->name('development.send');
+Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
