@@ -22,7 +22,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement("ALTER TABLE reviews ADD CONSTRAINT chk_rating_range CHECK (rating >= 0.0 AND rating <= 5.0)");
+        // alter table add constraint check does not work on sqlite
+        if (DB::connection()->getDriverName() != 'sqlite') {
+            DB::statement("ALTER TABLE reviews ADD CONSTRAINT chk_rating_range CHECK (rating >= 0.0 AND rating <= 5.0)");
+        }
     }
 
     /**
