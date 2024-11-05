@@ -14,7 +14,7 @@
     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Contact Us</h2>
     <p class="mt-2 text-lg/8 text-violet-700">Enter details below</p>
   </div>
-  <form action="{{ route('development.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
+  <form action="{{ route('contact.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
     @csrf
     <div class="grid grid-cols-1 gap-x-8 gap-y-5 lg:grid-cols-2">
       <div>
