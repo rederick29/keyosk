@@ -1,13 +1,10 @@
 
 {{--
-    Example navbar for now, this will be replaced
-    when suki has finished his navbar implementation.
-    Inspiration taken from suki's design.
-
-    This is extremely basic, due to the lack of routing
-    and views, all links point to index.
-
     TODO: make more responsive, spacing properties need changing
+    TODO: change the size of the icons
+    TODO: make the logo on medium slightly bigger
+    TODO: abstract out components after development is finished
+    TODO: Fix stupid animation pop in
 --}}
 
 <nav class="flex flex-row fixed justify-between items-center px-5 md:px-10 lg:px-20 min-h-24 min-w-full bg-zinc-900 text-neutral-400 border border-x-0 border-t-0 border-b-4 border-violet-700 shadow-xl">
@@ -36,6 +33,10 @@
                 <path d="M1205.64 6.59532e-05L1003.7 73.8037L1077.5 275.739L1279.44 201.936L1205.64 6.59532e-05Z" fill="currentColor"/>
                 <path d="M1111.22 180.739V87.6483H1122.49V133.83H1123.58L1165.4 87.6483H1180.13L1141.04 129.648L1180.13 180.739H1166.49L1134.13 137.466L1122.49 150.557V180.739H1111.22Z" fill="black"/>
             </svg>
+            <svg width="40" height="40" viewBox="0 0 276 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="block md:hidden lg:hidden">
+                <rect y="74.0643" width="215" height="215" transform="rotate(-20.0764 0 74.0643)" fill="currentColor"/>
+                <path d="M107.523 181V87.909H118.795V134.091H119.886L161.705 87.909H176.432L137.341 129.909L176.432 181H162.795L130.432 137.727L118.795 150.818V181H107.523Z" fill="black"/>
+            </svg>
         </a>
     </div>
 
@@ -50,10 +51,20 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
             </div>
-            <div class="flex flex-row items-center justify-center p-2 rounded-md hover:bg-white/5 transition-colors duration-300" id="account-icon">
+            <div class="flex flex-row items-center justify-center p-2 rounded-md transition-colors duration-300 relative" id="account-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 <div class="hidden lg:inline md:inline">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+                {{-- Drop down menu --}}
+                <div class="dropdown-hide-desktop" id="account-dropdown">
+                    <div class="flex flex-col items-center space-y-1 min-h-[100%] m-2">
+                        <a href="/" class="dropdown-link">My Account</a>
+                        <a href="/" class="dropdown-link">My Orders</a>
+                        <a href="/" class="dropdown-link">Settings</a>
+                        <div class="grow h-5"></div>
+                        <a href="/" class="text-red-700 dropdown-link">Log out</a>
+                    </div>
                 </div>
             </div>
             {{-- Mobile Hamburger Menu --}}
@@ -69,22 +80,40 @@
     @once
         <script>
             let accountIcon = document.getElementById('account-icon');
+            let accountDropdown = document.getElementById('account-dropdown');
+            let accountDropdownToggle = false;
+
             let cartIcon = document.getElementById('cart-icon');
             let searchIcon = document.getElementById('search-icon');
             let hamburger = document.getElementById('hamburger');
 
             accountIcon.addEventListener("click", function() {
-                console.log("Account icon");
+                if(!accountDropdownToggle) {
+                    accountIcon.classList.add("bg-white/5", "shadow-inner")
+                    accountDropdown.classList.remove('dropdown-hide-desktop');
+                    accountDropdown.classList.add('dropdown-display-desktop');
+                    accountDropdownToggle = true;
+                }
+                else {
+                    accountIcon.classList.remove("bg-white/5", "shadow-inner")
+                    accountDropdown.classList.remove('dropdown-display-desktop');
+                    accountDropdown.classList.add('dropdown-hide-desktop');
+                    accountDropdownToggle = false;
+                }
             });
+
             cartIcon.addEventListener("click", function() {
                 console.log("Cart icon");
             });
+
             searchIcon.addEventListener("click", function() {
                 console.log("Search icon");
             });
+
             hamburger.addEventListener("click", function() {
                 console.log("Hamburger icon");
             });
+
         </script>
     @endonce
 </nav>
