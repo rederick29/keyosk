@@ -3,7 +3,6 @@
     TODO: make more responsive, spacing properties need changing
     TODO: change the size of the icons
     TODO: make the logo on medium slightly bigger
-    TODO: abstract out components after development is finished
     TODO: Fix stupid animation pop in
 --}}
 
@@ -53,22 +52,6 @@
     {{-- Laravel is not a fan of imported js files so for now we are using the @once directive and then <script> with the code inside. --}}
     @once
         <script nonce="{{ session("csp_nonce") }}">
-
-            let cartIcon = document.getElementById('cart-icon');
-            let searchIcon = document.getElementById('search-icon');
-            let hamburger = document.getElementById('hamburger');
-
-            cartIcon.addEventListener("click", function() {
-                console.log("Cart icon");
-            });
-
-            searchIcon.addEventListener("click", function() {
-                console.log("Search icon");
-            });
-
-            hamburger.addEventListener("click", function() {
-                console.log("Hamburger icon");
-            });
 
         </script>
     @endonce

@@ -4,22 +4,10 @@
 
 @once
     <script nonce="{{ session("csp_nonce") }}">
-
-        let cartIcon = document.getElementById('cart-icon');
         let searchIcon = document.getElementById('search-icon');
-        let hamburger = document.getElementById('hamburger');
-
-        cartIcon.addEventListener("click", function() {
-            console.log("Cart icon");
-        });
 
         searchIcon.addEventListener("click", function() {
             console.log("Search icon");
         });
-
-        hamburger.addEventListener("click", function() {
-            console.log("Hamburger icon");
-        });
-
     </script>
 @endonce
