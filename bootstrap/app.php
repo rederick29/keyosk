@@ -13,10 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(Illuminate\Session\Middleware\StartSession::class); // For session handling
+        $middleware->use([
+            Illuminate\Session\Middleware\StartSession::class, // Start session
+            Illuminate\View\Middleware\ShareErrorsFromSession::class, // Share session errors with views
     
-        // Must come after session middleware
-        $middleware->append(SecurityHeaders::class);                            // For security headers
+            SecurityHeaders::class, // Add security headers
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Handle 404 errors if .htaccess doesn't catch them
