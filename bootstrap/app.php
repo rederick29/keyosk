@@ -13,10 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(SecurityHeaders::class);
+        $middleware->append(Illuminate\Session\Middleware\StartSession::class); // For session handling
+        $middleware->append(SecurityHeaders::class);                            // For security headers
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        // Handle 404 errors
+        // Handle 404 errors if .htaccess doesn't catch them
         $exceptions->renderable(function (NotFoundHttpException $e, $request) {
             return redirect('/');
         });
