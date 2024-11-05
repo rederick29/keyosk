@@ -11,7 +11,7 @@ class MailController extends Controller
     public function send(){
         $mail = request(['first-name', 'last-name', 'email', 'subject', 'message']);
 
-        Mail::to('kchima671@gmail.com')->send(new ContactUs($mail));
+        Mail::to('example@gmail.com')->send(new ContactUs($mail));
 
         return view('contact-us');
     }
