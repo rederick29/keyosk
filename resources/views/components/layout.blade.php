@@ -25,7 +25,7 @@
     <title>{{ $title ?? "Keyosk" }}</title>
 </head>
 <body class="bg-zinc-950 relative">
-    <x-navbar />
+    <x-navbar.navbar />
     {{ $slot }}
 </body>
 </html>
