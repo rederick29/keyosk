@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(Illuminate\Session\Middleware\StartSession::class); // For session handling
+    
+        // Must come after session middleware
         $middleware->append(SecurityHeaders::class);                            // For security headers
     })
     ->withExceptions(function (Exceptions $exceptions) {

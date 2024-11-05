@@ -78,7 +78,7 @@
 
     {{-- Laravel is not a fan of imported js files so for now we are using the @once directive and then <script> with the code inside. --}}
     @once
-        <script>
+        <script nonce={{ session('csp_nonce') }}>
             let accountIcon = document.getElementById('account-icon');
             let accountDropdown = document.getElementById('account-dropdown');
             let accountDropdownToggle = false;
