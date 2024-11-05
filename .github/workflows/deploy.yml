@@ -37,7 +37,7 @@ jobs:
           php8.2 -c ~/etc/php8.2 /usr/bin/composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           npm i --silent --no-progress
           npm run build
-          php8.2 -c ~/etc/php8.2 artisan key:generate
-          php8.2 -c ~/etc/php8.2 artisan migrate:fresh -n
-          php8.2 -c ~/etc/php8.2 artisan db:seed -n
+          php8.2 -c ~/etc/php8.2 artisan key:generate --force
+          php8.2 -c ~/etc/php8.2 artisan migrate:fresh -n --force
+          php8.2 -c ~/etc/php8.2 artisan db:seed -n --force
           EOF

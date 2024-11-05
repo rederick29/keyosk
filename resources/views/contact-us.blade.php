@@ -55,7 +55,7 @@
   <div id="sentPopup" class="hidden p-4 mt-1 mb-4 text-md text-green-400 rounded-md bg-gray-700">
     <p>Message sent!</p>
   </div>
-  <script>
+  <script nonce={{ session('csp_nonce') }}>
     function msgSent() {
       document.getElementById("sentPopup").classList.remove('hidden');
     }
