@@ -32,30 +32,32 @@
 
         document.body.addEventListener("click", function(e) {
             if(accountToggle) {
-                hideMenu();
+                hideAccountMenu();
             }
         });
         //document.body.addEventListener("click", () => hideMenu());
 
         accountIcon.addEventListener("click", function(event) {
             if(!accountToggle) {
-                showMenu();
+                showAccountMenu();
+                hideCartMenu();
             }
             else {
-                hideMenu();
+                hideAccountMenu();
             }
+
             // stopPropagation must be called on the parent / spawner element.
             event.stopPropagation();
         });
 
-        const showMenu = () => {
+        const showAccountMenu = () => {
             accountIcon.classList.add("bg-white/5", "ring-2")
             accountDropdown.classList.remove('dropdown-hide-desktop');
             accountDropdown.classList.add('dropdown-display-desktop');
             accountToggle = true;
         }
 
-        const hideMenu = () => {
+        const hideAccountMenu = () => {
             accountIcon.classList.remove("bg-white/5", "ring-2")
             accountDropdown.classList.remove('dropdown-display-desktop');
             accountDropdown.classList.add('dropdown-hide-desktop');
