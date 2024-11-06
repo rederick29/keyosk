@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
            ColourTagSeeder::class,
            CompatibilityTagSeeder::class,
            ProductSeeder::class,
+           ImageSeeder::class,
            UserSeeder::class,
            OrderSeeder::class,
            ReviewSeeder::class,
