@@ -1,14 +1,14 @@
 
+{{--
+    Contact us page to be used as a view on website.
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.neutral-100">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+    Author(s): Kai (lastname) : Main Developer
+               Ben Snaith : Minor formatting and edits
+
+    TODO: implement search-bar relationship
+--}}
+
+<x-layout>
 <div class="bg-zinc-800 px-6 py-10 lg:py-15 lg:px-8">
   <div class="mx-auto max-w-2xl text-center">
     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Contact Us</h2>
@@ -61,7 +61,4 @@
     }
   </script>
 </div>
-
-    
-</body>
-</html>
+</x-layout>
