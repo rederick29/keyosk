@@ -18,7 +18,7 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'rating' => fake()->randomFloat(1,0,5),
+            'rating' => fake()->randomElement([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
             'subject' => fake()->realText(100),
             'comment' => fake()->realText(1000),
             'user_id' => fake()->randomElement(DB::table('users')->pluck('id')),
