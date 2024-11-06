@@ -2,7 +2,7 @@
 {{--
     Index page of website.
 
-    Author(s): Ben Snaith
+    Author(s): Ben Snaith : Main Developer
 --}}
 
 <x-layout>

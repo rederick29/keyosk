@@ -4,7 +4,7 @@
     including static elements which should remain
     consistent across the site
 
-    Author(s): Ben Snaith
+    Author(s): Ben Snaith : Main Developer
 --}}
 
 <!doctype html>

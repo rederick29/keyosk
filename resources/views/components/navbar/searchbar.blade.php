@@ -2,7 +2,7 @@
 {{--
     Search bar element.
 
-    Author(s): Ben Snaith
+    Author(s): Ben Snaith : Main Developer
 --}}
 
 <form class="inline-flex w-96">
