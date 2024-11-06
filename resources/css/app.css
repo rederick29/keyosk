@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 @layer components {
+    /* Tailwind keywords that can be added to classes to reduce code reuse */
     .dropdown-link {
         @apply w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
     }
 
     .dropdown-display-desktop {
-        @apply hidden md:block lg:block border-2 border-violet-700 bg-zinc-900 w-52 h-fit absolute top-12 right-0 rounded-md shadow-2xl transition-all duration-700;
+        @apply hidden md:block lg:block border-2 border-violet-700 bg-zinc-900 absolute rounded-md shadow-2xl;
     }
 
     .dropdown-hide-desktop {
-        @apply scale-0 border-2 border-neutral-400 bg-zinc-900 w-52 h-fit absolute top-0 right-0 rounded-md shadow-2xl transition-all duration-700;
+        @apply scale-0 border-2 border-neutral-400 bg-zinc-900 absolute rounded-md shadow-2xl;
     }
 }
