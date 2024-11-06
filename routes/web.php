@@ -13,3 +13,8 @@ Route::get('/contact', function () {
 });
 
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
+
+Route::get('/about', function () {
+    return view('about-us');
+});
+
