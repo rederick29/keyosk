@@ -1,4 +1,3 @@
-=======
 {{--
     About us page to be used as a view on website.
 
@@ -17,4 +16,3 @@
         
     </div>
 </x-layout>
->>>>>>> Stashed changes
