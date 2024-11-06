@@ -7,90 +7,81 @@ import.meta.glob([
 
 console.log("Connection");
 
-//
-// CART AND CART DROPDOWN BEHAVIOUR
-//
+class MenuItem {
+    parent;
+    childDropdown;
+    toggle = false;
 
-let cartIcon = document.getElementById('cart-icon');
-let cartDropdown = document.getElementById('cart-dropdown');
-let bridge = document.getElementById('bridge');
-let cartToggle = false;
+    constructor(parent, childDropdown) {
+        this.parent = document.getElementById(parent);
+        this.childDropdown = document.getElementById(childDropdown);
+        this.toggle = false;
+    }
 
-document.body.addEventListener("click", function(e) {
+    getParent() {
+        return this.parent;
+    }
+
+    getChildDropdown() {
+        return this.childDropdown;
+    }
+
+    getToggle() {
+        return this.toggle;
+    }
+
+    handleInteraction() {
+        if(this.getToggle()) {
+            this.hideChildDropdownMenu()
+        }
+        else {
+            this.showChildDropdownMenu()
+        }
+    }
+
+    showChildDropdownMenu() {
+        this.parent.classList.add("bg-white/5", "ring-2")
+        this.childDropdown.classList.remove('dropdown-hide-desktop');
+        this.childDropdown.classList.add('dropdown-display-desktop');
+        // bridge.classList.remove("hidden")
+        this.toggle = true;
+    }
+
+    hideChildDropdownMenu() {
+        this.parent.classList.remove("bg-white/5", "ring-2")
+        this.childDropdown.classList.remove('dropdown-display-desktop');
+        this.childDropdown.classList.add('dropdown-hide-desktop');
+        this.toggle = false;
+    }
+}
+
+let cartMenu = new MenuItem('cart-icon', 'cart-dropdown');
+let accountMenu = new MenuItem('account-icon', 'account-dropdown');
+
+cartMenu.getParent().addEventListener("click", function(e) {
+    console.log("cart menu");
+    cartMenu.handleInteraction();
+
+    e.stopPropagation();
+});
+
+// duplication will be changed later when fixed for hover.
+accountMenu.getParent().addEventListener("click", function(e) {
+    console.log("account menu");
+    accountMenu.handleInteraction();
+
+    e.stopPropagation();
+});
+
+document.body.addEventListener("click", function() {
     console.log("body (propagation)")
-    if(cartToggle) {
-        hideCartMenu();
-    }
+
+    handleDocumentBodyClick(accountMenu);
+    handleDocumentBodyClick(cartMenu);
 });
 
-cartIcon.addEventListener("mouseenter", function(event) {
-    if(!cartToggle) {
-        showCartMenu();
-        hideAccountMenu();
+const handleDocumentBodyClick = (menuItem) => {
+    if(menuItem.getToggle()) {
+        menuItem.hideChildDropdownMenu();
     }
-    // stopPropagation must be called on the parent / spawner element.
-    event.stopPropagation();
-});
-
-cartIcon.addEventListener("mouseleave", function(event) {
-    hideCartMenu();
-})
-
-const showCartMenu = () => {
-    cartIcon.classList.add("bg-white/5", "ring-2")
-    cartDropdown.classList.remove('dropdown-hide-desktop');
-    cartDropdown.classList.add('dropdown-display-desktop');
-    bridge.classList.remove("hidden")
-    cartToggle = true;
 }
-
-const hideCartMenu = () => {
-    cartIcon.classList.remove("bg-white/5", "ring-2")
-    cartDropdown.classList.remove('dropdown-display-desktop');
-    cartDropdown.classList.add('dropdown-hide-desktop');
-    bridge.classList.add("hidden")
-    cartToggle = false;
-}
-
-//
-// ACCOUNT AND ACCOUNT DROPDOWN BEHAVIOUR
-//
-
-let accountIcon = document.getElementById('account-icon');
-let accountDropdown = document.getElementById('account-dropdown');
-let accountToggle = false;
-
-document.body.addEventListener("click", function(e) {
-    if(accountToggle) {
-        hideAccountMenu();
-    }
-});
-
-accountIcon.addEventListener("click", function(event) {
-    if(!accountToggle) {
-        showAccountMenu();
-        hideCartMenu();
-    }
-    else {
-        hideAccountMenu();
-    }
-
-    // stopPropagation must be called on the parent / spawner element.
-    event.stopPropagation();
-});
-
-const showAccountMenu = () => {
-    accountIcon.classList.add("bg-white/5", "ring-2")
-    accountDropdown.classList.remove('dropdown-hide-desktop');
-    accountDropdown.classList.add('dropdown-display-desktop');
-    accountToggle = true;
-}
-
-const hideAccountMenu = () => {
-    accountIcon.classList.remove("bg-white/5", "ring-2")
-    accountDropdown.classList.remove('dropdown-display-desktop');
-    accountDropdown.classList.add('dropdown-hide-desktop');
-    accountToggle = false;
-}
-
-
