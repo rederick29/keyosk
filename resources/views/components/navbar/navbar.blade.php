@@ -32,11 +32,4 @@
             <x-navbar.hamburger-menu />
         </div>
     </div>
-
-    {{-- Laravel is not a fan of imported js files so for now we are using the @once directive and then <script> with the code inside. --}}
-    @once
-        <script nonce="{{ session("csp_nonce") }}">
-
-        </script>
-    @endonce
 </nav>
