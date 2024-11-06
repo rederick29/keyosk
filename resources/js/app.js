@@ -7,81 +7,117 @@ import.meta.glob([
 
 console.log("Connection");
 
-class MenuItem {
-    parent;
-    childDropdown;
-    toggle = false;
-
-    constructor(parent, childDropdown) {
-        this.parent = document.getElementById(parent);
-        this.childDropdown = document.getElementById(childDropdown);
-        this.toggle = false;
-    }
-
-    getParent() {
-        return this.parent;
-    }
-
-    getChildDropdown() {
-        return this.childDropdown;
-    }
-
-    getToggle() {
-        return this.toggle;
-    }
-
-    handleInteraction() {
-        if(this.getToggle()) {
-            this.hideChildDropdownMenu()
+class DropdownMenu {
+    /*
+     * Create a new dropdown menu
+     * param parentId: ID of the parent element that will open the dropdown
+     * param dropdownId: ID of the dropdown element to show/hide
+     * throws Error if parent or dropdown elements are not found
+     */
+    constructor(parentId, dropdownId) {
+        this.parentElement = document.getElementById(parentId);
+        if (!this.parentElement) {
+            throw new Error(`Parent element with ID ${parentId} not found`);
         }
-        else {
-            this.showChildDropdownMenu()
+
+        this.dropdownElement = document.getElementById(dropdownId);
+        if (!this.dropdownElement) {
+            throw new Error(`Dropdown element with ID ${dropdownId} not found`);
+        }
+
+        this.isOpen = false;
+        this.otherMenus = [];
+    }
+
+    /*
+     * Toggle the dropdown menu open or closed
+     */
+    toggle() {
+        // Close other menus before opening this one
+        this.closeOtherMenus();
+
+        if (this.isOpen) {
+            this.hide();
+        } else {
+            this.show();
         }
     }
 
-    showChildDropdownMenu() {
-        this.parent.classList.add("bg-white/5", "ring-2")
-        this.childDropdown.classList.remove('dropdown-hide-desktop');
-        this.childDropdown.classList.add('dropdown-display-desktop');
-        // bridge.classList.remove("hidden")
-        this.toggle = true;
+    /*
+     * Open the dropdown menu
+     */
+    show() {
+        // If the menu is already open, don't do anything
+        if (this.isOpen) {
+            return;
+        }
+
+        this.parentElement.classList.add('bg-white/5', 'ring-2');
+        this.dropdownElement.classList.remove('dropdown-hide-desktop');
+        this.dropdownElement.classList.add('dropdown-display-desktop');
+        this.isOpen = true;
     }
 
-    hideChildDropdownMenu() {
-        this.parent.classList.remove("bg-white/5", "ring-2")
-        this.childDropdown.classList.remove('dropdown-display-desktop');
-        this.childDropdown.classList.add('dropdown-hide-desktop');
-        this.toggle = false;
+    /*
+     * Close the dropdown menu
+     */
+    hide() {
+        // If the menu is already closed, don't do anything
+        if (!this.isOpen) {
+            return;
+        }
+
+        this.parentElement.classList.remove('bg-white/5', 'ring-2');
+        this.dropdownElement.classList.remove('dropdown-display-desktop');
+        this.dropdownElement.classList.add('dropdown-hide-desktop');
+        this.isOpen = false;
+    }
+
+    /*
+     * Register another menu to close when this one is opened
+     */
+    registerOtherMenu(menu) {
+        this.otherMenus.push(menu);
+    }
+
+    /*
+     * Close other menus when opening this one
+     */
+    closeOtherMenus() {
+        this.otherMenus.forEach(menu => {
+            if (menu !== this && menu.isOpen) {
+                menu.hide();
+            }
+        });
     }
 }
 
-let cartMenu = new MenuItem('cart-icon', 'cart-dropdown');
-let accountMenu = new MenuItem('account-icon', 'account-dropdown');
+// Initialize dropdown menus
+const cartMenu = new DropdownMenu('cart-icon', 'cart-dropdown');
+const accountMenu = new DropdownMenu('account-icon', 'account-dropdown');
 
-cartMenu.getParent().addEventListener("click", function(e) {
-    console.log("cart menu");
-    cartMenu.handleInteraction();
+// Register menus with eachother
+cartMenu.registerOtherMenu(accountMenu);
+accountMenu.registerOtherMenu(cartMenu);
 
+// Add click listeners
+cartMenu.parentElement.addEventListener('click', (e) => {
     e.stopPropagation();
+    cartMenu.toggle();
 });
 
-// duplication will be changed later when fixed for hover.
-accountMenu.getParent().addEventListener("click", function(e) {
-    console.log("account menu");
-    accountMenu.handleInteraction();
-
+accountMenu.parentElement.addEventListener('click', (e) => {
     e.stopPropagation();
+    accountMenu.toggle();
 });
 
-document.body.addEventListener("click", function() {
-    console.log("body (propagation)")
-
-    handleDocumentBodyClick(accountMenu);
-    handleDocumentBodyClick(cartMenu);
-});
-
-const handleDocumentBodyClick = (menuItem) => {
-    if(menuItem.getToggle()) {
-        menuItem.hideChildDropdownMenu();
+// Close dropdown menus when clicking outside
+document.body.addEventListener('click', () => {
+    if (cartMenu.isOpen) {
+        cartMenu.hide();
     }
-}
+
+    if (accountMenu.isOpen) {
+        accountMenu.hide();
+    }
+});
