@@ -2,14 +2,15 @@
 {{--
     Contact us page to be used as a view on website.
 
-    Author(s): Kai (lastname) : Main Developer
+    Author(s): Kai Chima : Main Developer
                Ben Snaith : Minor formatting and edits
 
     TODO: implement search-bar relationship
 --}}
 
-<x-layout>
-<div class="bg-zinc-800 px-6 py-10 lg:py-15 lg:px-8">
+<x-layouts.layout>
+<x-slot:title>Keyosk | Contact Us</x-slot:title>
+<div class="bg-zinc-950 px-6 py-10 lg:py-15 lg:px-8">
   <div class="mx-auto max-w-2xl text-center">
     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Contact Us</h2>
     <p class="mt-2 text-lg/8 text-violet-700">Enter details below</p>
@@ -44,12 +45,12 @@
       <div class="lg:col-span-2">
         <label for="message" class="block text-lg/6 text-white text-sm">Message</label>
         <div class="mt-2.5">
-          <textarea name="message" id="message" rows="4" class="block w-full rounded-lg border border-neutral-100 px-3.5 py-2 text-white placeholder:text-white-400 bg-zinc-700" minlength="10" required></textarea>
+          <textarea name="message" id="message" rows="4" class="block w-full rounded-lg border border-neutral-100 px-3.5 py-2 text-white placeholder:text-white-400 bg-zinc-700" minlength="10" maxlength="250" required></textarea>
         </div>
       </div>
     </div>
     <div class="mt-10">
-      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"  onClick="msgSent()">Submit</button>
+      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"  onSubmit="msgSent()">Submit</button>
     </div>
   </form>
   <div id="sentPopup" class="hidden p-4 mt-1 mb-4 text-md text-green-400 rounded-md bg-gray-700">
@@ -61,4 +62,4 @@
     }
   </script>
 </div>
-</x-layout>
+</x-layouts.layout>

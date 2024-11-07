@@ -5,14 +5,14 @@
 @layer components {
     /* Tailwind keywords that can be added to classes to reduce code reuse */
     .dropdown-link {
-        @apply w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
+        @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
     }
 
     .dropdown-display-desktop {
-        @apply hidden md:block lg:block border-2 border-violet-700 bg-zinc-900 absolute rounded-md shadow-2xl;
+        @apply hidden md:block lg:block bg-zinc-800 absolute rounded-lg shadow-2xl;
     }
 
     .dropdown-hide-desktop {
-        @apply scale-0 border-2 border-neutral-400 bg-zinc-900 absolute rounded-md shadow-2xl;
+        @apply scale-0 border-2 border-neutral-400 bg-zinc-900 absolute rounded-lg shadow-2xl;
     }
 }

@@ -23,7 +23,7 @@ class SecurityHeaders
         $response = $next($request);
 
         // Set security headers in production (allow quick testing in development)
-        if (env('APP_ENV') == 'production') {
+        if (app()->environment('production')) {
             $response->headers->set('Content-Security-Policy', "frame-ancestors 'none'; default-src 'self'; script-src 'self' 'nonce-{$nonce}'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;");
             $response->headers->set('X-Frame-Options', 'DENY');
             $response->headers->set('X-Content-Type-Options', 'nosniff');

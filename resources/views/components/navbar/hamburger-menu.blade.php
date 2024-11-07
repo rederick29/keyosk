@@ -13,12 +13,3 @@
     </div>
 </div>
 
-@once
-    <script nonce="{{ session("csp_nonce") }}">
-        let hamburger = document.getElementById('hamburger');
-
-        hamburger.addEventListener("click", function() {
-            console.log("Hamburger icon");
-        });
-    </script>
-@endonce
