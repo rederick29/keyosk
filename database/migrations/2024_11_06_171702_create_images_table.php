@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products', 'id', 'idx_images_p_id');
             $table->string('location');
+            $table->smallInteger('priority')->default(0);
             $table->timestamps();
+            $table->unique(['product_id', 'priority']);
         });
     }
 

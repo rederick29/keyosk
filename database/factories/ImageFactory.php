@@ -24,6 +24,7 @@ class ImageFactory extends Factory
         return [
             'product_id' => $product_id,
             'location' => $location,
+            'priority' => 0,
         ];
     }
 
