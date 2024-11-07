@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colour_tags', function (Blueprint $table) {
+        Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('cart_id')->constrained('carts', 'id', 'idx_cart_product_c_id');
+            $table->foreignId('product_id')->constrained('products', 'id', 'idx_cart_product_p_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colour_tags');
+        Schema::dropIfExists('cart_product');
     }
 };

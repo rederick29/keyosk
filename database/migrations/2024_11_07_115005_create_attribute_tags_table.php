@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colours_products', function (Blueprint $table) {
+        Schema::create('attribute_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('colour_id')->constrained('colour_tags', 'id', 'idx_colours_products_c_id');
-            $table->foreignId('product_id')->constrained('products', 'id', 'idx_colours_products_p_id');
+            // nullable as the name of this type of tag can be self-explanatory
+            $table->foreignId('tag_id')->constrained('tags', 'id', 'idx_attribute_tags_t_id');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colours_products');
+        Schema::dropIfExists('attribute_tags');
     }
 };

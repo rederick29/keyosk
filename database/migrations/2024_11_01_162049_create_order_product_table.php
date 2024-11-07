@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('compatibility_tags', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('order_id')->constrained('orders', 'id', 'idx_orders_products_o_id');
+            $table->foreignId('product_id')->constrained('products', 'id', 'idx_orders_products_p_id');
+            $table->integer('quantity')->default(1);
+            $table->decimal('price', 8, 4);
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('compatibility_tags');
+        Schema::dropIfExists('order_product');
     }
 };

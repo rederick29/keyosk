@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 
@@ -24,5 +26,25 @@ class ReviewFactory extends Factory
             'user_id' => fake()->randomElement(DB::table('users')->pluck('id')),
             'product_id' => fake()->randomElement(DB::table('products')->pluck('id')),
         ];
+    }
+
+    public function forProduct(Product $product): Factory|ReviewFactory
+    {
+        return $this->state(function (array $attributes) use ($product)
+        {
+            return [
+                'product_id' => $product->id,
+            ];
+        });
+    }
+
+    public function forUser(User $user): Factory|ReviewFactory
+    {
+        return $this->state(function (array $attributes) use ($user)
+        {
+            return [
+                'user_id' => $user->id,
+            ];
+        });
     }
 }

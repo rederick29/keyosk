@@ -1,16 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Tag;
 
+use App\Models\Tag;
+use App\Models\Tag\AttributeTag;
+use App\Models\Tag\TagType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\AttributeTag;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AttributeTag>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
 class AttributeTagFactory extends Factory
 {
     protected $model = AttributeTag::class;
+
     /**
      * Define the model's default state.
      *
@@ -19,7 +22,8 @@ class AttributeTagFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(),
+            'description' => fake()->sentence(),
+            'tag_id' => Tag::factory()->state(['type' => TagType::Attribute->value]),
         ];
     }
 }

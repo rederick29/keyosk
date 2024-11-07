@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id', 'idx_cart_u_id');
-            $table->foreignId('product_id')->constrained('products', 'id', 'idx_cart_p_id');
+            $table->foreignId('user_id')->constrained('users', 'id', 'idx_carts_u_id');
             $table->timestamps();
         });
     }

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('compatibility_products', function (Blueprint $table) {
+        Schema::create('compatibility_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('compatibility_id')->constrained('compatibility_tags', 'id', 'idx_compatibility_products_c_id');
-            $table->foreignId('product_id')->constrained('products', 'id', 'idx_compatibility_products_p_id');
+            $table->foreignId('tag_id')->constrained('tags', 'id', 'idx_compatibility_tags_t_id');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('compatibility_products');
+        Schema::dropIfExists('compatibility_tags');
     }
 };
