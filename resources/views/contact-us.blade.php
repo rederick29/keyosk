@@ -45,12 +45,12 @@
       <div class="lg:col-span-2">
         <label for="message" class="block text-lg/6 text-white text-sm">Message</label>
         <div class="mt-2.5">
-          <textarea name="message" id="message" rows="4" class="block w-full rounded-lg border border-neutral-100 px-3.5 py-2 text-white placeholder:text-white-400 bg-zinc-700" minlength="10" required></textarea>
+          <textarea name="message" id="message" rows="4" class="block w-full rounded-lg border border-neutral-100 px-3.5 py-2 text-white placeholder:text-white-400 bg-zinc-700" minlength="10" maxlength="250" required></textarea>
         </div>
       </div>
     </div>
     <div class="mt-10">
-      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"  onClick="msgSent()">Submit</button>
+      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"  onSubmit="msgSent()">Submit</button>
     </div>
   </form>
   <div id="sentPopup" class="hidden p-4 mt-1 mb-4 text-md text-green-400 rounded-md bg-gray-700">
