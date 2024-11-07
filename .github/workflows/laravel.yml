@@ -39,7 +39,7 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/testing.sqlite
         run: |
-          touch database/test.sqlite
+          touch database/testing.sqlite
           php artisan test
           php artisan serve &
           kill %1
