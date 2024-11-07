@@ -23,7 +23,7 @@ class AttributeTagFactory extends Factory
     {
         return [
             'description' => fake()->sentence(),
-            'tag_id' => Tag::factory()->state(['type' => TagType::Attribute->value]),
+            'tag_id' => Tag::factory()->state(['type' => TagType::Attribute]),
         ];
     }
 }

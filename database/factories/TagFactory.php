@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag\TagType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class TagFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'type' => fake()->randomElement(TagType::getEnumValues()),
         ];
     }
 }

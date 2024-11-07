@@ -22,9 +22,9 @@ class TagSeeder extends Seeder
 
         $products = Product::all();
         foreach ($products as $product) {
-            $product->tags()->attach($colourTags->random(rand(1, 3))->pluck('id'));
-            $product->tags()->attach($attributeTags->random(rand(1, 3))->pluck('id'));
-            $product->tags()->attach($compatibilityTags->random(rand(1, 3))->pluck('id'));
+            $product->tags()->attach($colourTags->random(rand(1, 3))->pluck('tag_id'));
+            $product->tags()->attach($attributeTags->random(rand(1, 3))->pluck('tag_id'));
+            $product->tags()->attach($compatibilityTags->random(rand(1, 3))->pluck('tag_id'));
         }
     }
 }

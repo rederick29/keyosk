@@ -23,7 +23,7 @@ class ColourTagFactory extends Factory
     {
         return [
             'hex_code' => fake()->hexColor(),
-            'tag_id' => Tag::factory()->state(['type' => TagType::Colour->value]),
+            'tag_id' => Tag::factory()->state(['type' => TagType::Colour]),
         ];
     }
 }
