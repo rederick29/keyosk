@@ -9,7 +9,7 @@
     TODO: Fix stupid animation pop in
 --}}
 
-<nav class="flex flex-row fixed justify-between items-center px-5 md:px-10 lg:px-20 min-h-24 min-w-full bg-zinc-900 text-neutral-400 border border-x-0 border-t-0 border-b-4 border-violet-700 shadow-xl">
+<nav class="flex flex-row fixed justify-between items-center px-5 md:px-10 lg:px-20 min-h-24 min-w-full bg-zinc-900 text-neutral-200 border border-x-0 border-t-0 border-b-4 border-violet-700 shadow-xl">
     {{-- Desktop Links --}}
     <div class="hidden lg:block md:block">
         <div class="hidden md:flex lg:flex lg:flex-row md:flex-row items-center space-x-10 font-medium">
