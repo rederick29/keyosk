@@ -8,7 +8,7 @@
     TODO: implement search-bar relationship
 --}}
 
-<x-layout>
+<x-layouts.layout>
 <div class="bg-zinc-800 px-6 py-10 lg:py-15 lg:px-8">
   <div class="mx-auto max-w-2xl text-center">
     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Contact Us</h2>
@@ -61,4 +61,4 @@
     }
   </script>
 </div>
-</x-layout>
+</x-layouts.layout>
