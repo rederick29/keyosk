@@ -2,7 +2,7 @@
 {{--
     Contact us page to be used as a view on website.
 
-    Author(s): Kai (lastname) : Main Developer
+    Author(s): Kai Chima : Main Developer
                Ben Snaith : Minor formatting and edits
 
     TODO: implement search-bar relationship
