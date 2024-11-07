@@ -22,27 +22,27 @@ class CartItem extends Component
     {
         // assign all parameters
         $this->productImage = $productImage;
-        if($this->productImage == null || $this->productImage == '')
+        if(empty($this->productImage))
         {
-            throw new Exception("product image should not be null");
+            throw new Exception("Product image should not be null");
         }
 
         $this->productTitle = $productTitle;
-        if($this->productTitle == null || $this->productTitle == '')
+        if(empty($this->productTitle))
         {
-            throw new Exception("product title should not be null");
+            throw new Exception("Product title should not be null");
         }
 
         $this->productPrice = $productPrice;
-        if($this->productPrice == null || $this->productPrice == '' || $this->productPrice < 0)
+        if(empty($this->productPrice) || $this->productPrice < 0)
         {
-           throw new Exception("product price should not be null or less than 0");
+           throw new Exception("Product price should not be null or less than 0");
         }
 
         $this->productQuantity = $productQuantity;
-        if($this->productQuantity == null || $this->productQuantity == '' || $this->productQuantity <= 0)
+        if(empty($this->productQuantity) || $this->productQuantity <= 0)
         {
-            throw new Exception("product quantity should not be null or 0");
+            throw new Exception("Product quantity should not be null or 0");
         }
     }
 
