@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -14,9 +14,9 @@ class ReviewController extends Controller
     {
         // Validation
         $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'subject' => 'required|string|max:255',
-            'comment' => 'nullable|string',
+            'rating' => 'required|integer|min:1|max:10',
+            'subject' => 'required|string|max:100',
+            'comment' => 'nullable|string|max:1000',
         ]);
 
         // Creating the review

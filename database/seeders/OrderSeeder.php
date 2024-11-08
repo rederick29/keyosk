@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Order;
@@ -13,6 +14,10 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        Order::factory()->count(20)->create();
+        for ($i = 1; $i <= 20; $i++) {
+            Order::factory()
+                ->forProducts(Product::all()->random(random_int(1, 5)))
+                ->create();
+        }
     }
 }

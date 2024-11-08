@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -28,13 +29,13 @@ class Review extends Model
         'product_id',
     ];
 
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
         static::saving(function (Review $review) {
-            if ($review->rating < 0.0 || $review->rating > 5.0) {
-                throw new ValidationException('Rating must be between 0.0 and 5.0');
+            if ($review->rating < 0 || $review->rating > 10) {
+                throw new ValidationException('Rating must be between 0 and 10');
             }
         });
     }
@@ -44,7 +45,7 @@ class Review extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -54,7 +55,7 @@ class Review extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
