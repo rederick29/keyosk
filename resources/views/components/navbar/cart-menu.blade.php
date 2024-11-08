@@ -16,7 +16,18 @@
     <div class="dropdown-hide-desktop w-96 h-fit top-12 right-0" id="cart-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             <div class="font-bold text-xl w-full p-2 justify-start">Shopping Basket</div>
-            <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+            <?php
+            use App\Models\Product;
+            use App\Models\Image;
+            use Illuminate\Support\Facades\DB;
+
+            $product = Product::with('images')->where('name', '=', 'Labrador')->first();
+            if ($product == null) {
+                $product = Product::factory()->create(['name' => 'Labrador']);
+                Image::factory()->forProduct($product)->create(['location' => 'https://picsum.photos/id/237/75/75']);
+            }
+            ?>
+            <x-navbar.cart-item productImage="{{ $product->images->first->get()->location }}" productTitle="{{ $product->name }}" productPrice="{{ floatval($product->price) }}" productQuantity="{{ $product->stock }}" />
             <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
             <div class="h-[12px]"></div>
             <x-navbar.dropdown-link type="a" href="/" class="bg-violet-700 text-white hover:bg-violet-700/50">Checkout</x-navbar.dropdown-link>
