@@ -18,3 +18,6 @@ Route::get('/about', function () {
     return view('about-us');
 });
 
+Route::get('/productview', function () {
+    return view('product-view');
+});
