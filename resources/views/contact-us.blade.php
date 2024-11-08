@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="mt-10">
-      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"  onSubmit="msgSent()">Submit</button>
+      <button type="submit" name="submit" class="block w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500" onSubmit="msgSent()">Submit</button>
     </div>
   </form>
   <div id="sentPopup" class="hidden p-4 mt-1 mb-4 text-md text-green-400 rounded-md bg-gray-700">
