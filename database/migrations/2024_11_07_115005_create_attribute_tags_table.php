@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('attribute_tags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id', 'idx_carts_u_id');
+            // nullable as the name of this type of tag can be self-explanatory
+            $table->foreignId('tag_id')->constrained('tags', 'id', 'idx_attribute_tags_t_id');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('attribute_tags');
     }
 };

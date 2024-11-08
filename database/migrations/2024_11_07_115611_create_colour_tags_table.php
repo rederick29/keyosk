@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attribute_tags', function (Blueprint $table) {
+        Schema::create('colour_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('tag_id')->constrained('tags', 'id', 'idx_colour_tags_t_id');
+            $table->string('hex_code');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attribute_tags');
+        Schema::dropIfExists('colour_tags');
     }
 };

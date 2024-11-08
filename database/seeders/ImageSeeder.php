@@ -3,23 +3,22 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Review;
+use App\Models\Image;
 
-class ReviewSeeder extends Seeder
+class ImageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 30; $i++) {
-            Review::factory()
-                ->forProduct(Product::all()->random())
-                ->forUser(User::all()->random())
+        $products = Product::all();
+        $products->each(function ($product) {
+            Image::factory()
+                ->forProduct($product)
                 ->create();
-        }
+        });
     }
 }

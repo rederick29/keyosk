@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->float('rating');
+            $table->smallInteger('rating');
             $table->string('subject', 100)->nullable();
             $table->string('comment', 1000)->nullable();
             $table->foreignId('user_id')->constrained('users', 'id', 'idx_reviews_u_id');
@@ -24,7 +24,7 @@ return new class extends Migration
 
         // alter table add constraint check does not work on sqlite
         if (DB::connection()->getDriverName() != 'sqlite') {
-            DB::statement("ALTER TABLE reviews ADD CONSTRAINT chk_rating_range CHECK (rating >= 0.0 AND rating <= 5.0)");
+            DB::statement("ALTER TABLE reviews ADD CONSTRAINT chk_rating_range CHECK (rating >= 0 AND rating <= 10)");
         }
     }
 
