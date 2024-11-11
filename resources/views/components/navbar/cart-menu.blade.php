@@ -27,8 +27,13 @@
                 Image::factory()->forProduct($product)->create(['location' => 'https://picsum.photos/id/237/75/75']);
             }
             ?>
-            <x-navbar.cart-item productImage="{{ $product->images->first->get()->location }}" productTitle="{{ $product->name }}" productPrice="{{ floatval($product->price) }}" productQuantity="{{ $product->stock }}" />
-            <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+            <div class="w-full p-5 bg-zinc-900 max-h-[30vh] overflow-y-scroll rounded-xl">
+                <x-navbar.cart-item productImage="{{ $product->images->first->get()->location }}" productTitle="{{ $product->name }}" productPrice="{{ floatval($product->price) }}" productQuantity="{{ $product->stock }}" />
+                <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+                <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+                <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+                <x-navbar.cart-item productImage="https://picsum.photos/id/237/75/75" productTitle="Labrador" productPrice=100.00 productQuantity=1 />
+            </div>
             <div class="h-[12px]"></div>
             <x-navbar.dropdown-link type="a" href="/" class="bg-violet-700 text-white hover:bg-violet-700/50">Checkout</x-navbar.dropdown-link>
             <div class="h-[12px]"></div>
