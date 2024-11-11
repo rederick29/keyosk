@@ -20,7 +20,7 @@
                 My Account
             </x-navbar.dropdown-link>
             <x-navbar.dropdown-link type="a" href="/" class="">
-                My orders
+                My Orders
             </x-navbar.dropdown-link>
             <x-navbar.dropdown-link type="a" href="/" class="">
                 Settings
@@ -28,7 +28,7 @@
 
             <div class="h-16"></div>
 
-            <x-navbar.dropdown-link type="a" href="/" class="bg-red-600 hover:bg-red-700 text-white">Log out</x-navbar.dropdown-link>
+            <x-navbar.dropdown-link type="a" href="/" class="bg-red-600 hover:bg-red-700 text-white">Log Out</x-navbar.dropdown-link>
         </div>
     </div>
 </div>
