@@ -54,8 +54,8 @@ class DropdownMenu {
         }
 
         this.parentElement.classList.add('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-hide-desktop');
-        this.dropdownElement.classList.add('dropdown-display-desktop');
+        this.dropdownElement.classList.remove('dropdown-hide');
+        this.dropdownElement.classList.add('dropdown-display');
         this.isOpen = true;
     }
 
@@ -69,8 +69,8 @@ class DropdownMenu {
         }
 
         this.parentElement.classList.remove('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-display-desktop');
-        this.dropdownElement.classList.add('dropdown-hide-desktop');
+        this.dropdownElement.classList.remove('dropdown-display');
+        this.dropdownElement.classList.add('dropdown-hide');
         this.isOpen = false;
     }
 
@@ -97,7 +97,7 @@ class DropdownMenu {
 const cartMenu = new DropdownMenu('cart-icon', 'cart-dropdown');
 const accountMenu = new DropdownMenu('account-icon', 'account-dropdown');
 
-// Register menus with eachother
+// Register menus with each other
 cartMenu.registerOtherMenu(accountMenu);
 accountMenu.registerOtherMenu(cartMenu);
 

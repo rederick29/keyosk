@@ -13,7 +13,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </div>
     {{-- Drop down menu --}}
-    <div class="dropdown-hide-desktop w-96 h-fit top-12 right-0" id="cart-dropdown">
+    <div class="dropdown-hide w-[100vw] md:w-96 lg:w-96 h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             <div class="font-bold text-xl w-full p-2 justify-start">Shopping Basket</div>
             <?php
