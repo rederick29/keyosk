@@ -16,10 +16,10 @@
         </div>
         <div class="flex flex-col justify-center text-center py-5">
             <h1 class="font-bold mb-1">Legal</h1>
-            <a href="">test link</a>
-            <a href="">test link</a>
-            <a href="">test link</a>
-            <a href="">test link</a>
+            <a href="">Privacy Policy</a>
+            <a href="">Licensing</a>
+            <a href="">Returns Policy</a>
+            <a href="">Terms & Conditions</a>
         </div>
         <div class="flex flex-col justify-center text-center py-5">
             <h1 class="font-bold mb-1">Download</h1>
