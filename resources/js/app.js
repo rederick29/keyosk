@@ -54,8 +54,8 @@ class DropdownMenu {
         }
 
         this.parentElement.classList.add('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-hide-desktop');
-        this.dropdownElement.classList.add('dropdown-display-desktop');
+        this.dropdownElement.classList.remove('dropdown-hide');
+        this.dropdownElement.classList.add('dropdown-display');
         this.isOpen = true;
     }
 
@@ -69,8 +69,8 @@ class DropdownMenu {
         }
 
         this.parentElement.classList.remove('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-display-desktop');
-        this.dropdownElement.classList.add('dropdown-hide-desktop');
+        this.dropdownElement.classList.remove('dropdown-display');
+        this.dropdownElement.classList.add('dropdown-hide');
         this.isOpen = false;
     }
 
@@ -96,12 +96,19 @@ class DropdownMenu {
 // Initialize dropdown menus
 const cartMenu = new DropdownMenu('cart-icon', 'cart-dropdown');
 const accountMenu = new DropdownMenu('account-icon', 'account-dropdown');
+const hamburgerMenu = new DropdownMenu('hamburger', 'hamburger-dropdown');
 
-// Register menus with eachother
+// Register menus with each other
 cartMenu.registerOtherMenu(accountMenu);
+cartMenu.registerOtherMenu(hamburgerMenu);
 accountMenu.registerOtherMenu(cartMenu);
+accountMenu.registerOtherMenu(hamburgerMenu);
+hamburgerMenu.registerOtherMenu(accountMenu);
+hamburgerMenu.registerOtherMenu(cartMenu);
+
 
 // Add click listeners
+// TODO: Pressing on the dropdown menu of the element causes it to also me toggled, must fix.
 cartMenu.parentElement.addEventListener('click', (e) => {
     e.stopPropagation();
     cartMenu.toggle();
@@ -112,8 +119,15 @@ accountMenu.parentElement.addEventListener('click', (e) => {
     accountMenu.toggle();
 });
 
+hamburgerMenu.parentElement.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hamburgerMenu.toggle();
+})
+
 // Close dropdown menus when clicking outside
 document.body.addEventListener('click', () => {
+    console.log("propagation");
+
     if (cartMenu.isOpen) {
         cartMenu.hide();
     }

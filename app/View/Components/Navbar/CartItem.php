@@ -11,14 +11,14 @@ class CartItem extends Component
 {
     public string $productImage;
     public string $productTitle;
-    public int $productPrice;
+    public float $productPrice;
     public int $productQuantity;
 
     /**
      * Create a new component instance.
      * @throws Exception
      */
-    public function __construct(string $productImage, string $productTitle, int $productPrice, int $productQuantity)
+    public function __construct(string $productImage, string $productTitle, float $productPrice, int $productQuantity)
     {
         // assign all parameters
         $this->productImage = $productImage;

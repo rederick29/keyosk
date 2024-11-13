@@ -16,7 +16,7 @@
             <p class="font-bold">£{{ $productPrice }}</p>
             <p class="text-xs">Qty: {{ $productQuantity }}</p>
         </div>
-        <button class="w-full flex justify-end mt-1 text-xs text-red-600 hover:underline hover:text-red-700">
+        <button class="w-fit flex items-start justify-start mt-1 text-xs text-red-600 hover:underline hover:text-red-700">
             remove
         </button>
     </div>

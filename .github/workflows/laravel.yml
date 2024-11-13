@@ -37,8 +37,9 @@ jobs:
       - name: Execute tests via PHPUnit/Pest and run application
         env:
           DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
+          DB_DATABASE: database/testing.sqlite
         run: |
+          touch database/testing.sqlite
           php artisan test
           php artisan serve &
           kill %1
