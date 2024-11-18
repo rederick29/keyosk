@@ -16,7 +16,7 @@
             <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 Shop
             </a>
-            <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
+        <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 Popular
             </a>
             <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
@@ -33,7 +33,10 @@
     </div>
 
     <div>
-        <div class="flex flex-row items-center space-x-0.5 lg:space-x-3 md:space-x-3 min-w-[274px] justify-end">
+        <div class="flex flex-row justify-end md:justify-between lg:justify-between items-center space-x-0.5 md:space-x-5 lg:space-x-3 min-w-[274px]">
+{{--            <div>--}}
+{{--                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>--}}
+{{--            </div>--}}
             <x-navbar.search-menu />
             <x-navbar.cart-menu />
             <x-navbar.account-menu />
