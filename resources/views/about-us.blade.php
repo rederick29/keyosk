@@ -10,19 +10,22 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | About us</x-slot:title>
-    <div class = "about-us bg-zinc-800 pt-32 text-white font-sans">
+    <div class = "about-us bg-zinc-950 pt-32 text-white font-sans">
 
         <h1 class = "text-center text-4xl font-semibold">About Us</h1>
         
-        <div class="bg-zinc-700 p-6 rounded-lg mt-10 mx-auto max-w-4xl">
+        <div class="bg-zinc-900 p-6 rounded-lg mt-10 mx-auto max-w-2xl">
             <h1 class = "text-center text-2xl">The Keyosk Mission</h1>
-            <p class = "text-center">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure <strong>we</strong> contribute to saving the environment. </p>
-        </div>
-        <div class="bg-zinc-700 p-6 rounded-lg mt-10 mx-auto max-w-4xl">
+            <br>
+            <p class="text-center mx-auto w-3/4 text-wrap">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure <strong>we</strong> contribute to saving the environment. </p>
+        <br>
+        <hr class = "border-2 border-violet-700 bg-violet-700">
+        <br>
         <h1 class = "text-center text-2xl">The Keyosk Vision</h1>
-        <p class = "text-center">The vision at Keyosk has always been to redefine how people connect with technology, as we look towards designing our products through progressive, ergonomic and sustainable methods. We visualise a future where we become leading innovators in the peripherals industry, as Keyosk products encourage a higher quality of life, productivity and satisfication for our customers. </p>
+        <br>
+        <p class = "text-center mx-auto w-3/4 text-wrap">The vision at Keyosk has always been to redefine how people connect with technology, as we look towards designing our products through progressive, ergonomic and sustainable methods. We visualise a future where we become leading innovators in the peripherals industry, as Keyosk products encourage a higher quality of life, productivity and satisfication for our customers. </p>
         </div>
-        <div class="bg-zinc-700 p-6 rounded-lg mt-10 mx-auto">
+        <div class="bg-zinc-900 p-6 rounded-lg mt-10 mx-auto">
             <h1 class = "text-center text-2xl">Meet The Team</h1>
             <div class = "grid grid-cols-2 md:grid-cols-4 gap-4 size-1/2 text-center mx-auto mt-6">
                 <div>
