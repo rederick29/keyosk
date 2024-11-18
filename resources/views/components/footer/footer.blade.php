@@ -29,7 +29,7 @@
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
         </div>
     </div>
-    <div class="flex flex-row p-3 px-5 w-[100vw] bg-zinc-800 items-center justify-between">
+    <div class="flex flex-row p-3 px-5 w-full bg-zinc-800 items-center justify-between">
         <x-util.logo width="200" type="div" />
         <div class="flex flex-row space-x-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4 7.278V4.5h-2.286c-2.1 0-3.428 1.6-3.428 3.889v1.667H8v2.777h2.286V19.5h2.857v-6.667h2.286L16 10.056h-2.857V8.944c0-1.11.572-1.666 1.714-1.666H16z"/></svg>
