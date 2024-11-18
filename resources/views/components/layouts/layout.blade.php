@@ -21,7 +21,7 @@
     --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Title can be passed as <x-slot:title>, however by default it will use "Keytamine" --}}
+    {{-- Title can be passed as <x-slot:title>, however by default it will use "Keyosk" --}}
     <title>{{ $title ?? "Keyosk" }}</title>
 </head>
 <body class="bg-zinc-950 relative h-fit text-neutral-200">
