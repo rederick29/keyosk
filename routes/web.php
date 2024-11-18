@@ -12,9 +12,12 @@ Route::get('/contact', function () {
     return view('contact-us');
 });
 
-Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
-
 Route::get('/about', function () {
     return view('about-us');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
