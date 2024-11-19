@@ -16,3 +16,29 @@
         @apply scale-0 border-2 border-neutral-400 bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
 }
+
+::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar:hover {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-track:hover {
+}
+
+::-webkit-scrollbar-thumb {
+    background: #BDBDBD;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6E6E6E;
+    width: 10px;
+}
