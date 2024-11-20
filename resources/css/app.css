@@ -30,9 +30,6 @@
     background: transparent;
 }
 
-::-webkit-scrollbar-track:hover {
-}
-
 ::-webkit-scrollbar-thumb {
     background: #BDBDBD;
     border-radius: 10px;
