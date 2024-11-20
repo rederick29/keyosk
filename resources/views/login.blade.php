@@ -5,14 +5,27 @@
     Author(s): Suktirath Bains: Front-end Developer
 --}}
 <x-layouts.min-layout>
-    <div class="flex flex-col items-center justify-center h-screen w-full bg-gradient-to-b from-zinc-950 to-violet-700">
-        <div class="bg-zinc-900 pt-12 w-96 justify-self-center  justify-center mx-auto h-50 rounded-3xl mb-6 ">
-            <div class="ml-16"><x-util.logo class="ml" type="a" href="/" width=250 /></div>
-            <p class="text-white text-center text-md mt-10 mb-50">Login to Keyosk</p>
-            <form action="" class="mx-auto text-center px-10 py-10 lg:py-15 lg:px-8 border-solid border-violet-700">
-                <input type="text" id="username" name="username" placeholder="Email/Username" required class="p-2 mb-5 rounded mt_10 bg-zinc-700 w-2/3">
-                <input type="text" id="username" placeholder="Password" required class="p-2 mb-10 rounded bg-zinc-700 w-2/3">
-                <button type="login" class="rounded-md bg-violet-700 hover:bg-violet-500  text-white px-5 py-3 w-1/2  font-semibold">Log-in</button>
+    <div class="flex flex-col items-center justify-center space-y-10 h-screen w-full bg-gradient-to-tr from-violet-500 to-pink-500">
+        <x-util.logo class="text-zinc-800" type="a" href="/" width=400 />
+
+        <div class="bg-zinc-900 w-1/3 justify-self-center justify-center h-fit rounded-2xl">
+            <form action="/" class="flex flex-col space-y-8 text-center p-10">
+                <div class="flex flex-col space-y-2">
+                    <label for="username" class="font-semibold self-start ml-1">Username</label>
+                    <input type="text" id="username" name="username" required class="h-14 p-3 text-xl rounded-lg bg-zinc-800 w-full ring-2 focus:outline-none">
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <label for="username" class="font-semibold self-start ml-1">Password</label>
+                    <input type="password" id="password" required class="h-14 p-3 rounded-lg text-xl bg-zinc-800 w-full ring-2 focus:outline-none">
+                </div>
+                <div class="flex flex-row items-center space-x-2 ml-1">
+                    <input type="checkbox" id="remember" value="" class="appearance-none rounded-md h-5 w-5 bg-zinc-900 checked:bg-violet-700 border-violet-700 ring-2 focus:ring-0 focus:ring-offset-0">
+                    <label for="remember" class="font-semibold self-start ml-1">Remember Me</label>
+                </div>
+                <div class="w-full flex flew-row items-center justify-end mt-3 space-x-5">
+                    <a class="underline" href="/">Forgot Your Password?</a>
+                    <button type="submit" class="rounded-md bg-violet-700  text-white py-3 px-10 w-fit font-semibold hover:bg-violet-500">Log In</button>
+                </div>
             </form>
         </div>
     </div>
