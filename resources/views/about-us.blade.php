@@ -27,58 +27,66 @@
         </div>
         <div class="bg-zinc-900 p-6 rounded-lg mt-10 mx-auto">
             <h1 class = "text-center text-2xl">Meet The Team</h1>
-            <div class = "grid grid-cols-2 md:grid-cols-4 gap-4 size-1/2 text-center mx-auto mt-6">
+            <div class = "grid grid-cols-2 md:grid-cols-4 gap-7 size-4/5 md:size-3/5 text-center mx-auto mt-6">
                 <div>
                     <p class ="text-sm font-semibold">Arun</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Backend<br>Security Support</p>
+                    <p class ="text-sm">Backend Developer</p>
+                    <p class ="text-xs">Security Support</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Ben</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Frontend<br>Backend Support</p>
+                    <p class ="text-sm">Frontend Developer</p>
+                    <p class ="text-xs">Backend Support</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Erick</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Backend</p>
+                    <p class ="text-sm">Backend Developer</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Josh</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Reports</p>
+                    <p class ="text-sm">Reporter</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Kai</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Frontend<br>Design & Backend Support</p>
+                    <p class ="text-sm">Frontend Developer</p>
+                    <p class ="text-xs">Backend Support<br>Design Support</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Mohamed</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Design<br>Frontend Support</p>
+                    <p class ="text-sm">Designer</p>
+                    <p class ="text-xs">Frontend Support</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Mousa</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Management</p>
+                    <p class ="text-sm">Manager</p>
+                    <p class ="text-xs">Design Support</p>
                 </div>
                 <div>
                     <p class ="text-sm font-semibold">Nauman</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Reports<br>Management Support</p>
+                    <p class ="text-sm">Reporter</p>
+                    <p class ="text-xs">Management Support<br>Design Support</p>
+                </div>
+                <div class="hidden md:block"></div> <!-- This blank space is visible only on larger screens -->
+                <div>
+                    <p class="text-sm font-semibold">Toms</p>
+                    <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
+                    <p class="text-sm">Manager</p>
+                    <p class="text-xs">Reports Support</p>
                 </div>
                 <div>
-                    <p class ="text-sm font-semibold">Suktirath</p>
+                    <p class="text-sm font-semibold">Suktirath</p>
                     <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Frontend<br>Reports Support</p>
+                    <p class="text-sm">Frontend Developer</p>
+                    <p class="text-xs">Reports Support<br>Design Support</p>
                 </div>
-                <div>
-                    <p class ="text-sm font-semibold">Toms</p>
-                    <img src="https://i.ibb.co/XfQgwQp/Unknown-person.jpg">
-                    <p class ="text-sm">Main Management<br>Reports Support</p>
-                </div>
-            </div>
         </div>
     </div>
 </x-layouts.layout>
