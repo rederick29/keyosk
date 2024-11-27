@@ -1,15 +1,9 @@
-Author: Toms Xavi
-
-
 <x-layouts.layout>
     <main class="h-screen">
-        
         <x-util.imagescroll></x-util.imagescroll>
-
 
         <div class="p-4">
             <div class="relative">
-
                 <button
                     id="scroll-left"
                     class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-zinc-900 bg-opacity-70 text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition duration-300 z-20"
@@ -23,7 +17,6 @@ Author: Toms Xavi
                     id="scroll-container"
                     class="flex overflow-x-auto space-x-4 p-4 bg-zinc-900 rounded-lg scrollbar-hide"
                 >
-
                     <div class="flex-shrink-0 w-80">
                         <x-util.item-card />
                     </div>
@@ -44,7 +37,6 @@ Author: Toms Xavi
                     </div>
                 </div>
 
-
                 <button
                     id="scroll-right"
                     class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-zinc-900 bg-opacity-70 text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition duration-300 z-20"
@@ -57,63 +49,63 @@ Author: Toms Xavi
         </div>
     </main>
 
-
     <script>
         const container = document.getElementById('scroll-container');
         const scrollLeftBtn = document.getElementById('scroll-left');
         const scrollRightBtn = document.getElementById('scroll-right');
-        
-        let scrollInterval;
-        const scrollAmount = 3;  
-        const pauseTime = 2000;  
 
+        let scrollInterval;
+        let isManualScroll = false;
+        const scrollAmount = 2;
+        const pauseTime = 3000;
 
         function performScroll() {
-            container.scrollBy({ left: 80 * scrollAmount, behavior: 'smooth' });  
+            container.scrollBy({ left: 80 * scrollAmount, behavior: 'smooth' });
         }
-
 
         function startLoopingScroll() {
-            scrollInterval = setInterval(() => {
-                performScroll(); 
-                clearInterval(scrollInterval); 
-                setTimeout(() => {
-                    startLoopingScroll(); 
-                }, pauseTime); 
-            }, 1000); 
+            if (!isManualScroll) {
+                scrollInterval = setInterval(() => {
+                    performScroll();
+                    clearInterval(scrollInterval);
+                    setTimeout(() => {
+                        startLoopingScroll();
+                    }, pauseTime);
+                }, 3000);
+            }
         }
 
-
         startLoopingScroll();
-
 
         scrollLeftBtn.addEventListener('click', () => {
             clearInterval(scrollInterval);
             container.scrollBy({ left: -300, behavior: 'smooth' });
-
-
-            setTimeout(startLoopingScroll, 1000);
+            isManualScroll = true;
+            setTimeout(() => {
+                isManualScroll = false;
+                startLoopingScroll();
+            }, 3000);
         });
 
-  
         scrollRightBtn.addEventListener('click', () => {
-            clearInterval(scrollInterval); 
+            clearInterval(scrollInterval);
             container.scrollBy({ left: 300, behavior: 'smooth' });
-
-
-            setTimeout(startLoopingScroll, 1000);
+            isManualScroll = true;
+            setTimeout(() => {
+                isManualScroll = false;
+                startLoopingScroll();
+            }, 3000);
         });
     </script>
+
+    <style>
+        #scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        #scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </x-layouts.layout>
-
-<style>
-
-    #scroll-container::-webkit-scrollbar {
-        display: none;
-    }
-
-    #scroll-container {
-        -ms-overflow-style: none;  
-        scrollbar-width: none;     
-    }
-</style>
