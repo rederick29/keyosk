@@ -72,10 +72,10 @@ class DropdownMenu {
         }
 
         if(this.parentElement && this.dropdownElement) {
-            this.parentElement.classList.add('bg-white/5', 'ring-2');
-            this.dropdownElement.classList.remove('dropdown-hide');
-            this.dropdownElement.classList.add('dropdown-display');
-            this.isOpen = true;
+            this.parentElement.classList.remove('bg-white/5', 'ring-2');
+            this.dropdownElement.classList.remove('dropdown-display');
+            this.dropdownElement.classList.add('dropdown-hide');
+            this.isOpen = false;
         }
         else {
             throw new Error("Parent or Dropdown element is null")
