@@ -18,10 +18,12 @@
                     <label for="username" class="font-semibold self-start ml-1">Password</label>
                     <input type="password" id="password" required class="h-14 p-3 rounded-lg text-xl bg-zinc-800 w-full ring-2 focus:outline-none">
                 </div>
+                <!--
                 <div class="flex flex-row items-center space-x-2 ml-1">
-                    <input type="checkbox" id="remember" value="" class="appearance-none rounded-md h-5 w-5 bg-zinc-900 checked:bg-violet-700 border-violet-700 ring-2 focus:ring-0 focus:ring-offset-0">
+                    <input type="checkbox" id="remember" value="" class="remember-me">
                     <label for="remember" class="font-semibold self-start ml-1">Remember Me</label>
                 </div>
+                -->
                 <div class="w-full flex flew-row items-center justify-end mt-3 space-x-5">
                     <a class="underline" href="/">Forgot Your Password?</a>
                     <button type="submit" class="rounded-md bg-violet-700  text-white py-3 px-10 w-fit font-semibold hover:bg-violet-500">Log In</button>
