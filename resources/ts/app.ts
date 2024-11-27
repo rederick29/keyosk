@@ -2,8 +2,8 @@
 console.log("Connection: TS");
 
 class DropdownMenu {
-    parentElement: Element;
-    dropdownElement: Element;
+    parentElement: Element | null;
+    dropdownElement: Element | null;
     isOpen: boolean;
     otherMenus: DropdownMenu[];
 
@@ -51,10 +51,15 @@ class DropdownMenu {
             return;
         }
 
-        this.parentElement.classList.add('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-hide');
-        this.dropdownElement.classList.add('dropdown-display');
-        this.isOpen = true;
+        if(this.parentElement && this.dropdownElement) {
+            this.parentElement.classList.add('bg-white/5', 'ring-2');
+            this.dropdownElement.classList.remove('dropdown-hide');
+            this.dropdownElement.classList.add('dropdown-display');
+            this.isOpen = true;
+        }
+        else {
+            throw new Error("Parent or Dropdown element is null")
+        }
     }
 
     /*
@@ -66,10 +71,15 @@ class DropdownMenu {
             return;
         }
 
-        this.parentElement.classList.remove('bg-white/5', 'ring-2');
-        this.dropdownElement.classList.remove('dropdown-display');
-        this.dropdownElement.classList.add('dropdown-hide');
-        this.isOpen = false;
+        if(this.parentElement && this.dropdownElement) {
+            this.parentElement.classList.remove('bg-white/5', 'ring-2');
+            this.dropdownElement.classList.remove('dropdown-display');
+            this.dropdownElement.classList.add('dropdown-hide');
+            this.isOpen = false;
+        }
+        else {
+            throw new Error("Parent or Dropdown element is null")
+        }
     }
 
     /*
@@ -83,7 +93,7 @@ class DropdownMenu {
      * Close other menus when opening this one
      */
     closeOtherMenus(): void {
-        this.otherMenus.forEach(menu => {
+        this.otherMenus.forEach((menu: DropdownMenu): void => {
             if (menu !== this && menu.isOpen) {
                 menu.hide();
             }
@@ -106,20 +116,35 @@ hamburgerMenu.registerOtherMenu(cartMenu);
 
 // Add click listeners
 // TODO: Pressing on the dropdown menu of the element causes it to also me toggled, must fix.
-cartMenu.parentElement.addEventListener('click', (e): void => {
-    e.stopPropagation();
-    cartMenu.toggle();
-});
+if(cartMenu.parentElement) {
+    cartMenu.parentElement.addEventListener('click', (e: Event): void => {
+        e.stopPropagation();
+        cartMenu.toggle();
+    });
+}
+else {
+    throw new Error("CartMenu Parent Element is null");
+}
 
-accountMenu.parentElement.addEventListener('click', (e): void => {
-    e.stopPropagation();
-    accountMenu.toggle();
-});
+if(accountMenu.parentElement) {
+    accountMenu.parentElement.addEventListener('click', (e: Event): void => {
+        e.stopPropagation();
+        accountMenu.toggle();
+    });
+}
+else {
+    throw new Error("AccountMenu Parent Element is null");
+}
 
-hamburgerMenu.parentElement.addEventListener("click", (e): void => {
-    e.stopPropagation();
-    hamburgerMenu.toggle();
-})
+if(hamburgerMenu.parentElement) {
+    hamburgerMenu.parentElement.addEventListener("click", (e): void => {
+        e.stopPropagation();
+        hamburgerMenu.toggle();
+    })
+}
+else {
+    throw new Error("HamburgerMenu Parent Element is null");
+}
 
 // Close dropdown menus when clicking outside
 document.body.addEventListener('click', (): void => {
