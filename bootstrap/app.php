@@ -14,10 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->use([
-            Illuminate\Session\Middleware\StartSession::class, // Start session
-            Illuminate\View\Middleware\ShareErrorsFromSession::class, // Share session errors with views
-    
-            SecurityHeaders::class, // Add security headers
+            //Illuminate\Session\Middleware\StartSession::class, // Start session
+            // Illuminate\View\Middleware\ShareErrorsFromSession::class, // Share session errors with views
+
+            // SecurityHeaders::class, // Add security headers
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
