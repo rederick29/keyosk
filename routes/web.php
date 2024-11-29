@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 
@@ -16,8 +18,11 @@ Route::get('/about', function () {
     return view('about-us');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
+
+Route::get('/register', [RegisterUserController::class, 'create']);
+Route::post('/register', [RegisterUserController::class, 'store']);
+
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
+Route::post('/logout', [SessionController::class, 'destroy']);
