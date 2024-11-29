@@ -28,14 +28,13 @@
 
             <div class="h-16"></div>
             @auth
-                <p>Logged in as: {{ \Illuminate\Support\Facades\Auth::user()->email }}</p>
+                <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
                 <form action="/logout" method="POST">
                     @csrf
                     <button type="submit" name="logout" class="dropdown-link bg-red-600 hover:bg-red-700 text-white">Log Out</button>
                 </form>
             @endauth
             @guest
-                <p>Not logged in.</p>
                 <x-navbar.dropdown-link type="a" href="/login" class="">
                     Log in
                 </x-navbar.dropdown-link>

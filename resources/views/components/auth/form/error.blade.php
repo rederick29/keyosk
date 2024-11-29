@@ -1,4 +1,4 @@
 @props(['name'])
-@error('name')
-    <p class="font-semibold text-sm text-red-600 mt-1">{{ $message }}</p>
-@enderror
+@foreach ($errors->get($name) as $error)
+    <p class="font-semibold text-sm text-red-600 mt-1">{{ $error }}</p>
+@endforeach

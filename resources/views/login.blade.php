@@ -27,9 +27,13 @@
                     <label for="remember" class="font-semibold self-start ml-1">Remember Me</label>
                 </div>
                 -->
-                <div class="w-full flex flew-row items-center justify-end mt-3 space-x-5">
-                    <a class="underline" href="/">Forgot Your Password?</a>
-                    <button type="submit" class="rounded-md bg-violet-700  text-white py-3 px-10 w-fit font-semibold hover:bg-violet-500">Log In</button>
+                <div class="flex flex-row items-center justify-between mt-4">
+                    <a class="underline text-sm text-violet-400 hover:text-violet-300" href="/">
+                        Forgot Your Password?
+                    </a>
+                    <button type="submit" class="rounded-md bg-violet-700 text-white py-2 px-6 font-semibold hover:bg-violet-500">
+                        Log In
+                    </button>
                 </div>
             </form>
         </div>

@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             //Illuminate\Session\Middleware\StartSession::class, // Start session
             // Illuminate\View\Middleware\ShareErrorsFromSession::class, // Share session errors with views
 
-            // SecurityHeaders::class, // Add security headers
+            SecurityHeaders::class, // Add security headers
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
