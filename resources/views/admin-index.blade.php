@@ -27,8 +27,8 @@
                     </div>
                 </div>
 
-                <div class="flex mb-6 justify-between"> <!-- Use justify-between to space out elements -->
-                    <div class="flex-[1]"> <!-- This will stay on the left -->
+                <div class="flex mb-6 justify-between">
+                    <div class="flex-[1]">
                         <!-- All Users Dropdown -->
                         <select id="searchQuery"
                             class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
@@ -38,7 +38,7 @@
                         </select>
                     </div>
 
-                    <div class="flex-[0.4]"> <!-- This will stay on the right -->
+                    <div class="flex-[0.4]">
                         <div class="flex space-x-4 max-w-xl w-full justify-end">
                             <!-- Bulk Action Dropdown -->
                             <select id="bulkActionOpt"
@@ -119,7 +119,6 @@
                 attachEventListeners();
 
                 function attachEventListeners() {
-                    checkboxes.forEach(checkbox => checkbox.addEventListener('change', updateSelectedCount));
                     searchButton.addEventListener('click', performSearch);
                     searchInput.addEventListener('keypress', handleEnterKey);
                     searchInput.addEventListener('input', debounce(performSearch, 500));
