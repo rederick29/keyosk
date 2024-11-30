@@ -44,4 +44,5 @@
 /* To tweak toastr */
 .toast {
     opacity: 1 !important;
+    width: 25vw !important;
 }

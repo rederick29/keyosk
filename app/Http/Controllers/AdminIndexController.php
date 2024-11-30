@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminIndexController extends Controller
 {
@@ -21,14 +23,19 @@ class AdminIndexController extends Controller
         }
 
         // Admin filter
-        if ($request->input('is_admin') === '1') {
+        if ($request->input('query') === 'admin_only') {
             $query->where('is_admin', true);
+        } else if ($request->input('query') === 'users_only') {
+            $query->where('is_admin', false);
         }
 
-        // Default sorting
-        $users = $query->orderBy('name')
-            ->paginate(50)
+
+        $users = $query->orderByRaw('id = ? desc', [Auth::id()])  // Place current user first
+            ->orderBy('is_admin', 'desc')  // Then order by admin status
+            ->orderBy('name')  // Finally, order by name
+            ->paginate(24)
             ->withQueryString();
+
 
         return view('admin-index', compact('users'));
     }
@@ -36,7 +43,7 @@ class AdminIndexController extends Controller
     public function bulkAction(Request $request)
     {
         $request->validate([
-            'action' => 'required|in:delete,promote_to_admin',
+            'action' => 'required|in:delete,toggle_admin',
             'user_ids' => 'required|array',
             'user_ids.*' => 'integer|exists:users,id',
         ]);
@@ -48,20 +55,26 @@ class AdminIndexController extends Controller
             return response()->json(['message' => 'No users selected'], 400);
         }
 
+        // Don't allow performing actions on the currently authenticated user (admin)
+        if (in_array(Auth::id(), $userIds)) {
+            return response()->json(['message' => 'Cannot perform action on the current user'], 400);
+        }
+
         switch ($action) {
             case 'delete':
                 $users = User::whereIn('id', $userIds)->get();
 
                 foreach ($users as $user) {
-                    // Delete or handle related orders
-                    $user->orders()->delete(); // Assuming `orders()` is a relationship in the User model
+                    $user->orders()->delete();
+                    $user->reviews()->delete();
                 }
 
                 User::whereIn('id', $userIds)->delete();
                 break;
 
-            case 'promote_to_admin':
-                User::whereIn('id', $userIds)->update(['is_admin' => true]);
+            case 'toggle_admin':
+                User::whereIn('id', $userIds)
+                    ->update(['is_admin' => DB::raw('NOT is_admin')]);
                 break;
 
             default:

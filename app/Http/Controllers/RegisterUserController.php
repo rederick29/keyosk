@@ -39,6 +39,10 @@ class RegisterUserController extends Controller
             $rememberMe = false;
             Auth::login($user, $rememberMe);
 
+            if ($user->is_admin) {
+                return redirect()->route('admin.index');
+            }
+
             return redirect('/')->with('success', "Welcome, {$user->name}!");
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'We could not create your account. Please try again later.');

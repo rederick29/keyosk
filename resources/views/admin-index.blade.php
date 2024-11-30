@@ -7,59 +7,86 @@
 <x-layouts.layout>
     <x-slot:title>Admin Home</x-slot:title>
     <main class="h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
-        <div class="px-6 py-20 pt-35 lg:pt-40 lg:px-80 ">
+        <div class="lg:pt-40 lg:px-80 ">
             <div class="bg-zinc-800 rounded-2xl p-6 shadow-2xl">
-                <div class="mx-auto max-w-2xl text-center py-20">
+                <div class="mx-auto max-w-2xl text-center py-10">
                     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Admin Homepage</h2>
                 </div>
 
                 <div class="flex flex-col space-y-4 mb-6">
                     <div class="flex items-center space-x-4">
-                        <div class="flex-grow w-full flex items-center space-x-2">
-                            <input type="text" id="searchInput" placeholder="Search users..."
-                                class="w-full p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500" />
-                            <button id="searchButton"
-                                class="px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out">
-                                Search
+                        <!-- Search Bar -->
+                        <input type="text" id="searchInput" placeholder="Search users..."
+                            class="flex-[7] p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
+
+                        <!-- Search Button -->
+                        <button id="searchButton"
+                            class="flex-[1] p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex mb-6 justify-between"> <!-- Use justify-between to space out elements -->
+                    <div class="flex-[1]"> <!-- This will stay on the left -->
+                        <!-- All Users Dropdown -->
+                        <select id="searchQuery"
+                            class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                            <option value="">All Users</option>
+                            <option value="admin_only">Admins Only</option>
+                            <option value="users_only">Users Only</option>
+                        </select>
+                    </div>
+
+                    <div class="flex-[0.4]"> <!-- This will stay on the right -->
+                        <div class="flex space-x-4 max-w-xl w-full justify-end">
+                            <!-- Bulk Action Dropdown -->
+                            <select id="bulkActionOpt"
+                                class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                                <option value="">Action...</option>
+                                <option value="delete">Delete User</option>
+                                <option value="toggle_admin">Toggle User Admin</option>
+                            </select>
+
+                            <!-- Apply Button -->
+                            <button id="apply-mod"
+                                class="flex-[2] p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                                Apply
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex-grow w-full flex items-center space-x-2">
-                    <select id="bulkActionDropdown" class="w-full p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500">
-                        <option value="">Select Action</option>
-                        <option value="delete">Delete</option>
-                        <option value="promote_to_admin">Promote to Admin</option>
-                    </select>
-                    <button id="bulkActionButton" class="bg-blue-600 text-white px-4 py-2 rounded">Apply</button>
-                </div>
 
-                <div class="flex items-center space-x-2 py-5">
-                    <input type="checkbox" id="adminFilter"
-                        class="h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-                    <label for="adminFilter" class="text-white text-sm font-medium">Admin Only</label>
-                </div>
+
+                <hr>
 
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-h-[500px] overflow-y-auto p-4">
                     @foreach ($users as $user)
                         <div class="user-card group {{ $user->is_admin ? 'admin-user' : '' }}"
                             data-user-id="{{ $user->id }}" data-is-admin="{{ $user->is_admin ? 'true' : 'false' }}">
-                            <div
-                                class="relative bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
-                                <!-- Checkbox always visible -->
-                                <input type="checkbox" value="{{ $user->id }}"
+
+                            <!-- Wrap card content in a label -->
+                            <label for="checkbox-{{ $user->id }}"
+                                class="relative bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden flex flex-col justify-between cursor-pointer"
+                                style="aspect-ratio: 3.5 / 1;">
+
+                                <!-- Checkbox (visually still in the corner) -->
+                                <input type="checkbox" id="checkbox-{{ $user->id }}" value="{{ $user->id }}"
                                     class="user-select-checkbox absolute top-4 right-4 h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
 
-                                <div class="user-name text-lg font-semibold text-gray-800 mb-2">
-                                    {{ $user->name }} ({{ $user->email }})
-                                    @if ($user->is_admin)
-                                        <span
-                                            class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Admin</span>
-                                    @endif
+                                <!-- Card Content -->
+                                <div>
+                                    <div class="user-name text-lg font-semibold text-gray-800 mb-2">
+                                        {{ $user->name }} ({{ $user->email }})
+                                        @if ($user->is_admin)
+                                            <span
+                                                class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full absolute bottom-4 right-4 text-right">Admin</span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                     @endforeach
                 </div>
@@ -71,111 +98,138 @@
         </div>
 
         <script nonce="{{ session('csp_nonce') }}">
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', () => {
+                // Cache DOM Elements
                 const searchInput = document.getElementById('searchInput');
                 const searchButton = document.getElementById('searchButton');
-                const adminFilter = document.getElementById('adminFilter');
+                const searchQuery = document.getElementById('searchQuery');
+                const checkboxes = document.querySelectorAll('.user-select-checkbox');
+                const bulkActionOpt = document.getElementById('bulkActionOpt');
+                const applyModButton = document.getElementById('apply-mod');
 
-                let timeout;
+                // Load saved search parameters
+                const savedSearch = localStorage.getItem('search') || '';
+                const savedQuery = localStorage.getItem('query') || '';
 
-                // Restore previous search and filter states
-                const urlParams = new URLSearchParams(window.location.search);
-                const savedSearch = urlParams.get('search') || '';
-                const savedIsAdmin = urlParams.get('is_admin') === '1';
-
+                // Set initial search inputs
                 searchInput.value = savedSearch;
-                adminFilter.checked = savedIsAdmin;
+                searchQuery.value = savedQuery;
 
-                // Search on button click
-                searchButton.addEventListener('click', performSearch);
+                // Attach event listeners
+                attachEventListeners();
 
-                // Search on Enter key press
-                searchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        performSearch();
-                    }
-                });
+                function attachEventListeners() {
+                    checkboxes.forEach(checkbox => checkbox.addEventListener('change', updateSelectedCount));
+                    searchButton.addEventListener('click', performSearch);
+                    searchInput.addEventListener('keypress', handleEnterKey);
+                    searchInput.addEventListener('input', debounce(performSearch, 500));
+                    searchQuery.addEventListener('change', performSearch);
+                    applyModButton.addEventListener('click', applyBulkAction);
+                }
 
-                // Toggle admin filter
-                adminFilter.addEventListener('change', function() {
-                    performSearch();
-                });
-
-                // Debounced search function (searches after 0.5 second of inactivity)
-                searchInput.addEventListener('input', function() {
-                    clearTimeout(timeout);
-                    timeout = setTimeout(performSearch, 500);
-                });
+                function handleEnterKey(e) {
+                    if (e.key === 'Enter') performSearch();
+                }
 
                 function performSearch() {
                     const searchTerm = searchInput.value.trim();
-                    const isAdminChecked = adminFilter.checked;
-
-                    // Construct URL parameters
+                    const selectedQuery = searchQuery.value;
                     const params = new URLSearchParams();
-                    if (searchTerm) {
-                        params.set('search', searchTerm);
-                    }
-                    if (isAdminChecked) {
-                        params.set('is_admin', '1');
-                    }
 
-                    // Redirect with parameters
+                    if (searchTerm) params.set('search', searchTerm);
+                    if (selectedQuery) params.set('query', selectedQuery);
+
+                    // Save search terms for future use
+                    localStorage.setItem('search', searchTerm);
+                    localStorage.setItem('query', selectedQuery);
+
                     window.location.href = `?${params.toString()}`;
                 }
 
-                document.getElementById('bulkActionButton').addEventListener('click', function() {
-                    const selectedAction = document.getElementById('bulkActionDropdown').value;
-                    const selectedUsers = Array.from(document.querySelectorAll('.user-card input:checked'))
-                        .map(checkbox => checkbox.value);
-
-                    if (!selectedAction || selectedUsers.length === 0) {
-                        alert('Please select an action and at least one user.');
+                function applyBulkAction() {
+                    if (!confirm('Are you sure you want to continue?')) {
                         return;
                     }
 
-                    // debug the body
-                    console.log(JSON.stringify({
-                        action: selectedAction,
-                        user_ids: selectedUsers
-                    }));
+                    const selectedIds = getSelectedIds();
+                    const bulkAction = bulkActionOpt.value;
 
-                    fetch('/admin/users/bulk-action', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                "X-CSRF-TOKEN": "{{csrf_token()}}"
-                            },
-                            body: JSON.stringify({
-                                action: selectedAction,
-                                user_ids: selectedUsers
-                            }),
-                        })
+                    if (selectedIds.length === 0) {
+                        toastr.error('No users selected!');
+                        return;
+                    }
+
+                    switch (bulkAction) {
+                        case 'delete':
+                            deleteUsers(selectedIds);
+                            break;
+                        case 'toggle_admin':
+                            toggleAdminStatus(selectedIds);
+                            break;
+                        default:
+                            toastr.error('No users selected!');
+                            break;
+                    }
+                }
+
+                function getSelectedIds() {
+                    return Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+                }
+
+                function deleteUsers(ids) {
+                    sendBulkActionRequest('delete', ids)
                         .then(response => {
-                            // Check if the response is JSON
-                            const contentType = response.headers.get('content-type');
-                            if (contentType && contentType.includes('application/json')) {
-                                return response.json();
+                            if (response.ok) {
+                                window.location.reload();
                             } else {
-                                // If not JSON, throw an error
-                                throw new Error('Unexpected response format');
+                                handleError(response);
                             }
-                        })
-                        .then(data => {
-                            if (data.message) {
-                                alert(data.message);
-                                location.reload();
-                            } else {
-                                throw new Error('Unexpected response structure');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('An error occurred. Please try again.');
                         });
-                });
+                }
 
+                function toggleAdminStatus(ids) {
+                    sendBulkActionRequest('toggle_admin', ids)
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.reload();
+                            } else {
+                                handleError(response);
+                            }
+                        });
+                }
+
+                function sendBulkActionRequest(action, ids) {
+                    return fetch('/admin/users/bulk-action', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify({
+                            action,
+                            user_ids: ids
+                        })
+                    });
+                }
+
+                function handleError(response) {
+                    response.json().then(data => {
+                        toastr.error('Error: ' + data.message);
+                    }).catch(error => {
+                        toastr.error('Error: ' + response.statusText);
+                    });
+                }
+
+                // Debounce function to limit the frequency of the search
+                function debounce(func, wait) {
+                    let timeout;
+                    return (...args) => {
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => func(...args), wait);
+                    };
+                }
             });
         </script>
+
     </main>
 </x-layouts.layout>

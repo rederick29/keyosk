@@ -30,6 +30,11 @@ class SessionController extends Controller
         // If the credentials are correct, log the user in and redirect to the home page
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            if (Auth::user()->is_admin) {
+                return redirect()->route('admin.index');
+            }
+
             return redirect()->intended('/')->with('success', 'Welcome, ' . Auth::user()->name . '!');
         }
 
