@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\AdminIndexController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MailController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // Routes
-Route::view('/', 'index');
-Route::view('/about', 'about-us');
+Route::view('/', 'index')->name('index');
+Route::view('/about', 'about-us')->name('about');
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
@@ -20,4 +22,5 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-// Resource Routes
+// Admin Routes
+Route::get('/admin', [AdminIndexController::class, 'index'])->middleware(AdminMiddleware::class)->name('admin.index');

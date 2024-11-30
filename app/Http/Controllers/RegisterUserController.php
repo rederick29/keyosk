@@ -37,10 +37,9 @@ class RegisterUserController extends Controller
 
             // TODO: implement remember me functionality
             $rememberMe = false;
-
             Auth::login($user, $rememberMe);
 
-            return redirect('/')->with('success', 'Welcome, ' . $user->name . '!');
+            return redirect('/')->with('success', "Welcome, {$user->name}!");
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'We could not create your account. Please try again later.');
         }
