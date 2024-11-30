@@ -23,4 +23,7 @@ Route::get('/register', [RegisterUserController::class, 'create'])->name('regist
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
 // Admin Routes
-Route::get('/admin', [AdminIndexController::class, 'index'])->middleware(AdminMiddleware::class)->name('admin.index');
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
+    Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
+});

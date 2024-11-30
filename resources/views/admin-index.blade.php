@@ -1,7 +1,7 @@
 {{--
-    Index page of website.
+    Admin Homepage
 
-    Author(s): Ben Snaith : Main Developer, intns (minor changes)
+    Author(s): intns : Main Developer
 --}}
 
 <x-layouts.layout>
@@ -15,12 +15,6 @@
 
                 <div class="flex flex-col space-y-4 mb-6">
                     <div class="flex items-center space-x-4">
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" id="adminFilter"
-                                class="h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-                            <label for="adminFilter" class="text-white text-sm font-medium">Admin Only</label>
-                        </div>
-
                         <div class="flex-grow w-full flex items-center space-x-2">
                             <input type="text" id="searchInput" placeholder="Search users..."
                                 class="w-full p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500" />
@@ -32,23 +26,38 @@
                     </div>
                 </div>
 
+                <div class="flex-grow w-full flex items-center space-x-2">
+                    <select id="bulkActionDropdown" class="w-full p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500">
+                        <option value="">Select Action</option>
+                        <option value="delete">Delete</option>
+                        <option value="promote_to_admin">Promote to Admin</option>
+                    </select>
+                    <button id="bulkActionButton" class="bg-blue-600 text-white px-4 py-2 rounded">Apply</button>
+                </div>
+
+                <div class="flex items-center space-x-2 py-5">
+                    <input type="checkbox" id="adminFilter"
+                        class="h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    <label for="adminFilter" class="text-white text-sm font-medium">Admin Only</label>
+                </div>
+
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-h-[500px] overflow-y-auto p-4">
                     @foreach ($users as $user)
                         <div class="user-card group {{ $user->is_admin ? 'admin-user' : '' }}"
-                            data-is-admin="{{ $user->is_admin ? 'true' : 'false' }}">
+                            data-user-id="{{ $user->id }}" data-is-admin="{{ $user->is_admin ? 'true' : 'false' }}">
                             <div
-                                class="bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 relative overflow-hidden">
+                                class="relative bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
+                                <!-- Checkbox always visible -->
+                                <input type="checkbox" value="{{ $user->id }}"
+                                    class="user-select-checkbox absolute top-4 right-4 h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
+
                                 <div class="user-name text-lg font-semibold text-gray-800 mb-2">
-                                    {{ $user->name }}
+                                    {{ $user->name }} ({{ $user->email }})
                                     @if ($user->is_admin)
                                         <span
                                             class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Admin</span>
                                     @endif
-                                </div>
-                                <div
-                                    class="user-email opacity-0 group-hover:opacity-100 absolute inset-0 bg-black bg-opacity-70 text-white flex items-center justify-center transition-opacity duration-300 ease-in-out">
-                                    <span class="text-sm">{{ $user->email }}</span>
                                 </div>
                             </div>
                         </div>
@@ -114,6 +123,58 @@
                     // Redirect with parameters
                     window.location.href = `?${params.toString()}`;
                 }
+
+                document.getElementById('bulkActionButton').addEventListener('click', function() {
+                    const selectedAction = document.getElementById('bulkActionDropdown').value;
+                    const selectedUsers = Array.from(document.querySelectorAll('.user-card input:checked'))
+                        .map(checkbox => checkbox.value);
+
+                    if (!selectedAction || selectedUsers.length === 0) {
+                        alert('Please select an action and at least one user.');
+                        return;
+                    }
+
+                    // debug the body
+                    console.log(JSON.stringify({
+                        action: selectedAction,
+                        user_ids: selectedUsers
+                    }));
+
+                    fetch('/admin/users/bulk-action', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                "X-CSRF-TOKEN": "{{csrf_token()}}"
+                            },
+                            body: JSON.stringify({
+                                action: selectedAction,
+                                user_ids: selectedUsers
+                            }),
+                        })
+                        .then(response => {
+                            // Check if the response is JSON
+                            const contentType = response.headers.get('content-type');
+                            if (contentType && contentType.includes('application/json')) {
+                                return response.json();
+                            } else {
+                                // If not JSON, throw an error
+                                throw new Error('Unexpected response format');
+                            }
+                        })
+                        .then(data => {
+                            if (data.message) {
+                                alert(data.message);
+                                location.reload();
+                            } else {
+                                throw new Error('Unexpected response structure');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred. Please try again.');
+                        });
+                });
+
             });
         </script>
     </main>
