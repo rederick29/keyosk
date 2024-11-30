@@ -18,10 +18,10 @@ class SessionController extends Controller
     {
         // Validate the request on the following rules:
         // [email] - valid email format, max 255 chars, min 5 chars, and must exist in the users table
-        // [password] - max 255 chars, min 8 chars, at least 1 uppercase letter, 1 lowercase letter, and 1 number
+        // [password] - see Providers/AppServiceProvider.php
         $request->validate([
             'email' => ['required', 'email', 'max:255', 'min:5', 'exists:users,email'],
-            'password' => ['required', 'max:255', Password::min(8)->mixedCase()->letters()->numbers()],
+            'password' => ['required', Password::defaults()],
         ]);
 
         // The credentials are the email and password
