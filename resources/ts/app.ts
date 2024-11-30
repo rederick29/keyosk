@@ -2,8 +2,8 @@
 console.log("Connection: TS");
 
 class DropdownMenu {
-    parentElement: Element;
-    dropdownElement: Element;
+    parentElement: HTMLElement;
+    dropdownElement: HTMLElement;
     isOpen: boolean;
     otherMenus: DropdownMenu[];
 
@@ -14,12 +14,12 @@ class DropdownMenu {
      * throws Error if parent or dropdown elements are not found
      */
     constructor(parentId: string, dropdownId: string) {
-        this.parentElement = document.getElementById(parentId);
+        this.parentElement = document.getElementById(parentId) as HTMLElement;
         if (!this.parentElement) {
             throw new Error(`Parent element with ID ${parentId} not found`);
         }
 
-        this.dropdownElement = document.getElementById(dropdownId);
+        this.dropdownElement = document.getElementById(dropdownId) as HTMLElement;
         if (!this.dropdownElement) {
             throw new Error(`Dropdown element with ID ${dropdownId} not found`);
         }
