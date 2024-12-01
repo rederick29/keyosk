@@ -14,12 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Sohail is the admin, the leader.
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'sohail',
             'email' => 'sohail@aston.ac.uk',
-            'password' => Hash::make(env('ADMIN_PASSWORD', 'password')),
-            'is_admin' => true,
+            'password' => Hash::make(env('ADMIN_PASSWORD', 'password'))
         ]);
+
+        // Sohail is the admin, the leader.
+        $user->is_admin = true;
+        $user->save();
 
         // Richard is Sohail's favourite subject.
         User::factory()->create([

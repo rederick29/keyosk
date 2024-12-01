@@ -41,7 +41,7 @@ class SessionController extends Controller
         // If the credentials are incorrect, redirect back to the login page with an error message
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.'
-        ])->only('email');
+        ]);
     }
 
     public function destroy(Request $request)
