@@ -2,33 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\View;
 
 class SessionController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('login');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         // Validate the request on the following rules:
         // [email] - valid email format, max 255 chars, min 5 chars, and must exist in the users table
         // [password] - see Providers/AppServiceProvider.php
-        $request->validate([
+        $validated = $request->validate([
             'email' => ['required', 'email', 'max:255', 'min:5', 'exists:users,email'],
             'password' => ['required', Password::defaults()],
         ]);
 
-        // The credentials are the email and password
-        $credentials = $request->only('email', 'password');
-
         // If the credentials are correct, log the user in and redirect to the home page
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($validated)) {
             $request->session()->regenerate();
 
             if (Auth::user()->is_admin) {

@@ -36,14 +36,19 @@
                             <option value="admin_only">Admins Only</option>
                             <option value="users_only">Users Only</option>
                         </select>
+
+                        <button id="select-all"
+                            class="flex-[2] p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border ml-4">
+                            Select All
+                    </button>
                     </div>
 
                     <div class="flex-[0.4]">
                         <div class="flex space-x-4 max-w-xl w-full justify-end">
                             <!-- Bulk Action Dropdown -->
-                            <select id="bulkActionOpt"
+                            <select id="bulkActionOpt" aria-label="Bulk Action"
                                 class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
-                                <option value="">Action...</option>
+                                <option value="">Select Action</option>
                                 <option value="delete">Delete User</option>
                                 <option value="toggle_admin">Toggle User Admin</option>
                             </select>
@@ -82,7 +87,12 @@
                                         {{ $user->name }} ({{ $user->email }})
                                         @if ($user->is_admin)
                                             <span
-                                                class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full absolute bottom-4 right-4 text-right">Admin</span>
+                                                class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full absolute bottom-4 right-4 text-right">Admin
+
+                                                @if ($user->id === auth()->id())
+                                                    <span class="text-red-500"> (You)</span>
+                                                @endif
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -108,8 +118,13 @@
                 const applyModButton = document.getElementById('apply-mod');
 
                 // Load saved search parameters
-                const savedSearch = localStorage.getItem('search') || '';
+                let savedSearch = localStorage.getItem('search') || '';
                 const savedQuery = localStorage.getItem('query') || '';
+
+                // Stop trying to hack/fuzz our website, you're already an admin, you turd
+                if (savedSearch !== 'admin_only' && savedSearch !== 'users_only') {
+                    savedSearch = '';
+                }
 
                 // Set initial search inputs
                 searchInput.value = savedSearch;
@@ -146,18 +161,27 @@
                 }
 
                 function applyBulkAction() {
-                    if (!confirm('Are you sure you want to continue?')) {
-                        return;
-                    }
-
                     const selectedIds = getSelectedIds();
                     const bulkAction = bulkActionOpt.value;
 
+                    // Check if any users are selected
                     if (selectedIds.length === 0) {
                         toastr.error('No users selected!');
                         return;
                     }
 
+                    // Check if an action is selected
+                    if (!bulkAction) {
+                        toastr.error('No action selected!');
+                        return;
+                    }
+
+                    // Confirm the bulk action
+                    if (!confirm('Are you sure you want to continue?')) {
+                        return;
+                    }
+
+                    // Perform the bulk action
                     switch (bulkAction) {
                         case 'delete':
                             deleteUsers(selectedIds);
@@ -166,7 +190,7 @@
                             toggleAdminStatus(selectedIds);
                             break;
                         default:
-                            toastr.error('No users selected!');
+                            toastr.error('Invalid action selected! (how did you even do that?)');
                             break;
                     }
                 }

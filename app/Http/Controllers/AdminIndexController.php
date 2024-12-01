@@ -3,59 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AdminIndexController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Displays the admin index page.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request): View
     {
+        $validated = $request->validate([
+            'search' => ['nullable', 'string', 'max:255'],
+            'query' => ['nullable', 'in:admin_only,users_only'],
+        ]);
+
         $query = User::query();
 
         // Case-insensitive search filter
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                $q->whereRaw('LOWER(name) LIKE ?', ["%" . strtolower($search) . "%"])
-                    ->orWhereRaw('LOWER(email) LIKE ?', ["%" . strtolower($search) . "%"]);
+        if ($search = $validated['search'] ?? null) {
+            // Convert the search term to lowercase
+            $search = strtolower($search);
+
+            // Search by name or email
+            $query->where(function ($query) use ($search) {
+                $query->where('name', 'ilike', "%{$search}%")
+                    ->orWhere('email', 'ilike', "%{$search}%");
             });
         }
 
-        // Admin filter
-        if ($request->input('query') === 'admin_only') {
-            $query->where('is_admin', true);
-        } else if ($request->input('query') === 'users_only') {
-            $query->where('is_admin', false);
+        // Filter by user type (default is everyone)
+        if ($search = $validated["query"] ?? null) {
+            if ($validated['query'] === 'admin_only') {
+                $query->where('is_admin', true);
+            } elseif ($validated['query'] === 'users_only') {
+                $query->where('is_admin', false);
+            }
         }
 
-
-        $users = $query->orderByRaw('id = ? desc', [Auth::id()])  // Place current user first
-            ->orderBy('is_admin', 'desc')  // Then order by admin status
-            ->orderBy('name')  // Finally, order by name
+        // Order by the currently authenticated user first, then by admin status, then by name
+        $users = $query->orderByRaw('id = ? desc', [Auth::id()])
+            ->orderBy('is_admin', 'desc')
+            ->orderBy('name')
             ->paginate(24)
             ->withQueryString();
-
 
         return view('admin-index', compact('users'));
     }
 
-    public function bulkAction(Request $request)
+    public function bulkAction(Request $request): JsonResponse
     {
-        $request->validate([
-            'action' => 'required|in:delete,toggle_admin',
-            'user_ids' => 'required|array',
-            'user_ids.*' => 'integer|exists:users,id',
+        $validated = $request->validate([
+            'action' => ['required', 'in:delete,toggle_admin'],
+            'user_ids' => ['required', 'array'],
+            'user_ids.*' => ['integer', 'exists:users,id'],
         ]);
 
-        $action = $request->input('action');
-        $userIds = $request->input('user_ids', []);
+        $action = $validated['action'];
+        $userIds = $validated['user_ids'] ?? [];
 
         if (empty($userIds)) {
             return response()->json(['message' => 'No users selected'], 400);
         }
 
-        // Don't allow performing actions on the currently authenticated user (admin)
+        // Don't allow actions on the active admin
         if (in_array(Auth::id(), $userIds)) {
             return response()->json(['message' => 'Cannot perform action on the current user'], 400);
         }
