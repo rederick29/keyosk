@@ -7,6 +7,11 @@ use App\Http\Controllers\MailController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
+/*
+ * For the first parameter, it is the URL path the user can visit (e.g. /about)
+ * For the ->name() function, it is the name of the route in Laravel/Blade/PHP (e.g. route('index'))
+ */
+
 // Routes
 Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');

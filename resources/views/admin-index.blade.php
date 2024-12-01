@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <script nonce="{{ session('csp_nonce') }}">
+        <script nonce="{{ csp_nonce() }}">
             document.addEventListener('DOMContentLoaded', () => {
                 // Cache DOM Elements
                 const searchInput = document.getElementById('searchInput');
