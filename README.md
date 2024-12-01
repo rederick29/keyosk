@@ -12,8 +12,9 @@ Ensure you have the following installed:
 - [Node.js](https://nodejs.org/) - Used for running JavaScript on the server and managing frontend dependencies.
 - [PHP](https://www.php.net/) - Used for the backend of the application.
 - [Composer](https://getcomposer.org/) - Dependency manager for PHP, used to install and manage libraries.
+- Either [PostgreSQL](https://www.postgresql.org/) or [MySQL](https://www.mysql.com/)
 
-### Steps
+### Steps (fresh install)
 
 1. Clone the repository:
     ```bash
@@ -35,10 +36,38 @@ Ensure you have the following installed:
 
 4. Build assets and start the application:
     ```bash
-    npm run dev
+    # Open the first terminal and type:
+    npx tsc        # Compiles Typescript to Javascript for the front-end to work
+    npm run dev    # Runs the debug server for the website
+
+    # Open the second terminal and type:
     php artisan migrate
-    php artisan db:seed # Optional: fill the database with some placeholder data
+    php artisan db:seed
     php artisan serve
     ```
 
 The website should now be running locally.
+
+### Steps (to catch up with latest)
+
+1. Update dependencies:
+    ```bash
+    npm install
+    composer install
+    ```
+
+2. Update database and views:
+   ```bash
+   php artisan migrate:fresh
+   php artisan db:seed```
+
+3. Build assets and start the application:
+   ```bash
+    # Open the first terminal and type:
+    npx tsc        # Compiles Typescript to Javascript for the front-end to work
+    npm run dev    # Runs the debug server for the website
+   
+    # Open the second terminal and type:
+    php artisan serve```
+
+The website should now be updated and running locally.
