@@ -118,12 +118,12 @@
                 const applyModButton = document.getElementById('apply-mod');
 
                 // Load saved search parameters
-                let savedSearch = localStorage.getItem('search') || '';
-                const savedQuery = localStorage.getItem('query') || '';
+                const savedSearch = localStorage.getItem('search') || '';
+                let savedQuery = localStorage.getItem('query') || '';
 
                 // Stop trying to hack/fuzz our website, you're already an admin, you turd
-                if (savedSearch !== 'admin_only' && savedSearch !== 'users_only') {
-                    savedSearch = '';
+                if (savedQuery !== 'admin_only' && savedQuery !== 'users_only') {
+                    savedQuery = '';
                 }
 
                 // Set initial search inputs

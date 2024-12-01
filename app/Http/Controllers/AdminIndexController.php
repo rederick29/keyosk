@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\Review;
+use App\Models\Order;
+use App\Models\User;
+use PDO;
 
 class AdminIndexController extends Controller
 {
@@ -33,8 +36,10 @@ class AdminIndexController extends Controller
 
             // Search by name or email
             $query->where(function ($query) use ($search) {
-                $query->where('name', 'ilike', "%{$search}%")
-                    ->orWhere('email', 'ilike', "%{$search}%");
+                $likeOperator = DB::connection()->getPDO()->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'ilike' : 'like';
+
+                $query->where('name', $likeOperator, "%{$search}%")
+                    ->orWhere('email', $likeOperator, "%{$search}%");
             });
         }
 
@@ -57,17 +62,26 @@ class AdminIndexController extends Controller
         return view('admin-index', compact('users'));
     }
 
+    /**
+     * Perform a bulk action on the selected users.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function bulkAction(Request $request): JsonResponse
     {
+        // Validate the request data
         $validated = $request->validate([
             'action' => ['required', 'in:delete,toggle_admin'],
             'user_ids' => ['required', 'array'],
             'user_ids.*' => ['integer', 'exists:users,id'],
         ]);
 
+        // Extract the validated data
         $action = $validated['action'];
         $userIds = $validated['user_ids'] ?? [];
 
+        // Ensure at least one user is selected
         if (empty($userIds)) {
             return response()->json(['message' => 'No users selected'], 400);
         }
@@ -77,19 +91,19 @@ class AdminIndexController extends Controller
             return response()->json(['message' => 'Cannot perform action on the current user'], 400);
         }
 
+        // Perform the selected action
         switch ($action) {
             case 'delete':
-                $users = User::whereIn('id', $userIds)->get();
+                // Delete all orders and reviews associated with the selected users
+                Order::whereIn('user_id', $userIds)->delete();
+                Review::whereIn('user_id', $userIds)->delete();
 
-                foreach ($users as $user) {
-                    $user->orders()->delete();
-                    $user->reviews()->delete();
-                }
-
+                // Delete the selected users
                 User::whereIn('id', $userIds)->delete();
                 break;
 
             case 'toggle_admin':
+                // Toggle the is_admin status of the selected users
                 User::whereIn('id', $userIds)
                     ->update(['is_admin' => DB::raw('NOT is_admin')]);
                 break;
