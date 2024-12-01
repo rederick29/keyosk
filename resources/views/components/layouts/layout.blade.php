@@ -32,7 +32,7 @@
 
 {{-- IDK where to place this, but we should have it somewhere! --}}
 @if (session()->has('success') || session()->has('error') || session()->has('info'))
-<script nonce="{{ session('csp_nonce') }}">
+<script nonce="{{ csp_nonce() }}">
     window.onload = () => {
         @if (session()->has('success'))
             toastr.success("{{ session('success') }}");

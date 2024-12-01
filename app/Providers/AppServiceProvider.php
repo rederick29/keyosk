@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Barryvdh\Debugbar\Facades\Debugbar as Debugbar;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,14 +24,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Disable Debugbar in production
-        if (app()->isProduction()) {
+        if (App::isProduction()) {
             Debugbar::disable();
         }
 
         Password::defaults(function () {
             $testingRules = Password::min(3);
             $rules = Password::min(8)->max(255)->letters()->mixedCase()->numbers()->symbols();
-            return app()->isProduction() ? $rules : $testingRules;
+            return App::isProduction() ? $rules : $testingRules;
         });
     }
 }

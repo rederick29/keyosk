@@ -66,7 +66,7 @@
         <div id="sentPopup" class="hidden p-4 mt-1 mb-4 text-md text-green-400 rounded-md bg-gray-700">
             <p>Message sent!</p>
         </div>
-        <script nonce={{ session('csp_nonce') }}>
+        <script nonce={{ csp_nonce() }}>
             document.addEventListener('DOMContentLoaded', function() {
                 @foreach ($errors->all() as $error)
                     toastr.error('{{ $error }}');
