@@ -35,10 +35,10 @@
                 -->
                 <div class="w-full flex flex-row items-center justify-end mt-3 space-x-5">
                     <!-- Not sure where this should link as for now -->
-                    <a class="underline" href="/">
+                    <a class="w-[126px] h-[46px] flex items-center justify-center rounded-md bg-transparent ring-2 font-semibold ring-violet-700 text-violet-700 hover:bg-violet-700 hover:text-white" href="/">
                         Register
                     </a>
-                    <button type="submit" class="rounded-md bg-violet-700 text-white py-3 px-10 font-semibold hover:bg-violet-600">
+                    <button type="submit" class="w-32 h-12 font-semibold rounded-md bg-violet-700 text-white hover:bg-violet-600">
                         Log In
                     </button>
                 </div>
