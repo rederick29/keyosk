@@ -8,12 +8,53 @@ Author(s): Kai Chima : Main Developer
 <x-layouts.layout>
     <x-slot:title>Keyosk | Product View</x-slot:title>
     <div class="bg-zinc-900/75 py-28 px-10 max-w-4xl lg:max-w-7xl lg:mx-14">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div class="pt-10 sm:flex">
-                <img class="flex lg:pl-10 w-70 rounded-sm object-cover"
-                    src="https://th.bing.com/th/id/R.2dd71b9661e8f903644f7e681f5fa6d6?rik=QGpKKR64kRogrQ&pid=ImgRaw&r=0"
-                    alt="Product image">
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="carousel-container justify-items-center">
+                <div class="slides">
+                    <div class="transition-transform duration-[400ms] ease-in-out pt-10 sm:flex hidden">
+                        <img class="flex lg:pl-10 w-70 rounded-sm object-cover"
+                            src="https://th.bing.com/th/id/R.2dd71b9661e8f903644f7e681f5fa6d6?rik=QGpKKR64kRogrQ&pid=ImgRaw&r=0"
+                            alt="Product image">
+                    </div>
+                </div>
+                <div class="slides">
+                    <div class="transition-transform duration-[400ms] ease-in-out pt-10 sm:flex hidden">
+                        <img class="flex lg:pl-10 w-70 rounded-sm object-cover"
+                            src="https://th.bing.com/th/id/OIP.pttKeFXGcvC6Ph0wb0jt2gHaFN?w=247&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7"
+                            alt="Product image">
+                    </div>
+                </div>
+                <div class="slides">
+                    <div class="transition-transform duration-[400ms] ease-in-out pt-10 sm:flex hidden">
+                        <img class="flex lg:pl-10 w-70 rounded-sm object-cover"
+                            src="https://th.bing.com/th/id/OIP.1fgtY--I3JDNyAE7mUCTSAHaE8?rs=1&pid=ImgDetMain"
+                            alt="Product image">
+                    </div>
+                </div>
+                <div class="slides">
+                    <div class="transition-transform duration-[400ms] ease-in-out pt-10 sm:flex hidden">
+                        <img class="flex lg:pl-10 w-70 rounded-sm object-cover"
+                            src="https://geekculture.co/wp-content/uploads/2017/10/Razer-Cynosa-Chroma-Review.jpg"
+                            alt="Product image">
+                    </div>
+                </div>
+                <button type="button" class="absolute flex justify-center items-center lg:ml-5 lg:top-1/2 top-1/4 rounded-sm overflow-hidden"
+                    onclick="changeSlides(-1)">
+                    <svg class="w-8 h-10 border-4 opacity-25 hover:opacity-75 border-zinc-400 text-gray-800 dark:text-white bg-zinc-400"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
+                    </svg>
+                </button>
+                <button type="button" class="absolute flex justify-center items-center lg:ml-10 lg:top-1/2 lg:right-1/2 top-1/4 right-1 rounded-sm overflow-hidden"
+                    onclick="changeSlides(1)"><svg
+                        class="w-8 h-10 border-4 opacity-25 hover:opacity-75 border-zinc-400 text-gray-800 dark:text-white bg-zinc-400"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
+                    </svg></button>
             </div>
+
             <div class="text-white lg:pl-2 space-y-3">
                 <h2 id="productName" class="pt-10 font-semibold text-4xl">Black RGB Keyboard</h2>
                 <p id="price" class="text-3xl">£60</p>
@@ -38,7 +79,7 @@ Author(s): Kai Chima : Main Developer
                         <path
                             d="M181 286L64 188 218 176 275 30 333 176 486 188 369 286 407 436 275 354 144 440 181 286Z" />
                     </svg>
-                    <p id="rating" class="text-white text-xl">&ensp;4.9 &ensp;⋅</p>
+                    <p id="rating" class="text-white text-xl">&ensp;4.9&ensp;⋅</p>
                     <p id="stars" class="text-white text-xl pl-4 underline">50 Reviews</p>
                 </div>
                 <div class="">
@@ -48,10 +89,10 @@ Author(s): Kai Chima : Main Developer
                 </div>
                 <div class="flex flex-wrap pt-3 gap-6 w-25">
                     <button
-                        class="w-2/5 px-7 py-2 rounded-sm bg-white hover:bg-zinc-200 text-md text-violet-700 text-xl shadow-md ">Add
+                        class="w-2/5 px-7 py-2 rounded-3xl bg-white hover:bg-zinc-200 text-md text-violet-700 text-xl shadow-md ">Add
                         to cart</button>
                     <button
-                        class="w-2/5 px-7 py-2 rounded-sm bg-violet-700 hover:bg-violet-500 text-md text-white text-xl shadow-md ">Buy
+                        class="w-2/5 px-7 py-2 rounded-3xl bg-violet-700 hover:bg-violet-500 text-md text-white text-xl shadow-md ">Buy
                         now</button>
                 </div>
 
@@ -76,19 +117,22 @@ Author(s): Kai Chima : Main Developer
         </div>
         <div class="text-white lg:pl-10 pt-7">
             <h3 class="text-violet-500 text-xl font-semibold">Reviews</h3>
-            <p class="py-4">Review 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex nostrum
+            <p class="py-4">Review 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
+                nostrum
                 dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
                 consequatur explicabo temporibus, cum officia possimus reiciendis!
                 Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
                 distinctio hic nam quo molestiae nulla saepe quos quis porro illum, quaerat, corrupti dolore
                 voluptatibus? Architecto, esse amet.</p>
-            <p class="py-4">Review 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex nostrum
+            <p class="py-4">Review 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
+                nostrum
                 dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
                 consequatur explicabo temporibus, cum officia possimus reiciendis!
                 Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
                 distinctio hic nam quo molestiae nulla saepe quos quis porro illum, quaerat, corrupti dolore
                 voluptatibus? Architecto, esse amet.</p>
-            <p class="py-4">Review 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex nostrum
+            <p class="py-4">Review 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
+                nostrum
                 dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
                 consequatur explicabo temporibus, cum officia possimus reiciendis!
                 Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
@@ -101,3 +145,34 @@ Author(s): Kai Chima : Main Developer
 
 
 </x-layouts.layout>
+
+<style>
+    .slides {
+        display: none;
+    }
+</style>
+
+<script>
+    let index = 0;
+    let slides = document.getElementsByClassName("slides");
+    let length = slides.length
+    displaySlides(index);
+
+    function changeSlides(x) {
+        index += x
+        displaySlides(index);
+    }
+
+    function displaySlides(x) {
+        if (x > length - 1) {
+            index = 0;
+        }
+        if (x < 0) {
+            index = length - 1
+        }
+        for (let i = 0; i < length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[index].style.display = "block";
+    }
+</script>
