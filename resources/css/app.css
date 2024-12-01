@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+
     /* Tailwind keywords that can be added to classes to reduce code reuse */
     .dropdown-link {
         @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
@@ -40,3 +41,8 @@
     width: 10px;
 }
 
+/* To tweak toastr */
+.toast {
+    opacity: 1 !important;
+    width: 25vw !important;
+}

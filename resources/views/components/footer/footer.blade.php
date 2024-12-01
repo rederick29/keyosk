@@ -9,7 +9,7 @@
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Help Center</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
+            <a href="/contact" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>

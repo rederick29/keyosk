@@ -4,7 +4,7 @@
     including static elements which should remain
     consistent across the site
 
-    Author(s): Ben Snaith : Main Developer
+    Author(s): Ben Snaith : Main Developer, intns : Back-end Developer
 --}}
 
 <!doctype html>
@@ -29,4 +29,22 @@
     {{ $slot }}
     <x-footer.footer />
 </body>
+
+{{-- IDK where to place this, but we should have it somewhere! --}}
+@if (session()->has('success') || session()->has('error') || session()->has('info'))
+<script nonce="{{ session('csp_nonce') }}">
+    window.onload = () => {
+        @if (session()->has('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (session()->has('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+        @if (session()->has('info'))
+            toastr.info("{{ session('info') }}");
+        @endif
+    };
+</script>
+@endif
+
 </html>

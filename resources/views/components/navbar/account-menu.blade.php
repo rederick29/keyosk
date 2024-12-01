@@ -27,8 +27,21 @@
             </x-navbar.dropdown-link>
 
             <div class="h-16"></div>
-
-            <x-navbar.dropdown-link type="a" href="/" class="bg-red-600 hover:bg-red-700 text-white">Log Out</x-navbar.dropdown-link>
+            @auth
+                <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" name="logout" class="dropdown-link bg-red-600 hover:bg-red-700 text-white">Log Out</button>
+                </form>
+            @endauth
+            @guest
+                <x-navbar.dropdown-link type="a" href="/login" class="">
+                    Log in
+                </x-navbar.dropdown-link>
+                <x-navbar.dropdown-link type="a" href="/register" class="">
+                    Register
+                </x-navbar.dropdown-link>
+            @endguest
         </div>
     </div>
 </div>

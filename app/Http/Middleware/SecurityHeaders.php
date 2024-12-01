@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Session;
 
 class SecurityHeaders
 {
@@ -17,7 +18,7 @@ class SecurityHeaders
     {
         // Generate a nonce for CSP
         $nonce = base64_encode(random_bytes(16));
-        $request->session()->put('csp_nonce', $nonce);
+        Session::put('csp_nonce', $nonce);
 
         // Continue the request and get the response from the next middleware
         $response = $next($request);
@@ -28,6 +29,7 @@ class SecurityHeaders
             $response->headers->set('X-Frame-Options', 'DENY');
             $response->headers->set('X-Content-Type-Options', 'nosniff');
         }
+
         // Return the modified response
         return $response;
     }
