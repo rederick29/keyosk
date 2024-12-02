@@ -2,6 +2,9 @@
 /vendor/
 node_modules/
 
+# typescript builds
+resources/ts/*.js
+
 # Log files
 npm-debug.log
 yarn-error.log
