@@ -19,7 +19,7 @@
             <div class="w-full p-5 mt-0 bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
                 @if(Auth::check())
                     <div>
-                        <span>Logged in</span>
+                        <span>{{ Auth::user()->cart }}</span>
                     </div>
                 @else
                     <div class="w-full h-20 mt-24 flex flex-col justify-between items-center">
