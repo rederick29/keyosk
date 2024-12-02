@@ -28,11 +28,13 @@
 
             <div class="h-16"></div>
             @auth
-                <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
-                <form action="/logout" method="POST">
-                    @csrf
-                    <button type="submit" name="logout" class="dropdown-link bg-red-600 hover:bg-red-700 text-white">Log Out</button>
-                </form>
+                <section class="w-full h-fit space-y-3 font-bold text-center">
+                    <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" name="logout" class="dropdown-link bg-red-700 hover:bg-red-800 text-white">Log Out</button>
+                    </form>
+                </section>
             @endauth
             @guest
                 <x-util.button  type="a" href="/login" class="">
