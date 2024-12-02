@@ -1,8 +1,7 @@
-
 {{--
     Index page of website.
 
-    Author(s): Ben Snaith : Main Developer
+    Author(s): Ben Snaith : Main Developer, Toms Xavi : Developer
 --}}
 
 <x-layouts.layout>
@@ -10,5 +9,7 @@
     {{-- <x-slot:title>Example Title</x-slot:title> --}}
     <main class="h-screen">
         <x-util.imagescroll></x-util.imagescroll>
+        <x-carousel.carousel></x-carousel.carousel>
     </main>
 </x-layouts.layout>
+
