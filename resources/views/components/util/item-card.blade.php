@@ -1,4 +1,3 @@
-<!-- Author: Toms Xavi  -->
 
 
 <div class="relative rounded-lg bg-zinc-900 shadow-lg w-80 h-80 max-w-full text-white overflow-hidden transition-transform transform hover:scale-105 mt-1 mb-4 mx-4">
