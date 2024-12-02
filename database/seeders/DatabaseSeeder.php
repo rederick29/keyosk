@@ -1,8 +1,9 @@
 <?php
+
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,14 +12,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        if (App::isProduction()) {
+            $this->call([UserSeeder::class]);
+            return;
+        }
+
         $this->call([
-           ProductSeeder::class,
-           TagSeeder::class,
-           ImageSeeder::class,
-           UserSeeder::class,
-           CartSeeder::class,
-           OrderSeeder::class,
-           ReviewSeeder::class,
+            ProductSeeder::class,
+            TagSeeder::class,
+            ImageSeeder::class,
+            UserSeeder::class,
+            CartSeeder::class,
+            OrderSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

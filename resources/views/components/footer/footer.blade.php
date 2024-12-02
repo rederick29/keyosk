@@ -2,14 +2,14 @@
     <div class="grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 bg-zinc-900 border-x-0 border-y-0 border-t-4 border-violet-700 h-fit px-10 py-8">
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Company</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
+            <a href="/about" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Help Center</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
+            <a href="/contact" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
@@ -29,7 +29,7 @@
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
         </div>
     </div>
-    <div class="flex flex-row p-3 px-5 w-[100vw] bg-zinc-800 items-center justify-between">
+    <div class="flex flex-row p-3 px-5 w-full bg-zinc-800 items-center justify-between">
         <x-util.logo width="200" type="div" />
         <div class="flex flex-row space-x-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zm4 7.278V4.5h-2.286c-2.1 0-3.428 1.6-3.428 3.889v1.667H8v2.777h2.286V19.5h2.857v-6.667h2.286L16 10.056h-2.857V8.944c0-1.11.572-1.666 1.714-1.666H16z"/></svg>
