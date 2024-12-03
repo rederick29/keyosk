@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProductController;
 
 // Default route for site.
 Route::get('/', function() {
@@ -18,6 +19,6 @@ Route::get('/about', function () {
     return view('about-us');
 });
 
-Route::get('/productview', function () {
+Route::get('/productview', [ProductController::class, 'index']); {
     return view('product-view');
-});
+};

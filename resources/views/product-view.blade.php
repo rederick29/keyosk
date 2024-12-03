@@ -56,8 +56,8 @@ Author(s): Kai Chima : Main Developer
             </div>
 
             <div class="text-white lg:pl-2 space-y-3">
-                <h2 id="productName" class="pt-10 font-semibold text-4xl">Black RGB Keyboard</h2>
-                <p id="price" class="text-3xl">£60</p>
+                <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $products[0]->name }}</h2>
+                <p id="price" class="text-3xl">{{(number_format($products[0]->price, 2, '.', ','))}}</p>
                 <div id="ratingContainer" class="flex space-x-1">
                     <svg class="w-8 h-8 fill-yellow-400" viewBox="0 -19 550 550" xmlns="https://www.w3.org.2000/svg">
                         <path
