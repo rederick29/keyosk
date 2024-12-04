@@ -22,6 +22,12 @@ class Product extends Model
         return $image ? $image->location : null;
     }
 
+    public function getAverageRating(): float
+    {
+        $rating = $this->reviews()->select('rating')->avg('rating');
+        return $rating ? $rating : 0;
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
