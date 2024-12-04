@@ -152,7 +152,7 @@ Author(s): Kai Chima : Main Developer
     }
 </style>
 
-<script>
+<script nonce={{ csp_nonce() }}>
     let index = 0;
     let slides = document.getElementsByClassName("slides");
     let length = slides.length
