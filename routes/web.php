@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MailController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
  * For the first parameter, it is the URL path the user can visit (e.g. /about)
@@ -19,6 +20,9 @@ Route::view('/about', 'about-us')->name('about');
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
+
+// Product view
+Route::get('/product', [ProductController::class, 'index']);
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
