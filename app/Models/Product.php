@@ -16,6 +16,12 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
+    public function primaryImageLocation(): String | null
+    {
+        $image = $this->images->where('priority', '==', 0)->first();
+        return $image ? $image->location : null;
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
