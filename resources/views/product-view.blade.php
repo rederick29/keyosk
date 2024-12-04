@@ -56,8 +56,8 @@ Author(s): Kai Chima : Main Developer
             </div>
 
             <div class="text-white lg:pl-2 space-y-3">
-                <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $products[0]->name }}</h2>
-                <p id="price" class="text-3xl">{{(number_format($products[0]->price, 2, '.', ','))}}</p>
+                <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $product->name }}</h2>
+                <p id="price" class="text-3xl">{{(number_format($product->price, 2, '.', ','))}}</p>
                 <div id="ratingContainer" class="flex space-x-1">
                     <svg class="w-8 h-8 fill-yellow-400" viewBox="0 -19 550 550" xmlns="https://www.w3.org.2000/svg">
                         <path
@@ -117,27 +117,11 @@ Author(s): Kai Chima : Main Developer
         </div>
         <div class="text-white lg:pl-10 pt-7">
             <h3 class="text-violet-500 text-xl font-semibold">Reviews</h3>
-            <p class="py-4">Review 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
-                nostrum
-                dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
-                consequatur explicabo temporibus, cum officia possimus reiciendis!
-                Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
-                distinctio hic nam quo molestiae nulla saepe quos quis porro illum, quaerat, corrupti dolore
-                voluptatibus? Architecto, esse amet.</p>
-            <p class="py-4">Review 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
-                nostrum
-                dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
-                consequatur explicabo temporibus, cum officia possimus reiciendis!
-                Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
-                distinctio hic nam quo molestiae nulla saepe quos quis porro illum, quaerat, corrupti dolore
-                voluptatibus? Architecto, esse amet.</p>
-            <p class="py-4">Review 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt debitis ex
-                nostrum
-                dignissimos recusandae at voluptatibus distinctio esse laboriosam corporis accusantium architecto qui
-                consequatur explicabo temporibus, cum officia possimus reiciendis!
-                Praesentium nihil accusantium id mollitia rem dolores laboriosam excepturi perferendis ut omnis
-                distinctio hic nam quo molestiae nulla saepe quos quis porro illum, quaerat, corrupti dolore
-                voluptatibus? Architecto, esse amet.</p>
+            @foreach($product->reviews as $review)
+                <p class="py-4">{{ $review->user->name }}</p>
+                <p class="py-4">{{ $review->subject }}</p>
+                <p class="py-4">{{ $review->comment }}</p>
+            @endforeach
             <a href="" class="text-violet-700 underline">More Reviews -></a>
         </div>
     </div>
