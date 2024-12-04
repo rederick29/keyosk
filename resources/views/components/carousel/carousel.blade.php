@@ -1,3 +1,9 @@
+{{--
+    Image carousel element.
+
+    Author(s): Toms Xavi : Developer
+--}}
+        
         
         <div class="p-4">
             <div class="relative">
@@ -136,46 +142,81 @@
 
         let scrollInterval;
         let isManualScroll = false;
-        const scrollAmount = 2;
-        const pauseTime = 3000;
+        const pauseTime = 4000;
 
-        function performScroll() {
-            container.scrollBy({ left: 80 * scrollAmount, behavior: 'smooth' });
+        // Get the width of one card, including any gaps
+        function getCardWidth() {
+            const card = container.querySelector('.flex-shrink-0');
+            if (card) {
+                const styles = getComputedStyle(card);
+                const marginRight = parseFloat(styles.marginRight) || 0;
+                return card.offsetWidth + marginRight;
+            }
+            return 0;
         }
 
-        function startLoopingScroll() {
+        // Perform smooth scrolling by one card width
+        function scrollByAmount(direction) {
+            const cardWidth = getCardWidth();
+            container.scrollBy({
+                left: direction * cardWidth,
+                behavior: 'smooth',
+            });
+        }
+
+        // Align to the nearest card after a manual scroll
+        function alignToNearestCard() {
+            const cardWidth = getCardWidth();
+            const currentScroll = container.scrollLeft;
+            const nearestCardIndex = Math.round(currentScroll / cardWidth);
+            const targetScroll = nearestCardIndex * cardWidth;
+            container.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth',
+            });
+        }
+
+        // Start auto-scrolling
+        function startAutoScroll() {
             if (!isManualScroll) {
                 scrollInterval = setInterval(() => {
-                    performScroll();
-                    clearInterval(scrollInterval);
-                    setTimeout(() => {
-                        startLoopingScroll();
-                    }, pauseTime);
-                }, 3000);
+                    scrollByAmount(1);
+                }, pauseTime);
             }
         }
 
-        startLoopingScroll();
-
-        scrollLeftBtn.addEventListener('click', () => {
+        // Stop and reset auto-scroll
+        function resetAutoScroll() {
             clearInterval(scrollInterval);
-            container.scrollBy({ left: -300, behavior: 'smooth' });
             isManualScroll = true;
             setTimeout(() => {
                 isManualScroll = false;
-                startLoopingScroll();
-            }, 3000);
+                startAutoScroll();
+            }, pauseTime);
+        }
+
+        // Attach event listeners to buttons
+        scrollLeftBtn.addEventListener('click', () => {
+            resetAutoScroll();
+            scrollByAmount(-1);
         });
 
         scrollRightBtn.addEventListener('click', () => {
-            clearInterval(scrollInterval);
-            container.scrollBy({ left: 300, behavior: 'smooth' });
-            isManualScroll = true;
-            setTimeout(() => {
-                isManualScroll = false;
-                startLoopingScroll();
-            }, 3000);
+            resetAutoScroll();
+            scrollByAmount(1);
         });
+
+        // Align to the nearest card after manual scroll ends
+        container.addEventListener('scroll', () => {
+            if (isManualScroll) return;
+            clearTimeout(container.alignTimeout);
+            container.alignTimeout = setTimeout(alignToNearestCard, 200);
+        });
+
+        // Initialize auto-scroll
+        startAutoScroll();
+
+
     </script>
 
     <style>
@@ -187,4 +228,27 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        #scroll-container {
+            display: flex;
+            gap: 1rem; /* Adjust based on your card spacing */
+            overflow-x: auto; /* Allow horizontal scrolling */
+            overflow-y: hidden; /* Prevent vertical scrolling */
+            scroll-behavior: smooth; /* Smooth native scrolling */
+            padding: 2rem 1rem 1rem 1rem; /* Add padding to the container */
+            scroll-snap-type: x mandatory; 
+        }
+
+        .flex-shrink-0 {
+            scroll-snap-align: center; /* Center each card on scroll */
+            flex-shrink: 0;
+            width: 20rem; /* Card width */
+            margin-right: 1rem; /* Match gap from container */
+        }
+
+        .flex-shrink-0 .bg-black {
+            padding-top: 2rem; /* Add top padding to the card */
+        }
+
+
     </style>
