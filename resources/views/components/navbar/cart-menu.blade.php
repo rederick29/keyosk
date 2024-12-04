@@ -7,10 +7,12 @@
     TODO: fix menu progagation issue
 --}}
 
-<div class="p-2 flex flex-row items-center justify-center rounded-md hover:bg-white/5 ring-violet-700 transition-colors duration-300 relative" id="cart-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
-    <div class="hidden lg:inline md:inline">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+<div class="relative">
+    <div class="p-2 flex flex-row items-center justify-center rounded-md hover:bg-white/5 ring-violet-700 transition-colors duration-300" id="cart-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
+        <div class="hidden lg:inline md:inline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
     </div>
     {{-- Drop down menu --}}
     <div class="dropdown-hide w-[100vw] md:w-96 lg:w-96 h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
