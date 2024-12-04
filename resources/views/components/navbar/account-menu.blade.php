@@ -16,31 +16,33 @@
     {{-- Desktop and Medium View --}}
     <div class="dropdown-hide w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            <x-util.button  type="a" href="/" class="">
                 My Account
-            </x-navbar.dropdown-link>
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            </x-util.button>
+            <x-util.button  type="a" href="/" class="">
                 My Orders
-            </x-navbar.dropdown-link>
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            </x-util.button>
+            <x-util.button  type="a" href="/" class="">
                 Settings
-            </x-navbar.dropdown-link>
+            </x-util.button>
 
             <div class="h-16"></div>
             @auth
-                <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
-                <form action="/logout" method="POST">
-                    @csrf
-                    <button type="submit" name="logout" class="dropdown-link bg-red-600 hover:bg-red-700 text-white">Log Out</button>
-                </form>
+                <section class="w-full h-fit space-y-3 font-bold text-center">
+                    <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" name="logout" class="dropdown-link bg-red-700 hover:bg-red-800 text-white">Log Out</button>
+                    </form>
+                </section>
             @endauth
             @guest
-                <x-navbar.dropdown-link type="a" href="/login" class="">
+                <x-util.button  type="a" href="/login" class="">
                     Log in
-                </x-navbar.dropdown-link>
-                <x-navbar.dropdown-link type="a" href="/register" class="">
+                </x-util.button>
+                <x-util.button  type="a" href="/register" class="">
                     Register
-                </x-navbar.dropdown-link>
+                </x-util.button>
             @endguest
         </div>
     </div>

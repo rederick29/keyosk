@@ -14,15 +14,15 @@
     {{-- Mobile Hamburger Menu --}}
     <div class="dropdown-hide fixed sm:block md:hidden lg:hidden w-[100vw] h-fit top-24 right-0" id="hamburger-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            <x-util.button  type="a" href="/" class="">
                 Shop
-            </x-navbar.dropdown-link>
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            </x-util.button>
+            <x-util.button  type="a" href="/" class="">
                 Best Selling
-            </x-navbar.dropdown-link>
-            <x-navbar.dropdown-link type="a" href="/" class="">
+            </x-util.button>
+            <x-util.button  type="a" href="/" class="">
                 Sale
-            </x-navbar.dropdown-link>
+            </x-util.button>
         </div>
     </div>
 </div>
