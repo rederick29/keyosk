@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 class DropdownMenu {
     parentElement;
     dropdownElement;
@@ -105,3 +106,5 @@ document.body.addEventListener('click', () => {
         accountMenu.act();
     }
 });
+=======
+>>>>>>> 1f690ee (copied todocuments)
