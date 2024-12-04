@@ -1,3 +1,9 @@
+{{--
+    Item cards element.
+
+    Author(s): Toms Xavi : Developer
+--}}
+
 <div class="w-72 h-[350px] bg-zinc-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 flex flex-col border-2 border-purple-500">
     <div class="bg-black flex justify-center items-center py-6">
         <img src="{{ $image }}" alt="{{ $alt }}" class="h-20 object-contain">
