@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Models\Tag\AttributeTag;
 use App\Models\Tag\ColourTag;
 use App\Models\Tag\CompatibilityTag;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
