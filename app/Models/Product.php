@@ -18,7 +18,7 @@ class Product extends Model
 
     public function primaryImageLocation(): String | null
     {
-        $image = $this->images->where('priority', '==', 0)->first();
+        $image = $this->images->where('priority', '=', 0)->first();
         return $image ? $image->location : null;
     }
 
