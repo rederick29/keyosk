@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "npx tsc && vite build"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",
