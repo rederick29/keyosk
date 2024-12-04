@@ -8,11 +8,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index($id){
+    public function index($id)
+    {
         $product = Product::query()->find($id);
         if (!$product) {
-            return redirect()->route('/')->with('error', 'Product not found');
+            return redirect()->route('index')->with('error', 'Product not found');
         }
+
         return view("product-view", ["product" => $product]);
     }
 }
