@@ -5,7 +5,7 @@
 --}}
 <x-layouts.min-layout>
     <div class="flex flex-col   items-center justify-center space-y-10 h-screen w-full bg-gradient-to-tr from-violet-500 to-pink-500">
-        <div class="bg-zinc-900 w-11/12 xs-w-2/3 md:w-2/3 lg:w-2/3 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4 sm:w-2/3 p-10 justify-self-center justify-center h-fit rounded-2xl">
+        <div class="bg-zinc-900 overflow-hidden overflow-y-auto w-11/12 xs-w-2/3 md:w-2/3 lg:w-2/3 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4 sm:w-2/3 p-10 justify-self-center justify-center h-fit rounded-2xl">
             <div class="w-full flex flex-row items-center justify-center">
                 <x-util.logo type="a" href="/" width=300 />
             </div>
