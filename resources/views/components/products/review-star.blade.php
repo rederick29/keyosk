@@ -6,8 +6,7 @@
     // Give the star the appropriate colour based on its state
     $stateClass = match ($state) {
         ReviewStarState::Filled => 'fill-yellow-400',
-        ReviewStarState::Half => 'fill-gray-600 half',
-        ReviewStarState::Empty => 'fill-gray-600',
+        ReviewStarState::Half | ReviewStarState::Empty => 'fill-gray-600',
         default => 'fill-gray-600',
     };
 @endphp

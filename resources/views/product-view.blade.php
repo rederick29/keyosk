@@ -17,12 +17,13 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
 
             <div class="text-white lg:pl-2 space-y-3">
                 <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $product->name }}</h2>
-                <p id="price" class="text-3xl">{{ number_format($product->price, 2, '.', ',') }}</p>
+                <p id="price" class="text-3xl">&pound;{{ number_format($product->price, 2, '.', ',') }}</p>
                 @php $rating = $product->getAverageRating(); @endphp
                 <!-- TODO: fix floating point string conversion to int -->
                 <x-products.review-rating rating="{{ $rating }}">
                     <p id="rating" class="text-white text-xl">&ensp;{{ round($rating / 2, 1) }}&ensp;⋅</p>
-                    <p id="stars" class="text-white text-xl pl-4 underline">50 Reviews</p>
+                    @php $review_count = $product->reviews->count(); @endphp
+                    <p id="stars" class="text-white text-xl pl-4 underline"> {{  $review_count != 1 ? $review_count . " Reviews" : "1 Review" }} </p>
                 </x-products.review-rating>
                 <div class="">
                     <p>{{ $product->short_description }}</p>

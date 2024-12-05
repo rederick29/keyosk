@@ -26,7 +26,10 @@ class CartController extends Controller
 
         // Get the authenticated user and their cart
         $user = Auth::user();
-        $cart = $user->cart->firstOrCreate(['user_id' => $user->id]);
+        $cart = $user->cart;
+        if (!$cart) {
+            $cart = \App\Models\Cart::factory()->forUser($user)->create();
+        }
 
         try {
             $cart->addProduct($productId, $quantity);
