@@ -11,7 +11,7 @@
     <div class="px-4 py-3 flex flex-col flex-grow">
         <h3 class="text-lg font-semibold mb-2 text-center">{{ $title }}</h3>
         <p class="text-sm text-zinc-400 mb-3 text-center">{{ $description }}</p>
-        <button class="w-full bg-gray-700 text-white text-sm font-medium py-2 rounded hover:bg-gray-600 transition">
+        <button class="mx-auto bg-gradient-to-r from-purple-500 to-purple-700 text-white text-sm font-medium py-2 px-6 rounded-full shadow-md hover:from-purple-600 hover:to-purple-800 hover:shadow-lg transition-transform transform hover:scale-105">
             {{ $buttonText }}
         </button>
     </div>
