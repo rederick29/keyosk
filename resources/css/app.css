@@ -16,6 +16,10 @@
     .dropdown-hide {
         @apply scale-0 border-2 border-neutral-400 bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
+
+    .shop-select {
+        @apply p-3 ps-4 bg-zinc-800 rounded-lg hover:ring hover:ring-violet-700/75 font-normal transition-all duration-500;
+    }
 }
 
 ::-webkit-scrollbar {

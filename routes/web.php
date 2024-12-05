@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MailController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -16,6 +17,11 @@ use App\Http\Controllers\ProductController;
 // Routes
 Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');
+Route::get('/shop', function() {
+    $products = Product::with('tags')->paginate(20);
+
+    return view('shop', ['products' => $products]);
+});
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');

@@ -13,16 +13,16 @@
     {{-- Desktop Links --}}
     <div class="hidden lg:block md:block min-w-[184px]">
         <div class="hidden md:flex lg:flex lg:flex-row md:flex-row items-center space-x-10 font-medium">
-            <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
+            <a href="/shop" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 Shop
             </a>
-        <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
+        <a href="/shop" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 Popular
             </a>
-            <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
+            <a href="/shop" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 New
             </a>
-            <a href="/" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
+            <a href="/shop" class="hover:text-indigo-700/95 transition-colors duration-300" id="shop-link">
                 Sale
             </a>
         </div>
