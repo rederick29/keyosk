@@ -25,7 +25,7 @@
                             <span>Cart Empty.</span>
                         @else
                             @foreach(Auth::user()->cart->products as $product)
-                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ $product->stock }}"/>
+                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
                             @endforeach
                         @endif
                     </div>

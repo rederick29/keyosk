@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminIndexController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MailController;
@@ -23,6 +24,10 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index']);
+
+// Cart routes
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
