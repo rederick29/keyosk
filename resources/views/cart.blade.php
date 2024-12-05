@@ -16,9 +16,13 @@
                 </section>
                 <section class="w-96 h-fit p-7 mt-[54px] border-2 border-violet-700 bg-zinc-900 rounded-md" id="totals">
                     <h1 class="pb-2 font-bold border-b-2 border-violet-700">Order Summary</h1>
-                    <div>
+                    <div class="py-2 border-b-2 border-violet-700">
                         @foreach(Auth::user()->cart->products as $product)
-                            <div>{{ $product->stock }} x {{ $product->name }}</div>
+                            <div class="flex items-center">
+                                {{ $product->stock }}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                {{ $product->name }}
+                            </div>
                         @endforeach
                     </div>
                 </section>
