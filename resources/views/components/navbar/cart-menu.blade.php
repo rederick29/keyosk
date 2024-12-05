@@ -39,7 +39,7 @@
             <div class="h-[12px]"></div>
             <x-util.button  type="a" href="/" class="bg-violet-700 text-white hover:bg-violet-800">Checkout</x-util.button>
             <div class="h-[12px]"></div>
-            <x-util.button  type="a" href="/" class="bg-transparent ring-2 ring-violet-700 text-violet-700 hover:bg-violet-800 hover:text-white">View cart</x-util.button>
+            <x-util.button  type="a" href="/cart" class="bg-transparent ring-2 ring-violet-700 text-violet-700 hover:bg-violet-800 hover:text-white">View cart</x-util.button>
         </div>
     </div>
 </div>
