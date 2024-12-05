@@ -23,7 +23,6 @@ toastr.options = {
 
 window.toastr = toastr;
 
-
 // This is for 'npm run build' so vite can find the images, helps with caching.
 import.meta.glob([
     '../images/**'
