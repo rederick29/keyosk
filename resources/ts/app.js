@@ -1,5 +1,4 @@
 "use strict";
-<<<<<<< HEAD
 class DropdownMenu {
     parentElement;
     dropdownElement;
@@ -72,12 +71,22 @@ hamburgerMenu.registerOtherMenu(cartMenu);
 // TODO: Pressing on the dropdown menu of the element causes it to also me toggled, must fix.
 if (cartMenu.parentElement) {
     cartMenu.parentElement.addEventListener('click', (e) => {
+        console.log("Cart menu toggle");
         e.stopPropagation();
         cartMenu.toggle();
     });
 }
 else {
     throw new Error("CartMenu Parent Element is null");
+}
+// Get the dropdown element of the menu and stop propagation
+if (cartMenu.dropdownElement) {
+    cartMenu.dropdownElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+else {
+    throw new Error("CartMenu Dropdown Element is null");
 }
 if (accountMenu.parentElement) {
     accountMenu.parentElement.addEventListener('click', (e) => {
@@ -88,6 +97,14 @@ if (accountMenu.parentElement) {
 else {
     throw new Error("AccountMenu Parent Element is null");
 }
+if (accountMenu.dropdownElement) {
+    accountMenu.dropdownElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+else {
+    throw new Error("AccountMenu Dropdown Element is null");
+}
 if (hamburgerMenu.parentElement) {
     hamburgerMenu.parentElement.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -97,8 +114,16 @@ if (hamburgerMenu.parentElement) {
 else {
     throw new Error("HamburgerMenu Parent Element is null");
 }
+if (hamburgerMenu.dropdownElement) {
+    hamburgerMenu.dropdownElement.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+}
+else {
+    throw new Error("HamburgerMenu Dropdown Element is null");
+}
 // Close dropdown menus when clicking outside
-document.body.addEventListener('click', () => {
+document.body.addEventListener('click', (e) => {
     if (cartMenu.isOpen) {
         cartMenu.act();
     }
@@ -106,5 +131,3 @@ document.body.addEventListener('click', () => {
         accountMenu.act();
     }
 });
-=======
->>>>>>> 1f690ee (copied todocuments)
