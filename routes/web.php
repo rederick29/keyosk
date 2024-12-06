@@ -20,6 +20,7 @@ Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');
 Route::view('/values', 'our-values')->name('values');
 Route::view('/sustainability', 'sustainability')->name('sustainability');
+Route::view('/faq', 'faq')->name('faq');
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
