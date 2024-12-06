@@ -25,7 +25,7 @@
                             image="keyboard1.jpg"
                             alt="Keyosk Keyboard"
                             title="Keyosk Standard Keyboard"
-                            description="Suitable for beginners or those who don\'t utilise keyboards often."
+                            description="Suitable for beginners or those who don&apos;t utilise keyboards often."
                             buttonText="Add To Basket"
                             price="£29.99"
                         />
