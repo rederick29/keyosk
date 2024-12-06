@@ -23,6 +23,7 @@ Route::view('/sustainability', 'sustainability')->name('sustainability');
 Route::view('/faq', 'faq')->name('faq');
 
 // Contact Routes
+Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
