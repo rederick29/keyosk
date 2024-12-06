@@ -6,10 +6,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function index(): View | RedirectResponse
+    public function index(): View|RedirectResponse
     {
         return view('cart');
     }
@@ -26,10 +27,7 @@ class CartController extends Controller
 
         // Get the authenticated user and their cart
         $user = Auth::user();
-        $cart = $user->cart;
-        if (!$cart) {
-            $cart = \App\Models\Cart::factory()->forUser($user)->create();
-        }
+        $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
             $cart->addProduct($productId, $quantity);
