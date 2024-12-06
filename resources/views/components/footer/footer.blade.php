@@ -5,12 +5,12 @@
             <a href="/about" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
             <a href="/values" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
             <a href="/sustainability" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
-            <a href="#" target="_blank" onclick="roadmapClick()" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
+            <a href="#" target="_blank" onclick="roadmapClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Help Center</h1>
             <a href="/contact" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
+            <a href="#" onclick="discordClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
         </div>
@@ -23,10 +23,10 @@
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Download</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Android</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
+            <a href="#" onclick="downloadClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
+            <a href="#" onclick="downloadClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Android</a>
+            <a href="#" onclick="downloadClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
+            <a href="#" onclick="downloadClick(event)" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
         </div>
     </div>
     <div class="flex flex-row p-3 px-5 w-full bg-zinc-800 items-center justify-between">
@@ -42,9 +42,25 @@
 </footer>
 
 <script nonce="{{ csp_nonce() }}">
-    function roadmapClick() {
+    // NOTE: preventDefault() is used to stop the browser from reloading the page
+
+    function roadmapClick(event) {
+        event.preventDefault();
         if (confirm("PLEASE NOTE:\nYou must be logged into Trello to view the roadmap.")) {
+            // They know what they're getting into. Let them in.
             window.open("https://trello.com/b/s4bWNOsw/group-46-board", "_blank");
         }
+    }
+
+    // They don't know it will never exist. Let them down gently.
+    function discordClick(event) {
+        event.preventDefault();
+        alert("The Discord server is currently under construction. Please check back later.");
+    }
+
+    // They don't know it will never exist. Let them down gently.
+    function downloadClick(event) {
+        event.preventDefault();
+        alert("We are in the process of creating download links for this platform. Please check back later.");
     }
 </script>
