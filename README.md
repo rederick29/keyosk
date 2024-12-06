@@ -72,11 +72,16 @@ The website should now be running locally.
 3. Build assets and start the application:
    ```bash
     # Open the first terminal and type:
-    npx tsc        # Compiles Typescript to Javascript for the front-end to work
-    npm run dev    # Runs the debug server for the website
+    npx tsc -w     # Compiles Typescript to Javascript for the front-end to work
    
     # Open the second terminal and type:
+    npm run dev    # Runs the debug server for the website
+   
+    # Open the third terminal and type:
     php artisan serve
+   
+    # Alternatively to all of the above
+    composer run dev # Runs everything needed
     ```
 
 The website should now be updated and running locally.

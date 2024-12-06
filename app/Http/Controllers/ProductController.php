@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = DB::table("products")->where('id', 1)->get();
-
-        return view("product-view", ["products"=> $products]);
+    public function index(int $id)
+    {
+        try {
+            $product = Product::findOrFail($id);
+            return view("product-view", compact('product'));
+        } catch (ModelNotFoundException $e) {
+            return redirect('/')->with('error', 'Product not found');
+        }
     }
 }

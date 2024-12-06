@@ -25,10 +25,7 @@
                             <span>Cart Empty.</span>
                         @else
                             @foreach(Auth::user()->cart->products as $product)
-                                @php
-                                    $primaryImage = $product->images->where('priority', '==', '0')->first()->location
-                                @endphp
-                                <x-navbar.cart-item productImage="{{ $primaryImage ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ $product->stock }}"/>
+                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
                             @endforeach
                         @endif
                     </div>

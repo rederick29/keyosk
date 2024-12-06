@@ -16,6 +16,18 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
+    public function primaryImageLocation(): String | null
+    {
+        $image = $this->images->where('priority', '=', 0)->first();
+        return $image ? $image->location : null;
+    }
+
+    public function getAverageRating(): float
+    {
+        $rating = $this->reviews()->select('rating')->avg('rating');
+        return $rating ? $rating : 0;
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
@@ -28,7 +40,7 @@ class Product extends Model
 
     public function carts(): BelongsToMany
     {
-        return $this->belongsToMany(Cart::class);
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
 
     public function orders(): BelongsToMany
