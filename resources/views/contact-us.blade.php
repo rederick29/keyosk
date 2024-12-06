@@ -1,22 +1,22 @@
 {{--
-    Contact us page to be used as a view on website.
+Contact us page to be used as a view on website.
 
-    Author(s): Kai Chima : Main Developer
-               Ben Snaith : Minor formatting and edits
+Author(s): Kai Chima : Main Developer
+Ben Snaith : Minor formatting and edits
 
-    TODO: implement search-bar relationship
+TODO: implement search-bar relationship
 --}}
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Contact Us</x-slot:title>
     <div class="bg-zinc-950 px-6 py-20 pt-35 lg:pt-40 lg:px-80">
-        <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-balance text-4xl text-white lg:text-5xl">Contact Us</h2>
-            <p class="mt-2 text-lg/8 text-violet-700">Enter details below</p>
+        <div class="max-w-2xl text-center">
+            <h2 class="text-4xl text-white lg:text-5xl">Contact Us</h2>
+            <p class="text-lg/8 mt-3 text-violet-700">Enter details below</p>
         </div>
         <form action="{{ route('contact.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
             @csrf
-            <div class="grid grid-cols-1 gap-x-8 gap-y-5 lg:grid-cols-2">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5">
                 <div>
                     <label for="first-name" class="block font-semibold text-lg/6 text-white text-sm">First name</label>
                     <div class="mt-2.5">
@@ -54,10 +54,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="mt-10">
+            <div class="mt-8">
                 <button type="submit" name="submit"
                     class="block font-semi bold w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"
                     onSubmit="msgSent()">Submit</button>
@@ -67,7 +64,7 @@
             <p>Message sent!</p>
         </div>
         <script nonce={{ csp_nonce() }}>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 @foreach ($errors->all() as $error)
                     toastr.error('{{ $error }}');
                 @endforeach
