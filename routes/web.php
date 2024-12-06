@@ -26,6 +26,7 @@ Route::view('/faq', 'faq')->name('faq');
 
 // Legal Routes
 Route::view('/privacy', 'privacy-policy')->name('privacy');
+Route::view('/tnc', 'terms-and-conditions')->name('terms.conditions');
 
 // Contact Routes
 Route::redirect('/report-issue', '/contact');

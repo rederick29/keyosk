@@ -16,10 +16,10 @@
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Legal</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Licensing</a>
             <a href="/privacy" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Privacy Policy</a>
+            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms of Sale</a>
             <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Returns Policy</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
+            <a href="/tnc" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Download</h1>
