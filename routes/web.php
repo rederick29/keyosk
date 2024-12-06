@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 // Routes
 Route::view('/', 'index')->name('index');
+
+// Company Routes
 Route::view('/about', 'about-us')->name('about');
 Route::view('/values', 'our-values')->name('values');
 Route::view('/sustainability', 'sustainability')->name('sustainability');
 Route::view('/faq', 'faq')->name('faq');
+
+// Legal Routes
+Route::view('/privacy', 'privacy-policy')->name('privacy');
 
 // Contact Routes
 Route::redirect('/report-issue', '/contact');
