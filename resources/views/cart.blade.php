@@ -10,7 +10,7 @@
                 <h1 class="pb-2 mb-5 font-bold border-b-2 border-violet-700">Cart | [] Items</h1>
                 <div class="w-full h-fit flex flex-col gap-5">
                     @foreach(Auth::user()->cart->products as $product)
-                        <x-util.product-card title="{{ $product->name }}" description="{{ $product->description }}" price="{{ $product->price }}" quantity="{{ $product->stock }}"/>
+                        <x-util.product-card imageUrl="{{ $product->primaryImageLocation() }}" title="{{ $product->name }}" description="{{ $product->description }}" price="{{ $product->price }}" quantity="{{ $product->stock }}"/>
                     @endforeach
                 </div>
                 </section>
@@ -28,7 +28,7 @@
                 </section>
                 @endif
             @else
-                <div class="w-full h-20 mt-24 flex flex-col justify-between items-center">
+                <div class="w-full h-screen mt-24 flex flex-col justify-between items-center">
                     <span>Please log in to save items in the basket.</span>
                     <x-util.button class="w-32 h-10 font-bold bg-violet-700 hover:bg-violet-800" type="a" href="/login">Log In</x-util.button>
                 </div>
