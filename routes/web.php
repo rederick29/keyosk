@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 // Routes
 Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');
-Route::view('/cart', 'cart')->name('cart');
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
