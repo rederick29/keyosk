@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class CheckAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
-            return redirect()->route('login.get');
-        }
-
-        if (!Auth::user()->is_admin) {
+        if (!Auth::check() || !Auth::user()->is_admin) {
             return redirect()->route('index')->with('error', 'You do not have permission to access this page.');
         }
 

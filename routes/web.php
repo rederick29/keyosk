@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminIndexController;
+use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\MailController;
-use App\Http\Middleware\AdminMiddleware;
-use App\Models\Product;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminIndexController;
+use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MailController;
+use Illuminate\Support\Facades\Route;
 
 /*
  * For the first parameter, it is the URL path the user can visit (e.g. /about)
@@ -17,18 +18,13 @@ use App\Http\Controllers\ProductController;
 // Routes
 Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');
-Route::get('/shop', function() {
-    $products = Product::with('tags')->paginate(20);
-
-    return view('shop', ['products' => $products]);
-});
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
-Route::get('/product/{id}', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
@@ -37,8 +33,16 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-// Admin Routes
-Route::middleware([AdminMiddleware::class])->group(function () {
-    Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
-    Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
+// Authenticated Routes
+Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
+    // Cart Routes
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/remove', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    // Admin Routes (must be logged in)
+    Route::middleware([CheckAdminMiddleware::class])->group(function () {
+        Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
+        Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
+    });
 });
