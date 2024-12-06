@@ -10,7 +10,7 @@
                 <h1 class="pb-2 mb-5 font-bold border-b-2 border-violet-700">Cart | [] Items</h1>
                 <div class="w-full h-fit flex flex-col gap-5">
                     @foreach(Auth::user()->cart->products as $product)
-                        <x-util.product-card imageUrl="{{ $product->primaryImageLocation() }}" title="{{ $product->name }}" description="{{ $product->description }}" price="{{ $product->price }}" quantity="{{ $product->stock }}"/>
+                        <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
                     @endforeach
                 </div>
                 </section>
