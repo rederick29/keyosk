@@ -33,6 +33,13 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
+Route::get('/orders', function () {
+    $orders = App\Models\Order::all();
+    $products = App\Models\Product::all();
+    $user = App\Models\User::all();
+    return view('/orders',compact('orders', 'products', 'user'));
+});
+
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Cart Routes

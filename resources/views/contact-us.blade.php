@@ -11,7 +11,7 @@
     <x-slot:title>Keyosk | Contact Us</x-slot:title>
     <div class="bg-zinc-950 px-6 py-20 pt-35 lg:pt-40 lg:px-80">
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Contact Us</h2>
+            <h2 class="text-balance text-4xl text-white lg:text-5xl">Contact Us</h2>
             <p class="mt-2 text-lg/8 text-violet-700">Enter details below</p>
         </div>
         <form action="{{ route('contact.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
