@@ -1,12 +1,19 @@
+{{--
+Orders page to be used as a view on website.
+
+Author(s): Kai Chima : Main Developer
+
+--}}
+
 <x-layouts.layout>
     <x-slot:title>Keyosk | My Orders</x-slot:title>
-    <div class="bg-zinc-900 py-20 h-fit w-full">
-        <h2 class="pt-10 px-20 text-3xl font-semibold pb-6">My Orders</h2>
-        <div class="lg:w-4/5 flex flex-col">
+    <div class="bg-zinc-950 py-20 h-fit w-full">
+        <h2 class="pt-10 px-10 lg:px-20 text-3xl font-semibold pb-6">My Orders</h2>
+        <div class=" flex flex-col lg:mx-20 mx-10">
             @foreach ($orders as $order)
                 @if ($order->user->id == 2)
-                    <x-util.product-card title="{{$order->status}}" description="{{$order->user->id}}"
-                        price="{{$order->total_price}}"></x-util.product-card>
+                    <x-util.order-card imageUrl="{{$image->primaryImageLocation ?? 'Undefined'}}" title="{{$order->status}}" description="{{$order->user->id}}"
+                        price="{{$order->total_price}}"></x-util.order-card>
                 @endif
             @endforeach
         </div>
