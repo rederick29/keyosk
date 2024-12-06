@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Controllers\ProductController;
@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index')->name('index');
 Route::view('/about', 'about-us')->name('about');
 Route::view('/values', 'our-values')->name('values');
+Route::view('/sustainability', 'sustainability')->name('sustainability');
 
 // Contact Routes
 Route::view('/contact', 'contact-us')->name('contact');
