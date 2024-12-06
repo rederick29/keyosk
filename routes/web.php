@@ -24,7 +24,7 @@ Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
-Route::get('/product/{id}', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
