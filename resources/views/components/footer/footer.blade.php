@@ -5,7 +5,7 @@
             <a href="/about" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
             <a href="/values" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
             <a href="/sustainability" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
+            <a href="#" target="_blank" onclick="roadmapClick()" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Help Center</h1>
@@ -40,3 +40,11 @@
         </div>
     </div>
 </footer>
+
+<script nonce="{{ csp_nonce() }}">
+    function roadmapClick() {
+        if (confirm("PLEASE NOTE:\nYou must be logged into Trello to view the roadmap.")) {
+            window.open("https://trello.com/b/s4bWNOsw/group-46-board", "_blank");
+        }
+    }
+</script>
