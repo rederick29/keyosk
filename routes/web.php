@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,12 +34,7 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-Route::get('/orders', function () {
-    $orders = App\Models\Order::all();
-    $products = App\Models\Product::all();
-    $user = App\Models\User::all();
-    return view('/orders',compact('orders', 'products', 'user'));
-});
+Route::get('/orders', [OrdersController::class,'index'])->name('orders.get');
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
