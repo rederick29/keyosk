@@ -16,11 +16,11 @@
             <h1 class="text-center text-2xl font-bold">The Keyosk Price Principle</h1>
             <br>
             <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
-                At Keyosk, we’re driven by a mission to redefine excellence - delivering cutting-edge, high-quality
+                At Keyosk, we\'re driven by a mission to redefine excellence - delivering cutting-edge, high-quality
                 peripherals that elevate your experience.
                 <br><br>
                 Our commitment is simple: bring unbeatable value to <strong>everyone</strong>. We believe premium
-                products <i>shouldn’t</i> come with a premium price tag.
+                products <i>shouldn\'t</i> come with a premium price tag.
                 <br><br>
                 Beyond competitive pricing, we stand by durability and dependability, ensuring our products are built to
                 go the distance and further - because <strong>true value is measured over time.</strong>

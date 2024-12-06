@@ -37,7 +37,7 @@
             class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
             <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Our Actions</h2>
             <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
-                At Keyosk, we take meaningful steps toward sustainability. Here’s how we’re making a difference:
+                At Keyosk, we take meaningful steps toward sustainability. Here\'s how we\'re making a difference:
             </p>
             <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                 <li class="flex items-start space-x-4">
@@ -60,7 +60,7 @@
                     <span
                         class="flex-shrink-0 w-6 h-6 bg-violet-500 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                     <p class="text-gray-200 leading-relaxed">
-                        <strong class="text-violet-400">Waste Reduction:</strong> We design packaging that’s minimal,
+                        <strong class="text-violet-400">Waste Reduction:</strong> We design packaging that\'s minimal,
                         recyclable, and free of single-use plastics.
                     </p>
                 </li>
