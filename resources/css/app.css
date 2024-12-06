@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-
     /* Tailwind keywords that can be added to classes to reduce code reuse */
     .dropdown-link {
         @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
@@ -38,6 +37,7 @@ we still enforce color-scheme: dark, despite the user preference */
     }
 }
 
+/* styling for chrome scrollbar */
 ::-webkit-scrollbar {
     width: 3px;
     border-radius: 100px;
@@ -66,3 +66,28 @@ we still enforce color-scheme: dark, despite the user preference */
     opacity: 1 !important;
     width: 25vw !important;
 }
+
+/* styling for accordion component*/
+.accordion-content {
+    max-height: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+
+    transition: max-height 1s ease;
+}
+
+.accordion-checkbox {
+    display: none;
+}
+
+.accordion-checkbox:checked ~ .accordion-content {
+    max-height: 200px;
+}
+
+/* Animations */
+@keyframes accordion-slide {
+    0% { height: 0; }
+    100% { height: 100%; }
+}
+

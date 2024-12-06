@@ -5,8 +5,12 @@
         <div class="px-5 w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
             <aside class=" hidden lg:block w-96 h-full bg-zinc-900 rounded-md" id="filters">
                 <x-util.search placeholder="Search filters..."/>
-
-
+                <x-util.accordion heading="Colors">
+                    <x-util.button type="button">Red</x-util.button>
+                    <x-util.button type="button">Yellow</x-util.button>
+                    <x-util.button type="button">Blue</x-util.button>
+                    <x-util.button type="button">Purple</x-util.button>
+                </x-util.accordion>
             </aside>
             <div class="w-full h-full flex flex-col space-y-5">
                 <section class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-zinc-900 text-gray-400 rounded-lg" id="search">
