@@ -15,17 +15,17 @@
         </div>
     </div>
     {{-- Drop down menu --}}
-    <div class="dropdown-hide w-[100vw] md:w-96 lg:w-96 h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
+    <div class="dropdown-hide w-[100vw] md:w-[32rem] h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
         <div class="flex flex-col items-center min-h-[100%] m-4">
             <div class="px-2 mb-4 font-bold text-xl w-full justify-start">Shopping Basket</div>
-            <div class="w-full p-5 mt-0 bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
+            <div class="flex flex-col w-full p-5 mt-0 bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
                 @if(Auth::check())
-                    <div>
+                    <div class="flex flex-col gap-5">
                         @if(!Auth::user()->cart)
                             <span>Cart Empty.</span>
                         @else
                             @foreach(Auth::user()->cart->products as $product)
-                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ $product->stock }}"/>
+                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
                             @endforeach
                         @endif
                     </div>
@@ -39,7 +39,7 @@
             <div class="h-[12px]"></div>
             <x-util.button  type="a" href="/" class="bg-violet-700 text-white hover:bg-violet-800">Checkout</x-util.button>
             <div class="h-[12px]"></div>
-            <x-util.button  type="a" href="/" class="bg-transparent ring-2 ring-violet-700 text-violet-700 hover:bg-violet-800 hover:text-white">View cart</x-util.button>
+            <x-util.button  type="a" href="/cart" class="bg-transparent ring-2 ring-violet-700 text-violet-700 hover:bg-violet-800 hover:text-white">View cart</x-util.button>
         </div>
     </div>
 </div>
