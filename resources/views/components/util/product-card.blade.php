@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {{--
     product cards element.
 
@@ -6,10 +7,13 @@
 
 <div
     class="product-card bg-gradient-to-br from-gray-900 to-black border border-transparent rounded-2xl p-6 flex flex-col gap-4 shadow-lg mb-6 neon-box">
+=======
+<div class="product-card bg-zinc-900 border-2 border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
+>>>>>>> Stashed changes
     <!-- Product Image and Info Container -->
-    <div class="flex items-center gap-4 mb-4">
+    <div class="flex items-center gap-4">
         <!-- Product Image -->
-        <div class="product-image h-28 w-28 bg-gray-800 rounded-lg flex items-center justify-center overflow-hidden">
+        <div class="product-image h-28 w-28 bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
             <img src="{{ $imageUrl ?? '#' }}" alt="{{ $title }}" class="h-full w-full object-cover">
         </div>
 
@@ -29,6 +33,7 @@
         </div>
     </div>
 
+<<<<<<< Updated upstream
     <!-- Buy Button -->
     <div class="flex justify-center">
         <button
@@ -65,6 +70,36 @@
                     Buy Now
                 </button>
             </div>
+=======
+    <!-- Quantity Selector and Buttons -->
+    <div class="flex items-center justify-end gap-4 mt-4">
+        <!-- Quantity Selector -->
+        <div class="flex items-center gap-2">
+            <label for="quantity-{{ $id }}" class="text-sm text-gray-300">Qty:</label>
+            <div class="flex items-center bg-zinc-800 text-white rounded-md overflow-hidden">
+                <button type="button" id="decrease-quantity-{{ $id }}" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                    -
+                </button>
+                <input type="number" id="quantity-{{ $id }}" name="quantity" min="0" value="0"
+                       class="w-12 h-8 text-center bg-transparent text-white outline-none border-none focus:ring-2 focus:ring-violet-700"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       onkeydown="return event.keyCode != 38 && event.keyCode != 40;">  <!-- Disable up/down arrows -->
+                <button type="button" id="increase-quantity-{{ $id }}" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                    +
+                </button>
+            </div>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+            Add to Cart
+        </button>
+
+        <!-- Buy Now Button -->
+        <button class="buy-now-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+            Buy Now
+        </button>
+>>>>>>> Stashed changes
     </div>
 
     <style>
@@ -177,3 +212,74 @@
         });
     </script>
 </div>
+<<<<<<< Updated upstream
+=======
+
+<style>
+/* Styling for Quantity Selector */
+.quantity-selector input {
+    appearance: none; /* Removes browser default styles */
+    padding: 0.25rem 0;
+    font-size: 1rem;
+    text-align: center; /* Centers the text */
+    height: 2rem;  /* Adjusted height */
+    width: 3rem;   /* Adjusted width */
+    margin: 0; /* Ensures no extra space inside input */
+}
+
+/* Prevents scroll arrows in the input for all browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none; /* Chrome, Safari */
+    appearance: none; /* All other browsers */
+}
+
+/* Styling for Buttons */
+.add-to-cart-btn, .buy-now-btn {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem; /* Ensure equal padding */
+    height: 2.75rem;  /* Adjust the height of the buttons to be equal */
+    min-width: 8rem;  /* Ensure buttons have the same minimum width */
+    text-align: center; /* Center the text inside */
+    display: inline-flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    transition: all 0.3s ease;
+}
+
+/* Hover effects for both buttons */
+.add-to-cart-btn:hover, .buy-now-btn:hover {
+    background-color: #7c3aed;
+    color: #fff;
+}
+
+/* Preventing focus from being visually disturbing */
+.add-to-cart-btn:focus, .buy-now-btn:focus {
+    outline: none;
+}
+</style>
+
+<script>
+// Quantity functionality
+document.getElementById('decrease-quantity-{{ $id }}').addEventListener('click', function() {
+    var qtyInput = document.getElementById('quantity-{{ $id }}');
+    var currentQty = parseInt(qtyInput.value);
+    if (currentQty > 0) {
+        qtyInput.value = currentQty - 1;
+    }
+});
+
+document.getElementById('increase-quantity-{{ $id }}').addEventListener('click', function() {
+    var qtyInput = document.getElementById('quantity-{{ $id }}');
+    var currentQty = parseInt(qtyInput.value);
+    qtyInput.value = currentQty + 1;
+});
+</script>
+>>>>>>> Stashed changes
