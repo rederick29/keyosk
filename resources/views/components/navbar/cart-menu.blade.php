@@ -20,7 +20,7 @@
             <div class="px-2 mb-4 font-bold text-xl w-full justify-start">Shopping Basket</div>
             <div class="flex flex-col w-full p-5 mt-0 bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
                 @if(Auth::check())
-                    <div>
+                    <div class="flex flex-col gap-5">
                         @if(!Auth::user()->cart)
                             <span>Cart Empty.</span>
                         @else
