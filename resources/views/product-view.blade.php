@@ -25,6 +25,13 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                     @php $review_count = $product->reviews->count(); @endphp
                     <p id="stars" class="text-white text-xl pl-4 underline"> {{  $review_count != 1 ? $review_count . " Reviews" : "1 Review" }} </p>
                 </x-products.review-rating>
+                @if ($product->stock > 15)
+                    <p class="text-green-400 text-lg">In stock</p>
+                @elseif ($product->stock < 1)
+                    <p class="text-red-500 text-lg">Out of stock</p>
+                @else
+                    <p class="text-red-500 text-lg">Only {{$product->stock}} left in stock</p>
+                @endif
                 <div class="">
                     <p>{{ $product->short_description }}</p>
                 </div>
@@ -44,7 +51,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             </div>
         </div>
         <div class="text-white lg:pl-10 pt-10">
-            <h3 class="text-violet-500 text-xl font-semibold pb-3">More Details</h3>
+            <h3 class="text-violet-500 text-xl font-semibold pb-3">Details</h3>
             <p>{{ $product->description }}</p>
         </div>
         <div class="text-white lg:pl-10 pt-7">
