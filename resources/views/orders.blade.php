@@ -11,7 +11,7 @@ Author(s): Kai Chima : Main Developer
         <h2 class="pt-10 px-10 lg:px-20 text-3xl font-semibold pb-6">My Orders</h2>
         <div class=" flex flex-col lg:mx-20 mx-10">
             @foreach ($orders as $order)
-                @if ($order->user->id == 2)
+                @if ($order->user->id == Auth::id())
                     <x-util.order-card imageUrl="{{$image->primaryImageLocation ?? 'Undefined'}}" title="{{$order->status}}" description="{{$order->user->id}}"
                         price="{{$order->total_price}}"></x-util.order-card>
                 @endif

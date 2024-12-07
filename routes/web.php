@@ -34,10 +34,10 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-Route::get('/orders', [OrdersController::class,'index'])->name('orders.get');
-
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
+    Route::get('/orders', [OrdersController::class,'index'])->name('orders.get');
+
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
