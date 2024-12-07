@@ -11,7 +11,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
         <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
             <x-products.carousel>
                 @foreach($product->images as $image)
-                    <x-products.image src="{{ $image->location }}" alt="Product image"/>
+                    <x-products.image src="{{ $image->location }}" alt="Product image" />
                 @endforeach
             </x-products.carousel>
 
@@ -23,7 +23,8 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <x-products.review-rating rating="{{ $rating }}">
                     <p id="rating" class="text-white text-xl">&ensp;{{ round($rating / 2, 1) }}&ensp;⋅</p>
                     @php $review_count = $product->reviews->count(); @endphp
-                    <p id="stars" class="text-white text-xl pl-4 underline"> {{  $review_count != 1 ? $review_count . " Reviews" : "1 Review" }} </p>
+                    <p id="stars" class="text-white text-xl pl-4 underline">
+                        {{  $review_count != 1 ? $review_count . " Reviews" : "1 Review" }} </p>
                 </x-products.review-rating>
                 @if ($product->stock > 15)
                     <p class="text-green-400 text-lg">In stock</p>
@@ -44,8 +45,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                         <button type="submit" class="w-full px-7 py-2 rounded-3xl bg-white hover:bg-zinc-200
                          text-md text-violet-700 text-xl shadow-md ">Add to cart</button>
                     </form>
-                    <button
-                        class="w-2/5 px-7 py-2 rounded-3xl bg-violet-700 hover:bg-violet-500
+                    <button class="w-2/5 px-7 py-2 rounded-3xl bg-violet-700 hover:bg-violet-500
                          text-md text-white text-xl shadow-md ">Buy now</button>
                 </div>
             </div>
@@ -55,15 +55,18 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             <p>{{ $product->description }}</p>
         </div>
         <div class="text-white lg:pl-10 pt-7">
-            <h3 class="text-violet-500 text-xl font-semibold">Reviews</h3>
+            <h3 class="text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
             @foreach($product->reviews as $review)
-                <p class="py-4">{{ $review->user->name }}</p>
-                <p class="py-4">{{ $review->subject }}</p>
-                <p class="py-4">{{ $review->comment }}</p>
+                <div class="border-t border-violet-700">
+                    <p class="py-2 pt-4">{{ $review->user->name }}</p>
+                    @php    $revRating = $review->rating; @endphp
+                    <x-products.review-rating class="w-3 h-3" rating="{{ $revRating }}">
+                        <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
+                    </x-products.review-rating>
+                    <p class="py-2 pb-4">{{ $review->comment }}</p>
+                </div>
             @endforeach
             <a href="" class="text-violet-700 underline">More Reviews -></a>
         </div>
     </div>
 </x-layouts.layout>
-
-
