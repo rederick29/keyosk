@@ -3,7 +3,6 @@
     Navbar component, to be displayed at the top of all views (besides admin)
 
     Author(s): Ben Snaith : Main developer
-               Arun (intns) : Implemented cryptographic nonce protection
 
     TODO: change the size of the icons on mobile
     TODO: Fix stupid animation pop in
