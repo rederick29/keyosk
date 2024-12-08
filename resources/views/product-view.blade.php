@@ -29,11 +29,12 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                     <p>{{ $product->short_description }}</p>
                 </div>
                 <div class="flex flex-wrap pt-3 gap-6 w-25">
-                    <form class="w-2/5" method="POST" action="{{ route('cart.store') }}">
+                    <form class="w-2/5" method="POST" action="{{ route('cart.update') }}">
                         @csrf
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         <!-- TODO: have a quantity selection input on the product view page -->
-                        <input type="hidden" id="quantity" name="quantity" value="1">
+{{--                        <input type="hidden" id="quantity" name="quantity" value="1">--}}
+                        <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
                         <button type="submit" class="w-full px-7 py-2 rounded-3xl bg-white hover:bg-zinc-200
                          text-md text-violet-700 text-xl shadow-md ">Add to cart</button>
                     </form>

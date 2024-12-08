@@ -1,5 +1,7 @@
 import './bootstrap';
 import '../ts/app.ts';
+import '../ts/cart-buttons.js';
+import { setInitialQuantity, decreaseCartQuantity, increaseCartQuantity, removeCartItem, setCartQuantity } from '../ts/cart-buttons'
 import 'toastr/build/toastr.min.css';
 import toastr from 'toastr';
 
@@ -22,6 +24,12 @@ toastr.options = {
 };
 
 window.toastr = toastr;
+
+window.setInitialQuantity = setInitialQuantity;
+window.decreaseCartQuantity = decreaseCartQuantity;
+window.increaseCartQuantity = increaseCartQuantity;
+window.setCartQuantity = setCartQuantity;
+window.removeCartItem = removeCartItem;
 
 // This is for 'npm run build' so vite can find the images, helps with caching.
 import.meta.glob([

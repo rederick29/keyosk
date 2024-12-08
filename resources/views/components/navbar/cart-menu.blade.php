@@ -24,8 +24,10 @@
                         @if(!Auth::user()->cart)
                             <span>Cart Empty.</span>
                         @else
+                            @vite('resources/ts/cart-buttons.js')
                             @foreach(Auth::user()->cart->products as $product)
-                                <x-navbar.cart-item productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
+                                <x-navbar.cart-item :product="$product"/>
+                                <script nonce="{{ csp_nonce() }}"> setInitialQuantity('{{ $product->id }}', '{{ $product->quantity }}') </script>
                             @endforeach
                         @endif
                     </div>
@@ -43,4 +45,5 @@
         </div>
     </div>
 </div>
+
 
