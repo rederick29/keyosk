@@ -7,13 +7,13 @@
 <x-layouts.layout>
     <x-slot:title>Keyosk | Terms of Sale</x-slot-title>
         <div class="terms-of-sale bg-zinc-950 pt-32 text-white">
-            <h1 class="text-center text-4xl font-extrabold text-purple tracking-wide drop-shadow-lg">
+            <h1 class="misc-page-header">
                 Our Terms of Sale
             </h1>
 
             <div class="px-8">
                 <div
-                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="misc-page-container">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -28,10 +28,10 @@
                     </p>
                 </div>
 
-                <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+                <hr class="misc-page-hr">
 
                 <div
-                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="misc-page-container">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Order Process</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Here's how it all works when you place an order with Keyosk:
@@ -73,10 +73,10 @@
                     </ul>
                 </div>
 
-                <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+                <hr class="misc-page-hr">
 
                 <div
-                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="misc-page-container">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Payment Terms</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We accept various payment methods to make your checkout process as smooth as possible:
@@ -113,10 +113,10 @@
                     </ul>
                 </div>
 
-                <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+                <hr class="misc-page-hr">
 
                 <div
-                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="misc-page-container">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Shipping & Delivery</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We know you're eager to get your hands on your new gear. Here's how we ship your goods:

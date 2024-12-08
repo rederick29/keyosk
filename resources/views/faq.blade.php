@@ -7,7 +7,7 @@
 <x-layouts.layout>
     <x-slot:title>Keyosk | FAQ</x-slot:title>
     <div class="about-us bg-zinc-950 pt-32 text-white">
-        <h1 class="text-center text-4xl font-extrabold text-purple tracking-wide drop-shadow-lg">
+        <h1 class="misc-page-header">
             Frequently Asked Questions
         </h1>
 

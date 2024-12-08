@@ -7,13 +7,13 @@
 <x-layouts.layout>
     <x-slot:title>Keyosk | Privacy Policy</x-slot:title>
     <div class="about-us bg-zinc-950 pt-32 text-white">
-        <h1 class="text-center text-4xl font-extrabold text-purple tracking-wide drop-shadow-lg">
+        <h1 class="misc-page-header">
             Privacy Policy
         </h1>
 
         <div class="px-8">
             <div
-                class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="misc-page-container">
                 <h1 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Introduction</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -23,10 +23,10 @@
                 </p>
             </div>
 
-            <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+            <hr class="misc-page-hr">
 
             <div
-                class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="misc-page-container">
                 <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Information We Collect</h2>
                 <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We collect personal information in the following ways:
@@ -61,10 +61,10 @@
                 </ul>
             </div>
 
-            <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+            <hr class="misc-page-hr">
 
             <div
-                class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="misc-page-container">
                 <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">How We Use Your Information</h2>
                 <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We use the personal data we collect to improve our services and offer a personalized experience.
@@ -98,10 +98,10 @@
                 </ul>
             </div>
 
-            <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+            <hr class="misc-page-hr">
 
             <div
-                class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="misc-page-container">
                 <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Data Security</h2>
                 <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We implement a variety of security measures to maintain the safety of your personal information.
@@ -109,10 +109,10 @@
                 </p>
             </div>
 
-            <hr class="border border-violet-700 w-1/2 mx-auto my-10">
+            <hr class="misc-page-hr">
 
             <div
-                class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="misc-page-container">
                 <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Your Rights</h2>
                 <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     You have the right to:
