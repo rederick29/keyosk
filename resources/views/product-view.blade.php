@@ -7,7 +7,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Product View</x-slot:title>
-    <div class="bg-zinc-900/75 py-28 px-10 max-w-4xl lg:max-w-7xl lg:mx-14">
+    <div class="bg-zinc-900/75 py-28 px-10  lg:px-14">
         <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-10">
             <x-products.carousel>
                 @foreach($product->images as $image)
@@ -42,10 +42,10 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         <!-- TODO: have a quantity selection input on the product view page -->
                         <input type="hidden" id="quantity" name="quantity" value="1">
-                        <button type="submit" class="w-full px-7 py-2 rounded-3xl bg-white hover:bg-zinc-200
+                        <button type="submit" class="w-full px-7 py-2 rounded-sm bg-white hover:bg-zinc-200
                          text-md text-violet-700 text-xl shadow-md ">Add to cart</button>
                     </form>
-                    <button class="w-2/5 px-7 py-2 rounded-3xl bg-violet-700 hover:bg-violet-500
+                    <button class="w-2/5 px-7 py-2 rounded-sm bg-violet-700 hover:bg-violet-500
                          text-md text-white text-xl shadow-md ">Buy now</button>
                 </div>
             </div>
@@ -54,7 +54,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             <h3 class="text-violet-500 text-xl font-semibold pb-3">Details</h3>
             <p>{{ $product->description }}</p>
         </div>
-        <div class="text-white lg:pl-10 pt-7">
+        <div class="text-white lg:px-10 pt-7">
             <h3 class="text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
             @foreach($product->reviews as $review)
                 <div class="border-t border-violet-700">
