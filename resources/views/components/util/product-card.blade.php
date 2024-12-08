@@ -39,7 +39,8 @@
                     class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
                     -
                 </button>
-                <input type="number" id="quantity-{{ $id }}-input" name="quantity" min="0" value="0"
+                <input type="number" id="quantity-{{ $id }}-input" name="quantity" min="0"
+                    value="0"
                     class="w-12 h-8 text-center bg-transparent text-white outline-none border-none focus:ring-2 focus:ring-violet-700">
                 <button type="button" id="increase-quantity-{{ $id }}"
                     class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
@@ -49,10 +50,16 @@
         </div>
 
         <!-- Add to Cart Button -->
-        <button
-            class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
-            Add to Cart
-        </button>
+        <form method="POST" action="{{ route('cart.store') }}">
+            @csrf
+            <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
+            <!-- TODO: have a quantity selection input on the product view page -->
+            <input type="hidden" id="quantity" name="quantity" value="1">
+            <button
+                class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+                Add to Cart
+            </button>
+        </form>
 
         <!-- Buy Now Button -->
         <button
