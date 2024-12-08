@@ -5,12 +5,12 @@
 --}}
 
 
-<div class="product-card bg-zinc-900 border-2 border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6 relative">
+<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700 transition-all duration-500">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
         <a href="/product/{{ $id }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
-        <a href="/product/{{ $id }}" class="w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
+        <a href="/product/{{ $id }}" class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
         <div class="product-image h-28 w-28 bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
