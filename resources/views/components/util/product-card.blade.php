@@ -5,7 +5,7 @@
 --}}
 
 
-<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-500">
+<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
