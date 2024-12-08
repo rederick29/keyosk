@@ -8,23 +8,19 @@ Author(s): Toms Xavi: Developer
 <div class="product-card bg-zinc-900 border-2 border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
-        <!-- Product Image -->
-        <div class="product-image h-28 w-28 bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
-            <img src="{{ $imageUrl ?? '#' }}" alt="{{ $title }}" class="h-full w-full object-cover">
-        </div>
 
         <!-- Product Details -->
         <div class="flex-grow">
-            <h3 class="product-title text-lg font-semibold text-white mb-2">{{ $title }}</h3>
-            <p class="product-description text-sm text-gray-300 leading-relaxed">
-                {{ $description }}
+            <h3 class="product-title text-xl font-semibold text-white mb-2">Status: {{ $status }}</h3>
+            <p class="product-description text-md text-gray-300 leading-relaxed">
+                {{ $date }}
             </p>
         </div>
 
         <!-- Price -->
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-white">
-                £{{ number_format($price, 2) }}
+                Total: £{{ number_format($price, 2) }}
             </span>
         </div>
     </div>
@@ -37,7 +33,7 @@ Author(s): Toms Xavi: Developer
         <!-- View Products Button -->
         <button
             class="buy-now-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
-            Veiw Products
+            View Products
         </button>
     </div>
 </div>

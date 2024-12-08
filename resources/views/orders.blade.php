@@ -12,7 +12,7 @@ Author(s): Kai Chima : Main Developer
         <div class=" flex flex-col lg:mx-20 mx-10">
             @foreach ($orders as $order)
                 @if ($order->user->id == Auth::id())
-                    <x-util.order-card imageUrl="{{$image->primaryImageLocation ?? 'Undefined'}}" title="{{$order->status}}" description="{{$order->user->id}}"
+                    <x-util.order-card imageUrl="{{$image->primaryImageLocation ?? 'Undefined'}}" status="{{$order->status}}" date="{{$order->created_at}}"
                         price="{{$order->total_price}}"></x-util.order-card>
                 @endif
             @endforeach
