@@ -37,7 +37,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                     <p>{{ $product->short_description }}</p>
                 </div>
                 <div class="flex flex-wrap pt-3 gap-6 w-25">
-                    <form class="w-2/5" method="POST" action="{{ route('cart.store') }}">
+                    <form class="lg:w-2/5" method="POST" action="{{ route('cart.store') }}">
                         @csrf
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         <!-- TODO: have a quantity selection input on the product view page -->
@@ -45,7 +45,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                         <button type="submit" class="w-full px-7 py-2 rounded-sm bg-white hover:bg-zinc-200
                          text-md text-violet-700 text-xl shadow-md ">Add to cart</button>
                     </form>
-                    <button class="w-2/5 px-7 py-2 rounded-sm bg-violet-700 hover:bg-violet-500
+                    <button class="lg:w-2/5 px-7 py-2 rounded-sm bg-violet-700 hover:bg-violet-500
                          text-md text-white text-xl shadow-md ">Buy now</button>
                 </div>
             </div>
