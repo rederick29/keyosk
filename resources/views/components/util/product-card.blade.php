@@ -31,34 +31,34 @@
 
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4">
-        <!-- Quantity Selector -->
-        <div class="flex items-center gap-2">
-            <label for="quantity-{{ $id }}" class="text-sm text-gray-300">Qty:</label>
-            <div class="flex items-center bg-zinc-800 text-white rounded-md overflow-hidden">
-                <button type="button" id="decrease-quantity-{{ $id }}"
-                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
-                    -
-                </button>
-                <input type="number" id="quantity-{{ $id }}-input" name="quantity" min="0"
-                    value="0"
-                    class="w-12 h-8 text-center bg-transparent text-white outline-none border-none focus:ring-2 focus:ring-violet-700">
-                <button type="button" id="increase-quantity-{{ $id }}"
-                    class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
-                    +
-                </button>
-            </div>
-        </div>
-
-        <!-- Add to Cart Button -->
         <form method="POST" action="{{ route('cart.store') }}">
             @csrf
-            <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
-            <!-- TODO: have a quantity selection input on the product view page -->
-            <input type="hidden" id="quantity" name="quantity" value="1">
-            <button
-                class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
-                Add to Cart
-            </button>
+
+            <!-- Quantity Selector -->
+            <div class="flex items-center gap-2">
+                <label for="quantity-{{ $id }}" class="text-sm text-gray-300">Qty:</label>
+                <div class="flex items-center bg-zinc-800 text-white rounded-md overflow-hidden">
+                    <button type="button" id="decrease-quantity-{{ $id }}"
+                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                        -
+                    </button>
+                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="1"
+                        value="1"
+                        class="w-12 h-8 text-center bg-transparent text-white outline-none border-none focus:ring-2 focus:ring-violet-700">
+                    <button type="button" id="increase-quantity-{{ $id }}"
+                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                        +
+                    </button>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
+                <button
+                    class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+                    Add to Cart
+                </button>
+            </div>
+
         </form>
 
         <!-- Buy Now Button -->
@@ -68,6 +68,38 @@
         </button>
     </div>
 </div>
+
+<script nonce="{{ csp_nonce() }}">
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('quantity-{{ $id }}');
+
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^1-9]/g, '');
+        });
+
+        input.addEventListener('keydown', function(event) {
+            if (event.keyCode === 38 || event.keyCode === 40) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    // Quantity functionality
+    document.getElementById('decrease-quantity-{{ $id }}').addEventListener('click', function() {
+        var qtyInput = document.getElementById('quantity-{{ $id }}');
+        var currentQty = parseInt(qtyInput.value);
+        if (currentQty > 1) {
+            qtyInput.value = currentQty - 1;
+        }
+    });
+
+    document.getElementById('increase-quantity-{{ $id }}').addEventListener('click', function() {
+        var qtyInput = document.getElementById('quantity-{{ $id }}');
+        var currentQty = parseInt(qtyInput.value);
+        qtyInput.value = currentQty + 1;
+    });
+</script>
+
 
 <style>
     /* Styling for Quantity Selector */
@@ -136,34 +168,3 @@
         outline: none;
     }
 </style>
-
-<script nonce="{{ csp_nonce() }}">
-    document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('quantity-{{ $id }}-input');
-
-        input.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-
-        input.addEventListener('keydown', function(event) {
-            if (event.keyCode === 38 || event.keyCode === 40) {
-                event.preventDefault();
-            }
-        });
-    });
-
-    // Quantity functionality
-    document.getElementById('decrease-quantity-{{ $id }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $id }}');
-        var currentQty = parseInt(qtyInput.value);
-        if (currentQty > 0) {
-            qtyInput.value = currentQty - 1;
-        }
-    });
-
-    document.getElementById('increase-quantity-{{ $id }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $id }}');
-        var currentQty = parseInt(qtyInput.value);
-        qtyInput.value = currentQty + 1;
-    });
-</script>
