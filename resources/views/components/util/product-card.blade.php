@@ -5,7 +5,7 @@
 --}}
 
 
-<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700 transition-all duration-500">
+<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-500">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
@@ -67,7 +67,7 @@
 
         <!-- Buy Now Button -->
         <button
-            class="buy-now-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+            class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-violet-700 text-white hover:bg-violet-800">
             Buy Now
         </button>
     </div>
@@ -160,8 +160,7 @@
     }
 
     /* Hover effects for both buttons */
-    .add-to-cart-btn:hover,
-    .buy-now-btn:hover {
+    .add-to-cart-btn:hover {
         background-color: #7c3aed;
         color: #fff;
     }
