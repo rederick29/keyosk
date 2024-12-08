@@ -9,3 +9,7 @@
         {{ $slot }}
     </div>
 </div>
+
+<script nonce="{{ csp_nonce() }}">
+
+</script>

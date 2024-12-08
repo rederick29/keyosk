@@ -3,15 +3,11 @@
 
     <main class="w-full h-fit flex justify-center pt-32 pb-[32px]">
         <div class="px-5 w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
-            <aside class=" hidden lg:block w-96 h-full bg-zinc-900 rounded-md" id="filters">
-                <x-util.search placeholder="Search filters..."/>
-                <x-util.accordion heading="Colors">
-                    <x-util.button type="button">Red</x-util.button>
-                    <x-util.button type="button">Yellow</x-util.button>
-                    <x-util.button type="button">Blue</x-util.button>
-                    <x-util.button type="button">Purple</x-util.button>
-                </x-util.accordion>
-            </aside>
+
+            <!--
+                Here there will be an aside with filters etc. but this has been removed for the sake of completing MVP
+            -->
+
             <div class="w-full h-full flex flex-col space-y-5">
                 <section class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-zinc-900 text-gray-400 rounded-lg" id="search">
                     <x-util.button class="h-fit p-3 block lg:hidden w-20 bg-zinc-800" type="button">Filters</x-util.button>
@@ -38,7 +34,7 @@
                 </section>
                 <section class="w-full h-fit rounded-md" id="results">
                     @foreach($products as $product)
-                        <x-util.product-card title="{{ $product->name }}" description="{{ $product->description }}" price="{{ $product->price }}"></x-util.product-card>
+                        <x-util.product-card title="{{ $product->name }}" description="{{ $product->description }}" price="{{ $product->price }}" id="{{ $product->id }}"></x-util.product-card>
                     @endforeach
 
                     <div>
