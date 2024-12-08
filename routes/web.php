@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MailController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,13 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
+
+// Shop view
+Route::get('/shop', function () {
+    $products = Product::with('tags')->paginate(5);
+
+    return view('shop', ['products' => $products]);
+});
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
