@@ -13,7 +13,7 @@
 
             <div class="px-8">
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -26,7 +26,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Product Usage Terms</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         To ensure the proper use of Keyosk products, we have outlined the following usage terms:
@@ -66,7 +66,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Warranty Coverage & Terms
                     </h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
@@ -107,7 +107,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Intellectual Property</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         All trademarks, logos, and designs related to Keyosk products are the exclusive property of
@@ -119,7 +119,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Governing Law</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         This agreement is governed by the laws of the jurisdiction in which Keyosk is incorporated,

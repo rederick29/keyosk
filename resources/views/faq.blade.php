@@ -59,7 +59,7 @@
 
             {{-- Loop through the FAQs --}}
             @foreach ($faqs as $faq)
-                <div class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-6 rounded-lg shadow-md">
+                <div class="bg-zinc-900 p-6 rounded-lg shadow-md">
                     <h3 class="text-lg font-semibold text-violet-400">{{ $faq['question'] }}</h3>
                     <p class="mt-2 text-gray-300 leading-relaxed">
                         {!! $faq['answer'] !!}

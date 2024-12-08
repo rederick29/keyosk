@@ -13,7 +13,7 @@
 
             <div class="px-8">
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -31,7 +31,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Order Process</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Here's how it all works when you place an order with Keyosk:
@@ -76,7 +76,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Payment Terms</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We accept various payment methods to make your checkout process as smooth as possible:
@@ -116,7 +116,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Shipping & Delivery</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We know you're eager to get your hands on your new gear. Here's how we ship your goods:

@@ -13,7 +13,7 @@
 
             <div class="px-8">
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">We Get It - Stuff Happens</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -24,7 +24,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Return Eligibility</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         You can return any Keyosk product within 30 days of purchase, provided the item is unused, in its original packaging, and in the same condition as when you received it. Just make sure you keep the receipt - because we can't process a return without it.
@@ -34,7 +34,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Return Process</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Returning your product is simple. Just follow these steps:
@@ -67,7 +67,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Exclusions</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Some items aren&apos;t eligible for return, such as:
@@ -93,7 +93,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">Damaged or Defective Products</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         If you received a damaged or defective product, don&apos;t panic! We&apos;ll make it right. Just contact us within 7 days of receiving your product and we&apos;ll help you with a return or exchange.
@@ -103,7 +103,7 @@
                 <hr class="border border-violet-700 w-1/2 mx-auto my-10">
 
                 <div
-                    class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                    class="bg-zinc-900 p-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                     <h2 class="text-center text-2xl font-bold text-violet-400 tracking-wide">International Returns</h2>
                     <p class="text-center text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We currently accept returns only within the country of purchase. International returns may not be possible, but please reach out to us and we&apos;ll try to work something out.

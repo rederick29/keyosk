@@ -13,7 +13,7 @@
 
         <div class="px-8">
             <div
-                class="bg-gradient-to-br from-zinc-800 via-zinc-900 to-black pt-8 pb-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
+                class="bg-zinc-900 pt-8 pb-8 rounded-xl shadow-lg mt-10 mx-auto max-w-2xl mb-16">
                 <h1 class="text-center text-2xl font-bold">The Keyosk Price Principle</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
