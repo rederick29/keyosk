@@ -11,7 +11,6 @@ class TeamCard extends Component
     public $name;
     public $role;
     public $support;
-    public $secSupport;
     public $initials;
 
     /**
