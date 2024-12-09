@@ -6,9 +6,11 @@ use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Product;
 
 /*
  * For the first parameter, it is the URL path the user can visit (e.g. /about)
@@ -38,6 +40,13 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 
+// Shop view
+Route::get('/shop', function () {
+    $products = Product::with('tags')->paginate(5);
+
+    return view('shop', ['products' => $products]);
+});
+
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
@@ -47,10 +56,11 @@ Route::post('/register', [RegisterUserController::class, 'store'])->name('regist
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
+    Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
+
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
-    Route::post('/cart/remove', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {

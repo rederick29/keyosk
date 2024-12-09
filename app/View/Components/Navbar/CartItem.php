@@ -2,13 +2,16 @@
 
 namespace App\View\Components\Navbar;
 
+use App\Models\Product;
 use Closure;
 use Exception;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class CartItem extends Component
 {
+    public int $productId;
     public string $productImage;
     public string $productTitle;
     public float $productPrice;
@@ -18,28 +21,33 @@ class CartItem extends Component
      * Create a new component instance.
      * @throws Exception
      */
-    public function __construct(string $productImage, string $productTitle, float $productPrice, int $productQuantity)
+    public function __construct(Product $product)
     {
-        // assign all parameters
-        $this->productImage = $productImage;
+        $this->productId = $product->id;
+        if(empty($this->productId))
+        {
+            throw new Exception("Product id should not be null");
+        }
+
+        $this->productImage = $product->primaryImageLocation() ?? 'Undefined';
         if(empty($this->productImage))
         {
             throw new Exception("Product image should not be null");
         }
 
-        $this->productTitle = $productTitle;
+        $this->productTitle = $product->name;
         if(empty($this->productTitle))
         {
             throw new Exception("Product title should not be null");
         }
 
-        $this->productPrice = $productPrice;
+        $this->productPrice = $product->price;
         if(empty($this->productPrice) || $this->productPrice < 0)
         {
            throw new Exception("Product price should not be null or less than 0");
         }
 
-        $this->productQuantity = $productQuantity;
+        $this->productQuantity = Auth::user()->cart->getProductQuantity($this->productId);
         if(empty($this->productQuantity) || $this->productQuantity <= 0)
         {
             throw new Exception("Product quantity should not be null or 0");

@@ -23,7 +23,7 @@
     {{-- Title can be passed as <x-slot:title>, however by default it will use "Keytamine" --}}
     <title>{{ $title ?? "Keyosk" }}</title>
 </head>
-<body class="bg-zinc-950 relative h-fit text-neutral-200">
+<body class="bg-white dark:bg-zinc-950 relative h-fit text-zinc-800 dark:text-neutral-200">
     {{ $slot }}
 </body>
 </html>
