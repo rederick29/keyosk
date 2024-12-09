@@ -12,9 +12,9 @@
     <x-slot:title>Keyosk | About us</x-slot:title>
     <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white font-sans">
 
-        <h1 class="text-center text-4xl font-semibold">About Us</h1>
-
-        <div class="bg-stone-200 dark:bg-zinc-900 p-6 rounded-lg mt-10 mx-auto max-w-2xl">
+        <h1 class = "text-center text-4xl font-semibold">About Us</h1>
+        
+        <div class="bg-stone-100 dark:bg-zinc-900 p-6 rounded-lg mt-10 mx-auto max-w-2xl">
             <h1 class = "text-center text-2xl text-orange-500 dark:text-violet-700">The Keyosk Mission</h1>
             <br>
             <p class="text-center mx-auto w-3/4 text-wrap">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure we contribute to saving the environment. </p>
@@ -42,3 +42,5 @@
         </div>
     </div>
 </x-layouts.layout>
+
+
