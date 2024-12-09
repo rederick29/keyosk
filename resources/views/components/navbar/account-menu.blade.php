@@ -34,7 +34,7 @@
                     <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" name="logout" class="dropdown-link bg-red-700 hover:bg-red-800 text-white">Log Out</button>
+                        <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
                     </form>
                 </section>
             @endauth
