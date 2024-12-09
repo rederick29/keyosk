@@ -58,7 +58,6 @@
 
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
-        // Use Blade to inject the productId safely into JavaScript
         const productId = @json($productId);
 
         // Select elements by their dynamic IDs

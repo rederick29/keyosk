@@ -33,6 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
         themeToggleDarkIcon.classList.toggle('hidden', isDark);
         themeToggleLightIcon.classList.toggle('hidden', !isDark);
+
+        themeToggleBtn.disabled = true;
+            setTimeout(() => {
+                themeToggleBtn.disabled = false;
+            }, 250);
     });
 });
 </script>
