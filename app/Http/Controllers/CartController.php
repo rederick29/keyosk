@@ -28,13 +28,12 @@ class CartController extends Controller
 
         $user = Auth::user();
         $productId = intval($validatedData['product_id']);
-        $quantity = intval($validatedData['quantity'] ?? 0);
+        $quantity = intval($validatedData['quantity'] ?? 1);
         $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
             switch ($validatedData['action']) {
                 case CartUpdateAction::Add->value:
-                    $quantity = 1;
                 case CartUpdateAction::Increase->value:
                     $cart->addProduct($productId, $quantity);
                     $message = 'Product added to cart';
