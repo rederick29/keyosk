@@ -6,8 +6,8 @@
 
 <x-layouts.layout>
     <x-slot:title>Admin Home</x-slot:title>
-    <main class="min-h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
-        <div class="px-8 pt-40 md:px-20 lg:px-40">
+    <main class="min-h-screen bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 w-full">
+        <div class="px-8 py-40 md:px-20 lg:px-40">
             <div class="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-2xl">
                 <div class="mx-auto max-w-2xl text-center py-10">
                     <h2 class="text-balance text-4xl tracking-tight text-zinc-800 dark:text-white lg:text-5xl">Admin Homepage</h2>
@@ -19,7 +19,7 @@
                             class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
 
                         <button id="searchButton"
-                            class="w-full sm:w-auto sm:flex-[1] p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
+                            class="w-full sm:w-auto sm:flex-[1] p-3 ring-orange-500 dark:ring-violet-700 dark:text-white bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                             Search
                         </button>
                     </div>
@@ -36,7 +36,7 @@
                             </select>
 
                             <button id="addUser"
-                                class="min-w-fit sm:w-auto p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
+                                class="min-w-fit sm:w-auto p-3 ring-orange-500 dark:ring-violet-700 text-zinc-800 dark:text-white bg-orange-500 dark:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                                 Add User
                             </button>
                         </div>
@@ -44,7 +44,7 @@
                         <!-- Bulk Action and Apply Button (Right) -->
                         <div class="flex items-center space-x-4">
                             <select id="bulkActionOpt" aria-label="Bulk Action"
-                                class="min-w-fit p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 transition-all duration-500 rounded-xl">
+                                class="min-w-fit p-3 ring-orange-500 dark:ring-violet-700  text-zinc-800 dark:text-white bg-orange-500 dark:bg-violet-700 transition-all duration-500 rounded-xl">
                                 <option value="">Select Action</option>
                                 <option value="delete">Delete User</option>
                                 <option value="toggle_admin">Toggle User Admin</option>
