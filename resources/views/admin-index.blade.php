@@ -8,7 +8,7 @@
     <x-slot:title>Admin Home</x-slot:title>
     <main class="min-h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
         <div class="px-8 pt-40 md:px-20 lg:px-40">
-            <div class="bg-zinc-800 rounded-2xl p-6 shadow-2xl">
+            <div class="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-2xl">
                 <div class="mx-auto max-w-2xl text-center py-10">
                     <h2 class="text-balance text-4xl tracking-tight text-zinc-800 dark:text-white lg:text-5xl">Admin Homepage</h2>
                 </div>
