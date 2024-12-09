@@ -22,7 +22,7 @@
     }
 
     .misc-page-container {
-        @apply bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-lg mx-auto max-w-2xl my-20;
+        @apply bg-stone-100 dark:bg-zinc-900 p-8 rounded-xl shadow-lg mx-auto max-w-2xl my-20;
     }
 
     .misc-page-header {
