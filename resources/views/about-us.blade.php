@@ -17,7 +17,7 @@
         <div class="bg-stone-200 dark:bg-zinc-900 p-6 rounded-lg mt-10 mx-auto max-w-2xl">
             <h1 class = "text-center text-2xl text-orange-500 dark:text-violet-700">The Keyosk Mission</h1>
             <br>
-            <p class="text-center mx-auto w-3/4 text-wrap">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure <strong>we</strong> contribute to saving the environment. </p>
+            <p class="text-center mx-auto w-3/4 text-wrap">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure we contribute to saving the environment. </p>
         <br>
         <hr class = "border-2 border-orange-500 dark:border-violet-700 bg-orange-500 dark:bg-violet-700">
         <br>
