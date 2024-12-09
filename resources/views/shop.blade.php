@@ -10,7 +10,7 @@
 
             <div class="w-full h-full flex flex-col space-y-5">
                 <section
-                    class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-zinc-900 text-gray-400 rounded-lg"
+                    class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
                     id="search">
                     <x-util.button class="h-fit p-3 block lg:hidden w-20 bg-zinc-800"
                         type="button">Filters</x-util.button>
