@@ -9,27 +9,27 @@
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
-        <a href="/product/{{ $id }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
-        <a href="/product/{{ $id }}"
+        <a href="/product/{{ $productId }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
+        <a href="/product/{{ $productId }}"
             class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
         <div class="product-image h-28 w-28 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
-            <img src="{{ $imageUrl ?? '#' }}" alt="{{ $title }}" class="h-full w-full object-cover">
+            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}" class="h-full w-full object-cover">
         </div>
 
         <!-- Product Details -->
         <div class="flex-grow">
-            <h3 class="product-title text-lg font-semibold text-zinc-800 dark:text-white mb-2">{{ $title }}</h3>
+            <h3 class="product-title text-lg font-semibold text-zinc-800 dark:text-white mb-2">{{ $productTitle }}</h3>
             <p class="product-description text-sm text-black/50 dark:text-gray-300 leading-relaxed">
-                {{ $description }}
+                {{ $productShortDescription }}
             </p>
         </div>
 
         <!-- Price -->
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800">
-                £{{ number_format($price, 2) }}
+                £{{ number_format($productPrice, 2) }}
             </span>
         </div>
     </div>
@@ -38,29 +38,28 @@
     <div class="flex items-center justify-end gap-4 mt-4 ">
         <form method="POST" action="{{ route('cart.update') }}">
             @csrf
-
             <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
-            <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
+            <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
 
             <!-- Quantity Selector -->
             <div class="flex items-center gap-2">
-                <label for="quantity-{{ $id }}" class="text-sm text-zinc-800 dark:text-gray-300">Qty:</label>
+                <label for="quantity-{{ $productId }}" class="text-sm text-zinc-800 dark:text-gray-300">Qty:</label>
                 <div class="flex items-center bg-white dark:bg-zinc-800 text-white rounded-md overflow-hidden">
-                    <button type="button" id="decrease-quantity-{{ $id }}"
+                    <button type="button" id="decrease-quantity-{{ $productId }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         -
                     </button>
-                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="1"
+                    <input type="number" id="quantity-{{ $productId }}" name="quantity" min="1"
                         value="1"
                         class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
-                    <button type="button" id="increase-quantity-{{ $id }}"
+                    <button type="button" id="increase-quantity-{{ $productId }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         +
                     </button>
                 </div>
 
                 <!-- Add to Cart Button -->
-                <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
+                <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
                 <button class="add-to-cart-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
                     Add to Cart
                 </button>
@@ -78,7 +77,7 @@
 
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('quantity-{{ $id }}');
+        const input = document.getElementById('quantity-{{ $productId }}');
 
         input.addEventListener('input', function() {
             this.value = this.value.replace(/[^1-9]/g, '');
@@ -92,16 +91,16 @@
     });
 
     // Quantity functionality
-    document.getElementById('decrease-quantity-{{ $id }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $id }}');
+    document.getElementById('decrease-quantity-{{ $productId }}').addEventListener('click', function() {
+        var qtyInput = document.getElementById('quantity-{{ $productId }}');
         var currentQty = parseInt(qtyInput.value);
         if (currentQty > 1) {
             qtyInput.value = currentQty - 1;
         }
     });
 
-    document.getElementById('increase-quantity-{{ $id }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $id }}');
+    document.getElementById('increase-quantity-{{ $productId }}').addEventListener('click', function() {
+        var qtyInput = document.getElementById('quantity-{{ $productId }}');
         var currentQty = parseInt(qtyInput.value);
         qtyInput.value = currentQty + 1;
     });

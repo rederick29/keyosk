@@ -38,8 +38,7 @@
                 </section>
                 <section class="w-full h-fit rounded-md" id="results">
                     @foreach ($products as $product)
-                        <x-util.product-card title="{{ $product->name }}" description="{{ $product->description }} "
-                            price="{{ $product->price }}" id="{{ $product->id }}"></x-util.product-card>
+                        <x-util.product-card :product="$product" />
                     @endforeach
 
                     <div>
