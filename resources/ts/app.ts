@@ -38,7 +38,8 @@ class DropdownMenu {
     /*
      */
     act(): void {
-        this.parentElement.classList.toggle('bg-white/5');
+        this.parentElement.classList.toggle('dark:bg-white/5');
+        this.parentElement.classList.toggle('bg-black/5');
         this.parentElement.classList.toggle('ring-2');
         this.dropdownElement.classList.toggle('dropdown-hide');
         this.dropdownElement.classList.toggle('dropdown-display');

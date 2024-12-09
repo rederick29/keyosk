@@ -6,12 +6,12 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | FAQ</x-slot:title>
-    <div class="about-us bg-zinc-950 pt-32 text-white">
+    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
         <h1 class="misc-page-header">
             Frequently Asked Questions
         </h1>
 
-        <div class="p-8 rounded-xl shadow-lg mt-12 mx-auto max-w-4xl space-y-4">
+        <div class="p-8 mt-12 mx-auto max-w-4xl space-y-4">
             @php
                 $faqs = [
                     [
@@ -59,9 +59,9 @@
 
             {{-- Loop through the FAQs --}}
             @foreach ($faqs as $faq)
-                <div class="bg-zinc-900 p-6 rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-violet-400">{{ $faq['question'] }}</h3>
-                    <p class="mt-2 text-gray-300 leading-relaxed">
+                <div class="bg-stone-100 dark:bg-zinc-900 p-6 rounded-lg shadow-md">
+                    <h3 class="text-lg font-semibold text-orange-500 dark:text-violet-700">{{ $faq['question'] }}</h3>
+                    <p class="mt-2 text-zinc-800 dark:text-gray-300 leading-relaxed">
                         {!! $faq['answer'] !!}
                     </p>
                 </div>
