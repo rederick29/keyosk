@@ -9,10 +9,9 @@ enum CartUpdateAction: string
     case Remove = "remove";
     case Add = "add";
 
-    public static function needsQuantity(String $action): bool
+    // If the action is Increase or Decrease, we need a quantity, otherwise we don't
+    public static function needsQuantity(string $action): bool
     {
-        if (!$action) return false;
-        if ($action == self::Increase || $action == self::Decrease) return true;
-        return false;
+        return in_array(needle: $action, haystack: [self::Increase, self::Decrease], strict: true);
     }
 }
