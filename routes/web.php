@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Controllers\ProductController;
@@ -17,9 +17,21 @@ use Illuminate\Support\Facades\Route;
 
 // Routes
 Route::view('/', 'index')->name('index');
+
+// Company Routes
 Route::view('/about', 'about-us')->name('about');
+Route::view('/values', 'our-values')->name('values');
+Route::view('/sustainability', 'sustainability')->name('sustainability');
+Route::view('/faq', 'faq')->name('faq');
+
+// Legal Routes
+Route::view('/privacy', 'privacy-policy')->name('privacy');
+Route::view('/tnc', 'terms-and-conditions')->name('terms.conditions');
+Route::view('/ts', 'terms-of-sale')->name('terms.sale');
+Route::view('/returns', 'returns-policy')->name('returns');
 
 // Contact Routes
+Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
