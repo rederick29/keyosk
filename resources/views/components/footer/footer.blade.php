@@ -3,30 +3,30 @@
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Company</h1>
             <a href="/about" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
+            <a href="/values" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
+            <a href="/sustainability" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
+            <a href="#" target="_blank" id="roadmap" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Help Center</h1>
             <a href="/contact" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
+            <a href="#" id="discordLink" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
+            <a href="/faq" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
+            <a href="/report-issue" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Legal</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Privacy Policy</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Licensing</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Returns Policy</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
+            <a href="/privacy" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Privacy Policy</a>
+            <a href="/ts" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms of Sale</a>
+            <a href="/returns" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Returns Policy</a>
+            <a href="/tnc" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l">Download</h1>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Android</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
-            <a href="" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
+            <a href="#" id="download1" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
+            <a href="#" id="download2" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Android</a>
+            <a href="#" id="download3" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
+            <a href="#" id="download4" class="w-fit text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
         </div>
     </div>
     <div class="flex flex-row p-3 px-5 w-full bg-zinc-800 items-center justify-between">
@@ -40,3 +40,35 @@
         </div>
     </div>
 </footer>
+
+<script nonce="{{ csp_nonce() }}">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('roadmap').addEventListener('click', roadmapClick);
+        document.getElementById('discordLink').addEventListener('click', discordClick);
+        document.getElementById('download1').addEventListener('click', downloadClick);
+        document.getElementById('download2').addEventListener('click', downloadClick);
+        document.getElementById('download3').addEventListener('click', downloadClick);
+        document.getElementById('download4').addEventListener('click', downloadClick);
+    });
+
+    // NOTE: preventDefault() is used to stop the browser from reloading the page
+    function roadmapClick(event) {
+        event.preventDefault();
+        if (confirm("PLEASE NOTE:\nYou must be logged into Trello to view the roadmap.")) {
+            // They know what they're getting into. Let them in.
+            window.open("https://trello.com/b/s4bWNOsw/group-46-board", "_blank");
+        }
+    }
+
+    // They don't know it will never exist. Let them down gently.
+    function discordClick(event) {
+        event.preventDefault();
+        alert("The Discord server is currently under construction. Please check back later.");
+    }
+
+    // They don't know it will never exist. Let them down gently.
+    function downloadClick(event) {
+        event.preventDefault();
+        alert("We are in the process of creating download links for this platform. Please check back later.");
+    }
+</script>

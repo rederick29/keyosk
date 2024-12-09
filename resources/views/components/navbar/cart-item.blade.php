@@ -6,7 +6,7 @@
     TODO:
 --}}
 
-<div {{ $attributes->merge(['class' => 'w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-white/5 transition-colors duration-500']) }}>
+<div {{ $attributes->merge(['class' => 'w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-zinc-900 transition-colors duration-500']) }}>
     <div class="size-32 flex items-center overflow-hidden">
         <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-sm" />
     </div>

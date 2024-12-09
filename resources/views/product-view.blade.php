@@ -19,21 +19,21 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $product->name }}</h2>
                 <p id="price" class="text-3xl">&pound;{{ number_format($product->price, 2, '.', ',') }}</p>
                 @php $rating = $product->getAverageRating(); @endphp
-                <!-- TODO: fix floating point string conversion to int -->
                 <x-products.review-rating rating="{{ $rating }}">
                     <p id="rating" class="text-white text-xl">&ensp;{{ round($rating / 2, 1) }}&ensp;⋅</p>
                     @php $review_count = $product->reviews->count(); @endphp
                     <p id="stars" class="text-white text-xl pl-4 underline">
-                        {{  $review_count != 1 ? $review_count . " Reviews" : "1 Review" }}
-                    </p>
+                        {{ $review_count != 1 ? $review_count . ' Reviews' : '1 Review' }} </p>
                 </x-products.review-rating>
+
                 @if ($product->stock > 15)
                     <p class="text-green-400 text-lg">In stock</p>
                 @elseif ($product->stock < 1)
                     <p class="text-red-500 text-lg">Out of stock</p>
                 @else
-                    <p class="text-red-500 text-lg">Only {{$product->stock}} left in stock</p>
+                    <p class="text-red-500 text-lg">Only {{ $product->stock }} left in stock</p>
                 @endif
+
                 <div class="">
                     <p>{{ $product->short_description }}</p>
                     <div class="flex flex-row w-full justify-between items-center">
@@ -92,7 +92,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
     </div>
 </x-layouts.layout>
 
-<script>
+<script nonce="{{csp_nonce()}}">
     function getQuantity() {
         let quantity = document.getElementById('selectQuantity').getAttribute('value');
         document.getElementById('quanity').value = quantity;

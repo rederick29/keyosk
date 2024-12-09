@@ -20,7 +20,7 @@ class MailController extends Controller
         ]);
 
         try {
-            Mail::to("Keyosk46@gmail.com")->send(new ContactUs($data));
+            Mail::to("keyosk46@gmail.com")->send(new ContactUs($data));
             return redirect()->route('contact')->with('success', 'Your message has been sent!');
         } catch (\Exception $e) {
             report($e);

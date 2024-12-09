@@ -16,8 +16,41 @@
     .dropdown-hide {
         @apply scale-0 border-2 border-neutral-400 bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
+
+    .misc-page-hr {
+        @apply border border-violet-700 w-1/3 mx-auto;
+    }
+
+    .misc-page-container {
+        @apply bg-zinc-900 p-8 rounded-xl shadow-lg mx-auto max-w-2xl my-20;
+    }
+
+    .misc-page-header {
+        @apply pt-8 text-center text-4xl font-extrabold tracking-wide drop-shadow-lg;
+    }
+
+    .shop-select {
+        @apply p-3 ps-4 bg-zinc-800 rounded-lg hover:ring hover:ring-violet-700/75 font-normal transition-all duration-500;
+    }
 }
 
+/* If the user prefers dark mode,
+we of course apply color-scheme: dark, as usual */
+@media (prefers-color-scheme: dark) {
+    html {
+        color-scheme: dark;
+    }
+}
+
+/* If the user prefers light mode,
+we still enforce color-scheme: dark, despite the user preference */
+@media (prefers-color-scheme: light) {
+    html {
+        color-scheme: dark;
+    }
+}
+
+/* styling for chrome scrollbar */
 ::-webkit-scrollbar {
     width: 3px;
     border-radius: 100px;
@@ -46,3 +79,28 @@
     opacity: 1 !important;
     width: 25vw !important;
 }
+
+/* styling for accordion component*/
+.accordion-content {
+    max-height: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+
+    transition: max-height 1s ease;
+}
+
+.accordion-checkbox {
+    display: none;
+}
+
+.accordion-checkbox:checked ~ .accordion-content {
+    max-height: 200px;
+}
+
+/* Animations */
+@keyframes accordion-slide {
+    0% { height: 0; }
+    100% { height: 100%; }
+}
+
