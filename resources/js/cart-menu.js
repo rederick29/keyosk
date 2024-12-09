@@ -1,4 +1,4 @@
-import '../ts/cart-buttons.js';
+import '../ts/cart-buttons.ts';
 import { setInitialQuantity, decreaseCartQuantity, increaseCartQuantity, removeCartItem, setCartQuantity } from '../ts/cart-buttons'
 
 window.setInitialQuantity = setInitialQuantity;
