@@ -12,7 +12,7 @@
             @endphp
             <h1 class="pb-2 mb-5 font-bold border-b-2 border-orange-500 dark:border-violet-700">Cart | {{ $cart->products()->count() }} Items</h1>
             <div class="w-full min-h-screen h-fit flex flex-col gap-5">
-                @foreach($cart->products as $product)
+                @foreach($cart->products()->orderBy("name")->get() as $product)
                     <x-navbar.cart-item class="border-2 border-orange-500 dark:border-violet-700" :product="$product"/>
                 @endforeach
             </div>

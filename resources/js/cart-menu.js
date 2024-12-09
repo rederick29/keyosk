@@ -1,8 +1,8 @@
-import '../ts/cart-buttons.ts';
-import { setInitialQuantity, decreaseCartQuantity, increaseCartQuantity, removeCartItem, setCartQuantity } from '../ts/cart-buttons'
+import { addCartButtonListeners, setInitialQuantity } from '../ts/cart-buttons.ts'
 
-window.setInitialQuantity = setInitialQuantity;
-window.decreaseCartQuantity = decreaseCartQuantity;
-window.increaseCartQuantity = increaseCartQuantity;
-window.setCartQuantity = setCartQuantity;
-window.removeCartItem = removeCartItem;
+export function setupCartButtons(id, quantity) {
+    if (quantity !== null) setInitialQuantity(id, quantity);
+    if (id !== null) addCartButtonListeners(id);
+}
+
+window.setupCartButtons = setupCartButtons;
