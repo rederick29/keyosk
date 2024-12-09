@@ -22,7 +22,7 @@
                 <div class="flex flex-col py-5 border-b-2 border-violet-700 text-ellipsis">
                     @foreach($cart->products as $product)
                         <div class="flex items-center gap-1">
-                            {{ $product->stock }}
+                            {{ $product->pivot->quantity }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             {{ $product->name }}
                         </div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="py-5 border-b-2 border-violet-700">
                     <p>Items: {{ $cart->products->count() }}</p>
-                    <p>Total: {{ $cart->getTotalPrice() }}</p>
+                    <p>Total: £{{ $cart->getTotalPrice() }}</p>
                 </div>
                 <div class="pt-5">
                     <x-util.button class="bg-transparent ring-2 ring-violet-700 text-violet-700 hover:bg-violet-800 hover:text-white" type="button">Checkout Securely</x-util.button>

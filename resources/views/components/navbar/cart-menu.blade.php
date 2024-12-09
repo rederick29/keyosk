@@ -33,7 +33,7 @@
                         @if (!Auth::user()->cart)
                             <span>Cart Empty.</span>
                         @else
-                            @vite('resources/ts/cart-buttons.js')
+                            @vite('resources/js/cart-menu.js')
                             @foreach (Auth::user()->cart->products as $product)
                                 <x-navbar.cart-item :product="$product" />
                                 <script nonce="{{ csp_nonce() }}">
