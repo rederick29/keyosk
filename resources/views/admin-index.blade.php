@@ -8,18 +8,18 @@
     <x-slot:title>Admin Home</x-slot:title>
     <main class="min-h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
         <div class="px-8 pt-40 md:px-20 lg:px-40">
-            <div class="bg-zinc-800 rounded-2xl p-6 shadow-2xl">
+            <div class="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-2xl">
                 <div class="mx-auto max-w-2xl text-center py-10">
-                    <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Admin Homepage</h2>
+                    <h2 class="text-balance text-4xl tracking-tight text-zinc-800 dark:text-white lg:text-5xl">Admin Homepage</h2>
                 </div>
 
                 <div class="flex flex-col space-y-6 mb-6">
                     <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
                         <input type="text" id="searchInput" placeholder="Search users..."
-                            class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
+                            class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
 
                         <button id="searchButton"
-                            class="w-full sm:w-auto sm:flex-[1] p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                            class="w-full sm:w-auto sm:flex-[1] p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                             Search
                         </button>
                     </div>
@@ -27,16 +27,16 @@
                     <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
                         <!-- Filter Section (Left) -->
                         <div class="flex items-center space-x-4">
-                            <span class="text-gray-300">Filter By:</span>
+                            <span class="text-gray-700 dark:text-gray-300">Filter By:</span>
                             <select id="searchQuery"
-                                class="w-full sm:w-auto p-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                                class="w-full sm:w-auto p-3 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
                                 <option value="">All Users</option>
                                 <option value="admin_only">Admins Only</option>
                                 <option value="users_only">Users Only</option>
                             </select>
 
                             <button id="addUser"
-                                class="min-w-fit sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-green-700 transition duration-300 ease-in-out box-border">
+                                class="min-w-fit sm:w-auto p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                                 Add User
                             </button>
                         </div>
@@ -44,14 +44,14 @@
                         <!-- Bulk Action and Apply Button (Right) -->
                         <div class="flex items-center space-x-4">
                             <select id="bulkActionOpt" aria-label="Bulk Action"
-                                class="min-w-fit p-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                                class="min-w-fit p-3 ring-orange-500 dark:ring-violet-700 text-white bg-orange-500 dark:bg-violet-700 transition-all duration-500 rounded-xl">
                                 <option value="">Select Action</option>
                                 <option value="delete">Delete User</option>
                                 <option value="toggle_admin">Toggle User Admin</option>
                             </select>
 
                             <button id="apply-mod"
-                                class="w-full sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                                class="w-full sm:w-auto p-3 font-semibold outline outline-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                                 Apply
                             </button>
                         </div>

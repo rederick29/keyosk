@@ -13,7 +13,7 @@
 
         <div class="px-8">
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h1 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700">The Keyosk Price Principle</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
