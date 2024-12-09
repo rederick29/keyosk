@@ -6,95 +6,87 @@
 
 <x-layouts.layout>
     <x-slot:title>Admin Home</x-slot:title>
-    <main class="h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
-        <div class="lg:pt-40 lg:px-80 ">
+    <main class="min-h-screen bg-gradient-to-tr from-violet-500 to-pink-500 w-full">
+        <div class="px-8 pt-40 md:px-20 lg:px-40">
             <div class="bg-zinc-800 rounded-2xl p-6 shadow-2xl">
                 <div class="mx-auto max-w-2xl text-center py-10">
                     <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Admin Homepage</h2>
                 </div>
 
-                <div class="flex flex-col space-y-4 mb-6">
-                    <div class="flex items-center space-x-4">
-                        <!-- Search Bar -->
+                <div class="flex flex-col space-y-6 mb-6">
+                    <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
                         <input type="text" id="searchInput" placeholder="Search users..."
-                            class="flex-[7] p-3 rounded-xl bg-gray-700 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
+                            class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
 
-                        <!-- Search Button -->
                         <button id="searchButton"
-                            class="flex-[1] p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                            class="w-full sm:w-auto sm:flex-[1] p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
                             Search
                         </button>
                     </div>
-                </div>
 
-                <div class="flex mb-6 justify-between">
-                    <div class="flex-[1]">
-                        <!-- All Users Dropdown -->
-                        <select id="searchQuery"
-                            class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
-                            <option value="">All Users</option>
-                            <option value="admin_only">Admins Only</option>
-                            <option value="users_only">Users Only</option>
-                        </select>
+                    <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+                        <!-- Filter Section (Left) -->
+                        <div class="flex items-center space-x-4">
+                            <span class="text-gray-300">Filter By:</span>
+                            <select id="searchQuery"
+                                class="w-full sm:w-auto p-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                                <option value="">All Users</option>
+                                <option value="admin_only">Admins Only</option>
+                                <option value="users_only">Users Only</option>
+                            </select>
 
-                        <button id="select-all"
-                            class="flex-[2] p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border ml-4">
-                            Select All
-                    </button>
-                    </div>
+                            <button id="addUser"
+                                class="min-w-fit sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-green-700 transition duration-300 ease-in-out box-border">
+                                Add User
+                            </button>
+                        </div>
 
-                    <div class="flex-[0.4]">
-                        <div class="flex space-x-4 max-w-xl w-full justify-end">
-                            <!-- Bulk Action Dropdown -->
+                        <!-- Bulk Action and Apply Button (Right) -->
+                        <div class="flex items-center space-x-4">
                             <select id="bulkActionOpt" aria-label="Bulk Action"
-                                class="flex-[2] p-2 rounded-xl bg-gray-800 text-gray-300 border-2 border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
+                                class="min-w-fit p-3 rounded-xl bg-gray-800 text-gray-300 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border">
                                 <option value="">Select Action</option>
                                 <option value="delete">Delete User</option>
                                 <option value="toggle_admin">Toggle User Admin</option>
                             </select>
 
-                            <!-- Apply Button -->
                             <button id="apply-mod"
-                                class="flex-[2] p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                                class="w-full sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
                                 Apply
                             </button>
                         </div>
                     </div>
                 </div>
 
-
-
                 <hr>
 
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-h-[500px] overflow-y-auto p-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
                     @foreach ($users as $user)
                         <div class="user-card group {{ $user->is_admin ? 'admin-user' : '' }}"
                             data-user-id="{{ $user->id }}" data-is-admin="{{ $user->is_admin ? 'true' : 'false' }}">
 
-                            <!-- Wrap card content in a label -->
                             <label for="checkbox-{{ $user->id }}"
                                 class="relative bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden flex flex-col justify-between cursor-pointer"
-                                style="aspect-ratio: 3.5 / 1;">
+                                style="min-height: 100%">
 
-                                <!-- Checkbox (visually still in the corner) -->
                                 <input type="checkbox" id="checkbox-{{ $user->id }}" value="{{ $user->id }}"
                                     class="user-select-checkbox absolute top-4 right-4 h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-2 focus:ring-blue-500">
 
-                                <!-- Card Content -->
-                                <div>
-                                    <div class="user-name text-lg font-semibold text-gray-800 mb-2">
-                                        {{ $user->name }} ({{ $user->email }})
-                                        @if ($user->is_admin)
-                                            <span
-                                                class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full absolute bottom-4 right-4 text-right">Admin
+                                    <div>
+                                        <div class="user-name text-lg font-semibold text-gray-800 mb-2 break-words whitespace-normal">
+                                            {{ $user->name }}<br>
+                                            <small class="text-gray-600">({{ $user->email }})</small>
+                                            @if ($user->is_admin)
+                                                <span
+                                                    class="ml-2 text-xs bg-blue-100 text-blue-800 py-1 px-1 rounded-full sm:inline-block mt-2 sm:mt-0 text-right">
+                                                    Admin
+                                                    @if ($user->id === auth()->id())
+                                                        <span class="text-red-500"> (You)</span>
+                                                    @endif
+                                                </span>
+                                            @endif
+                                        </div>
 
-                                                @if ($user->id === auth()->id())
-                                                    <span class="text-red-500"> (You)</span>
-                                                @endif
-                                            </span>
-                                        @endif
-                                    </div>
                                 </div>
                             </label>
                         </div>
@@ -136,7 +128,6 @@
                 function attachEventListeners() {
                     searchButton.addEventListener('click', performSearch);
                     searchInput.addEventListener('keypress', handleEnterKey);
-                    searchInput.addEventListener('input', debounce(performSearch, 500));
                     searchQuery.addEventListener('change', performSearch);
                     applyModButton.addEventListener('click', applyBulkAction);
                 }
@@ -241,15 +232,6 @@
                     }).catch(error => {
                         toastr.error('Error: ' + response.statusText);
                     });
-                }
-
-                // Debounce function to limit the frequency of the search
-                function debounce(func, wait) {
-                    let timeout;
-                    return (...args) => {
-                        clearTimeout(timeout);
-                        timeout = setTimeout(() => func(...args), wait);
-                    };
                 }
             });
         </script>

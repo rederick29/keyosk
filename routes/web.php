@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MailController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +18,33 @@ use Illuminate\Support\Facades\Route;
 
 // Routes
 Route::view('/', 'index')->name('index');
+
+// Company Routes
 Route::view('/about', 'about-us')->name('about');
+Route::view('/values', 'our-values')->name('values');
+Route::view('/sustainability', 'sustainability')->name('sustainability');
+Route::view('/faq', 'faq')->name('faq');
+
+// Legal Routes
+Route::view('/privacy', 'privacy-policy')->name('privacy');
+Route::view('/tnc', 'terms-and-conditions')->name('terms.conditions');
+Route::view('/ts', 'terms-of-sale')->name('terms.sale');
+Route::view('/returns', 'returns-policy')->name('returns');
 
 // Contact Routes
+Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
+
+// Shop view
+Route::get('/shop', function () {
+    $products = Product::with('tags')->paginate(5);
+
+    return view('shop', ['products' => $products]);
+});
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
