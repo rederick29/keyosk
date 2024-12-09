@@ -1,4 +1,4 @@
-let cart_quantities = new Map<number, number>();
+let gCartQuantities = new Map<number, number>();
 
 const enum CartUpdateAction {
     Increase = 'increase',
@@ -15,31 +15,33 @@ class CartItem {
     quantityInput: HTMLInputElement;
 
     constructor(id: number, action: HTMLInputElement, deltaQuantity: HTMLInputElement, quantityInput: HTMLInputElement, form: HTMLFormElement) {
-        if (action == null || deltaQuantity == null || quantityInput == null || form == null) {
+        if (!action || !deltaQuantity || !quantityInput || !form) {
             throw new Error(`Invalid cart product: ${id}`);
-        } else {
-            this.id = id;
-            this.form = form as HTMLFormElement;
-            this.action = action as HTMLInputElement;
-            this.deltaQuantity = deltaQuantity as HTMLInputElement;
-            this.quantityInput = quantityInput as HTMLInputElement;
         }
+
+        this.id = id;
+        this.form = form as HTMLFormElement;
+        this.action = action as HTMLInputElement;
+        this.deltaQuantity = deltaQuantity as HTMLInputElement;
+        this.quantityInput = quantityInput as HTMLInputElement;
+    }
+
+    private setDataOnDelta(change: number): void {
+        this.action.value = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
+        this.deltaQuantity.value = String(Math.abs(change));
+        this.quantityInput.value = String(Number(this.quantityInput.value) + change);
     }
 
     decreaseQuantity(): void {
-        this.action.value = CartUpdateAction.Decrease;
-        this.deltaQuantity.value = String(1);
-        this.quantityInput.value = String(Number(this.quantityInput.value) - 1);
+        this.setDataOnDelta(-1);
     }
 
     increaseQuantity(): void {
-        this.action.value = CartUpdateAction.Increase;
-        this.deltaQuantity.value = String(1);
-        this.quantityInput.value = String(Number(this.quantityInput.value) + 1);
+        this.setDataOnDelta(1);
     }
 
     setQuantity(): void {
-        const oldValue = cart_quantities.get(Number(this.id));
+        const oldValue = gCartQuantities.get(Number(this.id));
         if (oldValue === undefined) {
             throw new Error(`Initial value of cart item ${this.id} not found`);
         }
@@ -53,7 +55,7 @@ class CartItem {
 
         this.action.value = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
         this.deltaQuantity.value = String(Math.abs(change));
-        cart_quantities.set(this.id, newValue);
+        gCartQuantities.set(this.id, newValue);
     }
 
     removeItem(): void {
@@ -67,21 +69,14 @@ class CartItem {
 }
 
 class CartItemViews {
-    cartItems: CartItem[];
-
-    constructor()
-    {
-        this.cartItems = [];
-    }
+    cartItems: CartItem[] = [];
 
     push(item: CartItem): void {
         this.cartItems.push(item);
     }
 
     submit(): void {
-        const item = this.cartItems.at(0);
-        if (item === undefined) return;
-        item.submit();
+        this.cartItems[0]?.submit();
     }
 
     forEach(callback: (elem: CartItem) => void): void {
@@ -110,7 +105,7 @@ function removeCartItem(items: CartItemViews): void {
 }
 
 export function setInitialQuantity(id: string, quantity: string): void {
-    cart_quantities.set(Number(id), Number(quantity));
+    gCartQuantities.set(Number(id), Number(quantity));
 }
 
 export function addCartButtonListeners(productId: number): void {
