@@ -21,7 +21,7 @@
             <x-util.button  type="a" href="/" class="">
                 My Account
             </x-util.button>
-            <x-util.button  type="a" href="/" class="">
+            <x-util.button  type="a" href="/orders" class="">
                 My Orders
             </x-util.button>
             <x-util.button  type="a" href="/" class="">
