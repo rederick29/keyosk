@@ -90,8 +90,8 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             </div>
         </div>
     </div>
-    <div class="bg-white dark:bg-zinc-900/75 text-zinc-800 py-28 px-10 mx-10 lg:px-14">
-        <div class="text-zinc-800 dark:text-white lg:pl-10 pt-10">
+    <div class="bg-white dark:bg-zinc-900/75 text-zinc-800 px-10 mx-10 lg:px-14">
+        <div class="text-zinc-800 dark:text-white lg:pl-10">
             <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-3">Details</h3>
             <p>{{ $product->description }}</p>
         </div>
