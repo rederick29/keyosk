@@ -4,16 +4,14 @@ export function setInitialQuantity(id: string, quantity: string): void {
     cart_quantities.set(Number(id), Number(quantity));
 }
 
-const enum CartUpdateAction
-{
+const enum CartUpdateAction {
     Increase = 'increase',
     Decrease = 'decrease',
     Remove = 'remove',
     Add = 'add',
 }
 
-class CartItem
-{
+class CartItem {
     id: number;
     form: HTMLFormElement;
     action: HTMLInputElement;
@@ -37,68 +35,64 @@ class CartItem
         }
     }
 
-    decreaseQuantity(): void
-    {
+    decreaseQuantity(): void {
         this.action.value = CartUpdateAction.Decrease;
         this.deltaQuantity.value = String(1);
         this.quantityInput.value = String(Number(this.quantityInput.value) - 1);
         this.form.submit();
     }
 
-    increaseQuantity(): void
-    {
+    increaseQuantity(): void {
         this.action.value = CartUpdateAction.Increase;
         this.deltaQuantity.value = String(1);
         this.quantityInput.value = String(Number(this.quantityInput.value) + 1);
         this.form.submit();
     }
 
-    setQuantity(): void
-    {
+    setQuantity(): void {
         const oldValue = cart_quantities.get(this.id);
-        if (oldValue == undefined) {
+        if (oldValue === undefined) {
             throw new Error(`Initial value of cart item ${this.id} not found`);
         }
-        const change = Number(this.quantityInput.value) - oldValue;
-        if (change > 0) {
-            this.action.value = CartUpdateAction.Increase;
-        } else if (change < 0) {
-            this.action.value = CartUpdateAction.Decrease;
-        } else {
+
+        const newValue = Number(this.quantityInput.value);
+        const change = newValue - oldValue;
+        if (change === 0) {
+            console.log(`No change in quantity for cart item ${this.id}`);
             return;
         }
-        cart_quantities.set(this.id, Number(this.quantityInput.value));
-        this.deltaQuantity.value = String(change);
+
+        this.action.value = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
+        this.deltaQuantity.value = String(Math.abs(change));
+        cart_quantities.set(this.id, newValue);
+
+        // Submit the form
         this.form.submit();
     }
 
-    removeItem(): void
-    {
+    removeItem(): void {
+        console.log(`Removing cart item ${this.id}`);
         this.action.value = CartUpdateAction.Remove;
         this.form.submit();
     }
 }
 
-export function decreaseCartQuantity(id: number): void
-{
+export function decreaseCartQuantity(id: number): void {
     let product = new CartItem(id);
     product.decreaseQuantity();
 }
 
-export function increaseCartQuantity(id: number): void
-{
+export function increaseCartQuantity(id: number): void {
     let product = new CartItem(id);
     product.increaseQuantity();
 }
 
-export function setCartQuantity(id: number): void
-{
+export function setCartQuantity(id: number,): void {
     let product = new CartItem(id);
     product.setQuantity();
 }
 
-export function removeCartItem(id: number): void
-{
+export function removeCartItem(id: number): void {
     let product = new CartItem(id);
     product.removeItem();
 }
