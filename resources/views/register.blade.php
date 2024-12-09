@@ -4,8 +4,8 @@
     Author(s): Suktirath Bains: Front-end Developer, Erick Vilcica: Back-end Developer, intns: Back-end Developer
 --}}
 <x-layouts.min-layout>
-    <div class="flex flex-col   items-center justify-center space-y-10 h-screen w-full bg-gradient-to-tr from-violet-500 to-pink-500">
-        <div class="bg-zinc-900 overflow-hidden overflow-y-auto w-11/12 xs-w-2/3 md:w-2/3 lg:w-2/3 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4 sm:w-2/3 p-10 justify-self-center justify-center h-fit rounded-2xl">
+    <div class="flex flex-col   items-center justify-center space-y-10 h-screen w-full bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500">
+        <div class="bg-stone-100 dark:bg-zinc-900 overflow-hidden overflow-y-auto w-11/12 xs-w-2/3 md:w-2/3 lg:w-2/3 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4 sm:w-2/3 p-10 justify-self-center justify-center h-fit rounded-2xl">
             <div class="w-full flex flex-row items-center justify-center">
                 <x-util.logo type="a" href="/" width=300 />
             </div>
@@ -32,10 +32,10 @@
                     <x-auth.form.error name="password_confirmation" />
                 </div>
                 <div class="flex flex-row items-center justify-between mt-4 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4">
-                    <a class="underline text-sm text-violet-400 hover:text-violet-300" href="{{ route('login.get') }}">
+                    <a class="w-fit hover:underline text-black/50 dark:text-white/50" href="{{ route('login.get') }}">
                         Already have an account?
                     </a>
-                    <button type="submit" class="rounded-md bg-violet-700 text-white py-2 px-6 font-semibold hover:bg-violet-500">
+                    <button type="submit" class="rounded-md bg-orange-500 dark:bg-violet-700 text-zinc-800 text-white py-2 px-6 font-semibold hover:bg-orange-600 dark:hover:bg-violet-600">
                         Register
                     </button>
                 </div>

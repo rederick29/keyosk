@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Barryvdh\Debugbar\Facades\Debugbar as Debugbar;
@@ -33,5 +34,7 @@ class AppServiceProvider extends ServiceProvider
             $rules = Password::min(8)->max(255)->letters()->mixedCase()->numbers()->symbols();
             return App::isProduction() ? $rules : $testingRules;
         });
+
+        Paginator::useTailwind();
     }
 }
