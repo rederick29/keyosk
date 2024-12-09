@@ -63,7 +63,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                                 </button>
                                 <input type="number" id="quantity-{{ $product->id }}" name="quantity" min="1"
                                     value="1"
-                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
+                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                 <button type="button" id="increase-quantity-{{ $product->id }}"
                                     class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                                     +
@@ -90,23 +90,24 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             </div>
         </div>
     </div>
-    <div class="text-zinc-800 dark:text-white lg:pl-10 pt-10">
-        <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-3">Details</h3>
-        <p>{{ $product->description }}</p>
-    </div>
-    <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
-        <h3 class="text-orange-500 text-xl font-semibold pb-2">Reviews</h3>
-        @foreach ($product->reviews as $review)
-            <div class="border-t border-orange-500 dark:border-violet-700">
-                <p class="py-2 pt-4">{{ $review->user->name }}</p>
-                <x-products.review-rating class="w-3 h-3" rating="{{ $review->rating }}">
-                    <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
-                </x-products.review-rating>
-                <p class="py-2 pb-4">{{ $review->comment }}</p>
-            </div>
-        @endforeach
-        <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
-    </div>
+    <div class="bg-white dark:bg-zinc-900/75 text-zinc-800 px-10 mx-10 lg:px-14">
+        <div class="text-zinc-800 dark:text-white lg:pl-10">
+            <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-3">Details</h3>
+            <p>{{ $product->description }}</p>
+        </div>
+        <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
+            <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
+            @foreach ($product->reviews as $review)
+                <div class="border-t border-orange-500 dark:border-violet-700">
+                    <p class="py-2 pt-4">{{ $review->user->name }}</p>
+                    <x-products.review-rating class="w-3 h-3" rating="{{ $review->rating }}">
+                        <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
+                    </x-products.review-rating>
+                    <p class="py-2 pb-4">{{ $review->comment }}</p>
+                </div>
+            @endforeach
+            <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
+        </div>
     </div>
 </x-layouts.layout>
 

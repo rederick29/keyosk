@@ -9,54 +9,62 @@ TODO: implement search-bar relationship
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Contact Us</x-slot:title>
-    <div class="bg-zinc-950 px-6 py-20 pt-35 lg:pt-40 lg:px-80">
+    <div class="bg-stone-200 dark:bg-zinc-900 px-6 py-20 pt-35 lg:pt-40 lg:px-80">
         <div class="max-w-2xl text-center">
-            <h2 class="text-4xl text-white lg:text-5xl">Contact Us</h2>
-            <p class="text-lg/8 mt-3 text-violet-700">Enter details below</p>
+            <h2 class="text-4xl text-black/50 dark:text-gray-300 lg:text-5xl">Contact Us</h2>
+            <p class="text-lg/8 mt-3 text-orange-500 dark:text-violet-700">Enter details below</p>
         </div>
         <form action="{{ route('contact.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
             @csrf
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 ">
                 <div>
-                    <label for="first-name" class="block font-semibold text-lg/6 text-white text-sm">First name</label>
+                    <label for="first-name"
+                        class="block font-semibold text-lg/6 text-black/50 dark:text-gray-300 text-sm">First name</label>
                     <div class="mt-2.5">
                         <input type="text" name="first-name" id="first-name"
-                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-white bg-zinc-700" required>
+                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
+                            required>
                     </div>
                 </div>
                 <div>
-                    <label for="last-name" class="block font-semibold text-lg/6 text-white text-sm">Last name</label>
+                    <label for="last-name"
+                        class="block font-semibold text-lg/6 text-black/50 dark:text-gray-300 text-sm">Last name</label>
                     <div class="mt-2.5">
                         <input type="text" name="last-name" id="last-name"
-                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-white bg-zinc-700" required>
+                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
+                            required>
                     </div>
                 </div>
                 <div class="lg:col-span-2">
-                    <label for="email" class="block font-semibold text-lg/6 text-white text-sm">Email</label>
+                    <label for="email"
+                        class="block font-semibold text-lg/6 text-black/50 dark:text-gray-300 text-sm">Email</label>
                     <div class="mt-2.5">
                         <input type="email" name="email" id="email"
-                            class="block font-semi bold w-full rounded-lg  px-3.5 py-2 text-white bg-zinc-700" required>
+                            class="block font-semi bold w-full rounded-lg  px-3.5 py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
+                            required>
                     </div>
                 </div>
                 <div class="lg:col-span-2">
-                    <label for="subject" class="block font-semibold  text-lg/6 text-white text-sm">Subject</label>
+                    <label for="subject"
+                        class="block font-semibold  text-lg/6 text-black/50 dark:text-gray-300 text-sm">Subject</label>
                     <div class="mt-2.5">
                         <input type="text" name="subject" id="subject"
-                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-white bg-zinc-700">
+                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700">
                     </div>
                 </div>
                 <div class="lg:col-span-2">
-                    <label for="message" class="block font-semibold text-lg/6 text-white text-sm">Message</label>
+                    <label for="message"
+                        class="block font-semibold text-lg/6 text-black/50 dark:text-gray-300 text-sm">Message</label>
                     <div class="mt-2.5">
                         <textarea name="message" id="message" rows="4"
-                            class="block font-semibold w-full rounded-lg  px-3.5 py-2 text-white placeholder:text-white-400 bg-zinc-700"
+                            class="block font-semibold w-full rounded-lg px-3.5 py-2 text-black/50 dark:text-gray-300 placeholder:text-black/50 dark:text-gray-300-400 bg-zinc-300 dark:bg-zinc-700"
                             minlength="10" maxlength="250" required></textarea>
                     </div>
                 </div>
             </div>
             <div class="mt-8">
-                <button type="submit" name="submit"
-                    class="block font-semi bold w-full rounded-lg bg-violet-700 px-3.5 py-2.5 text-center text-base text-white hover:bg-violet-500"
+                      <button type="submit" name="submit"
+                    class="block w-full rounded-lg bg-orange-500 dark:bg-zinc-700 px-5 py-2 text-center text-base border border-orange-500  dark:border-violet-700 text-black dark:text-white font-semibold hover:bg-orange-600 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white transition duration-300"
                     onSubmit="msgSent()">Submit</button>
             </div>
         </form>

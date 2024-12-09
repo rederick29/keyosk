@@ -13,7 +13,7 @@
 
         <div class="px-8">
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h1 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Sustainability at Keyosk</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -38,7 +38,7 @@
             <hr class="misc-page-hr">
 
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Our Actions</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     At Keyosk, we take meaningful steps toward sustainability. Here's how we're making a difference:

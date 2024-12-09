@@ -21,7 +21,7 @@
             <input type="hidden" name="product_id" class="cart_id-{{ $productId }}" value="{{ $productId }}">
             <input type="hidden" name="quantity" class="cart_quantity-{{ $productId }}">
             <div class="flex flex-row ring-orange-500 dark:ring-violet-700 ring-2 rounded-md">
-                <div class="cart_decrease-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-bl-md rounded-tl-md">
+                <div class="cart_decrease-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-bl-md rounded-tl-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -30,7 +30,7 @@
                 </div>
                 <input name="quantity_input" class="cart_quantity_input-{{ $productId }} cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
                     value="{{ $productQuantity }}">
-                <div class="cart_increase-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-br-md rounded-tr-md">
+                <div class="cart_increase-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -39,7 +39,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="cart_remove-{{ $productId }} size-7 flex items-center justify-center ring-violet-700 ring-2 rounded-md">
+            <div class="cart_remove-{{ $productId }} size-7 flex items-center justify-center ring-orange-500 dark:ring-violet-700 hover:bg-black/5 dark:hover:bg-white/25 ring-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -51,6 +51,7 @@
         </form>
     </div>
 </div>
+
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
         setupCartButtons('{{ $productId }}', '{{ $productQuantity }}')

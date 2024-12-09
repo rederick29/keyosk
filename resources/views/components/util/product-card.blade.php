@@ -161,16 +161,4 @@
         /* Center the content vertically */
         transition: all 0.3s ease;
     }
-
-    /* Hover effects for both buttons */
-    .add-to-cart-btn:hover {
-        background-color: #7c3aed;
-        color: #fff;
-    }
-
-    /* Preventing focus from being visually disturbing */
-    .add-to-cart-btn:focus,
-    .buy-now-btn:focus {
-        outline: none;
-    }
 </style>
