@@ -62,7 +62,7 @@ class CartController extends Controller
                 return 'Product added to cart';
 
             case CartUpdateAction::Remove->value:
-                $cart->removeProduct($productId, $quantity);
+                $cart->emptyItem($productId);
                 return 'Product removed from cart';
 
             case CartUpdateAction::Decrease->value:

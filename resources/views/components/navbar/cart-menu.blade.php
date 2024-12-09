@@ -38,7 +38,7 @@
                                 <x-navbar.cart-item :product="$product" />
                                 <script nonce="{{ csp_nonce() }}">
                                     document.addEventListener('DOMContentLoaded', function() {
-                                        setInitialQuantity('{{ $product->id }}', '{{ $product->quantity }}');
+                                        setInitialQuantity('{{ $product->id }}', '{{ $product->pivot->quantity }}');
                                     });
                                 </script>
                             @endforeach

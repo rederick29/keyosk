@@ -5,12 +5,14 @@
 --}}
 
 
-<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
+<div
+    class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
         <a href="/product/{{ $id }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
-        <a href="/product/{{ $id }}" class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
+        <a href="/product/{{ $id }}"
+            class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
         <div class="product-image h-28 w-28 bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
@@ -69,8 +71,7 @@
         </form>
 
         <!-- Buy Now Button -->
-        <button
-            class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-violet-700 text-white hover:bg-violet-800">
+        <button class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-violet-700 text-white hover:bg-violet-800">
             Buy Now
         </button>
     </div>
