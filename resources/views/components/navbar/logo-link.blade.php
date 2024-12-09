@@ -33,12 +33,10 @@
 {{--        <path d="M1111.22 180.739V87.6483H1122.49V133.83H1123.58L1165.4 87.6483H1180.13L1141.04 129.648L1180.13 180.739H1166.49L1134.13 137.466L1122.49 150.557V180.739H1111.22Z" fill="black"/>--}}
 {{--    </svg>--}}
     <svg width="50" height="50" viewBox="0 0 276 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden md:block lg:hidden">
-        <rect y="74.0643" width="215" height="215" transform="rotate(-20.0764 0 74.0643)" fill="currentColor"/>
-        <path d="M107.523 181V87.909H118.795V134.091H119.886L161.705 87.909H176.432L137.341 129.909L176.432 181H162.795L130.432 137.727L118.795 150.818V181H107.523Z" fill="black"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 73.8037L201.936 0L275.739 201.936L73.8037 275.739L0 73.8037ZM107.523 87.6483V180.739H118.795V150.557L130.432 137.466L162.795 180.739H176.432L137.341 129.648L176.432 87.6483H161.705L119.886 133.83H118.795V87.6483H107.523Z" fill="currentColor"/>
     </svg>
     {{-- sm: view --}}
     <svg width="40" height="40" viewBox="0 0 276 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="block md:hidden lg:hidden">
-        <rect y="74.0643" width="215" height="215" transform="rotate(-20.0764 0 74.0643)" fill="currentColor"/>
-        <path d="M107.523 181V87.909H118.795V134.091H119.886L161.705 87.909H176.432L137.341 129.909L176.432 181H162.795L130.432 137.727L118.795 150.818V181H107.523Z" fill="black"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 73.8037L201.936 0L275.739 201.936L73.8037 275.739L0 73.8037ZM107.523 87.6483V180.739H118.795V150.557L130.432 137.466L162.795 180.739H176.432L137.341 129.648L176.432 87.6483H161.705L119.886 133.83H118.795V87.6483H107.523Z" fill="currentColor"/>
     </svg>
 </a>
