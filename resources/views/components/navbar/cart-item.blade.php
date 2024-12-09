@@ -22,7 +22,7 @@
             <input type="hidden" name="quantity" id="cart_quantity-{{ $productId }}">
             <div class="flex flex-row ring-orange-500 dark:ring-violet-700 ring-2 rounded-md">
                 <div id="decrease-{{ $productId }}"
-                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-bl-md rounded-tl-md">
+                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-bl-md rounded-tl-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -33,7 +33,7 @@
                     class="cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
                     value="{{ $productQuantity }}">
                 <div id="increase-{{ $productId }}"
-                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-br-md rounded-tr-md">
+                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div id="remove-{{ $productId }}"
-                class="size-7 flex items-center justify-center ring-violet-700 ring-2 rounded-md">
+                class="size-7 flex items-center justify-center ring-orange-500 dark:ring-violet-700 hover:bg-black/5 dark:hover:bg-white/25 ring-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"></polyline>
