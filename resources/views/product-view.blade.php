@@ -19,6 +19,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <h2 id="productName" class="pt-10 font-semibold text-4xl">{{ $product->name }}</h2>
                 <p id="price" class="text-3xl">&pound;{{ number_format($product->price, 2, '.', ',') }}</p>
                 @php $rating = $product->getAverageRating(); @endphp
+                <!-- TODO: fix floating point string conversion to int -->
                 <x-products.review-rating rating="{{ $rating }}">
                     <p id="rating" class="text-white text-xl">&ensp;{{ round($rating / 2, 1) }}&ensp;⋅</p>
                     @php $review_count = $product->reviews->count(); @endphp
@@ -43,8 +44,9 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-6 w-25">
-                    <form class="grid grid-rows-2" method="POST" action="{{ route('cart.store') }}">
+                    <form class="grid grid-rows-2" method="POST" action="{{ route('cart.update') }}">
                         @csrf
+                        <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         <div class="w-28">
                             <label for="quantity-{{ $product->id }}" class="text-md text-gray-300">Qty:</label>

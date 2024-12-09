@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Utils\CartUpdateAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
@@ -15,49 +17,60 @@ class CartController extends Controller
         return view('cart');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'product_id' => ['required', 'integer', 'exists:products,id'],
-            'quantity' => ['required', 'integer', 'min:1'],
+            'action' => ['required', Rule::enum(CartUpdateAction::class)],
+            'product_id' => ['required', Rule::exists('products', 'id')],
+            'quantity' => [
+                'integer',
+                'min:1',
+                // Quantity is required only for increase and decrease actions
+                Rule::requiredIf(CartUpdateAction::needsQuantity($request->input('action'))),
+            ],
         ]);
 
-        $productId = $validatedData['product_id'];
-        $quantity = $validatedData['quantity'];
-
-        // Get the authenticated user and their cart
         $user = Auth::user();
+        $productId = intval($validatedData['product_id']);
+        $quantity = intval($validatedData['quantity'] ?? 1);
         $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
-            $cart->addProduct($productId, $quantity);
-            return redirect()->back()->with('success', 'Product added to cart');
+            $message = $this->processCartAction($cart, $validatedData['action'], $productId, $quantity);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
+
+        return redirect()->back()->with('success', $message);
     }
 
-    public function destroy(Request $request): RedirectResponse
+    /**
+     * Process the cart action based on the provided action and product details.
+     *
+     * @param Cart $cart
+     * @param string $action
+     * @param int $productId
+     * @param int $quantity
+     * @return string
+     */
+    private function processCartAction(Cart $cart, string $action, int $productId, int $quantity): string
     {
-        $validatedData = $request->validate([
-            'product_id' => ['required', 'integer', 'exists:products,id'],
-        ]);
+        switch ($action) {
+            case CartUpdateAction::Add->value:
+            case CartUpdateAction::Increase->value:
+                $cart->addProduct($productId, $quantity);
+                return 'Product added to cart';
 
-        $productId = $validatedData['product_id'];
+            case CartUpdateAction::Remove->value:
+                $cart->removeProduct($productId, $quantity);
+                return 'Product removed from cart';
 
-        // Retrieve the user's cart
-        $cart = Auth::user()->cart;
-        if (!$cart || !$cart->hasProducts()) {
-            return redirect('/')->with('error', 'Your cart is empty');
-        }
+            case CartUpdateAction::Decrease->value:
+                $cart->removeProduct($productId, $quantity);
+                return 'Product quantity decreased';
 
-        try {
-            // Attempt to decrement the product quantity in the cart
-            $message = $cart->decrementProductQuantity($productId);
-            return redirect()->back()->with('success', $message);
-        } catch (\Exception $e) {
-            // Handle exceptions (e.g., product not in cart or other errors)
-            return redirect()->back()->with('error', $e->getMessage());
+            default:
+                throw new \InvalidArgumentException('Invalid action');
         }
     }
 }

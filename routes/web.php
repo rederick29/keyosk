@@ -60,8 +60,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
-    Route::post('/cart/remove', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {

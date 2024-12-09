@@ -35,8 +35,11 @@
 
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4 ">
-        <form method="POST" action="{{ route('cart.store') }}">
+        <form method="POST" action="{{ route('cart.update') }}">
             @csrf
+
+            <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
+            <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
 
             <!-- Quantity Selector -->
             <div class="flex items-center gap-2">
