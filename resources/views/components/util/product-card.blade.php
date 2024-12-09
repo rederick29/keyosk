@@ -5,7 +5,7 @@
 --}}
 
 
-<div class="product-card bg-white dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
+<div class="product-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
@@ -13,21 +13,21 @@
         <a href="/product/{{ $id }}" class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
-        <div class="product-image h-28 w-28 bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="product-image h-28 w-28 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
             <img src="{{ $imageUrl ?? '#' }}" alt="{{ $title }}" class="h-full w-full object-cover">
         </div>
 
         <!-- Product Details -->
         <div class="flex-grow">
-            <h3 class="product-title text-lg font-semibold text-white mb-2">{{ $title }}</h3>
-            <p class="product-description text-sm text-gray-300 leading-relaxed">
+            <h3 class="product-title text-lg font-semibold text-zinc-800 dark:text-white mb-2">{{ $title }}</h3>
+            <p class="product-description text-sm text-black/50 dark:text-gray-300 leading-relaxed">
                 {{ $description }}
             </p>
         </div>
 
         <!-- Price -->
         <div class="flex-shrink-0">
-            <span class="product-price text-2xl font-bold text-white">
+            <span class="product-price text-2xl font-bold text-zinc-800">
                 £{{ number_format($price, 2) }}
             </span>
         </div>
@@ -40,25 +40,24 @@
 
             <!-- Quantity Selector -->
             <div class="flex items-center gap-2">
-                <label for="quantity-{{ $id }}" class="text-sm text-gray-300">Qty:</label>
+                <label for="quantity-{{ $id }}" class="text-sm text-zinc-800 dark:text-gray-300">Qty:</label>
                 <div class="flex items-center bg-white dark:bg-zinc-800 text-white rounded-md overflow-hidden">
                     <button type="button" id="decrease-quantity-{{ $id }}"
-                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                        class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         -
                     </button>
                     <input type="number" id="quantity-{{ $id }}" name="quantity" min="1"
                         value="1"
-                        class="w-12 h-8 text-center bg-transparent text-white outline-none border-none focus:ring-2 focus:ring-violet-700">
+                        class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
                     <button type="button" id="increase-quantity-{{ $id }}"
-                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
+                        class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         +
                     </button>
                 </div>
 
                 <!-- Add to Cart Button -->
                 <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
-                <button
-                    class="add-to-cart-btn border border-violet-700 text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-violet-700 hover:text-white transition duration-300">
+                <button class="add-to-cart-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
                     Add to Cart
                 </button>
             </div>
@@ -67,7 +66,7 @@
 
         <!-- Buy Now Button -->
         <button
-            class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-violet-700 text-white hover:bg-violet-800">
+            class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
             Buy Now
         </button>
     </div>

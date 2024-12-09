@@ -1,35 +1,35 @@
 <footer>
-    <div class="grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 bg-stone-200 dark:bg-zinc-900 border-x-0 border-y-0 border-t-4 border-violet-700 h-fit px-10 py-8">
+    <div class="grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 bg-stone-100 dark:bg-zinc-900 border-x-0 border-y-0 border-t-4  border-orange-500 dark:border-violet-700 h-fit px-10 py-8">
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l text-zinc-800 dark:text-white">Company</h1>
-            <a href="/about" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
-            <a href="/values" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
-            <a href="/sustainability" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
-            <a href="#" target="_blank" id="roadmap" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
+            <a href="/about" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">About Us</a>
+            <a href="/values" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Our Values</a>
+            <a href="/sustainability" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Sustainability</a>
+            <a href="#" target="_blank" id="roadmap" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Roadmap</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l text-zinc-800 dark:text-white">Help Center</h1>
-            <a href="/contact" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
-            <a href="#" id="discordLink" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
-            <a href="/faq" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
-            <a href="/report-issue" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
+            <a href="/contact" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Contact Us</a>
+            <a href="#" id="discordLink" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Discord Server</a>
+            <a href="/faq" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">FAQs</a>
+            <a href="/report-issue" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Report Issue</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l text-zinc-800 dark:text-white">Legal</h1>
-            <a href="/privacy" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Privacy Policy</a>
-            <a href="/ts" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms of Sale</a>
-            <a href="/returns" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Returns Policy</a>
-            <a href="/tnc" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
+            <a href="/privacy" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Privacy Policy</a>
+            <a href="/ts" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Terms of Sale</a>
+            <a href="/returns" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Returns Policy</a>
+            <a href="/tnc" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Terms & Conditions</a>
         </div>
         <div class="flex flex-col justify-center items-center text-center py-5">
             <h1 class="font-bold mb-1 text-l text-zinc-800 dark:text-white">Download</h1>
-            <a href="#" id="download1" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
-            <a href="#" id="download2" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Android</a>
-            <a href="#" id="download3" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
-            <a href="#" id="download4" class="w-fit text-zinc-800 dark:text-white/55 hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
+            <a href="#" id="download1" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">iOS</a>
+            <a href="#" id="download2" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Android</a>
+            <a href="#" id="download3" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Windows</a>
+            <a href="#" id="download4" class="w-fit text-zinc-800 dark:text-white/55 hover:text-orange-500 dark:hover:text-indigo-700/95 transition-colors duration-300">Mac</a>
         </div>
     </div>
-    <div class="flex flex-row p-3 px-5 w-full bg-stone-800 dark:bg-zinc-800 items-center justify-between">
+    <div class="flex flex-row p-3 px-5 w-full bg-stone-300 dark:bg-zinc-800 items-center justify-between">
         <x-util.logo width="200" type="div" />
         <div class="flex flex-row space-x-3">
             <x-util.colormode-switcher></x-util.colormode-switcher>

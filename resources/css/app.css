@@ -6,11 +6,11 @@
 
     /* Tailwind keywords that can be added to classes to reduce code reuse */
     .dropdown-link {
-        @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-white/5 transition-colors duration-500;
+        @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-500;
     }
 
     .dropdown-display {
-        @apply block md:block lg:block bg-white dark:bg-zinc-800 fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
+        @apply block md:block lg:block bg-stone-100 dark:bg-zinc-800 fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
 
     .dropdown-hide {
@@ -18,7 +18,7 @@
     }
 
     .misc-page-hr {
-        @apply border border-violet-700 w-1/3 mx-auto;
+        @apply border border-orange-500 dark:border-violet-700 w-1/3 mx-auto;
     }
 
     .misc-page-container {
@@ -30,7 +30,7 @@
     }
 
     .shop-select {
-        @apply p-3 ps-4 bg-white bg-zinc-800 rounded-lg hover:ring hover:ring-violet-700/75 font-normal transition-all duration-500;
+        @apply p-3 ps-4 bg-stone-200 dark:bg-zinc-800 rounded-lg hover:ring hover:ring-orange-500 dark:hover:ring-violet-700/75 font-normal transition-all duration-500;
     }
 }
 
