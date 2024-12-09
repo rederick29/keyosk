@@ -13,7 +13,7 @@
             <h1 class="pb-2 mb-5 font-bold border-b-2 border-orange-500 dark:border-violet-700">Cart | {{ $cart->products()->count() }} Items</h1>
             <div class="w-full min-h-screen h-fit flex flex-col gap-5">
                 @foreach($cart->products as $product)
-                    <x-navbar.cart-item class="border-2 border-orange-500 dark:border-violet-700" productImage="{{ $product->primaryImageLocation() ?? 'Undefined' }}" productTitle="{{ $product->name }}" productPrice="{{ $product->price }}" productQuantity="{{ Auth::user()->cart->getProductQuantity($product->id) }}"/>
+                    <x-navbar.cart-item class="border-2 border-orange-500 dark:border-violet-700" :product="$product"/>
                 @endforeach
             </div>
             </section>
@@ -22,7 +22,7 @@
                 <div class="flex flex-col py-5 border-b-2 border-orange-500 dark:border-violet-700 text-ellipsis">
                     @foreach($cart->products as $product)
                         <div class="flex items-center gap-1">
-                            {{ $product->stock }}
+                            {{ $product->pivot->quantity }}
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             {{ $product->name }}
                         </div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="py-5 border-b-2 border-orange-500 dark:border-violet-700">
                     <p>Items: {{ $cart->products->count() }}</p>
-                    <p>Total: {{ $cart->getTotalPrice() }}</p>
+                    <p>Total: £{{ $cart->getTotalPrice() }}</p>
                 </div>
                 <div class="pt-5">
                     <x-util.button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700  text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white" type="button">Checkout Securely</x-util.button>

@@ -12,4 +12,3 @@
         <x-carousel.carousel></x-carousel.carousel>
     </main>
 </x-layouts.layout>
-

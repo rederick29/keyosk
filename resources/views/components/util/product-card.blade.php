@@ -10,7 +10,8 @@
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
         <a href="/product/{{ $id }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
-        <a href="/product/{{ $id }}" class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
+        <a href="/product/{{ $id }}"
+            class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
         <div class="product-image h-28 w-28 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
@@ -35,8 +36,11 @@
 
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4 ">
-        <form method="POST" action="{{ route('cart.store') }}">
+        <form method="POST" action="{{ route('cart.update') }}">
             @csrf
+
+            <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
+            <input type="hidden" id="product_id" name="product_id" value="{{ $id }}">
 
             <!-- Quantity Selector -->
             <div class="flex items-center gap-2">
