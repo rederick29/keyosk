@@ -22,8 +22,7 @@ class ImageSeeder extends Seeder
             // Generate a random number of images for the product and assign them a priority
             $imageCount = random_int(1, 5);
             for ($i = 1; $i <= $imageCount; $i++) {
-                Image::factory()->create([
-                    'product_id' => $product->id,
+                Image::factory()->forProduct($product)->create([
                     'priority' => ++$existingPriority,
                 ]);
             }
