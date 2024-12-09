@@ -10,7 +10,7 @@
         <div class="px-8 pt-40 md:px-20 lg:px-40">
             <div class="bg-zinc-800 rounded-2xl p-6 shadow-2xl">
                 <div class="mx-auto max-w-2xl text-center py-10">
-                    <h2 class="text-balance text-4xl tracking-tight text-white lg:text-5xl">Admin Homepage</h2>
+                    <h2 class="text-balance text-4xl tracking-tight text-zinc-800 dark:text-white lg:text-5xl">Admin Homepage</h2>
                 </div>
 
                 <div class="flex flex-col space-y-6 mb-6">
@@ -19,7 +19,7 @@
                             class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
 
                         <button id="searchButton"
-                            class="w-full sm:w-auto sm:flex-[1] p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                            class="w-full sm:w-auto sm:flex-[1] p-3 bg-violet-500 text-zinc-800 dark:text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
                             Search
                         </button>
                     </div>
@@ -36,7 +36,7 @@
                             </select>
 
                             <button id="addUser"
-                                class="min-w-fit sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-green-700 transition duration-300 ease-in-out box-border">
+                                class="min-w-fit sm:w-auto p-3 bg-violet-500 text-zinc-800 dark:text-white rounded-xl hover:bg-green-700 transition duration-300 ease-in-out box-border">
                                 Add User
                             </button>
                         </div>
@@ -51,7 +51,7 @@
                             </select>
 
                             <button id="apply-mod"
-                                class="w-full sm:w-auto p-3 bg-violet-500 text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
+                                class="w-full sm:w-auto p-3 bg-violet-500 text-zinc-800 dark:text-white rounded-xl hover:bg-blue-700 transition duration-300 ease-in-out box-border">
                                 Apply
                             </button>
                         </div>

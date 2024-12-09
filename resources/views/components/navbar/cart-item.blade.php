@@ -10,7 +10,7 @@
     <div class="size-32 flex items-center overflow-hidden">
         <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-sm" />
     </div>
-    <div class="w-full flex flex-col space-y-5">
+    <div class="w-full flex flex-col space-y-5 ">
         <div class="flex flex-col w-full items-center start-0">
             <h1 class="w-full flex font-bold">{{ $productTitle }}</h1>
             <p class="w-full flex text-black/30 dark:text-white/30">£{{ $productPrice }}</p>

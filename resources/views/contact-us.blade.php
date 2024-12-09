@@ -12,7 +12,7 @@ TODO: implement search-bar relationship
     <div class="bg-stone-200 dark:bg-zinc-900 px-6 py-20 pt-35 lg:pt-40 lg:px-80">
         <div class="max-w-2xl text-center">
             <h2 class="text-4xl text-black/50 dark:text-gray-300 lg:text-5xl">Contact Us</h2>
-            <p class="text-lg/8 mt-3 text-violet-700">Enter details below</p>
+            <p class="text-lg/8 mt-3 text-orange-500 dark:text-violet-700">Enter details below</p>
         </div>
         <form action="{{ route('contact.send') }}" method="POST" class="mx-auto mt-10 max-w-lg lg:mt-10">
             @csrf
