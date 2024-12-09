@@ -34,13 +34,8 @@
                             <span>Cart Empty.</span>
                         @else
                             @vite('resources/js/cart-menu.js')
-                            @foreach (Auth::user()->cart->products as $product)
+                            @foreach (Auth::user()->cart->products()->orderBy('name')->get() as $product)
                                 <x-navbar.cart-item :product="$product" />
-                                <script nonce="{{ csp_nonce() }}">
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        setInitialQuantity('{{ $product->id }}', '{{ $product->pivot->quantity }}');
-                                    });
-                                </script>
                             @endforeach
                         @endif
                     </div>

@@ -15,25 +15,22 @@
             <h1 class="w-full flex font-bold">{{ $productTitle }}</h1>
             <p class="w-full flex text-black/30 dark:text-white/30">£{{ $productPrice }}</p>
         </div>
-        <form id="cart-{{ $productId }}" class="flex flex-row w-full justify-between items-center" method="POST"
+        <form class="cart-{{ $productId }} flex flex-row w-full justify-between items-center" method="POST"
             action="{{ route('cart.update') }}"> @csrf
-            <input type="hidden" name="action" id="cart_action-{{ $productId }}">
-            <input type="hidden" name="product_id" id="cart_id-{{ $productId }}" value="{{ $productId }}">
-            <input type="hidden" name="quantity" id="cart_quantity-{{ $productId }}">
+            <input type="hidden" name="action" class="cart_action-{{ $productId }}">
+            <input type="hidden" name="product_id" class="cart_id-{{ $productId }}" value="{{ $productId }}">
+            <input type="hidden" name="quantity" class="cart_quantity-{{ $productId }}">
             <div class="flex flex-row ring-orange-500 dark:ring-violet-700 ring-2 rounded-md">
-                <div id="decrease-{{ $productId }}"
-                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-bl-md rounded-tl-md">
+                <div class="cart_decrease-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-bl-md rounded-tl-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                 </div>
-                <input name="quantity_input" id="cart_quantity_input-{{ $productId }}"
-                    class="cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
+                <input name="quantity_input" class="cart_quantity_input-{{ $productId }} cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
                     value="{{ $productQuantity }}">
-                <div id="increase-{{ $productId }}"
-                    class="size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-br-md rounded-tr-md">
+                <div class="cart_increase-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -42,8 +39,7 @@
                     </svg>
                 </div>
             </div>
-            <div id="remove-{{ $productId }}"
-                class="size-7 flex items-center justify-center ring-violet-700 ring-2 rounded-md">
+            <div class="cart_remove-{{ $productId }} size-7 flex items-center justify-center ring-violet-700 ring-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -55,49 +51,8 @@
         </form>
     </div>
 </div>
-
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
-        const productId = @json($productId);
-
-        // Select elements by their dynamic IDs
-        const quantityInput = document.getElementById(`cart_quantity_input-${productId}`);
-        const decreaseButton = document.getElementById(`decrease-${productId}`);
-        const increaseButton = document.getElementById(`increase-${productId}`);
-        const removeButton = document.getElementById(`remove-${productId}`);
-
-        // Function to add event listeners if not already added
-        const addEventListenerIfNotExists = (element, event, handler) => {
-            if (element && !element.hasAttribute('data-listener')) {
-                element.addEventListener(event, handler);
-                element.setAttribute('data-listener', 'true');
-            }
-        };
-
-        // Add event listeners for buttons, if elements exist
-        if (decreaseButton) {
-            addEventListenerIfNotExists(decreaseButton, 'click', function() {
-                decreaseCartQuantity(productId);
-            });
-        }
-
-        if (increaseButton) {
-            addEventListenerIfNotExists(increaseButton, 'click', function() {
-                increaseCartQuantity(productId);
-            });
-        }
-
-        if (removeButton) {
-            addEventListenerIfNotExists(removeButton, 'click', function() {
-                removeCartItem(productId);
-            });
-        }
-
-        // If needed, add event listener for quantity input change
-        if (quantityInput) {
-            quantityInput.addEventListener('change', function() {
-                setCartQuantity(productId);
-            });
-        }
+        setupCartButtons('{{ $productId }}', '{{ $productQuantity }}')
     });
 </script>
