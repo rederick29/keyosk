@@ -10,11 +10,11 @@
     }
 
     .dropdown-display {
-        @apply block md:block lg:block bg-zinc-800 fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
+        @apply block md:block lg:block bg-white dark:bg-zinc-800 fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
 
     .dropdown-hide {
-        @apply scale-0 border-2 border-neutral-400 bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
+        @apply scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
     }
 
     .misc-page-hr {
@@ -22,7 +22,7 @@
     }
 
     .misc-page-container {
-        @apply bg-zinc-900 p-8 rounded-xl shadow-lg mx-auto max-w-2xl my-20;
+        @apply bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-lg mx-auto max-w-2xl my-20;
     }
 
     .misc-page-header {
@@ -30,23 +30,7 @@
     }
 
     .shop-select {
-        @apply p-3 ps-4 bg-zinc-800 rounded-lg hover:ring hover:ring-violet-700/75 font-normal transition-all duration-500;
-    }
-}
-
-/* If the user prefers dark mode,
-we of course apply color-scheme: dark, as usual */
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-}
-
-/* If the user prefers light mode,
-we still enforce color-scheme: dark, despite the user preference */
-@media (prefers-color-scheme: light) {
-    html {
-        color-scheme: dark;
+        @apply p-3 ps-4 bg-white bg-zinc-800 rounded-lg hover:ring hover:ring-violet-700/75 font-normal transition-all duration-500;
     }
 }
 
@@ -94,13 +78,17 @@ we still enforce color-scheme: dark, despite the user preference */
     display: none;
 }
 
-.accordion-checkbox:checked ~ .accordion-content {
+.accordion-checkbox:checked~.accordion-content {
     max-height: 200px;
 }
 
 /* Animations */
 @keyframes accordion-slide {
-    0% { height: 0; }
-    100% { height: 100%; }
-}
+    0% {
+        height: 0;
+    }
 
+    100% {
+        height: 100%;
+    }
+}

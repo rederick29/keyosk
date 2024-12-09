@@ -9,8 +9,8 @@
             -->
 
             <div class="w-full h-full flex flex-col space-y-5">
-                <section class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-zinc-900 text-gray-400 rounded-lg" id="search">
-                    <x-util.button class="h-fit p-3 block lg:hidden w-20 bg-zinc-800" type="button">Filters</x-util.button>
+                <section class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-white dark:bg-zinc-900 text-gray-400 rounded-lg" id="search">
+                    <x-util.button class="h-fit p-3 block lg:hidden w-20bg-white dark: bg-zinc-800" type="button">Filters</x-util.button>
                     <x-util.search class="grow" placeholder="Search shop..."/>
                     <section class="w-fit flex flex-row flex-wrap justify-between gap-5" id="input-elements">
                     <div class="flex items-center justify-center flex-wrap gap-3">

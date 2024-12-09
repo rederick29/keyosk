@@ -6,7 +6,7 @@
     TODO:
 --}}
 
-<div {{ $attributes->merge(['class' => 'w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-zinc-900 transition-colors duration-500']) }}>
+<div {{ $attributes->merge(['class' => 'w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-white dark:bg-zinc-900 transition-colors duration-500']) }}>
     <div class="size-32 flex items-center overflow-hidden">
         <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-sm" />
     </div>
@@ -20,7 +20,7 @@
                 <div class="size-7 flex items-center justify-center bg-zinc-700 rounded-bl-md rounded-tl-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </div>
-                <input class="w-10 h-7 px-[0.33rem] flex items-center justify-center bg-zinc-800 outline-none" value="{{ $productQuantity }}">
+                <input class="w-10 h-7 px-[0.33rem] flex items-center justify-centerbg-white dark: bg-zinc-800 outline-none" value="{{ $productQuantity }}">
                 <div class="size-7 flex items-center justify-center bg-zinc-700 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </div>

@@ -17,7 +17,7 @@
                 @endforeach
             </div>
             </section>
-            <section class="w-96 h-fit p-7 mt-[54px] border-2 border-violet-700 bg-zinc-900 rounded-md text-xl" id="totals">
+            <section class="w-96 h-fit p-7 mt-[54px] border-2 border-violet-700 bg-white dark:bg-zinc-900 rounded-md text-xl" id="totals">
                 <h1 class="pb-2 font-bold border-b-2 border-violet-700">Order Summary</h1>
                 <div class="flex flex-col py-5 border-b-2 border-violet-700 text-ellipsis">
                     @foreach($cart->products as $product)

@@ -18,7 +18,7 @@
     <div class="dropdown-hide w-[100vw] md:w-[32rem] h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
         <div class="flex flex-col items-center min-h-[100%] m-4">
             <div class="px-2 mb-4 font-bold text-xl w-full justify-start">Shopping Basket</div>
-            <div class="flex flex-col w-full p-5 mt-0 bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
+            <div class="flex flex-col w-full p-5 mt-0 bg-white dark:bg-zinc-900 min-h-[30vh] max-h-[30vh] overflow-y-scroll rounded-xl">
                 @if(Auth::check())
                     <div class="flex flex-col gap-5">
                         @if(!Auth::user()->cart)

@@ -5,7 +5,7 @@
 --}}
 
 
-<div class="product-card bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
+<div class="product-card bg-white dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
         <!-- Clickable Element -->
@@ -41,7 +41,7 @@
             <!-- Quantity Selector -->
             <div class="flex items-center gap-2">
                 <label for="quantity-{{ $id }}" class="text-sm text-gray-300">Qty:</label>
-                <div class="flex items-center bg-zinc-800 text-white rounded-md overflow-hidden">
+                <div class="flex items-center bg-white dark:bg-zinc-800 text-white rounded-md overflow-hidden">
                     <button type="button" id="decrease-quantity-{{ $id }}"
                         class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition duration-200 bg-zinc-700 hover:bg-zinc-600">
                         -

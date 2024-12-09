@@ -13,7 +13,7 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
-        <input type="search" id="search-bar" class="block w-full p-3 h-full ps-10 text-sm outline-none text-neutral-100 border-zinc-400 rounded-lg bg-zinc-800 hover:ring hover:ring-violet-700/75 focus:border-zinc-700 font-normal transition-all duration-500" placeholder="{{ $placeholder }}" required />
+        <input type="search" id="search-bar" class="block w-full p-3 h-full ps-10 text-sm outline-none text-neutral-100 border-zinc-400 rounded-lg bg-white dark: bg-zinc-800 hover:ring hover:ring-violet-700/75 focus:border-zinc-700 font-normal transition-all duration-500" placeholder="{{ $placeholder }}" required />
         <!-- <button type="submit" class="text-white absolute end-2.5 bottom-2 bg-violet-700 hover:bg-violet-800 focus:outline-none focus:ring-violet-300 rounded-lg text-sm px-4 py-2 shadow-lg transition-colors duration-300">Search</button> -->
     </div>
 </form>

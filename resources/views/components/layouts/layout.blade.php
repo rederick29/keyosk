@@ -8,7 +8,7 @@
 --}}
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -24,7 +24,7 @@
     {{-- Title can be passed as <x-slot:title>, however by default it will use "Keyosk" --}}
     <title>{{ $title ?? "Keyosk" }}</title>
 </head>
-<body class="bg-zinc-950 relative h-fit text-neutral-200">
+<body class="bg-white dark:bg-zinc-950 relative h-fit text-neutral-200">
     <x-navbar.navbar />
     {{ $slot }}
     <x-footer.footer />
