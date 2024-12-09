@@ -6,7 +6,7 @@ Author(s): Toms Xavi: Developer
 
 
 <div
-    class="product-card bg-stone-200 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
+    class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
 

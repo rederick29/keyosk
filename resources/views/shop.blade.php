@@ -12,13 +12,13 @@
                 <section
                     class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
                     id="search">
-                    <x-util.button class="h-fit p-3 block lg:hidden w-20 bg-zinc-800" type="button">Filters
+                    <x-util.button class="h-fit p-3 block lg:hidden w-full md:w-20 bg-stone-200 dark:bg-zinc-800" type="button">Filters
                     </x-util.button>
                     <x-util.search class="grow" placeholder="Search shop..." />
                     <section class="w-fit flex flex-row flex-wrap justify-between gap-5" id="input-elements">
-                        <div class="flex items-center justify-center flex-wrap gap-3">
-                            <label>Sort by</label>
-                            <x-shop.select class="w-64 h-full" id="sort-by">
+                        <div class="w-full md:w-fit flex items-center justify-center flex-wrap gap-3">
+                            <label class="hidden md:inline">Sort by</label>
+                            <x-shop.select class="w-full md:w-64 h-full" id="sort-by">
                                 <x-shop.option>Best Selling</x-shop.option>
                                 <x-shop.option>New</x-shop.option>
                                 <x-shop.option>Price: Low to High</x-shop.option>
