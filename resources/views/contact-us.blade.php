@@ -64,7 +64,7 @@ TODO: implement search-bar relationship
             <p>Message sent!</p>
         </div>
         <script nonce={{ csp_nonce() }}>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 @foreach ($errors->all() as $error)
                     toastr.error('{{ $error }}');
                 @endforeach
