@@ -50,8 +50,8 @@
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         -
                     </button>
-                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="1"
-                        value="1"
+                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="0"
+                        value="0"
                         class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
                     <button type="button" id="increase-quantity-{{ $id }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
