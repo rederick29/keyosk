@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\ShopPageController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -41,11 +42,7 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 
 // Shop view
-Route::get('/shop', function () {
-    $products = Product::with('tags')->paginate(5);
-
-    return view('shop', ['products' => $products]);
-});
+Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
