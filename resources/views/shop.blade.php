@@ -59,7 +59,7 @@
         // Set the value of the search input element
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('search')) {
-            search.value = urlParams.get('search');
+            search.value = decodeURIComponent(urlParams.get('search'));
         }
 
         // Set the selected index of the sort by select element

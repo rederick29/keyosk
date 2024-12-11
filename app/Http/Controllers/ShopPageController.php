@@ -25,7 +25,7 @@ class ShopPageController extends Controller
 
         // Convert the search term to lowercase
         if ($search) {
-            $search = strtolower($search);
+            $search = strtolower(urldecode($search));
         }
 
         // Determine the appropriate LIKE operator based on the database driver
