@@ -23,7 +23,7 @@
         </div>
     </div>
     {{-- Drop down menu --}}
-    <div class="dropdown-hide w-[100vw] md:w-[32rem] h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
+    <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-[32rem] h-fit top-24 md:top-12 lg:top-12 right-0" id="cart-dropdown">
         <div class="flex flex-col items-center min-h-[100%] m-4">
             <div class="px-2 mb-4 font-bold text-xl w-full justify-start">Shopping Basket</div>
             <div

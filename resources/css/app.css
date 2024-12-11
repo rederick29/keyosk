@@ -9,14 +9,6 @@
         @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-500;
     }
 
-    .dropdown-display {
-        @apply block md:block lg:block bg-stone-100 dark:bg-zinc-800 fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
-    }
-
-    .dropdown-hide {
-        @apply scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 fixed rounded md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl;
-    }
-
     .misc-page-hr {
         @apply border border-orange-500 dark:border-violet-700 w-1/3 mx-auto;
     }
