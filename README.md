@@ -83,4 +83,17 @@ The website should now be running locally.
     composer run dev
     ```
 
+4. If the above fails for any reason, you can open 3 terminals and type one command per terminal:
+
+    ```bash
+    # In Terminal 1
+    npx tsc -w     # Compiles Typescript to Javascript for the front-end to work
+   
+    # In Terminal 2
+    npm run dev    # Runs the debug server for the website
+   
+    # In Terminal 3
+    php artisan serve
+    ```
+
 The website should now be updated and running locally.
