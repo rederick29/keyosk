@@ -18,20 +18,19 @@
     {{-- Desktop and Medium View --}}
     <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
-            <x-util.button  type="a" href="/" class="">
-                My Account
-            </x-util.button>
-            <x-util.button  type="a" href="/orders" class="">
-                My Orders
-            </x-util.button>
-            <x-util.button  type="a" href="/" class="">
-                Settings
-            </x-util.button>
-
-            <div class="h-16"></div>
             @auth
-                <section class="w-full h-fit space-y-3 font-bold text-center">
+            <section class="w-full h-fit space-y-2 font-bold text-center mt-4">
                     <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                    <x-util.button  type="a" href="/" class="">
+                        My Account
+                    </x-util.button>
+                    <x-util.button  type="a" href="/orders" class="">
+                        My Orders
+                    </x-util.button>
+                    <x-util.button  type="a" href="/" class="">
+                        Settings
+                    </x-util.button>
+                
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
