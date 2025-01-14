@@ -23,7 +23,7 @@
                 New
             </a>
             <a href="/shop"
-                class="hover:animate-pulse text-orange-500 dark:text-violet-700/95 transition-colors duration-300"
+                class="hover:animate-pulse hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300"
                 id="shop-link">
                 Sale
             </a>
