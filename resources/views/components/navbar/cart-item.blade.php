@@ -29,7 +29,7 @@
                     </svg>
                 </div>
                 <input name="quantity_input" class="cart_quantity_input-{{ $productId }} cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
-                    value="{{ $productQuantity }}">
+                    value="{{ $productQuantity }}"style="text-align: center; line-height: 1.75rem;">
                 <div class="cart_increase-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
