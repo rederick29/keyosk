@@ -119,18 +119,18 @@ export function addCartButtonListeners(productId: number): void {
 
     // Select elements by their dynamic IDs
     let items = new CartItemViews();
-    let forms = Array.from(document.getElementsByClassName(`cart-${productId}`));
+    let forms = document.querySelectorAll<HTMLFormElement>(`.cart-${productId}`);
 
     forms.forEach((form) => {
         // SAFETY: [0] will never be null because we're in a form that will have the elements required
-        let quantityInput = form.getElementsByClassName(`cart_quantity_input-${productId}`)[0] as HTMLInputElement;
-        let decreaseButton = form.getElementsByClassName(`cart_decrease-${productId}`)[0] as HTMLInputElement;
-        let increaseButton = form.getElementsByClassName(`cart_increase-${productId}`)[0] as HTMLInputElement;
-        let removeButton = form.getElementsByClassName(`cart_remove-${productId}`)[0] as HTMLInputElement;
-        let deltaQuantity = form.getElementsByClassName(`cart_quantity-${productId}`)[0] as HTMLInputElement;
-        let action = form.getElementsByClassName(`cart_action-${productId}`)[0] as HTMLInputElement;
+        let quantityInput = form.querySelector<HTMLInputElement>(`.cart_quantity_input-${productId}`)!;
+        let decreaseButton = form.querySelector<HTMLInputElement>(`.cart_decrease-${productId}`)!;
+        let increaseButton = form.querySelector<HTMLInputElement>(`.cart_increase-${productId}`)!;
+        let removeButton = form.querySelector<HTMLInputElement>(`.cart_remove-${productId}`)!;
+        let deltaQuantity = form.querySelector<HTMLInputElement>(`.cart_quantity-${productId}`)!;
+        let action = form.querySelector<HTMLInputElement>(`.cart_action-${productId}`)!;
 
-        items.push(new CartItem(productId, action, deltaQuantity, quantityInput, form as HTMLFormElement));
+        items.push(new CartItem(productId, action, deltaQuantity, quantityInput, form));
 
         // Add event listeners for buttons, if elements exist
         addEventListenerIfNotExists(quantityInput, 'change', () => setCartQuantity(items));

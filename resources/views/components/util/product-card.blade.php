@@ -14,7 +14,7 @@
             class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
-        <div class="product-image h-28 w-28 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="product-image h-32 w-32 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
             <img src="{{ $imageUrl ?? '#' }}" alt="{{ $title }}" class="h-full w-full object-cover">
         </div>
 
@@ -28,7 +28,7 @@
 
         <!-- Price -->
         <div class="flex-shrink-0">
-            <span class="product-price text-2xl font-bold text-zinc-800">
+            <span class="product-price text-2xl font-bold text-zinc-800 dark:text-white">
                 £{{ number_format($price, 2) }}
             </span>
         </div>
@@ -50,8 +50,8 @@
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                         -
                     </button>
-                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="1"
-                        value="1"
+                    <input type="number" id="quantity-{{ $id }}" name="quantity" min="0"
+                        value="0"
                         class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
                     <button type="button" id="increase-quantity-{{ $id }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
