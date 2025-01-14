@@ -21,7 +21,7 @@ class CartController extends Controller
     {
         $validatedData = $request->validate([
             'action' => ['required', Rule::enum(CartUpdateAction::class)],
-            'product_id' => ['required', Rule::exists('products', 'id')],
+            'product_id' => ['required', 'int', Rule::exists('products', 'id')],
             'quantity' => [
                 'integer',
                 'min:1',
@@ -68,6 +68,9 @@ class CartController extends Controller
             case CartUpdateAction::Decrease:
                 $cart->removeProduct($productId, $quantity);
                 return 'Product quantity decreased';
+
+            default:
+                throw new \InvalidArgumentException('Invalid cart action');
         }
     }
 }
