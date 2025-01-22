@@ -9,6 +9,6 @@
     {{-- <x-slot:title>Example Title</x-slot:title> --}}
     <main class="min-h-screen">
         <x-util.imagescroll></x-util.imagescroll>
-        <x-carousel.carousel></x-carousel.carousel>
+        <x-testimonials.testimonials></x-testimonials.testimonials>
     </main>
 </x-layouts.layout>

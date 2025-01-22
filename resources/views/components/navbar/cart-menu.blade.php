@@ -40,11 +40,14 @@
                         @endif
                     </div>
                 @else
-                    <div class="w-full h-20 mt-24 flex flex-col justify-between items-center">
-                        <span>Please log in to save items in the basket.</span>
+                    <div class="w-full h-[30vh] gap-y-3 flex flex-col justify-center items-center">
+                        <span class="font-bold">Please log in to save items in the basket.</span>
                         <x-util.button
-                            class="w-32 h-10 font-bold bg-orange-500 dark:bg-violet-700 hover:bg-orange-600 dark:hover:bg-violet-800"
-                            type="a" href="/login">Log In</x-util.button>
+                            class="w-40 h-10 font-bold bg-orange-500 dark:bg-violet-700 hover:bg-orange-600 dark:hover:bg-violet-800"
+                            type="a" href="/login"
+                        >
+                            Log In
+                        </x-util.button>
                     </div>
                 @endif
             </div>
