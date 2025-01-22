@@ -5,5 +5,17 @@
     Author(s): Ben Snaith : Main Developer
 --}}
 
-<div class="bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 w-full min-h-[70vh] flex items-center justify-center" id="image-scroll">
-</div>
+<section class="w-full min-h-[70vh] pt-24 flex items-center bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500" id="image-scroll">
+    <div
+        class="h-full mx-32 flex flex-col"
+    >
+        <x-util.logo width="600" type="div"></x-util.logo>
+        <x-util.button
+            type="a"
+            href="/shop"
+            class="w-1/3 mt-10 bg-zinc-800 dark:bg-white text-orange-400 dark:text-violet-500 hover:bg-zinc-900 dark:hover:bg-neutral-200"
+        >
+            Shop now
+        </x-util.button>
+    </div>
+</section>
