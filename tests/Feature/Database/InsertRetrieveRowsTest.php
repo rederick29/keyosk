@@ -142,7 +142,8 @@ class InsertRetrieveRowsTest extends TestCase
         $newImage = Image::find($image->id);
         $this->assertNotNull($newImage);
         $this->assertEquals($priority, $newImage->priority);
-        $this->assertEquals($location, $newImage->location);
+        // image->location gets the image url on the server as of #113
+        $this->assertEquals(url('/') . '/storage/' . $location, $newImage->location);
         $this->assertEquals($this->testProduct->id, $newImage->product->id);
     }
 
