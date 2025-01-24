@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\ShopPageController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
@@ -63,5 +64,9 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
         Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
         Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
+
+        Route::get('/admin/image-upload', [ImageUploaderController::class, 'index'])->name('image-upload.index');
+        Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
+        Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
     });
 });
