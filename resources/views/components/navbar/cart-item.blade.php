@@ -6,18 +6,21 @@
     TODO:
 --}}
 
-<div {{ $attributes->merge(['class' => 'w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 dark:bg-zinc-900 transition-colors duration-500']) }}>
+<div {{ $attributes->merge(['class' => 'cart-item-' . $productId . ' w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 dark:bg-zinc-900 transition-colors duration-500']) }}>
     <div class="size-32 flex items-center overflow-hidden">
         <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-sm" />
     </div>
     <div class="w-full flex flex-col space-y-5">
         <div class="flex flex-col w-full items-center start-0">
             <h1 class="w-full flex font-bold">{{ $productTitle }}</h1>
-            <p class="w-full flex text-black/30 dark:text-white/30">£{{ $productPrice }}</p>
+            <p class="w-full flex flex-row text-black/30 dark:text-white/30">
+                £
+                <span class="cart-item-price-{{$productId}}">{{ $productPrice }}</span>
+            </p>
         </div>
-        <form class="cart-{{ $productId }} flex flex-row w-full justify-between items-center" method="POST"
+        <form class="cart-form-{{ $productId }} flex flex-row w-full justify-between items-center" method="POST"
             action="{{ route('cart.update') }}"> @csrf
-            <input type="hidden" name="action" class="cart_action-{{ $productId }}">
+            <input type="hidden" name="cart_action" class="cart_action-{{ $productId }}">
             <input type="hidden" name="product_id" class="cart_id-{{ $productId }}" value="{{ $productId }}">
             <input type="hidden" name="quantity" class="cart_quantity-{{ $productId }}">
             <div class="flex flex-row ring-orange-500 dark:ring-violet-700 ring-2 rounded-md">

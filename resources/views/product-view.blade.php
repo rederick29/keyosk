@@ -47,7 +47,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <form method="POST" action="{{ route('cart.update') }}">
                     <div class="flex items-center gap-4 mt-4 pt-14">
                         @csrf
-                        <input type="hidden" id="action" name="action"
+                        <input type="hidden" id="action" name="cart_action"
                             value="{{ \App\Utils\CartUpdateAction::Add }}">
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
 

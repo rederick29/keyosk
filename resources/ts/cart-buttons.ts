@@ -1,3 +1,7 @@
+import {CustomWindow, handle_response, SimpleResponse} from "@ts/utils.ts";
+// TODO: rewrite this entire file
+
+declare let window: CustomWindow;
 let gCartQuantities = new Map<number, number>();
 
 const enum CartUpdateAction {
@@ -8,28 +12,59 @@ const enum CartUpdateAction {
 }
 
 class CartItem {
+    // current item identifiers
     id: number;
+    component: HTMLElement;
+
+    // data to send in post request
+    fake_action: CartUpdateAction | null;
+    fake_dQuantity: number;
+    fake_quantityInput: number;
+    // marker if a change has been made
+    dirty: boolean;
+
+    // elements to update if response is ok
     form: HTMLFormElement;
     action: HTMLInputElement;
     deltaQuantity: HTMLInputElement;
     quantityInput: HTMLInputElement;
 
-    constructor(id: number, action: HTMLInputElement, deltaQuantity: HTMLInputElement, quantityInput: HTMLInputElement, form: HTMLFormElement) {
+    constructor(id: number, component: HTMLDivElement, action: HTMLInputElement, deltaQuantity: HTMLInputElement, quantityInput: HTMLInputElement, form: HTMLFormElement) {
         if (!action || !deltaQuantity || !quantityInput || !form) {
             throw new Error(`Invalid cart product: ${id}`);
         }
 
         this.id = id;
-        this.form = form as HTMLFormElement;
-        this.action = action as HTMLInputElement;
-        this.deltaQuantity = deltaQuantity as HTMLInputElement;
-        this.quantityInput = quantityInput as HTMLInputElement;
+        this.component = component;
+        this.form = form;
+        this.action = action;
+        this.deltaQuantity = deltaQuantity;
+        this.quantityInput = quantityInput;
+
+        this.fake_action = null;
+        this.fake_dQuantity = 0;
+        this.fake_quantityInput = Number(this.quantityInput.value);
+        this.dirty = false;
+    }
+
+    resetFake(): void {
+        if (!this.dirty) return;
+        this.fake_action = null;
+        this.fake_dQuantity = 0;
+        this.fake_quantityInput = Number(this.quantityInput.value);
+        this.dirty = false;
     }
 
     private setDataOnDelta(change: number): void {
-        this.action.value = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
-        this.deltaQuantity.value = String(Math.abs(change));
-        this.quantityInput.value = String(Number(this.quantityInput.value) + change);
+        if (this.dirty) return;
+        this.fake_action = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
+        this.fake_dQuantity = Math.abs(change);
+        this.fake_quantityInput = Number(this.fake_quantityInput) + change;
+        // if we're going to have 0 quantity after the change, we remove the item
+        if (this.fake_quantityInput === 0) {
+            this.fake_action = CartUpdateAction.Remove;
+        }
+        this.dirty = true;
     }
 
     decreaseQuantity(): void {
@@ -40,31 +75,58 @@ class CartItem {
         this.setDataOnDelta(1);
     }
 
-    setQuantity(): void {
-        const oldValue = gCartQuantities.get(Number(this.id));
+    setQuantity(newValue: number): void {
+        if (this.dirty) return;
+        const oldValue = this.fake_quantityInput;
         if (oldValue === undefined) {
             throw new Error(`Initial value of cart item ${this.id} not found`);
         }
 
-        const newValue = Number(this.quantityInput.value);
         const change = newValue - oldValue;
         if (change === 0) {
             console.log(`No change in quantity for cart item ${this.id}`);
             return;
         }
 
-        this.action.value = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
-        this.deltaQuantity.value = String(Math.abs(change));
-        gCartQuantities.set(this.id, newValue);
+        this.setDataOnDelta(change);
+        this.dirty = true;
     }
 
     removeItem(): void {
-        console.log(`Removing cart item ${this.id}`);
-        this.action.value = CartUpdateAction.Remove;
+        if (this.dirty) return;
+        this.fake_action = CartUpdateAction.Remove;
+        this.fake_quantityInput = 0;
+        this.dirty = true;
     }
 
-    submit(): void {
-        this.form.submit();
+    save(): void {
+        if (!this.dirty) return;
+        if (this.fake_action === CartUpdateAction.Remove) {
+            this.component.remove();
+            gCartQuantities.delete(Number(this.id));
+        } else {
+            this.action.value = this.fake_action!;
+            this.deltaQuantity.value = String(this.fake_dQuantity);
+            this.quantityInput.value = String(this.fake_quantityInput);
+            gCartQuantities.set(this.id, this.fake_quantityInput);
+        }
+        this.resetFake();
+    }
+
+    async submit(): Promise<boolean> {
+        if (!this.dirty) return false;
+        let ret = false;
+        let data = {
+            cart_action: this.fake_action!.toString(),
+            product_id: this.id,
+            quantity: this.fake_action! != CartUpdateAction.Remove ? this.fake_dQuantity : null,
+        }
+        await window.axios.post<SimpleResponse>(this.form.action, data)
+            .then(response => {
+                ret = handle_response(response);
+            })
+            .catch(error => console.log(error));
+        return ret;
     }
 }
 
@@ -75,33 +137,123 @@ class CartItemViews {
         this.cartItems.push(item);
     }
 
-    submit(): void {
-        this.cartItems[0]?.submit();
+    submit(): Promise<boolean> | undefined {
+        return this.cartItems[0]?.submit();
+    }
+
+    pendingAction(): CartUpdateAction | undefined {
+        if (!this.cartItems[0]?.dirty) return undefined;
+        return this.cartItems[0]?.fake_action!;
+    }
+
+    pendingQuantity(): number | undefined {
+        if (!this.cartItems[0]?.dirty) return undefined;
+        return this.cartItems[0]?.fake_quantityInput;
+    }
+
+    id(): number {
+        return this.cartItems[0]?.id;
+    }
+
+    setQuantity() {
+        // if one input was updated, change the rest as well
+        let resetValue = gCartQuantities.get(this.id())!;
+        let update_input = -1;
+
+        this.forEach((product) => {
+            let newValue = Number(product.quantityInput.value);
+            let change = resetValue - newValue;
+            if (change != 0) {
+                update_input = newValue;
+            }
+        });
+
+        if (update_input !== -1) {
+            this.forEach((product) => {
+                product.setQuantity(update_input);
+            });
+        }
     }
 
     forEach(callback: (elem: CartItem) => void): void {
         this.cartItems.forEach(callback);
     }
+
+    any(callback: (elem: CartItem) => boolean): boolean {
+        for (let i = 0; i < this.cartItems.length; i++) {
+            if (callback(this.cartItems[i])) { return true; }
+        }
+        return false;
+    }
+
+    all(callback: (elem: CartItem) => boolean): boolean {
+        return !this.cartItems.map((item) => { return callback(item); }).includes(false);
+    }
 }
 
+async function updateCartItemView(items: CartItemViews): Promise<void> {
+    const updateSummaryPrice = () => {
+        let product_price = document.querySelector(`.cart-item-price-${items.id()}`);
+        let summary_price = document.querySelector('.cart-subtotal-price');
+        let summary_quantity = document.querySelector(`.summary-product-${items.id()} .summary-product-quantity`);
+        if (product_price && summary_quantity && summary_price) {
+            let deltaQuantity = items.pendingQuantity()! - parseInt(summary_quantity.textContent!);
+            let deltaPrice = deltaQuantity * parseFloat(product_price.textContent!);
+            summary_price.textContent = String((parseFloat(summary_price.textContent!) + deltaPrice).toFixed(2));
+        }
+    }
+
+    const status = await items.submit();
+    if (status === true) {
+        if (items.pendingAction() === CartUpdateAction.Remove) {
+            // update total items count
+            let total_in_cart = document.querySelectorAll('.cart-total-quantity-count');
+            total_in_cart.forEach((elem) => {
+                elem.textContent = String(parseInt(elem.textContent!) - 1);
+            })
+
+            updateSummaryPrice();
+            // remove from cart summary
+            let summary_entry = document.querySelectorAll(`.summary-product-${items.id()}`);
+            summary_entry.forEach((elem) => {
+                elem.remove();
+            })
+        } else if (items.pendingAction() === CartUpdateAction.Increase || items.pendingAction() === CartUpdateAction.Decrease) {
+            // update quantity and price in cart summary
+            updateSummaryPrice();
+            let summary_entry = document.querySelectorAll(`.summary-product-${items.id()}`);
+            summary_entry.forEach((elem) => {
+                let summary_quantity = elem.querySelector('.summary-product-quantity')!;
+                summary_quantity.textContent = String(items.pendingQuantity());
+            })
+        }
+
+        items.forEach((product) => product.save());
+    } else {
+        if (items.any((p) => p.fake_quantityInput !== Number(p.quantityInput.value))) {
+            items.forEach((product) => product.quantityInput.value = String(gCartQuantities.get(items.id())!));
+        }
+        items.forEach((product) => product.resetFake());
+    }
+}
 function decreaseCartQuantity(items: CartItemViews): void {
     items.forEach((product) => product.decreaseQuantity());
-    items.submit();
+    updateCartItemView(items);
 }
 
 function increaseCartQuantity(items: CartItemViews): void {
     items.forEach((product) => product.increaseQuantity());
-    items.submit();
+    updateCartItemView(items);
 }
 
 function setCartQuantity(items: CartItemViews): void {
-    items.forEach((product) => product.setQuantity());
-    items.submit();
+    items.setQuantity();
+    updateCartItemView(items);
 }
 
 function removeCartItem(items: CartItemViews): void {
     items.forEach((product) => product.removeItem());
-    items.submit();
+    updateCartItemView(items);
 }
 
 export function setInitialQuantity(id: string, quantity: string): void {
@@ -119,10 +271,10 @@ export function addCartButtonListeners(productId: number): void {
 
     // Select elements by their dynamic IDs
     let items = new CartItemViews();
-    let forms = document.querySelectorAll<HTMLFormElement>(`.cart-${productId}`);
+    let productComponents = document.querySelectorAll<HTMLDivElement>(`.cart-item-${productId}`);
 
-    forms.forEach((form) => {
-        // SAFETY: [0] will never be null because we're in a form that will have the elements required
+    productComponents.forEach((productComponent) => {
+        let form = productComponent.querySelector<HTMLFormElement>(`.cart-form-${productId}`)!;
         let quantityInput = form.querySelector<HTMLInputElement>(`.cart_quantity_input-${productId}`)!;
         let decreaseButton = form.querySelector<HTMLInputElement>(`.cart_decrease-${productId}`)!;
         let increaseButton = form.querySelector<HTMLInputElement>(`.cart_increase-${productId}`)!;
@@ -130,7 +282,7 @@ export function addCartButtonListeners(productId: number): void {
         let deltaQuantity = form.querySelector<HTMLInputElement>(`.cart_quantity-${productId}`)!;
         let action = form.querySelector<HTMLInputElement>(`.cart_action-${productId}`)!;
 
-        items.push(new CartItem(productId, action, deltaQuantity, quantityInput, form));
+        items.push(new CartItem(productId, productComponent, action, deltaQuantity, quantityInput, form));
 
         // Add event listeners for buttons, if elements exist
         addEventListenerIfNotExists(quantityInput, 'change', () => setCartQuantity(items));

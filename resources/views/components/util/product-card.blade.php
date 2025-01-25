@@ -39,7 +39,7 @@
         <form method="POST" action="{{ route('cart.update') }}">
             @csrf
 
-            <input type="hidden" id="action" name="action" value="{{ \App\Utils\CartUpdateAction::Add }}">
+            <input type="hidden" id="action" name="cart_action" value="{{ \App\Utils\CartUpdateAction::Add }}">
             <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
 
             <!-- Quantity Selector -->
