@@ -38,16 +38,15 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <div class="">
                     <p>{{ $product->short_description }}</p>
                     <div class="flex flex-row w-full justify-between items-center">
-                        <div class="flex items-center gap-2">
-
-                        </div>
+                        <div class="flex items-center gap-2"></div>
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('cart.update') }}">
+                @vite('resources/ts/product-buttons.ts')
+                <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $product->id }}">
                     <div class="flex items-center gap-4 mt-4 pt-14">
                         @csrf
-                        <input type="hidden" id="action" name="cart_action"
+                        <input type="hidden" id="cart_action" name="cart_action"
                             value="{{ \App\Utils\CartUpdateAction::Add }}">
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
 
@@ -69,19 +68,17 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                                     +
                                 </button>
                             </div>
-
-                            <!-- Add to Cart Button -->
-                            <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         </div>
                         <div class="space-x-4">
-                            <button
-                                class="add-to-cart-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
+                            <!-- Add to Cart Button -->
+                            <button type="submit"
+                                class="add-to-cart-btn-{{ $product->id }} border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
                                 Add to Cart
                             </button>
 
                             <!-- Buy Now Button -->
-                            <button
-                                class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
+                            <button type="submit"
+                                class="buy-now-btn-{{ $product->id }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                                 Buy Now
                             </button>
                         </div>
@@ -112,36 +109,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
 </x-layouts.layout>
 
 <script nonce="{{ csp_nonce() }}">
-    // OndoMREADY
     document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('quantity-{{ $product->id }}');
-
-        input.addEventListener('input', function() {
-            this.value = this.value.replace(/[^1-9]/g, '');
-            if (this.value === '' || parseInt(this.value) < 1 || parseInt(this.value) > 99) {
-                this.value = 0;
-            }
-        });
-
-        input.addEventListener('keydown', function(event) {
-            if (event.keyCode === 38 || event.keyCode === 40) {
-                event.preventDefault();
-            }
-        });
-
-        // + and -
-        document.getElementById('decrease-quantity-{{ $product->id }}').addEventListener('click', function() {
-            var qtyInput = document.getElementById('quantity-{{ $product->id }}');
-            var currentQty = parseInt(qtyInput.value);
-            if (currentQty > 1) {
-                qtyInput.value = currentQty - 1;
-            }
-        });
-
-        document.getElementById('increase-quantity-{{ $product->id }}').addEventListener('click', function() {
-            var qtyInput = document.getElementById('quantity-{{ $product->id }}');
-            var currentQty = parseInt(qtyInput.value);
-            qtyInput.value = currentQty + 1;
-        });
+        setupProductButtons('{{ $product->id }}');
     });
 </script>

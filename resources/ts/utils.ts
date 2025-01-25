@@ -2,6 +2,8 @@ import {AxiosResponse, AxiosStatic} from "axios";
 import toastr from "toastr";
 
 export interface CustomWindow extends Window {
+    setupProductButtons: any;
+    setupCartButtons: any;
     axios: AxiosStatic;
     toastr: typeof toastr;
 }

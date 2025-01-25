@@ -4,7 +4,7 @@ import {CustomWindow, handle_response, SimpleResponse} from "@ts/utils.ts";
 declare let window: CustomWindow;
 let gCartQuantities = new Map<number, number>();
 
-const enum CartUpdateAction {
+export const enum CartUpdateAction {
     Increase = 'increase',
     Decrease = 'decrease',
     Remove = 'remove',
@@ -55,7 +55,7 @@ class CartItem {
         this.dirty = false;
     }
 
-    private setDataOnDelta(change: number): void {
+    setDataOnDelta(change: number): void {
         if (this.dirty) return;
         this.fake_action = change > 0 ? CartUpdateAction.Increase : CartUpdateAction.Decrease;
         this.fake_dQuantity = Math.abs(change);
@@ -290,4 +290,56 @@ export function addCartButtonListeners(productId: number): void {
         addEventListenerIfNotExists(increaseButton, 'click', () => increaseCartQuantity(items));
         addEventListenerIfNotExists(removeButton, 'click', () => removeCartItem(items));
     })
+}
+
+export async function updateCart(cart_action: CartUpdateAction, productId: number, quantity: number | null): Promise<void> {
+    let productComponents = document.querySelectorAll<HTMLDivElement>(`.cart-item-${productId}`);
+    let items = new CartItemViews();
+    productComponents.forEach((productComponent) => {
+        let form = productComponent.querySelector<HTMLFormElement>(`.cart-form-${productId}`)!;
+        let quantityInput = form.querySelector<HTMLInputElement>(`.cart_quantity_input-${productId}`)!;
+        let deltaQuantity = form.querySelector<HTMLInputElement>(`.cart_quantity-${productId}`)!;
+        let action = form.querySelector<HTMLInputElement>(`.cart_action-${productId}`)!;
+        const cart = new CartItem(productId, productComponent, action, deltaQuantity, quantityInput, form)!;
+
+        switch (cart_action) {
+            case CartUpdateAction.Increase:
+            case CartUpdateAction.Decrease:
+            case CartUpdateAction.Add:
+                if (quantity === null) {
+                    throw new TypeError("Quantity is required.");
+                }
+                cart.setDataOnDelta(quantity);
+                break;
+            case CartUpdateAction.Remove:
+                cart.removeItem();
+                break;
+        }
+        items.push(cart);
+    });
+    updateCartItemView(items);
+
+    // in the case we are adding a new item to the cart, the form and all other elements won't exist already
+    if (productComponents.length === 0 && (cart_action === CartUpdateAction.Add || cart_action === CartUpdateAction.Increase)) {
+        if (quantity === null) {
+            throw new TypeError("Quantity is required.");
+        } else if (quantity < 1) {
+            throw new Error("Quantity needs to be greater than 0.");
+        }
+        await window.axios
+            .post<SimpleResponse>(window.location.origin + "/cart/update",
+                { cart_action: cart_action, quantity: quantity, product_id: productId },
+                {
+                    adapter: "fetch",
+                }
+            )
+            .then(response => handle_response(response))
+            .catch(error => console.error(error));
+
+        // TODO: get the required html for the new cart items from the server and add it in the correct places
+        // for now, just reload the whole page and let the server render it
+        window.location.reload();
+    } else if (productComponents.length === 0) {
+        throw new TypeError("This item is not present in the cart.");
+    }
 }

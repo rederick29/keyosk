@@ -36,10 +36,10 @@
 
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4 ">
-        <form method="POST" action="{{ route('cart.update') }}">
+        <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}">
             @csrf
 
-            <input type="hidden" id="action" name="cart_action" value="{{ \App\Utils\CartUpdateAction::Add }}">
+            <input type="hidden" id="cart_action" name="cart_action" value="{{ \App\Utils\CartUpdateAction::Add }}">
             <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
 
             <!-- Quantity Selector -->
@@ -61,7 +61,7 @@
 
                 <!-- Add to Cart Button -->
                 <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
-                <button class="add-to-cart-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
+                <button class="add-to-cart-btn-{{ $productId }} border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
                     Add to Cart
                 </button>
             </div>
@@ -70,7 +70,7 @@
 
         <!-- Buy Now Button -->
         <button
-            class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
+            class="buy-now-btn-{{ $productId }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
             Buy Now
         </button>
     </div>
@@ -78,32 +78,7 @@
 
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('quantity-{{ $productId }}');
-
-        input.addEventListener('input', function() {
-            this.value = this.value.replace(/[^1-9]/g, '');
-        });
-
-        input.addEventListener('keydown', function(event) {
-            if (event.keyCode === 38 || event.keyCode === 40) {
-                event.preventDefault();
-            }
-        });
-    });
-
-    // Quantity functionality
-    document.getElementById('decrease-quantity-{{ $productId }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $productId }}');
-        var currentQty = parseInt(qtyInput.value);
-        if (currentQty > 1) {
-            qtyInput.value = currentQty - 1;
-        }
-    });
-
-    document.getElementById('increase-quantity-{{ $productId }}').addEventListener('click', function() {
-        var qtyInput = document.getElementById('quantity-{{ $productId }}');
-        var currentQty = parseInt(qtyInput.value);
-        qtyInput.value = currentQty + 1;
+        setupProductButtons('{{ $productId }}');
     });
 </script>
 
