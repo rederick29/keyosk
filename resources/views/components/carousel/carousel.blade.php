@@ -5,7 +5,7 @@
 --}}
 
 
-        <div class="p-4 bg-stone-200 dark:bg-black">
+        <div class="p-4 my-20 bg-stone-200 dark:bg-zinc-950">
             <div class="relative">
                 <button
                     id="scroll-left"
