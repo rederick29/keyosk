@@ -56,6 +56,7 @@ Ensure you have the following installed:
     # Open the second terminal and type:
     php artisan migrate
     php artisan db:seed
+    php artisan storage:link
     php artisan serve
     ```
 
@@ -75,6 +76,7 @@ The website should now be running locally.
    ```bash
    php artisan migrate:fresh
    php artisan db:seed
+   php artisan storage:link
    ```
 
 3. Build assets and start the application:
