@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Utils\CartUpdateAction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
@@ -17,16 +18,17 @@ class CartController extends Controller
         return view('cart');
     }
 
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request): RedirectResponse | JsonResponse
     {
         $validatedData = $request->validate([
-            'action' => ['required', Rule::enum(CartUpdateAction::class)],
+            'cart_action' => ['required', Rule::enum(CartUpdateAction::class)],
             'product_id' => ['required', 'int', Rule::exists('products', 'id')],
             'quantity' => [
                 'integer',
+                'nullable',
                 'min:1',
                 // Quantity is required only for increase and decrease actions
-                Rule::requiredIf(CartUpdateAction::needsQuantity($request->input('action'))),
+                Rule::requiredIf(CartUpdateAction::needsQuantity($request->input('cart_action'))),
             ],
         ]);
 
@@ -36,11 +38,17 @@ class CartController extends Controller
         $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
-            $message = $this->processCartAction($cart, CartUpdateAction::from($validatedData['action']), $productId, $quantity);
+            $message = $this->processCartAction($cart, CartUpdateAction::from($validatedData['cart_action']), $productId, $quantity);
         } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json(['error' => $e->getMessage()]);
+            }
             return redirect()->back()->with('error', $e->getMessage());
         }
 
+        if ($request->ajax()) {
+            return response()->json(['success' => $message]);
+        }
         return redirect()->back()->with('success', $message);
     }
 

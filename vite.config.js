@@ -12,7 +12,7 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/cart-menu.js', 'resources/js/navbar.js', 'resources/ts/shop-search.ts'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/cart-menu.js', 'resources/js/navbar.js', 'resources/ts/shop-search.ts', 'resources/ts/product-buttons.ts'],
             refresh: true,
         }),
     ],
