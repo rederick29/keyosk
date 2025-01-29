@@ -45,6 +45,9 @@ Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 
+// tmp account view
+Route::view('/account', 'account')->name('account');
+
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
@@ -59,6 +62,8 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+
+    // Account Routes
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
