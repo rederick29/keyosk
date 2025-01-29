@@ -10,7 +10,7 @@ use Illuminate\View\View;
 use App\Models\User;
 use Exception;
 
-class RegisterUserController extends Controller
+class UserController extends Controller
 {
     public function create(): View
     {

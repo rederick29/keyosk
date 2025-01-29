@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageUploaderController;
-use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopPageController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
@@ -49,8 +49,8 @@ Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
-Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
-Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
+Route::get('/register', [UserController::class, 'create'])->name('register.get');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
