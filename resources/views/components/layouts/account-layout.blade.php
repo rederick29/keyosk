@@ -1,3 +1,7 @@
+@php
+    $orderLinkBg = Request::is('*orders*') ? "dark:bg-violet-900 dark:hover:bg-orange-900" : "bg-zinc-800 hover:ring-4 ring-violet-700";
+    $accountLinkBg = Request::is('*account*') ? "bg-violet-900 hover:bg-violet-900" : "bg-zinc-800 hover:ring-4 ring-violet-700";
+@endphp
 <x-layouts.layout>
     <x-slot:title>Keyosk | Account</x-slot:title>
 
@@ -10,19 +14,17 @@
             <x-util.button
                 type="a"
                 href="/account"
-                class="w-96 hover:ring-4 ring-violet-700 font-semibold transition-shadow duration-500"
+                class="w-96 {{ $accountLinkBg }} font-semibold transition-shadow duration-500"
             >
                 Account
             </x-util.button>
             <x-util.button
                 type="a"
                 href="/orders"
-                class="w-96 bg-zinc-800 hover:ring-4 ring-violet-700 font-semibold transition-shadow duration-500"
+                class="w-96 {{ $orderLinkBg }} font-semibold transition-shadow duration-500"
             >
                 Orders
-                @if(Request::is('*orders*'))
 
-                @endif
             </x-util.button>
         </div>
         <div
