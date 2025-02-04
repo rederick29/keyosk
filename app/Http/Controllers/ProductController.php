@@ -16,4 +16,12 @@ class ProductController extends Controller
             return redirect('/')->with('error', 'Product not found');
         }
     }
+
+    public function carousel()
+    {
+    // Fetch the latest 10 products from the database
+    $products = Product::latest()->take(10)->get();
+
+    return view('components.carousel', compact('products'));
+    }
 }
