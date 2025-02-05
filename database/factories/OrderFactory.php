@@ -29,7 +29,7 @@ class OrderFactory extends Factory
         ];
     }
 
-    public function forUser(User $user): Factory|UserFactory
+    public function forUser(User $user): Factory|OrderFactory
     {
         return $this->state(function (array $attributes) use ($user)
         {
