@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\ShopPageController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -41,11 +43,7 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 
 // Shop view
-Route::get('/shop', function () {
-    $products = Product::with('tags')->paginate(5);
-
-    return view('shop', ['products' => $products]);
-});
+Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
@@ -66,5 +64,9 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
         Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
         Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
+
+        Route::get('/admin/image-upload', [ImageUploaderController::class, 'index'])->name('image-upload.index');
+        Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
+        Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
     });
 });

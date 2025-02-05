@@ -5,7 +5,7 @@
 --}}
 
 
-        <div class="p-4 bg-stone-200 dark:bg-black">
+        <div class="p-4 my-20 bg-stone-200 dark:bg-zinc-950">
             <div class="relative">
                 <button
                     id="scroll-left"
@@ -26,7 +26,7 @@
                             alt="Keyosk Keyboard"
                             title="Keyosk Standard Keyboard"
                             description="Suitable for beginners or those who don&apos;t utilise keyboards often."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£29.99"
                         />
                     </div>
@@ -36,7 +36,7 @@
                             alt="Mechanical Keyboard"
                             title="Mechanical Keyboard Pro"
                             description="Designed for gaming enthusiasts with premium switches."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£89.99"
                         />
                     </div>
@@ -46,7 +46,7 @@
                             alt="Compact Keyboard"
                             title="Compact Keyboard"
                             description="Portable and sleek, ideal for travel and minimal setups."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£49.99"
                         />
                     </div>
@@ -56,7 +56,7 @@
                             alt="RGB Gaming Keyboard"
                             title="RGB Gaming Keyboard"
                             description="Vibrant RGB lighting for an immersive gaming experience."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£59.99"
                         />
                     </div>
@@ -66,7 +66,7 @@
                             alt="Ergonomic Keyboard"
                             title="Ergonomic Keyboard"
                             description="Reduce wrist strain with this ergonomic design."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£79.99"
                         />
                     </div>
@@ -76,7 +76,7 @@
                             alt="Wireless Keyboard"
                             title="Wireless Keyboard"
                             description="Cable-free design for a tidy workspace."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£69.99"
                         />
                     </div>
@@ -86,7 +86,7 @@
                             alt="Gaming Keyboard Bundle"
                             title="Gaming Keyboard Bundle"
                             description="Includes gaming mouse and headset for an all-in-one package."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£119.99"
                         />
                     </div>
@@ -96,7 +96,7 @@
                             alt="Ultra-Slim Keyboard"
                             title="Ultra-Slim Keyboard"
                             description="Minimalistic and ultra-thin for modern setups."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£39.99"
                         />
                     </div>
@@ -106,7 +106,7 @@
                             alt="Multimedia Keyboard"
                             title="Multimedia Keyboard"
                             description="Dedicated media keys for enhanced productivity."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£44.99"
                         />
                     </div>
@@ -116,7 +116,7 @@
                             alt="Mechanical TKL Keyboard"
                             title="Mechanical TKL Keyboard"
                             description="Tenkeyless design for more desk space."
-                            buttonText="Add To Basket"
+                            buttonText="Add To Cart"
                             price="£64.99"
                         />
                     </div>

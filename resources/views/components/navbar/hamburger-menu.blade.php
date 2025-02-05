@@ -12,15 +12,15 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </div>
     {{-- Mobile Hamburger Menu --}}
-    <div class="dropdown-hide fixed sm:block md:hidden lg:hidden w-[100vw] h-fit top-24 right-0" id="hamburger-dropdown">
+    <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl sm:block md:hidden lg:hidden w-[100vw] h-fit top-24 right-0" id="hamburger-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
-            <x-util.button  type="a" href="/" class="">
+            <x-util.button  type="a" href="/shop" class="">
                 Shop
             </x-util.button>
-            <x-util.button  type="a" href="/" class="">
+            <x-util.button  type="a" href="/shop" class="">
                 Best Selling
             </x-util.button>
-            <x-util.button  type="a" href="/" class="">
+            <x-util.button  type="a" href="/shop" class="">
                 Sale
             </x-util.button>
         </div>

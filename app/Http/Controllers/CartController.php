@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Utils\CartUpdateAction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
@@ -17,16 +18,17 @@ class CartController extends Controller
         return view('cart');
     }
 
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request): RedirectResponse | JsonResponse
     {
         $validatedData = $request->validate([
-            'action' => ['required', Rule::enum(CartUpdateAction::class)],
-            'product_id' => ['required', Rule::exists('products', 'id')],
+            'cart_action' => ['required', Rule::enum(CartUpdateAction::class)],
+            'product_id' => ['required', 'int', Rule::exists('products', 'id')],
             'quantity' => [
                 'integer',
+                'nullable',
                 'min:1',
                 // Quantity is required only for increase and decrease actions
-                Rule::requiredIf(CartUpdateAction::needsQuantity($request->input('action'))),
+                Rule::requiredIf(CartUpdateAction::needsQuantity($request->input('cart_action'))),
             ],
         ]);
 
@@ -36,11 +38,17 @@ class CartController extends Controller
         $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
-            $message = $this->processCartAction($cart, $validatedData['action'], $productId, $quantity);
+            $message = $this->processCartAction($cart, CartUpdateAction::from($validatedData['cart_action']), $productId, $quantity);
         } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json(['error' => $e->getMessage()]);
+            }
             return redirect()->back()->with('error', $e->getMessage());
         }
 
+        if ($request->ajax()) {
+            return response()->json(['success' => $message]);
+        }
         return redirect()->back()->with('success', $message);
     }
 
@@ -48,29 +56,29 @@ class CartController extends Controller
      * Process the cart action based on the provided action and product details.
      *
      * @param Cart $cart
-     * @param string $action
+     * @param CartUpdateAction $action
      * @param int $productId
      * @param int $quantity
      * @return string
      */
-    private function processCartAction(Cart $cart, string $action, int $productId, int $quantity): string
+    private function processCartAction(Cart $cart, CartUpdateAction $action, int $productId, int $quantity): string
     {
         switch ($action) {
-            case CartUpdateAction::Add->value:
-            case CartUpdateAction::Increase->value:
+            case CartUpdateAction::Add:
+            case CartUpdateAction::Increase:
                 $cart->addProduct($productId, $quantity);
                 return 'Product added to cart';
 
-            case CartUpdateAction::Remove->value:
+            case CartUpdateAction::Remove:
                 $cart->emptyItem($productId);
                 return 'Product removed from cart';
 
-            case CartUpdateAction::Decrease->value:
+            case CartUpdateAction::Decrease:
                 $cart->removeProduct($productId, $quantity);
                 return 'Product quantity decreased';
 
             default:
-                throw new \InvalidArgumentException('Invalid action');
+                throw new \InvalidArgumentException('Invalid cart action');
         }
     }
 }

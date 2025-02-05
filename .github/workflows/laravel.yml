@@ -33,6 +33,7 @@ jobs:
         run: |
           touch database/database.sqlite
           php artisan migrate -n
+          php artisan storage:link -n
           php artisan db:seed -n
       - name: Execute tests via PHPUnit/Pest and run application
         env:

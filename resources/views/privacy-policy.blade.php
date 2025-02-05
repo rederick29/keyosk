@@ -13,7 +13,7 @@
 
         <div class="px-8">
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h1 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
@@ -26,7 +26,7 @@
             <hr class="misc-page-hr">
 
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Information We Collect</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We collect personal information in the following ways:
@@ -64,7 +64,7 @@
             <hr class="misc-page-hr">
 
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">How We Use Your Information</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We use the personal data we collect to improve our services and offer a personalized experience.
@@ -101,7 +101,7 @@
             <hr class="misc-page-hr">
 
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Data Security</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We implement a variety of security measures to maintain the safety of your personal information.
@@ -112,7 +112,7 @@
             <hr class="misc-page-hr">
 
             <div
-                class="misc-page-container">
+                class="misc-page-container bg-stone-200 dark:bg-zinc-900">
                 <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Your Rights</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     You have the right to:

@@ -7,6 +7,7 @@
     TODO: Fix stupid animation pop in
 --}}
 
+@vite(['resources/js/navbar.js'])
 <nav
     class="flex flex-row fixed justify-between items-center px-5 md:px-10 lg:px-20 min-h-24 min-w-full border border-x-0 border-t-0 border-b-4 shadow-xl z-50 border-orange-500 dark:border-violet-700 bg-stone-100 dark:bg-zinc-900 ">
     {{-- Desktop Links --}}
@@ -22,7 +23,7 @@
                 New
             </a>
             <a href="/shop"
-                class="hover:animate-pulse text-orange-500 dark:text-violet-700/95 transition-colors duration-300"
+                class="hover:animate-pulse hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300"
                 id="shop-link">
                 Sale
             </a>

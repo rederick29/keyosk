@@ -38,16 +38,15 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                 <div class="">
                     <p>{{ $product->short_description }}</p>
                     <div class="flex flex-row w-full justify-between items-center">
-                        <div class="flex items-center gap-2">
-
-                        </div>
+                        <div class="flex items-center gap-2"></div>
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('cart.update') }}">
+                @vite('resources/ts/product-buttons.ts')
+                <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $product->id }}">
                     <div class="flex items-center gap-4 mt-4 pt-14">
                         @csrf
-                        <input type="hidden" id="action" name="action"
+                        <input type="hidden" id="cart_action" name="cart_action"
                             value="{{ \App\Utils\CartUpdateAction::Add }}">
                         <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
 
@@ -63,25 +62,23 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                                 </button>
                                 <input type="number" id="quantity-{{ $product->id }}" name="quantity" min="1"
                                     value="1"
-                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
+                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                 <button type="button" id="increase-quantity-{{ $product->id }}"
                                     class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                                     +
                                 </button>
                             </div>
-
-                            <!-- Add to Cart Button -->
-                            <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}">
                         </div>
                         <div class="space-x-4">
-                            <button
-                                class="add-to-cart-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
+                            <!-- Add to Cart Button -->
+                            <button type="submit"
+                                class="add-to-cart-btn-{{ $product->id }} border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
                                 Add to Cart
                             </button>
 
                             <!-- Buy Now Button -->
-                            <button
-                                class="buy-now-btn px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
+                            <button type="submit"
+                                class="buy-now-btn-{{ $product->id }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                                 Buy Now
                             </button>
                         </div>
@@ -90,57 +87,29 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             </div>
         </div>
     </div>
-    <div class="text-zinc-800 dark:text-white lg:pl-10 pt-10">
-        <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-3">Details</h3>
-        <p>{{ $product->description }}</p>
-    </div>
-    <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
-        <h3 class="text-orange-500 text-xl font-semibold pb-2">Reviews</h3>
-        @foreach ($product->reviews as $review)
-            <div class="border-t border-orange-500 dark:border-violet-700">
-                <p class="py-2 pt-4">{{ $review->user->name }}</p>
-                <x-products.review-rating class="w-3 h-3" rating="{{ $review->rating }}">
-                    <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
-                </x-products.review-rating>
-                <p class="py-2 pb-4">{{ $review->comment }}</p>
-            </div>
-        @endforeach
-        <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
-    </div>
+    <div class="bg-white dark:bg-zinc-900/75 text-zinc-800 px-10 mx-10 lg:px-14">
+        <div class="text-zinc-800 dark:text-white lg:pl-10">
+            <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-3">Details</h3>
+            <p>{{ $product->description }}</p>
+        </div>
+        <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
+            <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
+            @foreach ($product->reviews as $review)
+                <div class="border-t border-orange-500 dark:border-violet-700">
+                    <p class="py-2 pt-4">{{ $review->user->name }}</p>
+                    <x-products.review-rating class="w-3 h-3" rating="{{ $review->rating }}">
+                        <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
+                    </x-products.review-rating>
+                    <p class="py-2 pb-4">{{ $review->comment }}</p>
+                </div>
+            @endforeach
+            <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
+        </div>
     </div>
 </x-layouts.layout>
 
 <script nonce="{{ csp_nonce() }}">
-    // OndoMREADY
     document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('quantity-{{ $product->id }}');
-
-        input.addEventListener('input', function() {
-            this.value = this.value.replace(/[^1-9]/g, '');
-            if (this.value === '' || parseInt(this.value) < 1 || parseInt(this.value) > 99) {
-                this.value = 0;
-            }
-        });
-
-        input.addEventListener('keydown', function(event) {
-            if (event.keyCode === 38 || event.keyCode === 40) {
-                event.preventDefault();
-            }
-        });
-
-        // + and -
-        document.getElementById('decrease-quantity-{{ $product->id }}').addEventListener('click', function() {
-            var qtyInput = document.getElementById('quantity-{{ $product->id }}');
-            var currentQty = parseInt(qtyInput.value);
-            if (currentQty > 1) {
-                qtyInput.value = currentQty - 1;
-            }
-        });
-
-        document.getElementById('increase-quantity-{{ $product->id }}').addEventListener('click', function() {
-            var qtyInput = document.getElementById('quantity-{{ $product->id }}');
-            var currentQty = parseInt(qtyInput.value);
-            qtyInput.value = currentQty + 1;
-        });
+        setupProductButtons('{{ $product->id }}');
     });
 </script>

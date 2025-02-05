@@ -1,17 +1,16 @@
 <?php
 
-namespace App\View\Components\Navbar;
+namespace App\View\Components\Util;
 
 use App\Models\Product;
 use App\View\Components\ProductComponent;
 use Closure;
 use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 
-class CartItem extends ProductComponent
+class ProductCard extends ProductComponent
 {
-    public int $productQuantity;
+    public string $productShortDescription;
 
     /**
      * Create a new component instance.
@@ -21,10 +20,10 @@ class CartItem extends ProductComponent
     {
         parent::__construct($product);
 
-        $this->productQuantity = Auth::user()->cart->getProductQuantity($this->productId);
-        if(empty($this->productQuantity) || $this->productQuantity <= 0)
+        $this->productShortDescription = $product->short_description;
+        if(empty($this->productShortDescription))
         {
-            throw new Exception("Product quantity should not be null or 0");
+            throw new Exception("Product short description should be null");
         }
     }
 
@@ -33,6 +32,7 @@ class CartItem extends ProductComponent
      */
     public function render(): View|Closure|string
     {
-        return view('components.navbar.cart-item');
+        return view('components.util.product-card');
     }
 }
+
