@@ -72,6 +72,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
         Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
 
-        Route::get('/user/{id}', [UserController::class, 'index'])->where('id', '[0-9]+');
+        Route::get('/user/{userId}', [UserController::class, 'index'])->where('userId', '[0-9]+')->name('account.get.uid');
+        Route::get('/user/{userId}/orders', [OrdersController::class, 'index'])->where('userId', '[0-9]+')->name('orders.get.uid');
     });
 });

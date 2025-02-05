@@ -12,14 +12,14 @@ use Exception;
 
 class UserController extends Controller
 {
-    public function index(int $id = null): View
+    public function index(int $userId = null): View
     {
-        if ($id === null) {
+        if ($userId === null) {
             return view('account', ['user' => Auth::user()]);
         }
 
         try {
-            $user = User::findOrFail($id);
+            $user = User::findOrFail($userId);
             return view('account', compact('user'));
         } catch (Exception $e) {
             return view('account', ['user' => Auth::user()]);
