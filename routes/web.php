@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageUploaderController;
-use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopPageController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
@@ -45,15 +45,12 @@ Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 
-// tmp account view
-Route::view('/account', 'account')->name('account');
-
 // Auth Routes
 Route::get('/login', [SessionController::class, 'create'])->name('login.get');
 Route::post('/login', [SessionController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
-Route::get('/register', [RegisterUserController::class, 'create'])->name('register.get');
-Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
+Route::get('/register', [UserController::class, 'create'])->name('register.get');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
@@ -63,7 +60,8 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
-    // Account Routes
+    // User Route
+    Route::get('/account', [UserController::class, 'index'])->name('account.get');
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
@@ -73,5 +71,8 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::get('/admin/image-upload', [ImageUploaderController::class, 'index'])->name('image-upload.index');
         Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
         Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
+
+        Route::get('/user/{userId}', [UserController::class, 'index'])->where('userId', '[0-9]+')->name('account.get.uid');
+        Route::get('/user/{userId}/orders', [OrdersController::class, 'index'])->where('userId', '[0-9]+')->name('orders.get.uid');
     });
 });

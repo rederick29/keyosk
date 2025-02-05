@@ -1,4 +1,4 @@
-<x-layouts.account-layout>
+<x-layouts.account-layout :userId="$user->id" :currentPage="'Account'">
     <form class="w-full flex flex-col space-y-8 text-center">
         @csrf
         <div class="flex">

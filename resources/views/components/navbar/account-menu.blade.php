@@ -21,27 +21,27 @@
             @auth
             <section class="w-full h-fit space-y-2 font-bold text-center mt-4">
                     <p>Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
-                    <x-util.button  type="a" href="/" class="">
+                    <x-util.button  type="a" href="{{ route('account.get') }}" class="">
                         My Account
                     </x-util.button>
-                    <x-util.button  type="a" href="/orders" class="">
+                    <x-util.button  type="a" href="{{ route('orders.get') }}" class="">
                         My Orders
                     </x-util.button>
                     <x-util.button  type="a" href="/" class="">
                         Settings
                     </x-util.button>
 
-                    <form action="/logout" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
                     </form>
                 </section>
             @endauth
             @guest
-                <x-util.button  type="a" href="/login" class="">
+                <x-util.button  type="a" href="{{ route('login.get') }}" class="">
                     Log in
                 </x-util.button>
-                <x-util.button  type="a" href="/register" class="">
+                <x-util.button  type="a" href="{{ route('register.get') }}" class="">
                     Register
                 </x-util.button>
             @endguest
