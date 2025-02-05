@@ -1,9 +1,12 @@
 @php
-    $orderLinkBg = Request::is('*orders*') ? "dark:bg-violet-900 dark:hover:bg-orange-900" : "bg-zinc-800 hover:ring-4 ring-violet-700";
-    $accountLinkBg = Request::is('*account*') ? "bg-violet-900 hover:bg-violet-900" : "bg-zinc-800 hover:ring-4 ring-violet-700";
+    $currPage = Request::is('*orders*') ? "Orders" : "Account";
+    $orderLinkBg = Request::is('*orders*') ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900" : "bg-stone-200 dark:bg-zinc-800 hover:ring-4 ring-orange-500 dark:ring-violet-700";
+    $orderElemType = Request::is('*orders*') ? "div" : "a";
+    $accountLinkBg = Request::is('*account*') ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900" : "bg-stone-200 dark:bg-zinc-800 hover:ring-4 ring-orange-500 dark:ring-violet-700";
+    $accountElemType = Request::is('*account*') ? "div" : "a";
 @endphp
 <x-layouts.layout>
-    <x-slot:title>Keyosk | Account</x-slot:title>
+    <x-slot:title>Keyosk | {{ $currPage }}</x-slot:title>
 
     <section
         class="w-full h-fit pt-32 flex flex-col items-center"
@@ -12,16 +15,16 @@
             class="flex flex-row gap-x-5"
         >
             <x-util.button
-                type="a"
+                type="{{ $accountElemType }}"
                 href="/account"
-                class="w-96 {{ $accountLinkBg }} font-semibold transition-shadow duration-500"
+                class="{{ $accountLinkBg }} w-96 font-semibold transition-shadow duration-500"
             >
                 Account
             </x-util.button>
             <x-util.button
-                type="a"
+                type="{{ $orderElemType }}"
                 href="/orders"
-                class="w-96 {{ $orderLinkBg }} font-semibold transition-shadow duration-500"
+                class="{{ $orderLinkBg }} w-96 font-semibold transition-shadow duration-500"
             >
                 Orders
 

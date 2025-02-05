@@ -20,7 +20,7 @@
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
             <section class="w-full h-fit space-y-2 font-bold text-center mt-4">
-                    <p>Welcome, {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+                    <p>Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
                     <x-util.button  type="a" href="/" class="">
                         My Account
                     </x-util.button>
@@ -30,7 +30,7 @@
                     <x-util.button  type="a" href="/" class="">
                         Settings
                     </x-util.button>
-                
+
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
