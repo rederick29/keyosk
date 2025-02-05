@@ -60,6 +60,9 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
+    // User Route
+    Route::get('/account', [UserController::class, 'index'])->name('account.get');
+
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
         Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
@@ -68,5 +71,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::get('/admin/image-upload', [ImageUploaderController::class, 'index'])->name('image-upload.index');
         Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
         Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
+
+        Route::get('/user/{id}', [UserController::class, 'index'])->where('id', '[0-9]+');
     });
 });

@@ -12,6 +12,20 @@ use Exception;
 
 class UserController extends Controller
 {
+    public function index(int $id = null): View
+    {
+        if ($id === null) {
+            return view('account', ['user' => Auth::user()]);
+        }
+
+        try {
+            $user = User::findOrFail($id);
+            return view('account', compact('user'));
+        } catch (Exception $e) {
+            return view('account', ['user' => Auth::user()]);
+        }
+    }
+
     public function create(): View
     {
         return view('register');
