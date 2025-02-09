@@ -9,7 +9,7 @@ Author(s): Toms Xavi: Developer
     class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
-
+    
         <!-- Product Details -->
         <div class="flex-grow">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-gray-300 mb-2">Status:
@@ -34,7 +34,11 @@ Author(s): Toms Xavi: Developer
             class="buy-now-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
             View Products
         </button>
-    </div>
+        
+    {{ $prod }}
+    <x-util.order-subcard 
+                        productname="{{$order->products->select('name')}}">
+                    </x-util.order-subcard>
 </div>
 
 <style>

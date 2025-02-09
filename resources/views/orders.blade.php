@@ -12,8 +12,15 @@ Author(s): Kai Chima : Main Developer
             @forelse ($orders as $order)
                 <x-util.order-card
                     imageUrl="{{ optional($order->products->first()->images->first())->primaryImageLocation ?? 'Undefined' }}"
-                    status="{{ $order->status }}" date="{{ $order->created_at }}" price="{{ $order->total_price }}">
+                    status="{{ $order->status }}" date="{{ $order->created_at }}" price="{{ $order->total_price }}" 
+                    prod="{{ $order }}">  
+                     
                 </x-util.order-card>
+                
+                    <x-util.order-subcard 
+                        productname="{{$order->products->select('name')}}">
+                    </x-util.order-subcard>
+                
             @empty
                 <p class="text-zinc-800 dark:text-white">You have no orders yet.</p>
             @endforelse
