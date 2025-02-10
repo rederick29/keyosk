@@ -19,16 +19,17 @@
     <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
-            <section class="w-full h-fit space-y-2 font-bold text-center mt-4">
-                    <p>Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
-                    <x-util.button  type="a" href="/" class="">
+            <section class="w-full h-fit space-y-2 font-normal text-center">
+                    <p >Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
+                    <hr class="border-2 rounded-xl border-orange-500 dark:border-violet-700" />
+                    <x-util.button  type="a" href="/" class="font-semibold">
                         My Account
                     </x-util.button>
-                    <x-util.button  type="a" href="/orders" class="">
-                        My Orders
+                    <x-util.button  type="a" href="/orders" class="font-semibold">
+                        Orders
                     </x-util.button>
-                    <x-util.button  type="a" href="/" class="">
-                        Settings
+                    <x-util.button  type="a" href="/" class="font-semibold">
+                        Wishlist
                     </x-util.button>
 
                     <form action="/logout" method="POST">
