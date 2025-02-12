@@ -39,6 +39,9 @@ Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
+//Forgot Password route
+Route::view('/forgotpassword', 'forgotpassword')->name('forgotpassword');
+
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
 

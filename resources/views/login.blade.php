@@ -22,7 +22,7 @@
                     <div class="w-full flex flex-row justify-between">
                         <x-auth.form.label for="password">Password</x-auth.form.label>
                         <!-- Not sure where this should link as for now -->
-                        <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="/">Forgot Your Password?</a></span>
+                        <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="/forgotpassword">Forgot Your Password?</a></span>
                     </div>
                     <x-auth.form.input type="password" id="password" name="password" required/>
                     <x-auth.form.error name="password"/>
