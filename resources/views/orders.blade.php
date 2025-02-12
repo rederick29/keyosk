@@ -4,8 +4,7 @@ Orders page to be used as a view on website.
 Author(s): Kai Chima : Main Developer
 --}}
 
-<x-layouts.account-layout>
-    <x-slot:title>Keyosk | My Orders</x-slot:title>
+<x-layouts.account-layout :userId="$userId" :currentPage="'Orders'">
     <div class="bg-white dark:bg-zinc-950 h-fit w-full">
         <h2 class="pt-10 text-3xl font-semibold pb-6">My Orders</h2>
         <div class="flex flex-col">

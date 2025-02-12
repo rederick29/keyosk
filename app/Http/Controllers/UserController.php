@@ -10,8 +10,22 @@ use Illuminate\View\View;
 use App\Models\User;
 use Exception;
 
-class RegisterUserController extends Controller
+class UserController extends Controller
 {
+    public function index(int $userId = null): View
+    {
+        if ($userId === null) {
+            return view('account', ['user' => Auth::user()]);
+        }
+
+        try {
+            $user = User::findOrFail($userId);
+            return view('account', compact('user'));
+        } catch (Exception $e) {
+            return view('account', ['user' => Auth::user()]);
+        }
+    }
+
     public function create(): View
     {
         return view('register');
