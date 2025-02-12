@@ -6,7 +6,7 @@
 
 <x-layouts.admin-layout currentPage="Users">
     <section class="flex w-full h-screen items-center justify-center">
-        <div class="size-11/12 bg-white dark:bg-zinc-900 rounded-2xl p-6 shadow-2xl">
+        <div class="size-11/12 bg-white dark:bg-zinc-900 rounded-lg p-6 shadow-2xl">
             <div class="flex flex-col space-y-6">
                 <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
                     <input type="text" id="searchInput" placeholder="Search users..."
