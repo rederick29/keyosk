@@ -5,8 +5,7 @@ Author(s): Kai Chima : Main Developer
 --}}
 
 <x-layouts.account-layout :userId="$userId" :currentPage="'Orders'">
-    <div class="bg-white dark:bg-zinc-950 h-fit w-full">
-        <h2 class="pt-10 text-3xl font-semibold pb-6">My Orders</h2>
+    <section class="w-full bg-white dark:bg-zinc-950">
         <div class="flex flex-col">
             @forelse ($orders as $order)
                 <x-util.order-card
@@ -17,6 +16,5 @@ Author(s): Kai Chima : Main Developer
                 <p class="text-zinc-800 dark:text-white">You have no orders yet.</p>
             @endforelse
         </div>
-    </div>
-
+    </section>
 </x-layouts.account-layout>
