@@ -48,10 +48,10 @@
                 </section>
             @endauth
             @guest
-                <x-util.button  type="a" href="/login" class="">
+                <x-util.button  type="a" href="{{ route('login.get') }}" class="">
                     Log in
                 </x-util.button>
-                <x-util.button  type="a" href="/register" class="">
+                <x-util.button  type="a" href="{{ route('register.get') }}" class="">
                     Register
                 </x-util.button>
             @endguest
