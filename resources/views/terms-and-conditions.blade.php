@@ -14,7 +14,7 @@
             <div class="px-8">
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
                         Welcome to Keyosk's Terms & Conditions page. <br> <br>
@@ -27,7 +27,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Product Usage Terms</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Product Usage Terms</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         To ensure the proper use of Keyosk products, we have outlined the following usage terms:
                     </p>
@@ -67,7 +67,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Warranty Coverage & Terms
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Warranty Coverage & Terms
                     </h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Keyosk provides a limited warranty on all our products. Please read the following terms to
@@ -108,7 +108,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Intellectual Property</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Intellectual Property</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         All trademarks, logos, and designs related to Keyosk products are the exclusive property of
                         Keyosk. Unauthorized use of our intellectual property is prohibited and may result in legal
@@ -120,7 +120,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Governing Law</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Governing Law</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         This agreement is governed by the laws of the jurisdiction in which Keyosk is incorporated,
                         without regard to any conflict of laws principles. Any disputes arising from the use of Keyosk
