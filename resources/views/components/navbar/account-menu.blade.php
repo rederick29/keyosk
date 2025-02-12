@@ -41,7 +41,7 @@
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
                     @endif
 
-                    <form action="/logout" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Log Out</button>
                     </form>
