@@ -14,9 +14,11 @@
             class="hidden lg:block w-2/3 h-full bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
-        <div class="product-image h-32 w-32 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
-            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}" class="h-full w-full object-cover">
+        <div class="product-image h-32 w-32 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
+            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}" 
+                class="h-full w-full object-contain">
         </div>
+
 
         <!-- Product Details -->
         <div class="flex-grow">
@@ -136,4 +138,22 @@
         /* Center the content vertically */
         transition: all 0.3s ease;
     }
+
+    .product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem; /* Fixed width */
+    height: 8rem; /* Fixed height */
+    overflow: hidden; /* Prevents overflow */
+    border-radius: 0.5rem; /* Rounded edges */
+    background-color: #f5f5f5; /* Light background */
+    }
+
+    .product-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* Ensures full image fits without cropping */
+    }
+
 </style>
