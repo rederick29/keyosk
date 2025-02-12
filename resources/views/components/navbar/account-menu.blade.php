@@ -20,21 +20,21 @@
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
             <section class="w-full h-fit space-y-2 font-normal text-center">
-                    <p >Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
-                    <hr class="border-2 rounded-xl border-orange-500 dark:border-violet-700" />
-                    <x-util.button  type="a" href="/" class="font-semibold">
+                    <p class="py-1 font-semibold">Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
+                    <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
+                    <x-util.button  type="a" href="/" class="">
                         My Account
                     </x-util.button>
-                    <x-util.button  type="a" href="/orders" class="font-semibold">
+                    <x-util.button  type="a" href="/orders" class="">
                         Orders
                     </x-util.button>
-                    <x-util.button  type="a" href="/" class="font-semibold">
+                    <x-util.button  type="a" href="/" class="">
                         Wishlist
                     </x-util.button>
 
                     <form action="/logout" method="POST">
                         @csrf
-                        <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
+                        <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Log Out</button>
                     </form>
                 </section>
             @endauth
