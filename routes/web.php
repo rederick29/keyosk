@@ -65,6 +65,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
+        Route::get('/admin/manage-users', [AdminIndexController::class, 'index'])->name('manage-users');
         Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
         Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
 
@@ -72,6 +73,12 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::post('/admin/image-upload/db', [ImageUploaderController::class, 'store_db'])->name('image-upload.store_db');
         Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
 
+        Route::get('/admin/manage-orders', [OrdersController::class, 'manage_orders'])->name('manage-orders');
+        Route::get('/admin/manage-products', [ProductController::class, 'manage_products'])->name('manage-products');
+        Route::get('/admin/manage-users', [AdminIndexController::class, 'index'])->name('manage-users');
+        Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
+
+        // Only admins can view other people's accounts
         Route::get('/user/{userId}', [UserController::class, 'index'])->where('userId', '[0-9]+')->name('account.get.uid');
         Route::get('/user/{userId}/orders', [OrdersController::class, 'index'])->where('userId', '[0-9]+')->name('orders.get.uid');
     });

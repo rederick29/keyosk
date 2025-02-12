@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
 
 class OrdersController extends Controller
 {
@@ -20,5 +21,10 @@ class OrdersController extends Controller
             ->get();
 
         return view('orders', compact('orders', 'userId'));
+    }
+
+    public function manage_orders(): View
+    {
+        return view('manage-orders');
     }
 }
