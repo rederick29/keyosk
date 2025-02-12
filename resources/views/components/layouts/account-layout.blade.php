@@ -15,7 +15,7 @@
         class="w-full h-screen pt-24 flex items-center"
     >
         <aside
-            class="w-1/4 h-full flex flex-col gap-x-5 bg-zinc-800"
+            class="w-1/4 h-full flex flex-col gap-x-5 bg-stone-200 dark:bg-zinc-800"
         >
             <p class="pl-5 py-5 font-semibold">GENERAL</p>
             <x-util.button
