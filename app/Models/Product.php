@@ -16,6 +16,14 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'short_description',
+        'description',
+        'stock',
+        'price',
+    ];
+
     public function primaryImageLocation(): String | null
     {
         $image = $this->images->where('priority', '=', 0)->first();

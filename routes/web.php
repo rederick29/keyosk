@@ -81,5 +81,8 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         // Only admins can view other people's accounts
         Route::get('/user/{userId}', [UserController::class, 'index'])->where('userId', '[0-9]+')->name('account.get.uid');
         Route::get('/user/{userId}/orders', [OrdersController::class, 'index'])->where('userId', '[0-9]+')->name('orders.get.uid');
+
+        Route::get('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'index_edit'])->where('productId', '[0-9]+')->name('product.get.edit');
+        Route::post('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'update'])->where('productId', '[0-9]+')->name('product.update.pid');
     });
 });
