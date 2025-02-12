@@ -25,6 +25,6 @@ class OrdersController extends Controller
 
     public function manage_orders(): View
     {
-        return view('manage-users');
+        return view('manage-orders');
     }
 }
