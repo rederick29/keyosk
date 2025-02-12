@@ -20,7 +20,7 @@ class AdminIndexController extends Controller
      * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function index(Request $request): View
+    public function manageUsers(Request $request): View
     {
         $validated = $request->validate([
             'search' => ['nullable', 'string', 'max:255'],
@@ -59,7 +59,7 @@ class AdminIndexController extends Controller
             ->paginate(24)
             ->withQueryString();
 
-        return view('admin-index', compact('users'));
+        return view('manage-users', compact('users'));
     }
 
     /**
