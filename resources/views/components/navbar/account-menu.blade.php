@@ -19,21 +19,31 @@
     <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
-            <section class="w-full h-fit space-y-2 font-bold text-center mt-4">
-                    <p>Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
-                    <x-util.button  type="a" href="{{ route('account.get') }}" class="">
+            <section class="w-full h-fit space-y-2 font-normal text-center">
+                    <p class="py-1 font-semibold">Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
+                    <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
+                    <x-util.button  type="a" href="{{ route('account.get') }}">
                         My Account
                     </x-util.button>
-                    <x-util.button  type="a" href="{{ route('orders.get') }}" class="">
-                        My Orders
+                    <x-util.button  type="a" href="{{ route('orders.get') }}">
+                        Orders
                     </x-util.button>
-                    <x-util.button  type="a" href="/" class="">
-                        Settings
+                    <x-util.button  type="a" href="/">
+                        Wishlist
                     </x-util.button>
+
+                    <!-- Admin Buttons -->
+                    @if(Auth::user()->is_admin)
+                        <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
+                        <x-util.button  type="a" href="{{ route('admin.index') }}" class="bg-gradient-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 hover:dark:from-violet-700 hover:dark:to-pink-700 text-white">
+                            Admin Dashboard
+                        </x-util.button>
+                        <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
+                    @endif
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-700 dark:hover:bg-red-800 text-white">Log Out</button>
+                        <button type="submit" name="logout" class="dropdown-link  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Log Out</button>
                     </form>
                 </section>
             @endauth
