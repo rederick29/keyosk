@@ -40,7 +40,7 @@ Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
-Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+');
+Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
 
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
