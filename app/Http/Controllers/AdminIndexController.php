@@ -20,7 +20,7 @@ class AdminIndexController extends Controller
      * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function manageUsers(Request $request): View
+    public function index(Request $request): View
     {
         $validated = $request->validate([
             'search' => ['nullable', 'string', 'max:255'],

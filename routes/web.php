@@ -65,7 +65,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
-        Route::get('/admin/manage-users', [AdminIndexController::class, 'manageUsers'])->name('manage-users');
+        Route::get('/admin/manage-users', [AdminIndexController::class, 'index'])->name('manage-users');
         Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
         Route::post('/admin/users/bulk-action', [AdminIndexController::class, 'bulkAction'])->name('users.bulk-action');
 
