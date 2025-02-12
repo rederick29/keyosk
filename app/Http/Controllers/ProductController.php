@@ -16,23 +16,4 @@ class ProductController extends Controller
             return redirect('/')->with('error', 'Product not found');
         }
     }
-
-    public function carousel()
-    {
-        // Fetch the latest 10 products from the database
-        $products = Product::latest()->take(10)->get();
-
-        // Debugging: Check if products exist
-        if ($products->isEmpty()) {
-            \Log::error("❌ No products found for carousel.");
-        } else {
-            \Log::info("✅ Products loaded for carousel:", $products->toArray());
-        }
-
-        // Dump the data and stop execution to check if products exist
-        dd($products);
-
-        return view('components.carousel', ['products' => $products]);
-    }
-
 }

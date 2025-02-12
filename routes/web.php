@@ -42,9 +42,6 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
 
-// Carousel view
-Route::get('/carousel', [ProductController::class, 'carousel'])->name('carousel');
-
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
 
@@ -61,7 +58,6 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 
     // Admin Routes (must be logged in)

@@ -1,4 +1,4 @@
-{{-- 
+{{--
 Author(s): Toms Xavi : Developer
 Item Card Component --}}
 
@@ -13,14 +13,14 @@ Item Card Component --}}
 ])
 
 <div class="relative w-72 h-[360px] bg-stone-200 dark:bg-zinc-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 flex flex-col border-2 border-orange-500 dark:border-violet-700 cursor-pointer group">
-    
+
     <!-- Clickable overlay to go to product page -->
     <a href="{{ $id ? route('product.view', ['id' => $id]) : '#' }}" class="absolute inset-0 z-10"></a>
 
     <!-- Product Image -->
     <div class="bg-stone-300 dark:bg-black flex justify-center items-center py-3">
-        <img src="{{ $image ? asset('storage/' . $image) : asset('images/placeholder.jpg') }}" 
-             alt="{{ $alt }}" 
+        <img src="{{ $image ? $image : asset('images/placeholder.jpg') }}"
+             alt="{{ $alt }}"
              class="h-24 w-auto object-contain">
     </div>
 
