@@ -114,4 +114,16 @@ class AdminIndexController extends Controller
 
         return response()->json(['message' => 'Action performed successfully']);
     }
+
+    public function manage_users(): View
+    {
+        return view('manage-users');
+    }
+
+    public function stats(): View
+    {
+        // TODO: query the db and get the stats.
+
+        return view('stats');
+    }
 }
