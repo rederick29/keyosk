@@ -74,6 +74,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::post('/admin/image-upload/static', [ImageUploaderController::class, 'store_static'])->name('image-upload.store_static');
 
         Route::get('/admin/manage-orders', [OrdersController::class, 'manage_orders'])->name('manage-orders');
+        Route::get('/admin/manage-products', [ProductController::class, 'manage_products'])->name('manage-products');
         Route::get('/admin/manage-users', [AdminIndexController::class, 'index'])->name('manage-users');
         Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
 
