@@ -4,9 +4,9 @@ product-card component.
 Author(s): Toms Xavi: Developer
 --}}
 
+@props(['oproducts', 'date', 'status', 'price', 'id'])
 
-<div
-    class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
+<div class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6 lg:mx-20">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
     
@@ -30,18 +30,38 @@ Author(s): Toms Xavi: Developer
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4">
         <!-- View Products Button -->
-        <button
+        <button onclick="view({{ $id }})"
             class="buy-now-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
             View Products
         </button>
-        
-    {{ $prod }}
-    <x-util.order-subcard 
-                        productname="{{$order->products->select('name')}}">
-                    </x-util.order-subcard>
+    </div>
+    <div id="{{ $id }}" style="display: none;">
+    @foreach ($oproducts as $oprod)
+        <x-util.order-subcard 
+            :productname="$oprod->name">
+        </x-util.order-subcard>
+    @endforeach
+    </div>    
+    
 </div>
 
+<script>
+    function view(id){
+        var v = document.getElementById(id)
+        if(v.style.display === "none"){
+            v.style.display="block";
+        } else{
+            v.style.display="none";
+        }
+        
+    }
+</script>
+
 <style>
+    #viewprod {
+        display: none;
+    }
+
     /* Styling for Quantity Selector */
     .quantity-selector input {
         appearance: none;
