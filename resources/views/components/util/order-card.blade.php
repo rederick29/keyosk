@@ -1,7 +1,7 @@
 {{--
 product-card component.
 
-Author(s): Toms Xavi: Developer
+Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 --}}
 
 @props(['oproducts', 'date', 'status', 'price', 'id'])
@@ -38,7 +38,7 @@ Author(s): Toms Xavi: Developer
     <div id="{{ $id }}" style="display: none;">
     @foreach ($oproducts as $oprod)
         <x-util.order-subcard 
-            :productname="$oprod->name">
+            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'">
         </x-util.order-subcard>
     @endforeach
     </div>    
