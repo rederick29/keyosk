@@ -1,6 +1,6 @@
 <x-layouts.account-layout :userId="$user->id" :currentPage="'Account'">
-    <section class="">
-
+    <form action="{{ \Illuminate\Support\Facades\Auth::user()->is_admin ? route('account.edit.uid', ['userId' => $user->id]) : route('account.edit') }}" method="POST" class="">
+        @csrf
         <div class="w-full justify-between flex px-2">
             <div class="flex-col">
                 <h1
@@ -17,143 +17,138 @@
 
         <!-- Full Name -->
 
-        <form class="w-full px-2 py-5 gap-y-5 flex flex-col">
+        <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
             <div>
                 <p class="font-semibold">Full name</p>
                 <p class="dark:text-white/50">View or edit contact name</p>
             </div>
-            @csrf
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
                     <x-auth.form.label
-                        for="current-password"
+                        for="first_name"
                         class="ml-0"
                     >
                         First name
                     </x-auth.form.label>
                     <x-auth.form.input
-                        id="current-password"
-                        name="current-password"
+                        id="first_name"
+                        name="first_name"
                         class=""
-                        required
+                        placeholder="{{$user->first_name}}"
                     />
                     <x-auth.form.error
-                        name="current-password"
+                        name="first_name"
                     />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
                     <x-auth.form.label
-                        for="new-password"
+                        for="last_name"
                         class="ml-0"
                     >
                         Last name
                     </x-auth.form.label>
                     <x-auth.form.input
-                        type="new-password"
-                        id="new-password"
-                        name="new-password"
-                        required
+                        id="last_name"
+                        name="last_name"
+                        placeholder="{{$user->last_name}}"
                     />
                     <x-auth.form.error
-                        name="new-password"
+                        name="last_name"
                     />
                 </div>
             </div>
-        </form>
+        </section>
 
         <hr class="border-zinc-800 border-1" />
 
         <!-- Contact Email -->
 
-        <form class="w-full px-2 py-5 flex flex-col gap-y-5">
+        <section class="w-full px-2 py-5 flex flex-col gap-y-5">
             <div>
                 <p class="font-semibold">Contact Email</p>
                 <p class="dark:text-white/50">View or edit contact email</p>
             </div>
-            @csrf
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
                     <x-auth.form.label
-                        for="current-password"
+                        for="email"
                         class="ml-0"
                     >
                         Email
                     </x-auth.form.label>
                     <x-auth.form.input
-                        id="current-password"
-                        name="current-password"
+                        id="email"
+                        name="email"
                         class=""
-                        required
+                        type="email"
+                        placeholder="{{ $user->email }}"
                     />
                     <x-auth.form.error
-                        name="current-password"
+                        name="email"
                     />
                 </div>
             </div>
-        </form>
+        </section>
 
         <hr class="border-zinc-800 border-1" />
 
         <!-- Password -->
 
-        <form class="w-full px-2 py-5 gap-y-5 flex flex-col">
+        <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
             <div>
                 <p class="font-semibold">Password</p>
                 <p class="dark:text-white/50">Modify the current account password</p>
             </div>
-            @csrf
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
                     <x-auth.form.label
-                        for="current-password"
+                        for="current_password"
                         class="ml-0"
                     >
                         Current Password
                     </x-auth.form.label>
                     <x-auth.form.input
-                        id="current-password"
-                        name="current-password"
+                        id="current_password"
+                        name="current_password"
+                        type="password"
                         class=""
-                        required
                     />
                     <x-auth.form.error
-                        name="current-password"
+                        name="current_password"
                     />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
                     <x-auth.form.label
-                        for="new-password"
+                        for="new_password"
                         class="ml-0"
                     >
                         New Password
                     </x-auth.form.label>
                     <x-auth.form.input
-                        type="new-password"
-                        id="new-password"
-                        name="new-password"
-                        required
+                        id="new_password"
+                        name="new_password"
+                        type="password"
                     />
                     <x-auth.form.error
-                        name="new-password"
+                        name="new_password"
                     />
                 </div>
             </div>
-        </form>
+        </section>
 
         <hr class="border-zinc-800 border-1" />
 
         <!-- Account Security -->
 
-        <form class="w-full px-2 py-5 gap-y-5 flex flex-col">
+        <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
             <div>
                 <p class="font-semibold">Account Security</p>
                 <p class="dark:text-white/50">Manage account security</p>
             </div>
-            @csrf
             <div class="flex gap-x-5">
                 <x-util.button type="button" class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Delete Account</x-util.button>
                 <x-util.button type="button" class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Log Out</x-util.button>
             </div>
-        </form>
-    </section>
+        </section>
+    </form>
 </x-layouts.account-layout>
