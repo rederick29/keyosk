@@ -74,8 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             // If the value has changed, update the URL
-            if (search.value.trim() !== ''
-                || !isSearchSame()) {
+            if (!isSearchSame()) {
                 updateUrlParam('search', search.value);
             }
         }
