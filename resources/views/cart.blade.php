@@ -43,7 +43,7 @@
                     </p>
                 </div>
                 <div class="pt-5">
-                    <x-util.button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700  text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white" type="button">Checkout Securely</x-util.button>
+                    <x-util.button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700  text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white" type="button">Checkout</x-util.button>
                 </div>
             </section>
         @endif
