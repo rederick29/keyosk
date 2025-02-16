@@ -3,11 +3,6 @@
 
     <main class="w-full h-fit flex justify-center pt-32 pb-[32px]">
         <div class="px-5 w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
-
-            <!--
-                Here there will be an aside with filters etc. but this has been removed for the sake of completing MVP
-            -->
-
             <div class="w-full h-full flex flex-col space-y-5">
                 <section
                     class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
