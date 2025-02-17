@@ -3,7 +3,7 @@
 
     Author(s): Erick Vilcica: Main Developer
 --}}
-<x-layouts.admin-layout currentPage="Image">
+<x-layouts.admin-layout :currentPage="'Image'">
     <section>
         <div>
             <h3>Product Image Uploader</h3>
