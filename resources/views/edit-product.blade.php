@@ -13,17 +13,16 @@
             <form class="edit-product-form" method="POST" action="{{ route('product.update.pid', ['productId' => $product->id]) }}">
                 @csrf
                 <div class="flex flex-col justify-start gap-2">
-                    <label for="product_name">Product name:</label>
+                    <x-util.form.label for="product_name">Product name:</x-util.form.label>
                     <x-util.form.input type="text" id="product_name" name="product_name" required value="{{ $product->name }}" />
-                    <label for="product_short_desc">Product short description:</label>
+                    <x-util.form.label for="product_short_desc">Product short description:</x-util.form.label>
                     <x-util.form.input type="text" id="product_short_desc" name="product_short_desc" required value="{{ $product->short_description }}" />
-                    <label for="product_desc">Product description:</label>
+                    <x-util.form.label for="product_desc">Product description:</x-util.form.label>
                     <x-util.form.input type="text" id="product_desc" name="product_desc" required value="{{ $product->description }}" />
-                    <label for="product_stock">Product stock:</label>
+                    <x-util.form.label for="product_stock">Product stock:</x-util.form.label>
                     <x-util.form.input type="number" id="product_stock" name="product_stock" required value="{{ $product->stock }}" />
-                    <label for="product_price">Product price:</label>
+                    <x-util.form.label for="product_price">Product price:</x-util.form.label>
                     <x-util.form.input type="number" step="0.01" id="product_price" name="product_price" required value="{{ $product->price }}" />
-                    <br>
                     <input type="submit">
                 </div>
             </form>
