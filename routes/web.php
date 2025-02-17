@@ -59,6 +59,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');

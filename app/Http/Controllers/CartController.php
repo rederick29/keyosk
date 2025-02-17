@@ -10,6 +10,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Validation\Rule;
+use App\Models\Order;
+use App\Models\Order\OrderStatus;
+use DebugBar\DebugBar;
 
 class CartController extends Controller
 {
@@ -80,5 +83,68 @@ class CartController extends Controller
             default:
                 throw new \InvalidArgumentException('Invalid cart action');
         }
+    }
+
+    public function checkout(Request $request): JsonResponse
+    {
+        $validatedData = $request->validate([
+            // Address (will be used for both billing and shipping)
+            'address.line_one' => ['required', 'string', 'max:255'],
+            'address.line_two' => ['nullable', 'string', 'max:255'],
+            'address.city' => ['required', 'string', 'max:100'],
+            // 'address.country_id' => ['required', 'exists:countries,id'],, // TODO: hmm
+            'address.postcode' => ['required', 'string', 'max:20'],
+        ]);
+
+        $user = Auth::user();
+        $cart = $user->cart;
+        if (!$cart->hasProducts()) {
+            return response()->json(['error' => 'Cart is empty']);
+        }
+
+        // Line one/two, city, and postcode are required for an address
+        // We will use these fields to search for an existing address or create a new one
+        $searchCriteria = [
+            'line_one' => $validatedData['address']['line_one'],
+            'city' => $validatedData['address']['city'],
+            'postcode' => $validatedData['address']['postcode']
+        ];
+
+        // Add line_two to criteria if it exists, otherwise explicitly set to null
+        $searchCriteria['line_two'] = !empty($validatedData['address']['line_two'])
+            ? $validatedData['address']['line_two']
+            : null;
+
+        // Create the address
+        $priority = $user->addresses->isEmpty() ? 0 : $user->addresses->max('priority') + 1;
+        $address = $user->addresses()->firstOrCreate(
+            $searchCriteria,
+            [
+                'name' => $user->name,
+                'country_id' => 1, // TODO: Replace with actual country ID
+                'priority' => $priority
+            ]
+        );
+
+        $order = Order::create([
+            'user_id' => $user->id,
+            'address_id' => $address->id,
+            'status' => OrderStatus::Pending,
+            'total_price' => $cart->getTotalPrice()
+        ]);
+
+        // Attach products to the order
+        $cart->products->each(function ($product) use ($order) {
+            $order->products()->attach($product->id, [
+                'price' => $product->price,
+                'quantity' => $product->pivot->quantity,
+            ]);
+        });
+
+        // Some stuff here about taking the money out of the account, sending it to the warehouse, etc.
+        // We will just simulate it by emptying the cart
+        $cart->emptyCart();
+
+        return response()->json(['success' => 'Checkout successful']);
     }
 }

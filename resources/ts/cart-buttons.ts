@@ -1,4 +1,4 @@
-import {CustomWindow, handle_response, SimpleResponse} from "@ts/utils.ts";
+import { CustomWindow, handle_response, SimpleResponse } from "@ts/utils.ts";
 // TODO: rewrite this entire file
 
 declare let window: CustomWindow;
@@ -326,6 +326,7 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
         } else if (quantity < 1) {
             throw new Error("Quantity needs to be greater than 0.");
         }
+
         await window.axios
             .post<SimpleResponse>(window.location.origin + "/cart/update",
                 { cart_action: cart_action, quantity: quantity, product_id: productId },

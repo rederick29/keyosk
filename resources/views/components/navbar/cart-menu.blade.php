@@ -52,7 +52,8 @@
                 @endif
             </div>
             <div class="h-[12px]"></div>
-            <x-util.button type="a" href="/"
+            @vite('resources/ts/checkout.ts')
+            <x-util.button type="a" data-checkout-button
                 class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                 Checkout</x-util.button>
             <div class="h-[12px]"></div>

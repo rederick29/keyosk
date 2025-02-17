@@ -36,7 +36,7 @@ class AddressFactory extends Factory
 
     public function withoutUserSaved(User $user): Factory|AddressFactory
     {
-        return $this->state(function (array $attributes) use ($user){
+        return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
                 'name' => $user->name,
@@ -48,8 +48,7 @@ class AddressFactory extends Factory
 
     public function forUser(User $user): Factory|AddressFactory
     {
-        return $this->state(function (array $attributes) use ($user)
-        {
+        return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
                 'name' => $user->name,

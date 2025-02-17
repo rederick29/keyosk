@@ -12,6 +12,17 @@ class Address extends Model
     /** @use HasFactory<\Database\Factories\AddressFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'line_one',
+        'line_two',
+        'city',
+        'postcode',
+        'country_id',
+        'priority',
+        'user_id'
+    ];
+
     function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
