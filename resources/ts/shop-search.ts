@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the selected index of the sort by select element
     if (urlParams.has('sort')) {
         const sortOptions: { [key: string]: number } = {
-            'best_selling': 0,
-            'date': 1,
+            'date': 0,
+            'best_selling': 1,
             'price_low_to_high': 2,
             'price_high_to_low': 3
         };

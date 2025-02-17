@@ -16,7 +16,7 @@
             <a href="/shop" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
                 Shop
             </a>
-            <a href="/shop" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
+            <a href="/shop?sort=best_selling" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
                 Popular
             </a>
             <a href="/shop?sort=date" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
