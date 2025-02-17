@@ -20,7 +20,7 @@
             <x-util.button  type="a" href="/shop" class="">
                 Best Selling
             </x-util.button>
-            <x-util.button  type="a" href="/shop" class="">
+            <x-util.button  type="a" href="/shop?sort=price_low_to_high" class="">
                 Sale
             </x-util.button>
         </div>

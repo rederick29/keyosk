@@ -22,19 +22,22 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::all()->random();
         return [
             'status' => fake()->randomElement(OrderStatus::getEnumValues()),
-            'user_id' => fake()->randomElement(DB::Table('users')->pluck('id')),
+            'user_id' => $user->id,
+            'address_id' => $user->addresses->random(),
             'total_price' => fake()->randomFloat(2, 10, 100),
         ];
     }
 
-    public function forUser(User $user): Factory|UserFactory
+    public function forUser(User $user): Factory|OrderFactory
     {
         return $this->state(function (array $attributes) use ($user)
         {
            return [
                'user_id' => $user->id,
+               'address_id' => $user->addresses->random(),
            ];
         });
     }

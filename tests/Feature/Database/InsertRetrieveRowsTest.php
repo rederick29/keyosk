@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Database;
 
+use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Country;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\Order\OrderStatus;
@@ -14,17 +16,20 @@ use App\Models\Tag\ColourTag;
 use App\Models\Tag\CompatibilityTag;
 use App\Models\Tag\TagType;
 use App\Models\User;
+use App\Utils\CountryCodes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\Depends;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertEquals;
 
 class InsertRetrieveRowsTest extends TestCase
 {
     use RefreshDatabase;
 
-    static private string $userName = 'Erick';
+    static private string $userFName = 'Erick';
+    static private string $userLName = 'Someone';
     static private string $userEmail = 'rederick29@example.com';
     static private string $userPassword = 'writingTests';
 
@@ -33,15 +38,20 @@ class InsertRetrieveRowsTest extends TestCase
     static private int $productStock = 5;
     static private float $productPrice = 39.99;
 
+    static private string $country_name = 'United Kingdom of Great Britain and Northern Ireland';
+    static private array $text_address = ['Aston University', 'Aston Triangle', 'Birmingham', 'B4 7ET'];
+
     private User|null $testUser;
     private Product|null $testProduct;
+    private Address|null $testAddress;
 
     public function setUp(): void
     {
         parent::setUp();
 
         $this->testUser = User::factory()->create([
-            'name' => self::$userName,
+            'first_name' => self::$userFName,
+            'last_name' => self::$userLName,
             'email' => self::$userEmail,
             'password' => Hash::make(self::$userPassword),
         ]);
@@ -52,6 +62,21 @@ class InsertRetrieveRowsTest extends TestCase
             'stock' => self::$productStock,
             'price' => self::$productPrice,
         ]);
+
+        $country_code = array_flip(CountryCodes::get_codes())[self::$country_name];
+        $country = Country::factory()->create([
+            'code' => $country_code,
+        ]);
+
+        $this->testAddress = Address::factory()
+            ->forUser($this->testUser)
+            ->create([
+                'line_one' => self::$text_address[0],
+                'line_two' => self::$text_address[1],
+                'city' => self::$text_address[2],
+                'postcode' => self::$text_address[3],
+                'country_id' => $country->id,
+            ]);
     }
 
     public function tearDown(): void
@@ -66,14 +91,13 @@ class InsertRetrieveRowsTest extends TestCase
     {
         $newUser = User::find($this->testUser->id);
         $this->assertNotNull($newUser);
-        $this->assertEquals(self::$userName, $newUser->name);
+        $this->assertEquals(self::$userFName, $newUser->first_name);
         $this->assertEquals(self::$userEmail, $newUser->email);
         $this->assertTrue(Hash::check(self::$userPassword, $newUser->password));
     }
 
     #[Depends('test_users')] public function test_products()
     {
-
         $newProduct = Product::find($this->testProduct->id);
         $this->assertNotNull($newProduct);
         $this->assertEquals(self::$productName, $newProduct->name);
@@ -84,7 +108,15 @@ class InsertRetrieveRowsTest extends TestCase
         $this->testProduct = $newProduct;
     }
 
-    #[Depends('test_products')] public function test_orders()
+    #[Depends('test_products')] public function test_addresses()
+    {
+        $new_address = Address::find($this->testAddress->id);
+        $this->assertEquals(self::$country_name, CountryCodes::get_codes()[$new_address->country->code]);
+        $this->assertEquals(self::$text_address[0], $new_address->line_one);
+        $this->assertEquals($this->testUser->id, $new_address->user->id);
+    }
+
+    #[Depends('test_addresses')] public function test_orders()
     {
         $status = OrderStatus::Processing;
 
@@ -101,6 +133,7 @@ class InsertRetrieveRowsTest extends TestCase
         $this->assertEquals($this->testUser->id, $newOrder->user->id);
         $this->assertEquals($this->testProduct->id, $newOrder->products->first()->id);
         $this->assertEquals($this->testProduct->price, $newOrder->total_price);
+        $this->assertEquals($this->testAddress->id, $newOrder->address->id);
     }
 
     #[Depends('test_products')] public function test_reviews()

@@ -39,13 +39,27 @@ class ShopPageController extends Controller
                     $query->where(DB::raw('lower(name)'), $likeOperator, "%{$search}%")
                         ->orWhere(DB::raw('lower(description)'), $likeOperator, "%{$search}%");
                 });
-
             })
             ->when($sort, function ($query, $sort) {
                 switch ($sort) {
                     case 'best_selling':
-                        // TODO: tally the amount of Orders for each Product and sort by that (not implemented)
-                        $query->orderBy('created_at');
+                        $query->leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
+                            ->select([
+                                'products.*',
+                                DB::raw('COALESCE(SUM(order_product.quantity), 0) as total_sold')
+                            ])
+                            ->groupBy([
+                                'products.id',
+                                'products.name',
+                                'products.short_description',
+                                'products.description',
+                                'products.stock',
+                                'products.price',
+                                'products.created_at',
+                                'products.updated_at'
+                            ])
+                            ->orderBy('total_sold', 'desc');
+                        break;
                         break;
                     case 'price_high_to_low':
                         $query->orderBy('price', 'desc');

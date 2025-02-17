@@ -16,7 +16,8 @@ class UserSeeder extends Seeder
     {
         // Sohail is the admin, the leader.
         $user = User::factory()->create([
-            'name' => 'sohail',
+            'first_name' => 'sohail',
+            'last_name' => 'admin',
             'email' => 'sohail@aston.ac.uk',
             'password' => Hash::make(env('ADMIN_PASSWORD', 'password'))
         ]);
@@ -27,7 +28,8 @@ class UserSeeder extends Seeder
 
         // Richard is Sohail's favourite subject.
         User::factory()->create([
-            'name' => 'richard',
+            'first_name' => 'richard',
+            'last_name' => 'the best',
             'email' => 'richard@aston.ac.uk',
             'password' => Hash::make(env('TEST_PASSWORD', 'password')),
         ]);
