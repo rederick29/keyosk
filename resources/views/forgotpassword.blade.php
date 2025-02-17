@@ -1,3 +1,8 @@
+{{--
+    User profile login page.
+
+    Author(s): Mohammed Mousa: Front-end Developer
+--}}
 <x-layouts.min-layout>
     <div class="flex flex-col items-center justify-center space-y-10 h-screen w-full bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500">
         <div class="h-fit w-11/12 md:w-3/4 lg:w-1/3 p-10 flex flex-col justify-center rounded-2xl bg-stone-100 dark:bg-zinc-900">
@@ -17,8 +22,13 @@
                     <x-auth.form.input id="emailaddress" name="emailaddress" required/>
                     <x-auth.form.error name="emailaddress"/>
                 </div>
-                
+                <div class="w-full flex flex-row items-center justify-end mt-3 space-x-5">
+                    <button type="submit" class="w-32 h-12 font-semibold rounded-md bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-600 transition-all duration-500">
+                        Submit
+                    </button>
+                </div>
             </form>
+            <x-util.colormode-switcher></x-util.colormode-switcher>
         </div>
     </div>
 </x-layouts.min-layout>
