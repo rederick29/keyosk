@@ -6,11 +6,12 @@ on:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
       - name: Copy files to remote server
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
