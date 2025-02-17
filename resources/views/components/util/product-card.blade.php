@@ -15,7 +15,7 @@
 
         <!-- Product Image -->
         <div class="product-image h-32 w-32 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
-            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}" 
+            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}"
                 class="h-full w-full object-contain">
         </div>
 
