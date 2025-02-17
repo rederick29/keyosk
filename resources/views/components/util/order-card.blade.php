@@ -1,5 +1,5 @@
 {{--
-product-card component.
+Order-card component.
 
 Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 --}}
