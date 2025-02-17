@@ -71,6 +71,11 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
     public function isAdmin(): bool
     {
         return $this->is_admin;
