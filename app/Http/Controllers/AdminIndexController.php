@@ -55,7 +55,7 @@ class AdminIndexController extends Controller
         // Order by the currently authenticated user first, then by admin status, then by name
         $users = $query->orderByRaw('id = ? desc', [Auth::id()])
             ->orderBy('is_admin', 'desc')
-            ->orderBy('name')
+            ->orderBy('last_name')
             ->paginate(24)
             ->withQueryString();
 

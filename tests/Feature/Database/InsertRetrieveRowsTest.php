@@ -28,7 +28,8 @@ class InsertRetrieveRowsTest extends TestCase
 {
     use RefreshDatabase;
 
-    static private string $userName = 'Erick';
+    static private string $userFName = 'Erick';
+    static private string $userLName = 'Someone';
     static private string $userEmail = 'rederick29@example.com';
     static private string $userPassword = 'writingTests';
 
@@ -49,7 +50,8 @@ class InsertRetrieveRowsTest extends TestCase
         parent::setUp();
 
         $this->testUser = User::factory()->create([
-            'name' => self::$userName,
+            'first_name' => self::$userFName,
+            'last_name' => self::$userLName,
             'email' => self::$userEmail,
             'password' => Hash::make(self::$userPassword),
         ]);
@@ -89,7 +91,7 @@ class InsertRetrieveRowsTest extends TestCase
     {
         $newUser = User::find($this->testUser->id);
         $this->assertNotNull($newUser);
-        $this->assertEquals(self::$userName, $newUser->name);
+        $this->assertEquals(self::$userFName, $newUser->first_name);
         $this->assertEquals(self::$userEmail, $newUser->email);
         $this->assertTrue(Hash::check(self::$userPassword, $newUser->password));
     }

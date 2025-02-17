@@ -71,6 +71,7 @@
                                             @endif
                                         </span>
                                     @endif
+                                    <a class="text-violet-700 underline underline-offset-4 hover:underline-offset-2 transition-all duration-200 ease-in-out" href="{{ route('account.get.uid', ['userId' => $user->id]) }}">View</a>
                                 </div>
                         </label>
                     </div>
