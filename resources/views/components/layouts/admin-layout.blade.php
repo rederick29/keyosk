@@ -6,19 +6,19 @@
     $is_images = $currentPage === 'Image';
     $is_products = $currentPage === 'Products';
 
-    $statsStyle = $is_stats ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-violet-700" : "bg-stone-200 dark:bg-zinc-900 ring-zinc-600";
+    $statsStyle = $is_stats ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $statsType = $is_stats ? "div" : "a";
 
-    $usersStyle = $is_users ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-violet-700" : "bg-stone-200 dark:bg-zinc-900 ring-zinc-600";
+    $usersStyle = $is_users ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $usersType = $is_users ? "div" : "a";
 
-    $ordersStyle = $is_orders ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-violet-700" : "bg-stone-200 dark:bg-zinc-900 ring-zinc-600";
+    $ordersStyle = $is_orders ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $ordersType = $is_orders ? "div" : "a";
 
-    $productsStyle = $is_products ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-violet-700" : "bg-stone-200 dark:bg-zinc-900 ring-zinc-600";
+    $productsStyle = $is_products ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $productsType = $is_products ? "div" : "a";
 
-    $imagesStyle = $is_images ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-violet-700" : "bg-stone-200 dark:bg-zinc-900 ring-zinc-600";
+    $imagesStyle = $is_images ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $imagesType = $is_images ? "div" : "a";
 
     // $accountRoute = $userId == Illuminate\Support\Facades\Auth::id() ? route('account.get') : route('account.get.uid', compact('userId'));
@@ -54,7 +54,7 @@
             <x-util.button
                 type="{{ $usersType }}"
                 href="{{ route('manage-users') }}"
-                class="justify-start {{ $usersStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
+                class="justify-start {{ $usersStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500 cursor-pointer"
             >
                 <div
                     class="p-2 bg-stone-300 dark:bg-zinc-700 rounded-md ring-inherit ring-2"
@@ -66,7 +66,7 @@
             <x-util.button
                 type="{{ $ordersType }}"
                 href="{{ route('manage-orders') }}"
-                class="justify-start {{ $ordersStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
+                class="justify-start {{ $ordersStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500 cursor-pointer"
             >
                 <div
                     class="p-2 bg-stone-300 dark:bg-zinc-700 rounded-md ring-inherit ring-2"
@@ -78,7 +78,7 @@
             <x-util.button
                 type="{{ $productsType }}"
                 href="{{ route('manage-products') }}"
-                class="justify-start {{ $productsStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
+                class="justify-start {{ $productsStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500 cursor-pointer"
             >
                 <div
                     class="p-2 bg-stone-300 dark:bg-zinc-700 rounded-md ring-inherit ring-2"
@@ -90,7 +90,7 @@
             <x-util.button
                 type="{{ $imagesType }}"
                 href="{{ route('image-upload.index') }}"
-                class="justify-start {{ $imagesStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
+                class="justify-start {{ $imagesStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500 cursor-pointer"
             >
                 <div
                     class="p-2 bg-stone-300 dark:bg-zinc-700 rounded-md shadow-xl ring-inherit ring-2"
@@ -102,11 +102,11 @@
 
             <div class="flex absolute bottom-2 left-2">
                 <x-util.colormode-switcher></x-util.colormode-switcher>
-                <!--
-                <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M9 22V12h6v10M2 10.6L12 2l10 8.6"/></svg>
-                </a>
-                -->
+                @if(Auth::user()->is_admin)
+                    <a href="{{ route('account.get') }}" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700 rounded-lg p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+                    </a>
+                @endif
             </div>
         </aside>
 

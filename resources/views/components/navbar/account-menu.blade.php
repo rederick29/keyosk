@@ -35,7 +35,7 @@
                     <!-- Admin Buttons -->
                     @if(Auth::user()->is_admin)
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
-                        <x-util.button  type="a" href="{{ route('manage-users') }}" class="bg-gradient-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 hover:dark:from-violet-700 hover:dark:to-pink-700 text-white">
+                        <x-util.button  type="a" href="{{ route('stats') }}" class="bg-gradient-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 hover:dark:from-violet-600 hover:dark:to-pink-600 text-white">
                             Admin Dashboard
                         </x-util.button>
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
