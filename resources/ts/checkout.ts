@@ -2,13 +2,13 @@ import axios from 'axios';
 import toastr from 'toastr';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const checkoutButtons = document.querySelectorAll('[data-checkout-button]');
 
-    const checkoutButton = document.querySelector('[data-checkout-button]');
-    if (checkoutButton) {
-        checkoutButton.addEventListener('click', (event) => {
+    checkoutButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
             event.preventDefault();
-            const button = event.currentTarget as HTMLButtonElement;
-            button.disabled = true;
+            const currentButton = event.currentTarget as HTMLButtonElement;
+            currentButton.disabled = true;
 
             axios.post('/cart/checkout', {
                 address: {
@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (data.error) {
                         toastr.error(data.error);
-                        button.disabled = false;
+                        currentButton.disabled = false;
                     }
                 }
             }).catch((error) => {
                 console.error(error);
                 toastr.error('An error occurred. Please try again.');
-                button.disabled = false;
+                currentButton.disabled = false;
             });
         });
-    }
+    });
 });

@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Utils\CartUpdateAction;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use App\Models\Cart;
-use Illuminate\Validation\Rule;
-use App\Models\Order;
 use App\Models\Order\OrderStatus;
-use DebugBar\DebugBar;
+use Illuminate\Http\JsonResponse;
+use App\Utils\CartUpdateAction;
+use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Cart;
 
 class CartController extends Controller
 {
     public function index(): View|RedirectResponse
     {
+        // No products, so why render the cart page?
+        if (!Auth::user()->cart->hasProducts()) {
+            return redirect()->route('shop')->with('error', 'Cart is empty.');
+        }
+
         return view('cart');
     }
 
@@ -98,7 +102,7 @@ class CartController extends Controller
 
         $user = Auth::user();
         $cart = $user->cart;
-        if (!$cart->hasProducts()) {
+        if ($cart == null || !$cart->hasProducts()) {
             return response()->json(['error' => 'Cart is empty']);
         }
 
