@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = response.data;
                     if (data.success) {
                         toastr.success(data.success);
+                        window.location.href = '/orders';
                     }
 
                     if (data.error) {
