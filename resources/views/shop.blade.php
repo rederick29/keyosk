@@ -15,8 +15,8 @@
                         <div class="w-full md:w-fit flex items-center justify-center flex-wrap gap-3">
                             <label class="hidden md:inline">Sort by</label>
                             <x-shop.select class="w-full md:w-64 h-full" id="sort-by">
-                                <x-shop.option value="best_selling">Best Selling</x-shop.option>
                                 <x-shop.option value="date">New</x-shop.option>
+                                <x-shop.option value="best_selling">Best Selling</x-shop.option>
                                 <x-shop.option value="price_low_to_high">Price: Low to High</x-shop.option>
                                 <x-shop.option value="price_high_to_low">Price: High to Low</x-shop.option>
                             </x-shop.select>

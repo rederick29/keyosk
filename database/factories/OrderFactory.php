@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Order\OrderStatus;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
@@ -33,36 +32,31 @@ class OrderFactory extends Factory
 
     public function forUser(User $user): Factory|OrderFactory
     {
-        return $this->state(function (array $attributes) use ($user)
-        {
-           return [
-               'user_id' => $user->id,
-               'address_id' => $user->addresses->random(),
-           ];
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user->id,
+                'address_id' => $user->addresses->random(),
+            ];
         });
     }
 
-    public function forProducts(Collection $products): Factory|OrderFactory
+    public function forProducts(Collection $products, int $quantity = 1): Factory|OrderFactory
     {
-        return $this->state(function (array $attributes) use ($products)
-        {
-            $total_price = $products->map(function(Product $product)
-            {
-                return $product->price;
-            })->sum();
+        return $this->afterCreating(function (Order $order) use ($products, $quantity) {
+            $total_price = 0;
 
-            return [
-                'total_price' => $total_price,
-            ];
-        })->afterCreating(function (Order $order) use ($products)
-        {
-            $products->each(function (Product $product) use ($order)
-            {
+            $products->each(function (Product $product) use ($order, &$total_price, $quantity) {
+                $price = $product->price;
+
                 $order->products()->attach($product->id, [
-                    'price' => $product->price,
-                    'quantity' => 1,
+                    'price' => $price,
+                    'quantity' => $quantity,
                 ]);
+
+                $total_price += $price * $quantity;
             });
+
+            $order->update(['total_price' => $total_price]);
         });
     }
 }

@@ -31,10 +31,9 @@
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-white">
                 £{{ number_format($productPrice, 2) }}
-                @if(Auth::user())
-                    @if(Auth::user()->is_admin)
-                        <p class="justify-self-start text-base text-white/70">Stock: {{$productStock}}</p>
-                    @endif
+
+                @if(Auth::user() && Auth::user()->is_admin)
+                    <p class="justify-self-start text-base text-white/70">Stock: {{$productStock}}</p>
                 @endif
             </span>
         </div>
