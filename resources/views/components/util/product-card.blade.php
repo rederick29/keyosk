@@ -4,7 +4,6 @@
     Author(s): Toms Xavi: Developer
 --}}
 
-
 <div class="product-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
@@ -32,6 +31,11 @@
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-white">
                 £{{ number_format($productPrice, 2) }}
+                @if(Auth::user())
+                    @if(Auth::user()->is_admin)
+                        <p class="justify-self-start text-base text-white/70">Stock: {{$productStock}}</p>
+                    @endif
+                @endif
             </span>
         </div>
     </div>

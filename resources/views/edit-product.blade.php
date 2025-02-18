@@ -12,18 +12,30 @@
             <!-- product form -->
             <form class="edit-product-form" method="POST" action="{{ route('product.update.pid', ['productId' => $product->id]) }}">
                 @csrf
-                <div class="flex flex-col justify-start gap-2">
-                    <x-util.form.label for="product_name">Product name:</x-util.form.label>
-                    <x-util.form.input type="text" id="product_name" name="product_name" required value="{{ $product->name }}" />
-                    <x-util.form.label for="product_short_desc">Product short description:</x-util.form.label>
-                    <x-util.form.input type="text" id="product_short_desc" name="product_short_desc" required value="{{ $product->short_description }}" />
-                    <x-util.form.label for="product_desc">Product description:</x-util.form.label>
-                    <x-util.form.input type="text" id="product_desc" name="product_desc" required value="{{ $product->description }}" />
-                    <x-util.form.label for="product_stock">Product stock:</x-util.form.label>
-                    <x-util.form.input type="number" id="product_stock" name="product_stock" required value="{{ $product->stock }}" />
-                    <x-util.form.label for="product_price">Product price:</x-util.form.label>
-                    <x-util.form.input type="number" step="0.01" id="product_price" name="product_price" required value="{{ $product->price }}" />
-                    <input type="submit">
+                <div class="flex flex-col items-center gap-4">
+                    <section class="w-full">
+                        <x-util.form.label for="product_name">Product name:</x-util.form.label>
+                        <x-util.form.input type="text" id="product_name" name="product_name" required value="{{ $product->name }}" />
+                    </section>
+                    <section class="w-full">
+                        <x-util.form.label for="product_short_desc">Product short description:</x-util.form.label>
+                        <x-util.form.input type="text" id="product_short_desc" name="product_short_desc" required value="{{ $product->short_description }}" />
+                    </section>
+                    <section class="w-full">
+                        <x-util.form.label for="product_desc">Product description:</x-util.form.label>
+                        <x-util.form.input type="text" id="product_desc" name="product_desc" required value="{{ $product->description }}" />
+                    </section>
+                    <section class="w-full flex gap-x-5">
+                        <div class="w-1/2">
+                            <x-util.form.label for="product_stock">Product stock:</x-util.form.label>
+                            <x-util.form.input type="number" id="product_stock" name="product_stock" required value="{{ $product->stock }}" />
+                        </div>
+                        <div class="w-1/2">
+                            <x-util.form.label for="product_price">Product price:</x-util.form.label>
+                            <x-util.form.input type="number" step="0.01" id="product_price" name="product_price" required value="{{ $product->price }}" />
+                        </div>
+                    </section>
+                    <x-util.button type="button" class="w-1/3 self-end bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Apply Changes</x-util.button>
                 </div>
             </form>
         </div>
