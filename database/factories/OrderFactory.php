@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Order\OrderStatus;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
@@ -41,13 +40,12 @@ class OrderFactory extends Factory
         });
     }
 
-    public function forProducts(Collection $products): Factory|OrderFactory
+    public function forProducts(Collection $products, int $quantity = 1): Factory|OrderFactory
     {
-        return $this->afterCreating(function (Order $order) use ($products) {
+        return $this->afterCreating(function (Order $order) use ($products, $quantity) {
             $total_price = 0;
 
-            $products->each(function (Product $product) use ($order, &$total_price) {
-                $quantity = random_int(1, 5);
+            $products->each(function (Product $product) use ($order, &$total_price, $quantity) {
                 $price = $product->price;
 
                 $order->products()->attach($product->id, [
