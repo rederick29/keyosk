@@ -1,15 +1,15 @@
 {{--
-product-card component.
+Order-card component.
 
-Author(s): Toms Xavi: Developer
+Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 --}}
 
+@props(['oproducts', 'date', 'status', 'price', 'id'])
 
-<div
-    class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6">
+<div class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6 lg:mx-20">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
-
+    
         <!-- Product Details -->
         <div class="flex-grow">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-gray-300 mb-2">Status:
@@ -30,14 +30,38 @@ Author(s): Toms Xavi: Developer
     <!-- Quantity Selector and Buttons -->
     <div class="flex items-center justify-end gap-4 mt-4">
         <!-- View Products Button -->
-        <button
+        <button onclick="view({{ $id }})"
             class="buy-now-btn border border-orange-500 dark:border-violet-700 text-orange-500 dark:text-violet-700 px-5 py-2 rounded-md font-semibold hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white transition duration-300">
             View Products
         </button>
     </div>
+    <div id="{{ $id }}" style="display: none;">
+    @foreach ($oproducts as $oprod)
+        <x-util.order-subcard 
+            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'">
+        </x-util.order-subcard>
+    @endforeach
+    </div>    
+    
 </div>
 
+<script>
+    function view(id){
+        var v = document.getElementById(id)
+        if(v.style.display === "none"){
+            v.style.display="block";
+        } else{
+            v.style.display="none";
+        }
+        
+    }
+</script>
+
 <style>
+    #viewprod {
+        display: none;
+    }
+
     /* Styling for Quantity Selector */
     .quantity-selector input {
         appearance: none;
