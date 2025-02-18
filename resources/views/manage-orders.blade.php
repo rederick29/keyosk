@@ -15,7 +15,7 @@
                             <p class="font-semibold ml-1 text-xl">#{{ $order->id }}</p>
                             <p class="font-semibold ml-1 text-white/70">{{ $order->created_at }}</p>
                         </div>
-                        <p class="font-semibold mr-1 text-white text-2xl">{{ ((string)$order->status) }}</p>
+                        <p class="font-semibold mr-1 text-white text-2xl">{{ $order->status }}</p>
                     </div>
                 </a>
             @endforeach

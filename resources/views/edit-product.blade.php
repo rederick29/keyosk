@@ -28,11 +28,11 @@
                     <section class="w-full flex gap-x-5">
                         <div class="w-1/2">
                             <x-util.form.label for="product_stock">Product stock:</x-util.form.label>
-                            <x-util.form.input type="number" id="product_stock" name="product_stock" required value="{{ $product->stock }}" />
+                            <x-util.form.input type="number" id="product_stock" name="product_stock" required value="{{ $product->stock }}" style="-moz-appearance: textfield" />
                         </div>
                         <div class="w-1/2">
                             <x-util.form.label for="product_price">Product price:</x-util.form.label>
-                            <x-util.form.input type="number" step="0.01" id="product_price" name="product_price" required value="{{ $product->price }}" />
+                            <x-util.form.input type="number" step="0.01" id="product_price" name="product_price" required value="{{ $product->price }}" style="-moz-appearance: textfield" />
                         </div>
                     </section>
                     <x-util.button type="button" class="w-1/3 self-end bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Apply Changes</x-util.button>
