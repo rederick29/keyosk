@@ -8,9 +8,11 @@
         </div>
         <div class="w-full py-5 flex flex-col gap-y-5">
             @foreach(\App\Models\Product::all() as $product)
-            <div class="w-full bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
-                <a class="font-semibold ml-1" href="{{ route('product.get.edit', ['productId' => $product->id]) }}">{{$product->name}}</a>
-            </div>
+            <a href="{{ route('product.get.edit', ['productId' => $product->id]) }}">
+                <div class="w-full bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
+                    <p class="font-semibold ml-1">{{$product->name}}</p>
+                </div>
+            </a>
             @endforeach
         </div>
     </section>

@@ -24,35 +24,35 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-auth.form.label
+                    <x-util.form.label
                         for="first_name"
                         class="ml-0"
                     >
                         First name
-                    </x-auth.form.label>
-                    <x-auth.form.input
+                    </x-util.form.label>
+                    <x-util.form.input
                         id="first_name"
                         name="first_name"
                         class=""
                         placeholder="{{$user->first_name}}"
                     />
-                    <x-auth.form.error
+                    <x-util.form.error
                         name="first_name"
                     />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-auth.form.label
+                    <x-util.form.label
                         for="last_name"
                         class="ml-0"
                     >
                         Last name
-                    </x-auth.form.label>
-                    <x-auth.form.input
+                    </x-util.form.label>
+                    <x-util.form.input
                         id="last_name"
                         name="last_name"
                         placeholder="{{$user->last_name}}"
                     />
-                    <x-auth.form.error
+                    <x-util.form.error
                         name="last_name"
                     />
                 </div>
@@ -70,20 +70,20 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-auth.form.label
+                    <x-util.form.label
                         for="email"
                         class="ml-0"
                     >
                         Email
-                    </x-auth.form.label>
-                    <x-auth.form.input
+                    </x-util.form.label>
+                    <x-util.form.input
                         id="email"
                         name="email"
                         class=""
                         type="email"
                         placeholder="{{ $user->email }}"
                     />
-                    <x-auth.form.error
+                    <x-util.form.error
                         name="email"
                     />
                 </div>
@@ -101,35 +101,35 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-auth.form.label
+                    <x-util.form.label
                         for="current_password"
                         class="ml-0"
                     >
                         Current Password
-                    </x-auth.form.label>
-                    <x-auth.form.input
+                    </x-util.form.label>
+                    <x-util.form.input
                         id="current_password"
                         name="current_password"
                         type="password"
                         class=""
                     />
-                    <x-auth.form.error
+                    <x-util.form.error
                         name="current_password"
                     />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-auth.form.label
+                    <x-util.form.label
                         for="new_password"
                         class="ml-0"
                     >
                         New Password
-                    </x-auth.form.label>
-                    <x-auth.form.input
+                    </x-util.form.label>
+                    <x-util.form.input
                         id="new_password"
                         name="new_password"
                         type="password"
                     />
-                    <x-auth.form.error
+                    <x-util.form.error
                         name="new_password"
                     />
                 </div>

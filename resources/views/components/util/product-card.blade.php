@@ -4,7 +4,6 @@
     Author(s): Toms Xavi: Developer
 --}}
 
-
 <div class="product-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
@@ -15,7 +14,7 @@
 
         <!-- Product Image -->
         <div class="product-image h-32 w-32 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
-            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}" 
+            <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}"
                 class="h-full w-full object-contain">
         </div>
 
@@ -32,6 +31,11 @@
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-white">
                 £{{ number_format($productPrice, 2) }}
+                @if(Auth::user())
+                    @if(Auth::user()->is_admin)
+                        <p class="justify-self-start text-base text-white/70">Stock: {{$productStock}}</p>
+                    @endif
+                @endif
             </span>
         </div>
     </div>
@@ -50,14 +54,24 @@
                 <div class="flex items-center bg-white dark:bg-zinc-800 text-white rounded-md overflow-hidden">
                     <button type="button" id="decrease-quantity-{{ $productId }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
-                        -
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
                     </button>
                     <input type="number" id="quantity-{{ $productId }}" name="quantity" min="1"
                         value="1"
-                        class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none">
+                        class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none"
+                        style="-moz-appearance: textfield">
                     <button type="button" id="increase-quantity-{{ $productId }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
-                        +
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
                     </button>
                 </div>
 
