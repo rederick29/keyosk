@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\ContainsProducts;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,23 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-
-    public function getProductQuantity(int $productId): int
-    {
-        $product = $this->products()->find($productId);
-        return $product ? $product->pivot->quantity : 0;
-    }
-
-    public function getTotalPrice(): float
-    {
-        $this->load('products');
-
-        $totalPrice = 0.0;
-        foreach ($this->products as $product) {
-            $totalPrice += $product->price * $product->pivot->quantity;
-        }
-        return $totalPrice;
-    }
+    use ContainsProducts;
 
     /**
      * Adds a product to the cart.
@@ -107,11 +92,6 @@ class Cart extends Model
         $this->products()->detach();
     }
 
-    public function hasProducts(): bool
-    {
-        return !$this->products->isEmpty();
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -119,6 +99,9 @@ class Cart extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity');
+        return $this->belongsToMany(Product::class)
+            ->using(CartProduct::class)
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }

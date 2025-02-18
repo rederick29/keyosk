@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\ContainsProducts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order\OrderStatus;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Order extends Model
 {
+    use ContainsProducts;
+
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
     protected $casts = [
@@ -31,12 +34,18 @@ class Order extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)
-            ->withPivot('price', 'quantity')
+            ->using(OrderProduct::class)
+            ->withPivot(['quantity', 'price'])
             ->withTimestamps();
     }
 
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
+    }
+
+    public function getTotalPrice(): float
+    {
+        return $this->total_price;
     }
 }
