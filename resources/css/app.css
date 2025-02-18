@@ -50,6 +50,19 @@
     width: 10px;
 }
 
+/* html number input styling */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: none;
+    margin: 0;
+}
+
 /* To tweak toastr */
 .toast {
     opacity: 1 !important;

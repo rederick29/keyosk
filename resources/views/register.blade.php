@@ -12,29 +12,29 @@
             <form method="POST" action="{{ route('register.store') }}" class="flex flex-col space-y-8 text-center p-10 h-fit">
                 @csrf
                 <div class="flex flex-col space-y-2 lg:h-1/2 md:h-1/2 sm:h-1/2 xs:h-1/2">
-                    <x-auth.form.label for="first_name">First Name</x-auth.form.label>
-                    <x-auth.form.input id="first_name" name="first_name" required value="{{ old('first_name') }}" />
-                    <x-auth.form.error name="first_name" />
+                    <x-util.form.label for="first_name">First Name</x-util.form.label>
+                    <x-util.form.input id="first_name" name="first_name" required value="{{ old('first_name') }}" />
+                    <x-util.form.error name="first_name" />
                 </div>
                 <div class="flex flex-col space-y-2 lg:h-1/2 md:h-1/2 sm:h-1/2 xs:h-1/2">
-                    <x-auth.form.label for="last_name">Name</x-auth.form.label>
-                    <x-auth.form.input id="last_name" name="last_name" required value="{{ old('last_name') }}" />
-                    <x-auth.form.error name="last_name" />
+                    <x-util.form.label for="last_name">Name</x-util.form.label>
+                    <x-util.form.input id="last_name" name="last_name" required value="{{ old('last_name') }}" />
+                    <x-util.form.error name="last_name" />
                 </div>
                 <div class="flex flex-col space-y-2 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4">
-                    <x-auth.form.label for="email">Email Address</x-auth.form.label>
-                    <x-auth.form.input type="email" id="email" name="email" required value="{{ old('email') }}" />
-                    <x-auth.form.error name="email" />
+                    <x-util.form.label for="email">Email Address</x-util.form.label>
+                    <x-util.form.input type="email" id="email" name="email" required value="{{ old('email') }}" />
+                    <x-util.form.error name="email" />
                 </div>
                 <div class="flex flex-col space-y-2 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4">
-                    <x-auth.form.label for="password">Password</x-auth.form.label>
-                    <x-auth.form.input type="password" id="password" name="password" required />
-                    <x-auth.form.error name="password" />
+                    <x-util.form.label for="password">Password</x-util.form.label>
+                    <x-util.form.input type="password" id="password" name="password" required />
+                    <x-util.form.error name="password" />
                 </div>
                 <div class="flex flex-col space-y-2 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4">
-                    <x-auth.form.label for="password_confirmation">Confirm Password</x-auth.form.label>
-                    <x-auth.form.input type="password" id="password_confirmation" name="password_confirmation" required />
-                    <x-auth.form.error name="password_confirmation" />
+                    <x-util.form.label for="password_confirmation">Confirm Password</x-util.form.label>
+                    <x-util.form.input type="password" id="password_confirmation" name="password_confirmation" required />
+                    <x-util.form.error name="password_confirmation" />
                 </div>
                 <div class="flex flex-row items-center justify-between mt-4 lg:h-3/4 md:h-3/4 sm:h-3/4 xs:h-3/4">
                     <a class="w-fit hover:underline text-black/50 dark:text-white/50" href="{{ route('login.get') }}">

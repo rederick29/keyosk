@@ -14,18 +14,18 @@
             <form method="POST" action="/login" class="flex flex-col space-y-8 text-center">
                 @csrf
                 <div class="flex flex-col space-y-2">
-                    <x-auth.form.label for="email">Email</x-auth.form.label>
-                    <x-auth.form.input id="email" name="email" required/>
-                    <x-auth.form.error name="email"/>
+                    <x-util.form.label for="email">Email</x-util.form.label>
+                    <x-util.form.input id="email" name="email" required/>
+                    <x-util.form.error name="email"/>
                 </div>
                 <div class="flex flex-col space-y-2">
                     <div class="w-full flex flex-row justify-between">
-                        <x-auth.form.label for="password">Password</x-auth.form.label>
+                        <x-util.form.label for="password">Password</x-util.form.label>
                         <!-- Not sure where this should link as for now -->
                         <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="/">Forgot Your Password?</a></span>
                     </div>
-                    <x-auth.form.input type="password" id="password" name="password" required/>
-                    <x-auth.form.error name="password"/>
+                    <x-util.form.input type="password" id="password" name="password" required/>
+                    <x-util.form.error name="password"/>
                 </div>
                 <!--
                 <div class="flex flex-row items-center space-x-2 ml-1">
