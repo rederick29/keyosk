@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models\Order;
+
 use App\Utils\EnumArrayHelper;
 
 enum OrderStatus: string

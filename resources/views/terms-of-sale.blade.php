@@ -14,7 +14,7 @@
             <div class="px-8">
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
                         Welcome to Keyosk's Terms of Sale page.
@@ -32,7 +32,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Order Process</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Order Process</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Here's how it all works when you place an order with Keyosk:
                     </p>
@@ -77,7 +77,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Payment Terms</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Payment Terms</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We accept various payment methods to make your checkout process as smooth as possible:
                     </p>
@@ -117,7 +117,7 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Shipping & Delivery</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Shipping & Delivery</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We know you're eager to get your hands on your new gear. Here's how we ship your goods:
                     </p>

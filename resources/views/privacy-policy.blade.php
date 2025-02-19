@@ -14,7 +14,7 @@
         <div class="px-8">
             <div
                 class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                <h1 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h1>
+                <h1 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h1>
                 <br>
                 <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
                     At Keyosk, your privacy is of utmost importance to us. <br><br>
@@ -27,7 +27,7 @@
 
             <div
                 class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Information We Collect</h2>
+                <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Information We Collect</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We collect personal information in the following ways:
                 </p>
@@ -65,7 +65,7 @@
 
             <div
                 class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">How We Use Your Information</h2>
+                <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">How We Use Your Information</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We use the personal data we collect to improve our services and offer a personalized experience.
                     The ways we use your information include:
@@ -102,7 +102,7 @@
 
             <div
                 class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Data Security</h2>
+                <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Data Security</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     We implement a variety of security measures to maintain the safety of your personal information.
                     These include secure encryption methods, regular system audits, and secure data storage practices.
@@ -113,7 +113,7 @@
 
             <div
                 class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Your Rights</h2>
+                <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Your Rights</h2>
                 <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                     You have the right to:
                 </p>

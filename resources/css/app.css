@@ -18,7 +18,7 @@
     }
 
     .misc-page-header {
-        @apply pt-8 text-center text-4xl font-extrabold tracking-wide drop-shadow-lg;
+        @apply text-center text-4xl font-bold tracking-wide drop-shadow-lg font-sans;
     }
 
     .shop-select {
@@ -48,6 +48,19 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #6E6E6E;
     width: 10px;
+}
+
+/* html number input styling */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: none;
+    margin: 0;
 }
 
 /* To tweak toastr */

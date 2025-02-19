@@ -16,9 +16,9 @@ class OrderSeeder extends Seeder
     {
         foreach (User::all() as $user) {
             Order::factory()
-                ->count(random_int(2,10))
+                ->count(random_int(2, 10))
                 ->forUser($user)
-                ->forProducts(Product::all()->random(random_int(1, 5)))
+                ->forProducts(Product::all()->random(random_int(1, 5)), random_int(1, 5))
                 ->create();
         }
     }

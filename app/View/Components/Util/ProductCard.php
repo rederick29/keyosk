@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 class ProductCard extends ProductComponent
 {
     public string $productShortDescription;
+    public string $productStock;
 
     /**
      * Create a new component instance.
@@ -23,7 +24,13 @@ class ProductCard extends ProductComponent
         $this->productShortDescription = $product->short_description;
         if(empty($this->productShortDescription))
         {
-            throw new Exception("Product short description should be null");
+            throw new Exception("Product short description should not be null");
+        }
+
+        $this->productStock = $product->stock;
+        if(empty($this->productStock))
+        {
+            throw new Exception("Product stock should not be null");
         }
     }
 

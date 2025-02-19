@@ -16,6 +16,13 @@ class Order extends Model
         'status' => OrderStatus::class,
     ];
 
+    protected $fillable = [
+        'user_id',
+        'address_id',
+        'total_price',
+        'status'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -23,6 +30,13 @@ class Order extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)
+            ->withPivot('price', 'quantity')
+            ->withTimestamps();
+    }
+
+    public function address(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
     }
 }
