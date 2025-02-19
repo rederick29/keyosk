@@ -3,7 +3,7 @@
 
     Author(s): Toms Xavi: Developer
 --}}
-
+@props(['enable_buttons' => true])
 <div class="product-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
@@ -40,6 +40,7 @@
     </div>
 
     <!-- Quantity Selector and Buttons -->
+    @if($enable_buttons)
     <div class="flex items-center justify-end gap-4 mt-4 ">
         <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}">
             @csrf
@@ -82,21 +83,21 @@
             </div>
 
         </form>
-
         <!-- Buy Now Button -->
         <button
             class="buy-now-btn-{{ $productId }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
             Buy Now
         </button>
     </div>
+    @endif
 </div>
-
+@if ($enable_buttons)
 <script nonce="{{ csp_nonce() }}">
     document.addEventListener('DOMContentLoaded', function() {
         setupProductButtons('{{ $productId }}');
     });
 </script>
-
+@endif
 
 <style>
     /* Styling for Quantity Selector */
