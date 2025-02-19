@@ -5,15 +5,14 @@ namespace Database\Factories\Tag;
 use App\Models\Tag;
 use App\Models\Tag\ColourTag;
 use App\Models\Tag\TagType;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
-class ColourTagFactory extends Factory
+class ColourTagFactory extends CommonTagFactory
 {
     protected $model = ColourTag::class;
-
+    protected TagType $tag_type = TagType::Colour;
     /**
      * Define the model's default state.
      *
@@ -23,7 +22,8 @@ class ColourTagFactory extends Factory
     {
         return [
             'hex_code' => fake()->hexColor(),
-            'tag_id' => Tag::factory()->state(['type' => TagType::Colour]),
+            'tag_id' => Tag::factory()->state(['type' => $this->tag_type]),
         ];
     }
+
 }

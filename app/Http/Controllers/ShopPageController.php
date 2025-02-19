@@ -37,7 +37,10 @@ class ShopPageController extends Controller
                 // Search by name or description
                 $query->where(function ($query) use ($search, $likeOperator) {
                     $query->where(DB::raw('lower(name)'), $likeOperator, "%{$search}%")
-                        ->orWhere(DB::raw('lower(description)'), $likeOperator, "%{$search}%");
+                        ->orWhere(DB::raw('lower(description)'), $likeOperator, "%{$search}%")
+                        ->orWhereHas('tags', function ($query) use ($search, $likeOperator) {
+                            $query->where(DB::raw('lower(name)'), $likeOperator, "%{$search}%");
+                        });
                 });
             })
             ->when($sort, function ($query, $sort) {
