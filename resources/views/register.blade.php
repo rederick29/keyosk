@@ -11,10 +11,10 @@
             </div>
             <form method="POST" action="{{ route('register.store') }}" class="flex flex-col 2xl:grid 2xl:grid-flow-row 2xl:grid-cols-2 xl:grid xl:grid-flow-row xl:grid-cols-2 md:grid md:grid-flow-row md:grid-cols-2 gap-4 space-y-4 text-center p-10 h-fit">
                 @csrf
-                <div class="flex flex-col space-y-2 h-1/12 lg:h-1/12 md:h-1/12 sm:h-1/12 xs:h-1/12 xl:h-1/12 2xl:h-1/12">
-                    <x-auth.form.label for="name">Name</x-auth.form.label>
-                    <x-auth.form.input id="name" name="name" required value="{{ old('name') }}" />
-                    <x-auth.form.error name="name" />
+                <div class="flex flex-col space-y-2 lg:h-1/2 md:h-1/2 sm:h-1/2 xs:h-1/2">
+                    <x-auth.form.label for="first_name">First Name</x-util.form.label>
+                    <x-auth.form.input id="first_name" name="first_name" required value="{{ old('first_name') }}" />
+                    <x-auth.form.error name="first_name" />
                 </div>
                 <div class="flex flex-col space-y-2 h-1/12 lg:h-1/12 md:h-1/12 sm:h-1/12 xs:h-1/12 xl:h-1/12 2xl:h-1/12">
                     <x-auth.form.label for="name">Name</x-auth.form.label>
