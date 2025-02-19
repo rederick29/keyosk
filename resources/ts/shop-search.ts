@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set the selected index of the sort by select element
     if (urlParams.has('sort')) {
-        const sortOptions: {[key: string]: number} = {
-            'best_selling': 0,
-            'date': 1,
+        const sortOptions: { [key: string]: number } = {
+            'date': 0,
+            'best_selling': 1,
             'price_low_to_high': 2,
             'price_high_to_low': 3
         };
@@ -32,7 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update the URL with the new query parameter
     const updateUrlParam = (param: string, value: string) => {
         const url = new URL(window.location.href);
-        url.searchParams.set(param, encodeURIComponent(value.trim()));
+        const trimmedValue = value.trim();
+
+        if (trimmedValue.length === 0 && param === 'search') {
+            url.searchParams.delete(param);
+        } else {
+            url.searchParams.set(param, encodeURIComponent(trimmedValue));
+        }
+
         window.location.href = url.href;
     };
 
@@ -41,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target === null) {
             return;
         }
+
         let id = target.id;
         let value = target.value;
 
@@ -56,14 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Event listeners
+    const isSearchSame = () => {
+        const currentSearch = decodeURIComponent(urlParams.get('search') ?? '').trim();
+        return search.value.trim() === currentSearch;
+    }
 
-    // Update the URL when the user presses enter in the search input
-    search.addEventListener('keydown', (e) => {
+    const handleKeyPress = (e: KeyboardEvent) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            updateUrlParam('search', search.value);
+
+            // If the value has changed, update the URL
+            if (!isSearchSame()) {
+                updateUrlParam('search', search.value);
+            }
         }
-    });
+    }
+
+    // Update the URL when the user presses enter in the search input
+    search.addEventListener('keydown', handleKeyPress);
 
     // Update the URL when the user changes the value of the select elements
     sort.addEventListener('change', handleParamUpdate);
