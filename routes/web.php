@@ -54,7 +54,9 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
+    // Order Routes
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
+    Route::get('/review/{id}', [OrdersController::class, 'index'])->where('id', '[0-9]+')->name('orders.get');
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

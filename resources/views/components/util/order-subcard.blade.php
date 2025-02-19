@@ -12,7 +12,7 @@ Author(s): Kai Chima : Main Developer
         <h2 class="font-bold">{{ $productname }}</h2>
         <p>{{ $desc }}</p>
         <p>£{{ $prodprice }}</p>
-        <a href="" class="text-orange-500 dark:text-violet-700 underline">Add review -></a>
+        <a href="/review/{{ $productId }}" class="text-orange-500 dark:text-violet-700 underline">Add review -></a>
     </div>
 </div>
 </a>
