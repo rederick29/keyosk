@@ -7,10 +7,10 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 @props(['oproducts', 'date', 'status', 'price', 'id'])
 
 <div class="product-card bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6 lg:mx-20">
-    <!-- Product Image and Info Container -->
+    <!-- Info Container -->
     <div class="flex items-center gap-4">
     
-        <!-- Product Details -->
+        <!-- Order Details -->
         <div class="flex-grow">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-gray-300 mb-2">Status:
                 {{ $status }}</h3>
@@ -19,7 +19,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
             </p>
         </div>
 
-        <!-- Price -->
+        <!-- Total Price -->
         <div class="flex-shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-gray-300">
                 Total: £{{ number_format($price, 2) }}
@@ -27,7 +27,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
         </div>
     </div>
 
-    <!-- Quantity Selector and Buttons -->
+    <!-- Button -->
     <div class="flex items-center justify-end gap-4 mt-4">
         <!-- View Products Button -->
         <button onclick="view({{ $id }})"
@@ -35,10 +35,11 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
             View Products
         </button>
     </div>
+    <!-- Displays each product in order -->
     <div id="{{ $id }}" style="display: none;">
     @foreach ($oproducts as $oprod)
         <x-util.order-subcard 
-            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'">
+            :productId="$oprod->id" :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'">
         </x-util.order-subcard>
     @endforeach
     </div>    
@@ -46,6 +47,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 </div>
 
 <script>
+    //For the view products button
     function view(id){
         var v = document.getElementById(id)
         if(v.style.display === "none"){
