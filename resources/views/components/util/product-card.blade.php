@@ -11,7 +11,7 @@
         <a href="/product/{{ $productId }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
 
         <!-- Product Image -->
-        <div class="product-image h-32 w-32 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
+        <div class="size-40 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
             <img src="{{ $productImage ?? '#' }}" alt="{{ $productTitle }}"
                 class="h-full w-full object-contain">
         </div>
@@ -19,8 +19,8 @@
 
         <!-- Product Details -->
         <div class="flex-grow">
-            <h3 class="product-title text-lg font-semibold text-zinc-800 dark:text-white mb-2">{{ $productTitle }}</h3>
-            <p class="product-description text-sm text-black/50 dark:text-gray-300 leading-relaxed">
+            <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-white mb-2">{{ $productTitle }}</h3>
+            <p class="product-description text-base text-black/50 dark:text-gray-300 leading-relaxed">
                 {{ $productShortDescription }}
             </p>
         </div>
@@ -39,7 +39,9 @@
 
     <!-- Quantity Selector and Buttons -->
     @if($enable_buttons)
-    <div class="flex items-center gap-4 mt-4 ">
+    <!-- Bottom dark section -->
+    <div class="w-full h-[88px] bg-zinc-950/50 absolute z-0 bottom-0 left-0 rounded-b-md"></div>
+    <div class="flex items-center gap-4 mt-4 z-20">
         <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}" class="w-full flex items-center justify-center gap-5">
             <script nonce="{{ csp_nonce() }}">
                 document.addEventListener('DOMContentLoaded', function() {
@@ -77,8 +79,6 @@
                 </button>
             </div>
         </form>
-        <!-- Buy Now Button -->
-
     </div>
     @endif
 </div>
