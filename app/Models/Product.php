@@ -56,6 +56,11 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    public function wishlists(): BelongsToMany
+    {
+        return $this->belongsToMany(Wishlist::class);
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
