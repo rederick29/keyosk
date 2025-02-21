@@ -34,7 +34,7 @@
                 <section class="w-full h-fit rounded-md" id="results">
                     @vite('resources/ts/product-buttons.ts')
                     @foreach ($products as $product)
-                        <x-util.product-card :product="$product" />
+                        <x-util.product-card :product="$product" :p_product="$product"/>
                     @endforeach
 
                     <div>

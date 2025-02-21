@@ -1,5 +1,6 @@
-@props(['rating'])
-<div id="ratingContainer" class="flex space-x-1">
+@props(['rating']
+)
+<div id="ratingContainer" class="flex space-x-1 items-center mr-1">
     @php
         // The review-star component calculates based on the returned star states
         use App\Utils\ReviewStarState;

@@ -5,6 +5,8 @@
 
     TODO: change the size of the icons on mobile
     TODO: Fix stupid animation pop in
+
+    NOTE: nav is 96px tall...
 --}}
 
 @vite(['resources/js/navbar.js'])
