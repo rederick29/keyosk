@@ -22,7 +22,7 @@
     }
 
     .shop-select {
-        @apply p-3 ps-4 bg-stone-200 dark:bg-zinc-800 rounded-lg hover:ring hover:ring-orange-500 dark:hover:ring-violet-700/75 font-normal transition-all duration-500;
+        @apply p-3 ps-4 bg-stone-200 dark:text-stone-200 text-sm dark:bg-zinc-800 rounded-lg hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 font-normal transition-all duration-500;
     }
 }
 

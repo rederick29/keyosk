@@ -2,7 +2,50 @@
     <x-slot:title>Keyosk | Shop</x-slot:title>
 
     <main class="w-full h-fit flex justify-center pt-32 pb-[32px]">
-        <div class="px-5 w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
+        <div class="w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
+            <aside class="w-96 h-fit flex flex-col gap-4">
+
+                <!-- Keyosk+ -->
+                <div class="h-64 p-6 flex flex-col justify-between bg-zinc-900 rounded-lg">
+                    <h1 class="text-xl font-bold">Harness the power of true typing proficiency</h1>
+
+                    <p class="text-violet-500 hover:underline cursor-pointer">Get more from Keyosk with <span class="font-bold">Keyosk+</span></p>
+                </div>
+
+                <!-- Tags and Filters -->
+                <div class="p-4 bg-zinc-900 rounded-lg">
+                    <x-accordion.accordion label="Category" class="w-full">
+                        <x-util.search placeholder="Search Categories" class="h-10 px-1"></x-util.search>
+                        <x-accordion.accordion-item>Keyboard</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Mice</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Switches</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Keycaps</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Mousepads</x-accordion.accordion-item>
+                    </x-accordion.accordion>
+                </div>
+
+                <div class="p-4 bg-zinc-900 rounded-lg">
+                    <x-accordion.accordion label="Color">
+                        <x-accordion.accordion-item>Black</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>White</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Red</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Green</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Blue</x-accordion.accordion-item>
+                    </x-accordion.accordion>
+                </div>
+
+                <div class="p-4 bg-zinc-900 rounded-lg">
+                    <x-accordion.accordion label="Size">
+                        <x-accordion.accordion-item>Large</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Medium</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>Small</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>100%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>60%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item>TKL</x-accordion.accordion-item>
+                    </x-accordion.accordion>
+                </div>
+            </aside>
+
             <div class="w-full h-full flex flex-col space-y-5">
                 <section
                     class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
