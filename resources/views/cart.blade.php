@@ -1,7 +1,7 @@
 <x-layouts.layout>
     <x-slot:title>Keyosk | Shop</x-slot:title>
 
-    <main class="pt-[96px] w-full h-full flex justify-center">
+    <main class="pt-[96px] w-full min-h-screen h-full flex justify-center">
         @if(!Auth::user()->cart)
         <span>Cart Empty.</span>
         @else
