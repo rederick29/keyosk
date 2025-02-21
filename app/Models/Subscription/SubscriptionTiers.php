@@ -16,7 +16,6 @@ enum SubscriptionTiers: string
     {
          return match ($this) {
             self::Plus => "subscription-plus",
-            //self::Plus => "from-blue-600 via-green-500 to-indigo-400",
             self::Premium => "subscription-premium",
             self::Deluxe => "subscription-deluxe",
         };

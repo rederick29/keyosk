@@ -14,6 +14,6 @@ class SubscriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        Subscription::factory()->count(User::all()->count())->create();
+        Subscription::factory()->count(User::all()->count() / 2)->create();
     }
 }

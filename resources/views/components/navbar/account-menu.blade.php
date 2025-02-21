@@ -20,11 +20,12 @@
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
                 <section class="w-full h-fit space-y-2 font-normal text-center">
-                    <p class="py-1 font-semibold">Welcome,
-                        <span class="{{ Auth::user()->subscription ? Auth::user()->subscription->getTierGradient() . " bg-linear-to-r inline-block text-transparent bg-clip-text" : "" }}">
+                    <p class="py-0 my-0 font-semibold">Welcome,
+                        <span class="{{ Auth::user()->subscription ? Auth::user()->subscription->getTierGradient() . " bg-linear-to-r text-transparent bg-clip-text" : "" }}">
                             {{ Str::title(Auth::user()->name) }}
                         </span>
                     </p>
+                    <p class="pt-0 pb-1 text-sm">Keyosk coins: {{ Auth::user()->coins }} </p>
                     <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
                     <x-util.button  type="a" href="{{ route('account.get') }}">
                         My Account
