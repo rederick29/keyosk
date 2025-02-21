@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,12 +29,17 @@ class SessionController extends Controller
         // If the credentials are correct, log the user in and redirect to the home page
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
+            $user = Auth::user();
 
-            if (Auth::user()->is_admin) {
+            if ($user->is_admin) {
                 return redirect()->route('admin.index');
             }
 
-            return redirect()->intended('/')->with('success', 'Welcome, ' . Auth::user()->name . '!');
+            if ($user->last_login && $user->subscription && $user->last_login->lt(Carbon::now()->subDays(1))) {
+                $user->coins += 10;
+                return redirect()->intended('/')->with('success', 'Welcome back, ' . $user->name . '! You received 10 Coins.');
+            }
+            return redirect()->intended('/')->with('success', 'Welcome, ' . $user->name . '!');
         }
 
         // If the credentials are incorrect, redirect back to the login page with an error message

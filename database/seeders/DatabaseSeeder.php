@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             OrderSeeder::class,
             WishlistSeeder::class,
+            VoucherSeeder::class,
+            SubscriptionSeeder::class,
         ]);
     }
 }

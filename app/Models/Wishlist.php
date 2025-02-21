@@ -17,6 +17,7 @@ class Wishlist extends UserProductList
     {
         // laravel assumes table names are in alphabetical_order, this one isn't
         return $this->belongsToMany(Product::class, 'wishlist_product')
-            ->using($this->pivotClass);
+            ->using($this->pivotClass)
+            ->withTimestamps();
     }
 }

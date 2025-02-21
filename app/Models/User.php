@@ -24,6 +24,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'coins',
     ];
 
     /**
@@ -53,6 +54,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
         ];
@@ -81,6 +83,11 @@ class User extends Authenticatable
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function subscription(): HasOne
+    {
+        return $this->hasOne(Subscription::class);
     }
 
     public function isAdmin(): bool

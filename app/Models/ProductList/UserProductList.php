@@ -16,7 +16,8 @@ abstract class UserProductList extends Model
     public function products(): BelongsToMany {
         return $this->belongsToMany(Product::class)
             ->using($this->pivotClass)
-            ->withPivot($this->pivotClass::extra_columns);
+            ->withPivot($this->pivotClass::extra_columns)
+            ->withTimestamps();
     }
 
     public function user(): BelongsTo

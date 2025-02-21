@@ -19,8 +19,12 @@
     <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
-            <section class="w-full h-fit space-y-2 font-normal text-center">
-                    <p class="py-1 font-semibold">Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
+                <section class="w-full h-fit space-y-2 font-normal text-center">
+                    <p class="py-1 font-semibold">Welcome,
+                        <span class="{{ Auth::user()->subscription ? Auth::user()->subscription->getTierGradient() . " bg-gradient-to-r inline-block text-transparent bg-clip-text" : "" }}">
+                            {{ Str::title(Auth::user()->name) }}
+                        </span>
+                    </p>
                     <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
                     <x-util.button  type="a" href="{{ route('account.get') }}">
                         My Account
