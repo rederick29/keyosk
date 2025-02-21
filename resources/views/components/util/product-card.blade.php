@@ -18,7 +18,7 @@
 
 
         <!-- Product Details -->
-        <div class="flex-grow">
+        <div class="grow">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-white mb-2">{{ $productTitle }}</h3>
             <p class="product-description text-base text-black/50 dark:text-gray-300 leading-relaxed">
                 {{ $productShortDescription }}
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Price -->
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-white">
                 £{{ number_format($productPrice, 2) }}
 
@@ -66,7 +66,7 @@
                 </button>
                 <input type="number" id="quantity-{{ $productId }}" name="quantity" min="1"
                        value="1"
-                       class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none"
+                       class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-hidden border-none"
                        style="-moz-appearance: textfield">
                 <button type="button" id="increase-quantity-{{ $productId }}"
                         class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">

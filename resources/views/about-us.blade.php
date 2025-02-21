@@ -25,7 +25,7 @@
         <br>
         <p class = "text-center mx-auto w-3/4 text-wrap">The vision at Keyosk has always been to redefine how people connect with technology, as we look towards designing our products through progressive, ergonomic and sustainable methods. We visualise a future where we become leading innovators in the peripherals industry, as Keyosk products encourage a higher quality of life, productivity and satisfication for our customers. </p>
         </div>
-        <div class="bg-stone-100 dark:bg-zinc-900 p-6 rounded-lg shadow-lg mt-10 mx-auto max-w-screen-lg">
+        <div class="bg-stone-100 dark:bg-zinc-900 p-6 rounded-lg shadow-lg mt-10 mx-auto max-w-(--breakpoint-lg)">
             <h1 class = "text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Meet The Team</h1>
             <div class = "grid grid-cols-2 md:grid-cols-4 gap-7 items-center text-center mx-auto mt-6">
                 <x-util.team-card name="Arun" role="Backend Developer" support="Security Support" initials="AW"/>
