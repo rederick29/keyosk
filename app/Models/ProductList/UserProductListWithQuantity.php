@@ -12,6 +12,7 @@ abstract class UserProductListWithQuantity extends UserProductList
     public function products(): BelongsToMany {
         return parent::products()->withPivot('quantity');
     }
+
     public function addProduct(int $productId, int $quantity = 1): void {
         // Find the product or throw an exception
         $product = Product::find($productId);
