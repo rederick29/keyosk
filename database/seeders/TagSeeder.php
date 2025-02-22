@@ -15,15 +15,52 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        $colourTags = ColourTag::factory()->count(10)->create();
-        $attributeTags = AttributeTag::factory()->count(10)->create();
-        $compatibilityTags = CompatibilityTag::factory()->count(10)->create();
+        $this->colour_tags();
+        $this->attribute_tags();
+    }
 
-        $products = Product::all();
-        foreach ($products as $product) {
-            $product->tags()->attach($colourTags->random(rand(1, 3))->pluck('tag_id'));
-            $product->tags()->attach($attributeTags->random(rand(1, 3))->pluck('tag_id'));
-            $product->tags()->attach($compatibilityTags->random(rand(1, 3))->pluck('tag_id'));
+    private function colour_tags(): void
+    {
+        $colours = [
+            'black' => '#000000',
+            'white' => '#ffffff',
+            'red' => '#ff0000',
+            'green' => '#00ff00',
+            'blue' => '#0000ff',
+            'yellow' => '#ffff00',
+            'pink' => '#ff69ff',
+        ];
+
+        foreach ($colours as $name => $hex_code) {
+            ColourTag::factory()->withName($name)->create(compact('hex_code'));
+        }
+    }
+
+    private function attribute_tags(): void
+    {
+        $attributes = [
+            'gaming' => 'High-performance gaming item',
+            'rgb' => 'Product has customisable rgb lighting features',
+            'keyboard' => 'A keyboard item',
+            'full_size' => 'Full size item',
+            'braille' => 'Braille input for visually impaired users',
+            '60%' => '60% size compact keyboard',
+            '65%' => '65% size compact keyboard',
+            '70%' => '70% size compact keyboard',
+            '75%' => '75% size compact keyboard',
+            'mechanical' => 'Product uses high-quality mechanical switches',
+            'mouse' => 'A mouse item',
+            'wireless' => 'Wireless peripherals',
+            'mousepad' => 'A mousepad item',
+            'keycaps' => 'Keyboard key caps',
+            'key_switches' => 'Keyboard key switches',
+            'small' => 'Small size',
+            'medium' => 'Medium size',
+            'large' => 'Large size',
+        ];
+
+        foreach ($attributes as $name => $description) {
+            AttributeTag::factory()->withName($name)->create(compact('description'));
         }
     }
 }
