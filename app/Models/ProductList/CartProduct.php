@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\ProductList;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use App\Models\Cart;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CartProduct extends Pivot
+class CartProduct extends ProductPivot
 {
     protected $table = 'cart_product';
     protected $fillable = ['cart_id', 'product_id', 'quantity'];
@@ -13,10 +13,5 @@ class CartProduct extends Pivot
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);
-    }
-
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
     }
 }

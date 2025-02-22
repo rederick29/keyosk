@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             AddressSeeder::class,
             OrderSeeder::class,
+            WishlistSeeder::class,
         ]);
     }
 }
