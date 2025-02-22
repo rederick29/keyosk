@@ -21,6 +21,7 @@ use App\Http\Middleware\NoCache;
 
 // Routes
 Route::view('/', 'index')->name('index');
+Route::view('/', 'ClickSpeedTest')->name('click-speed');
 
 // Company Routes
 Route::view('/about', 'about-us')->name('about');

@@ -24,8 +24,24 @@
     .shop-select {
         @apply p-3 ps-4 bg-stone-200 dark:bg-zinc-800 rounded-lg hover:ring hover:ring-orange-500 dark:hover:ring-violet-700/75 font-normal transition-all duration-500;
     }
-}
 
+    .click-box {
+        @apply w-[750px] h-[350px] bg-zinc-900 border-2 border-gray-700 rounded-xl shadow-xl flex items-center justify-center cursor-pointer relative overflow-hidden transition-all hover:shadow-[0px_0px_20px_rgba(255,255,255,0.2)];
+    }
+
+    .stat-box {
+        @apply w-40 h-24 flex flex-col justify-center items-center rounded-lg text-white text-center font-semibold bg-zinc-900 shadow-lg;
+    }
+
+    .stat-value {
+        @apply text-3xl font-bold;
+    }
+
+    .stat-label {
+        @apply text-sm uppercase tracking-wider;
+    }
+}
+     
 /* styling for chrome scrollbar */
 ::-webkit-scrollbar {
     width: 3px;
