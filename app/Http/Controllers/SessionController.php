@@ -30,15 +30,17 @@ class SessionController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
             $user = Auth::user();
-            $redirect = redirect()->intended('/')->with('success', 'Welcome, ' . $user->name . '!');
 
-            if ($user->is_admin) {
-                $redirect = redirect()->route('admin.index');
-            }
+            // Determine the base redirect first
+            $path = $user->is_admin ? route('admin.index') : '/';
+            $redirect = redirect()->intended($path);
 
+            // Add appropriate message without changing destination
             if ($user->last_login && $user->subscription && $user->last_login->lt(Carbon::now()->subDays(1))) {
                 $user->coins += 10;
-                $redirect = redirect()->intended('/')->with('success', 'Welcome back, ' . $user->name . '! You received 10 Coins.');
+                $redirect->with('success', 'Welcome back, ' . $user->name . '! You received 10 Coins.');
+            } else {
+                $redirect->with('success', 'Welcome, ' . $user->name . '!');
             }
 
             $user->last_login = Carbon::now();
