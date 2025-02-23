@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\ProductList\CartProduct;
-use App\Models\ProductList\UserProductListWithQuantity;
+use App\Models\ProductList\UserProductList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class Cart extends UserProductListWithQuantity
+class Cart extends UserProductList
 {
     /** @use HasFactory<\Database\Factories\CartFactory> */
     use HasFactory;
