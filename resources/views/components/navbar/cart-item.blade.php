@@ -8,7 +8,7 @@
 
 <div {{ $attributes->merge(['class' => 'cart-item-' . $productId . ' w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 dark:bg-zinc-900 transition-colors duration-500']) }}>
     <div class="size-32 flex items-center overflow-hidden">
-        <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-sm" />
+        <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-xs" />
     </div>
     <div class="w-full flex flex-col space-y-5">
         <div class="flex flex-col w-full items-center start-0">
@@ -31,7 +31,7 @@
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                 </div>
-                <input name="quantity_input" class="cart_quantity_input-{{ $productId }} cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-none"
+                <input name="quantity_input" class="cart_quantity_input-{{ $productId }} cart-quantity w-10 h-7 px-[0.33rem] flex items-center justify-center bg-white dark:bg-zinc-800 outline-hidden"
                     value="{{ $productQuantity }}"style="text-align: center; line-height: 1.75rem;">
                 <div class="cart_increase-{{ $productId }} size-7 flex items-center justify-center bg-stone-200 dark:bg-zinc-700 hover:bg-black/10 dark:hover:bg-white/25 rounded-br-md rounded-tr-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"

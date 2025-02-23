@@ -16,11 +16,16 @@
     </div>
     {{-- Drop down menu --}}
     {{-- Desktop and Medium View --}}
-    <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
+    <div class="scale-0 border-2 border-neutral-400 bg-white dark:bg-zinc-900 rounded-sm fixed md:absolute lg:absolute md:rounded-lg lg:rounded-lg shadow-2xl w-[100vw] md:w-72 lg:w-72 h-fit top-24 right-0 md:top-12 lg:top-12 md:right-0 lg:right-0" id="account-dropdown">
         <div class="flex flex-col items-center space-y-1 min-h-[100%] m-4">
             @auth
-            <section class="w-full h-fit space-y-2 font-normal text-center">
-                    <p class="py-1 font-semibold">Welcome, {{ Str::title(\Illuminate\Support\Facades\Auth::user()->name) }}</p>
+                <section class="w-full h-fit space-y-2 font-normal text-center">
+                    <p class="py-0 my-0 font-semibold">Welcome,
+                        <span class="{{ Auth::user()->subscription ? Auth::user()->subscription->getTierGradient() . " bg-linear-to-r text-transparent bg-clip-text" : "" }}">
+                            {{ Str::title(Auth::user()->name) }}
+                        </span>
+                    </p>
+                    <p class="pt-0 pb-1 text-sm">Keyosk coins: {{ Auth::user()->coins }} </p>
                     <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
                     <x-util.button  type="a" href="{{ route('account.get') }}">
                         My Account
@@ -35,7 +40,7 @@
                     <!-- Admin Buttons -->
                     @if(Auth::user()->is_admin)
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
-                        <x-util.button  type="a" href="{{ route('stats') }}" class="bg-gradient-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 hover:dark:from-violet-600 hover:dark:to-pink-600 text-white">
+                        <x-util.button  type="a" href="{{ route('stats') }}" class="bg-linear-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 dark:hover:from-violet-600 dark:hover:to-pink-600 text-white">
                             Admin Dashboard
                         </x-util.button>
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />

@@ -62,7 +62,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                                 </button>
                                 <input type="number" id="quantity-{{ $product->id }}" name="quantity" min="1"
                                     value="1"
-                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-hidden border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                 <button type="button" id="increase-quantity-{{ $product->id }}"
                                     class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                                     +

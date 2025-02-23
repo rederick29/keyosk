@@ -11,7 +11,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
     <div class="flex items-center gap-4">
     
         <!-- Product Details -->
-        <div class="flex-grow">
+        <div class="grow">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-gray-300 mb-2">Status:
                 {{ $status }}</h3>
             <p class="product-description text-md text-black/50 dark:text-gray-300 leading-relaxed">
@@ -20,7 +20,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
         </div>
 
         <!-- Price -->
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
             <span class="product-price text-2xl font-bold text-zinc-800 dark:text-gray-300">
                 Total: £{{ number_format($price, 2) }}
             </span>

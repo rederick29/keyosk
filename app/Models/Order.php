@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\ProductList\OrderProduct;
-use App\Models\ProductList\UserProductListWithQuantity;
+use App\Models\ProductList\UserProductList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Order\OrderStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Order extends UserProductListWithQuantity
+class Order extends UserProductList
 {
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;

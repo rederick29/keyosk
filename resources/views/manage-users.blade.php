@@ -10,9 +10,9 @@
             <div class="flex flex-col space-y-6">
                 <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
                     <input type="text" id="searchInput" placeholder="Search users..."
-                        class="w-full sm:flex-[7] p-3 rounded-xl bg-gray-100 dark:bg-zinc-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
+                        class="w-full sm:flex-7 p-3 rounded-xl bg-gray-100 dark:bg-zinc-700 text-gray-300 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out placeholder-gray-500 box-border" />
                     <button id="searchButton"
-                        class="w-full sm:w-auto sm:flex-[1] p-3 ring-orange-500 dark:ring-violet-700 dark:text-white bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
+                        class="w-full sm:w-auto sm:flex-1 p-3 ring-orange-500 dark:ring-violet-700 dark:text-white bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:hover:text-white transition-all duration-500 rounded-xl">
                         Search
                     </button>
                 </div>
@@ -58,7 +58,7 @@
                             class="relative h-40 bg-white rounded-2xl p-5 shadow-md hover:shadow-xl hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden flex flex-col justify-between cursor-pointer"
                         >
                             <input type="checkbox" id="checkbox-{{ $user->id }}" value="{{ $user->id }}"
-                                class="user-select-checkbox absolute top-4 right-4 h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-2 focus:ring-blue-500" />
+                                class="user-select-checkbox absolute top-4 right-4 h-5 w-5 text-blue-600 bg-gray-700 border-gray-600 rounded-sm focus:ring-2 focus:ring-blue-500" />
                                 <div class="user-name text-lg font-semibold text-gray-800 mb-2 break-words whitespace-normal">
                                     {{ $user->name }}<br>
                                     <small class="text-gray-600">({{ $user->email }})</small>

@@ -34,7 +34,7 @@
                 <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Personal Identification Information:</strong> When you
                             interact with our services, we may collect your name, email address, phone number, and other
@@ -43,7 +43,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Payment Information:</strong> If you make a purchase, we
                             collect payment details such as credit card information, billing address, and transaction
@@ -52,7 +52,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Usage Data:</strong> We may collect data about how you
                             access and use our website, such as IP addresses, browser type, and pages visited.
@@ -73,7 +73,7 @@
                 <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Service Improvement:</strong> To improve and personalize
                             your experience with Keyosk, ensuring that the services we provide meet your needs.
@@ -81,7 +81,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Communication:</strong> We may use your contact information
                             to send you updates, promotional materials, or respond to your inquiries.
@@ -89,7 +89,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Transaction Processing:</strong> To process payments and
                             manage your orders, ensuring a smooth and efficient purchasing process.
@@ -120,7 +120,7 @@
                 <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Access Your Data:</strong> Request a copy of the personal
                             information we hold about you.
@@ -128,7 +128,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Correction:</strong> Request corrections or updates to your
                             personal information.
@@ -136,7 +136,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Deletion:</strong> Request the deletion of your personal
                             information, subject to certain legal obligations.
