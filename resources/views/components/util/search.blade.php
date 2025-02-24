@@ -15,8 +15,8 @@
             </svg>
         </div>
         <input type="search" id="search-bar"
-            class="block w-full p-3 h-full ps-10 text-sm outline-none  placeholder:text-zinc-800  placeholder:dark:text-stone-200 text-zinc-800 dark:text-neutral-100 rounded-lg bg-stone-200 dark:bg-zinc-800 focus:ring-4 focus:ring-orange-500 dark:focus:ring-violet-700/75 font-normal transition-all duration-500"
+            class="block w-full p-3 h-full ps-10 text-sm outline-hidden placeholder:text-zinc-800 placeholder:dark:text-stone-200 text-zinc-800 dark:text-neutral-100 rounded-lg bg-stone-200 dark:bg-zinc-800 focus:ring-4 focus:ring-orange-500 dark:focus:ring-violet-700/75 font-normal transition-all duration-500"
             placeholder="{{ $placeholder }}" />
-        <!-- <button type="submit" class="text-white absolute end-2.5 bottom-2 bg-violet-700 hover:bg-violet-800 focus:outline-none focus:ring-violet-300 rounded-lg text-sm px-4 py-2 shadow-lg transition-colors duration-300">Search</button> -->
+        <!-- <button type="submit" class="text-white absolute end-2.5 bottom-2 bg-violet-700 hover:bg-violet-800 focus:outline-hidden focus:ring-violet-300 rounded-lg text-sm px-4 py-2 shadow-lg transition-colors duration-300">Search</button> -->
     </div>
 </form>

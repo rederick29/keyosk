@@ -25,7 +25,7 @@ Item Card Component --}}
     </div>
 
     <!-- Product Info -->
-    <div class="px-4 py-2 flex flex-col flex-grow text-center">
+    <div class="px-4 py-2 flex flex-col grow text-center">
         <!-- Title with spacing -->
         <h3 class="text-lg font-semibold text-zinc-800 dark:text-white mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
             {{ $title }}
@@ -43,7 +43,7 @@ Item Card Component --}}
     </div>
 
     <!-- Centered Add to Cart Button -->
-    <div class="px-4 py-2 flex flex-col items-center justify-end flex-grow z-20 text-center">
+    <div class="px-4 py-2 flex flex-col items-center justify-end grow z-20 text-center">
         <form method="POST" action="{{ route('cart.update') }}" class="w-full flex justify-center">
             @csrf
             <input type="hidden" name="cart_action" value="{{ \App\Utils\CartUpdateAction::Add }}">
