@@ -70,19 +70,19 @@ class Product extends Model
 
     public function colourTags(): BelongsToMany
     {
-        return $this->belongsToMany(ColourTag::class, 'product_tag', 'product_id', 'tag_id')
-            ->where('type', '=', TagType::Colour);
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('colourTag');
     }
 
     public function attributeTags(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeTag::class, 'product_tag', 'product_id', 'tag_id')
-            ->where('type', '=', TagType::Attribute);
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('attributeTag');
     }
 
     public function compatibilityTags(): BelongsToMany
     {
-        return $this->belongsToMany(CompatibilityTag::class, 'product_tag', 'product_id', 'tag_id')
-            ->where('type', '=', TagType::Compatibility);
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('compatibilityTag');
     }
 }

@@ -15,33 +15,35 @@
                 <!-- Tags and Filters -->
                 <div class="p-4 bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Category" class="w-full">
-                        <x-util.search placeholder="Search Categories" class="h-10 px-1"></x-util.search>
-                        <x-accordion.accordion-item>Keyboard</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Mice</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Switches</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Keycaps</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Mousepads</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'keyboard'">Keyboard</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'mouse'">Mice</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'key_switches'">Switches</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'keycaps'">Keycaps</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'mousepad'">Mousepads</x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
 
                 <div class="p-4 bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Color">
-                        <x-accordion.accordion-item>Black</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>White</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Red</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Green</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Blue</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'black'">Black</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'white'">White</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'red'">Red</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'green'">Green</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'blue'">Blue</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'rgb'">RGB</x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
 
                 <div class="p-4 bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Size">
-                        <x-accordion.accordion-item>Large</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Medium</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>Small</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>100%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>60%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item>TKL</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'large'">Large</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'medium'">Medium</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'small'">Small</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'full_size'">100%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'75%'">75%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'70%'">70%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'65%'">65%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'60%'">60%</x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
             </aside>

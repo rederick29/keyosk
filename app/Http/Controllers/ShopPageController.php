@@ -16,9 +16,11 @@ class ShopPageController extends Controller
             'search' => 'nullable|string|max:255',
             'sort' => 'nullable|in:date,best_selling,price_high_to_low,price_low_to_high',
             'spp' => 'nullable|integer|min:10|max:50',
+            'filters' => 'nullable|string',
         ]);
 
         $search = isset($validated['search']) && $validated['search'] ? strtolower(urldecode($validated['search'])) : null;
+        $filters = isset($validated['filters']) && $validated['filters'] ? explode(',', strtolower(urldecode($validated['filters']))) : null;
         $sort = $validated['sort'] ?? 'date';
         $perPage = $validated['spp'] ?? 10;
 
@@ -34,6 +36,13 @@ class ShopPageController extends Controller
                             fn($q) => $q->where(DB::raw('lower(name)'), $likeOp, "%{$search}%")
                         );
                 });
+            })
+            ->when($filters, function ($q) use ($likeOp, $filters) {
+                foreach ($filters as $filter) {
+                    $q->whereHas('tags', function ($q) use ($likeOp, $filter) {
+                        $q->where(DB::raw('lower(name)'), $likeOp, "%{$filter}%");
+                    });
+                }
             });
 
         if ($sort === 'best_selling') {

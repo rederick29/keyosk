@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('attribute_tags', function (Blueprint $table) {
             $table->id();
-            // nullable as the name of this type of tag can be self-explanatory
             $table->foreignId('tag_id')->constrained('tags', 'id', 'idx_attribute_tags_t_id');
+            // nullable as the name of this type of tag can be self-explanatory
             $table->string('description')->nullable();
             $table->timestamps();
         });
