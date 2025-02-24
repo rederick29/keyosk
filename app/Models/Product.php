@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tag\TagType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -48,7 +49,7 @@ class Product extends Model
 
     public function carts(): BelongsToMany
     {
-        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+        return $this->belongsToMany(Cart::class);
     }
 
     public function orders(): BelongsToMany
@@ -56,23 +57,32 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    public function wishlists(): BelongsToMany
+    {
+        return $this->belongsToMany(Wishlist::class);
+    }
+
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id')
+            ->withTimestamps();
     }
 
     public function colourTags(): BelongsToMany
     {
-        return $this->belongsToMany(ColourTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(ColourTag::class, 'product_tag', 'product_id', 'tag_id')
+            ->where('type', '=', TagType::Colour);
     }
 
     public function attributeTags(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(AttributeTag::class, 'product_tag', 'product_id', 'tag_id')
+            ->where('type', '=', TagType::Attribute);
     }
 
     public function compatibilityTags(): BelongsToMany
     {
-        return $this->belongsToMany(CompatibilityTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(CompatibilityTag::class, 'product_tag', 'product_id', 'tag_id')
+            ->where('type', '=', TagType::Compatibility);
     }
 }

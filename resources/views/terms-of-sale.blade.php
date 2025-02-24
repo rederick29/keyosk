@@ -39,7 +39,7 @@
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Select Your Product:</strong> Browse through our
                                 keyboard and
@@ -50,7 +50,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Checkout:</strong> Proceed to checkout, where
                                 you&apos;ll enter your
@@ -61,7 +61,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Confirmation:</strong> Once your payment is processed,
                                 you&apos;ll
@@ -84,7 +84,7 @@
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Credit/Debit Cards:</strong> Visa, Mastercard, and
                                 American
@@ -93,7 +93,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">PayPal:</strong> If you prefer PayPal, we&apos;ve got
                                 you covered.
@@ -102,7 +102,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Other Methods:</strong> We might accept other forms of
                                 payment,
@@ -124,7 +124,7 @@
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Processing Time:</strong> All orders are processed
                                 within
@@ -133,7 +133,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Shipping Methods:</strong> We offer standard and
                                 expedited
@@ -142,7 +142,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Shipping Costs:</strong> Shipping costs depend on the
                                 delivery

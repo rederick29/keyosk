@@ -20,7 +20,7 @@
             <!-- 🔹 Debugging: Check if $products is empty -->
             @if(\App\Models\Product::all()->count() > 0)
                 @foreach(\App\Models\Product::latest()->take(10)->get() as $product)
-                    <div class="flex-shrink-0 w-80">
+                    <div class="shrink-0 w-80">
                         <x-util.item-card
                             :id="$product->id"
                             :image="$product->primaryImageLocation()"
@@ -61,7 +61,7 @@
 
         // Get the width of one card, including any gaps
         function getCardWidth() {
-            const card = container.querySelector('.flex-shrink-0');
+            const card = container.querySelector('.shrink-0');
             if (card) {
                 const styles = getComputedStyle(card);
                 const marginRight = parseFloat(styles.marginRight) || 0;
@@ -154,14 +154,14 @@
             scroll-snap-type: x mandatory;
         }
 
-        .flex-shrink-0 {
+        .shrink-0 {
             scroll-snap-align: center; /* Center each card on scroll */
-            flex-shrink: 0;
+            shrink: 0;
             width: 20rem; /* Card width */
             margin-right: 1rem; /* Match gap from container */
         }
 
-        .flex-shrink-0 .bg-black {
+        .shrink-0 .bg-black {
             padding-top: 2rem; /* Add top padding to the card */
         }
 
