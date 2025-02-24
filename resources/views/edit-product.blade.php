@@ -25,7 +25,7 @@
                     </section>
                     <section class="w-full">
                         <x-util.form.label for="product_desc">Product description:</x-util.form.label>
-                        <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-none transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
+                        <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
                         <x-util.form.error name="product_desc"></x-util.form.error>
                     </section>
                     <section class="w-full flex gap-x-5">

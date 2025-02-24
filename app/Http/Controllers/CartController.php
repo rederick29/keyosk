@@ -147,7 +147,7 @@ class CartController extends Controller
 
         // Some stuff here about taking the money out of the account, sending it to the warehouse, etc.
         // We will just simulate it by emptying the cart
-        $cart->emptyCart();
+        $cart->emptyList();
 
         return response()->json(['success' => 'Checkout successful']);
     }
