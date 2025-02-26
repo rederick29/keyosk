@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Sustainability</x-slot:title>
-    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
+    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white anim-up">
         <h1 class="misc-page-header">
             Our Sustainability Commitment
         </h1>
