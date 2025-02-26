@@ -7,64 +7,76 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Product View</x-slot:title>
-    <main class="py-[136px] flex flex-col items-center justify-center">
+    <main class="py-[136px] flex flex-col items-center justify-center gap-y-10">
 
         <!-- Product top card -->
-        <section class="w-5/6 h-fit p-10 flex justify-between gap-10 bg-zinc-900 rounded-md">
-            <!-- Carousel -->
-            <div class="h-96 w-[600px] bg-orange-500 rounded-md"></div>
+        <section class="w-5/6 h-fit flex items-center justify-center">
+            <div class="w-full h-fit p-10 flex justify-between gap-10 bg-zinc-900 rounded-md">
+                <!-- Carousel -->
+                <div class="h-96 w-[600px] bg-orange-500 rounded-md"></div>
 
-            <div class="w-2/3 flex flex-col">
-                <h2 class="mx-2 text-3xl font-bold">{{ $product->name }}</h2>
+                <div class="w-2/3 flex flex-col">
+                    <h2 class="mx-2 text-3xl font-bold">{{ $product->name }}</h2>
 
-                <div class="py-5 mx-2 flex justify-between">
-                    <!-- Product price -->
-                    <p class="text-2xl font-normal">&pound;{{ number_format($product->price, 2, '.', ',') }}</p>
+                    <div class="py-5 mx-2 flex justify-between">
+                        <!-- Product price -->
+                        <p class="text-2xl font-normal">&pound;{{ number_format($product->price, 2, '.', ',') }}</p>
 
-                    <!-- Product rating -->
-                    @php $rating = $product->getAverageRating(); @endphp
-                    <!-- TODO: fix floating point string conversion to int -->
-                    <x-products.review-rating rating="{{ $rating }}">
-                        <p id="rating">&ensp;{{ round($rating / 2, 1) }}</p>
-                        @php $review_count = $product->reviews->count(); @endphp
-                        <p id="stars">{{ '('.$review_count.')' }} </p>
-                    </x-products.review-rating>
-                </div>
+                        <!-- Product rating -->
+                        @php $rating = $product->getAverageRating(); @endphp
+                        <!-- TODO: fix floating point string conversion to int -->
+                        <x-products.review-rating rating="{{ $rating }}">
+                            <p id="rating">&ensp;{{ round($rating / 2, 1) }}</p>
+                            @php $review_count = $product->reviews->count(); @endphp
+                            <p id="stars">{{ '('.$review_count.')' }} </p>
+                        </x-products.review-rating>
+                    </div>
 
-                <div class="pb-5 mx-2">
-                    @if ($product->stock > 15)
-                        <p class="text-green-400">IN STOCK</p>
-                    @elseif ($product->stock < 1)
-                        <p class="text-red-500">Out of stock</p>
-                    @else
-                        <p class="text-yellow-500">Only {{ $product->stock }} left in stock</p>
-                    @endif
-                </div>
+                    <div class="pb-5 mx-2">
+                        @if ($product->stock > 15)
+                            <p class="text-green-400">IN STOCK</p>
+                        @elseif ($product->stock < 1)
+                            <p class="text-red-500">Out of stock</p>
+                        @else
+                            <p class="text-yellow-500">Only {{ $product->stock }} left in stock</p>
+                        @endif
+                    </div>
 
-                <hr class="w-full border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
+                    <hr class="w-full border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
 
-                <div class="mx-2 py-4 grow">
+                    <div class="mx-2 py-4 grow">
 
 
-                    <div class="">
-                        <p>{{ $product->short_description }}</p>
-                        <div class="flex flex-row w-full justify-between items-center">
-                            <div class="flex items-center gap-2"></div>
+                        <div class="">
+                            <p>{{ $product->short_description }}</p>
+                            <div class="flex flex-row w-full justify-between items-center">
+                                <div class="flex items-center gap-2"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Cart buttons form -->
-                <div class="mx-2">
-                    @vite('resources/ts/product-buttons.ts')
-                    <x-util.form.cart-update :product="$product" class="flex flex-col-reverse gap-3 [&>div]:self-end"></x-util.form.cart-update>
+                    <!-- Cart buttons form -->
+                    <div class="mx-2">
+                        @vite('resources/ts/product-buttons.ts')
+                        <x-util.form.cart-update :product="$product" class="flex flex-col-reverse gap-3 [&>div]:self-end"></x-util.form.cart-update>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- more product info -->
+        <section class="w-5/6 h-fit flex justify-between gap-x-10">
+            <!-- longer description -->
+            <div class="w-2/3 h-fit flex flex-col bg-zinc-900 rounded-md">
+                <h1>More Info</h1>
+                <p>{{ $product->description }}</p>
+            </div>
 
-
-
+            <!-- tags -->
+            <div class="w-1/3 h-fit flex bg-zinc-900 rounded-md">
+                <h1>Tags</h1>
+            </div>
+        </section>
     </main>
 {{--    <div class="bg-white dark:bg-zinc-900/75 text-zinc-800 px-10 mx-10 lg:px-14">--}}
 {{--        <div class="text-zinc-800 dark:text-white lg:pl-10">--}}
