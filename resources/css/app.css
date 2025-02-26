@@ -43,6 +43,14 @@
   @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-500;
 }
 
+@utility anim-up {
+  @apply animate-fade-up animate-duration-1000 animate-delay-500;
+}
+
+@utility anim-right {
+  @apply animate-fade-right animate-duration-[2000ms] animate-delay-500;
+}
+
 @utility misc-page-hr {
   @apply border border-orange-500 dark:border-violet-700 w-1/3 mx-auto;
 }
