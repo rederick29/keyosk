@@ -37,13 +37,13 @@
                     <x-util.form.input type="password" id="password_confirmation" name="password_confirmation" required />
                     <x-util.form.error name="password_confirmation" />
                 </div>
-                <div class="flex flex-row items-center justify-between mt-6 h-3/4">
+                <div class="flex flex-row items-center justify-between h-3/4">
                     <a class="w-fit hover:underline text-black/50 dark:text-white/50" href="{{ route('login.get') }}">
                         Already have an account?
                     </a>
                 </div>
-                <div class="flex flex-row items-center justify-center 2xl:justify-self-end xl:justify-self-end md:justify-self-end mt-6 h-3/4">
-                    <button type="submit" class="rounded-md bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white py-2 px-6 font-semibold hover:bg-orange-600 dark:hover:bg-violet-600 transition-all duration-500 mt-7">
+                <div class="flex flex-row items-center justify-center 2xl:justify-self-end xl:justify-self-end md:justify-self-end h-3/4">
+                    <button type="submit" class="w-32 h-12 font-semibold rounded-md bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-600 transition-all duration-500">
                         Register
                     </button>
                 </div>
