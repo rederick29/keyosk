@@ -14,7 +14,7 @@
 
         <h1 class = "misc-page-header">About Us</h1>
         
-        <div class="misc-page-container">
+        <div class="misc-page-container animate-fade-up">
             <h1 class = "text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">The Keyosk Mission</h1>
             <br>
             <p class="text-center mx-auto w-3/4 text-wrap">Our mission at Keyosk is a dedication to providing an unforgettable experience to our customers. We take pride in the quality of our products and always strive towards innovation in the many markets we pursue, especially peripherals. We have a strong focus on sustainability and want to make sure we contribute to saving the environment. </p>

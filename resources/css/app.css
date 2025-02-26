@@ -1,7 +1,12 @@
 @import 'tailwindcss';
+@import "tailwindcss-animated";
+
+
 @source "../views";
 
 @custom-variant dark (&:is(.dark *));
+
+
 
 @theme {
   --font-*: initial;
@@ -89,6 +94,7 @@
     background: #6E6E6E;
     width: 10px;
 }
+
 
 /* html number input styling */
 input[type=number]::-webkit-inner-spin-button,
