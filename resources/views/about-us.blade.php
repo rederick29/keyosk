@@ -10,7 +10,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | About us</x-slot:title>
-    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white font-sans">
+    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white font-sans anim-up">
 
         <h1 class = "misc-page-header">About Us</h1>
         

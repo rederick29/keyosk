@@ -1,7 +1,12 @@
 @import 'tailwindcss';
+@import "tailwindcss-animated";
+
+
 @source "../views";
 
 @custom-variant dark (&:is(.dark *));
+
+
 
 @theme {
   --font-*: initial;
@@ -36,6 +41,14 @@
 @utility dropdown-link {
   /* Tailwind keywords that can be added to classes to reduce code reuse */
   @apply flex flex-row justify-center items-center gap-2 w-full p-2 text-center rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-500;
+}
+
+@utility anim-up {
+  @apply animate-fade-up animate-duration-1000 animate-delay-500;
+}
+
+@utility anim-right {
+  @apply animate-fade-right animate-duration-[2000ms] animate-delay-500;
 }
 
 @utility misc-page-hr {
@@ -89,6 +102,7 @@
     background: #6E6E6E;
     width: 10px;
 }
+
 
 /* html number input styling */
 input[type=number]::-webkit-inner-spin-button,

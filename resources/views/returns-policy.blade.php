@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Returns Policy</x-slot:title>
-        <div class="returns-policy bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
+        <div class="returns-policy bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white anim-up">
             <h1 class="misc-page-header">
                 Returns & Exchanges Policy
             </h1>
