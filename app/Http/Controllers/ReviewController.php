@@ -32,6 +32,7 @@ class ReviewController extends Controller
             'rating' => ['required', 'integer', 'min:1', 'max:10'],
             'subject' => ['nullable', 'string', 'max:100'],
             'comment' => ['nullable', 'string', 'max:1000'],
+            'anonymous' => ['nullable', 'boolean'],
         ]);
 
         if ($productId == null) {
@@ -57,6 +58,7 @@ class ReviewController extends Controller
         Review::factory()->create([
             'user_id' => Auth::id(),
             'product_id' => $productId,
+            'anonymous' => $validatedData['anonymous'] ?? false,
             'rating' => $validatedData['rating'],
             'subject' => $validatedData['subject'],
             'comment' => $validatedData['comment'],

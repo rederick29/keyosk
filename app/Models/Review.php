@@ -24,10 +24,15 @@ class Review extends Model
      */
     protected $fillable = [
         'rating',
+        'anonymous',
         'subject',
         'comment',
         'user_id',
         'product_id',
+    ];
+
+    protected $casts = [
+        'anonymous' => 'boolean',
     ];
 
     public static function boot(): void

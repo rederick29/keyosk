@@ -94,6 +94,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
         </div>
         <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
             <h3 class="reviews-holder text-orange-500 dark:text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
+            @auth
             <!-- TODO: this is a working placeholder for an actual "leave review" -->
             @if(\App\Models\Product::findOrderedBy($product->id, Auth::user()) && !\App\Models\Review::findReview($product->id, Auth::id()))
                 <h2 class="text-orange-500 dark:text-violet-500 text-lg font-semibold pb-2">Leave a review:</h2>
@@ -104,9 +105,12 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                     <input type="text" id="new-review-subject" name="subject" max="100">
                     <label for="new-review-rating">Details: </label>
                     <input type="text" id="new-review-comment" name="comment" max="1000">
+                    <label for="new-review-anonymous">Don't display name: </label>
+                    <input type="checkbox" id="new-review-anonymous" name="anonymous">
                     <input type="submit">
                 </form>
             @endif
+            @endauth
             @foreach ($product->reviews as $review)
                 <x-products.review :review="$review"/>
             @endforeach
