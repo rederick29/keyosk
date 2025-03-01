@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageUploaderController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -41,6 +42,7 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
+Route::get('/reviews/{reviewId}', [ReviewController::class, 'view'])->where('reviewId', '[0-9]+')->name('review.get');
 
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
@@ -55,6 +57,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
+    Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
 
     // Cart Routes
     // DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY

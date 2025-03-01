@@ -31,6 +31,17 @@ class Product extends Model
         return $image ? $image->location : null;
     }
 
+    public static function findOrderedBy(int $productId, User $user): self | null
+    {
+        return Product::query()
+            ->join('order_product', 'order_product.product_id', '=', 'products.id')
+            ->join('orders', 'orders.id', '=', 'order_product.order_id')
+            ->where(function ($q) use ($productId, $user) {
+                $q->where('products.id', '=', $productId)
+                    ->where('orders.user_id', '=', $user->id);
+            })->first();
+    }
+
     public function getAverageRating(): float
     {
         $rating = $this->reviews()->select('rating')->avg('rating');
