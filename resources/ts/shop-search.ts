@@ -104,8 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         /* TODO:
-        users currently don't see this in any way
-        maybe add a checkbox next to every filter and if the filter is in the list, tick it
         serverside: also check if there is any product that can match current filters + any other one
           eg, don't let users click on both "keyboard" and "mouse" if there isn't any product with both tags
         */
@@ -141,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const accordionList: HTMLCollectionOf<HTMLElement> = document.getElementsByClassName('accordion') as HTMLCollectionOf<HTMLElement>;
 
+    const filters = getFilters();
     for(let i: number = 0; i < accordionList.length; i++) {
         const accordion: HTMLElement = accordionList[i];
         const toggle: HTMLElement | undefined = accordion.querySelector('.toggle') as HTMLElement;
@@ -166,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const accordion_filters = accordion_content.querySelectorAll<HTMLElement>('.accordion-filter');
-        accordion_filters.forEach((elem) => elem.addEventListener('click', handleFilterUpdate));
+        accordion_filters.forEach((elem) => {
+            elem.addEventListener('click', handleFilterUpdate);
+            if (filters.includes(elem.dataset.filter!)) {
+                elem.classList.add('dark:bg-white/5');
+                elem.classList.add('bg-black/5');
+            }
+        });
     }
 });
