@@ -124,5 +124,11 @@
         <hr class="w-2/3 mx-auto border-black/20 dark:border-white/20" />
 
         <x-testimonials.testimonials></x-testimonials.testimonials>
+
+        <x-accordion.accordion>
+            <x-accordion.accordion-item>Red</x-accordion.accordion-item>
+            <x-accordion.accordion-item>Blue</x-accordion.accordion-item>
+            <x-accordion.accordion-item>Green</x-accordion.accordion-item>
+        </x-accordion.accordion>
     </main>
 </x-layouts.layout>

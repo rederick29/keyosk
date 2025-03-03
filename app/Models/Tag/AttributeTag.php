@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class AttributeTag extends Tag
+class AttributeTag extends Model
 {
     use hasFactory;
 
