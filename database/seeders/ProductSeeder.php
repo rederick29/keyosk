@@ -284,8 +284,8 @@ class ProductSeeder extends Seeder
             ]);
 
             $product->images()->createMany($productData['images']);
-            foreach ($productData['tags'] as $tags) {
-                foreach ($tags as $type => $data) {
+            foreach ($productData['tags'] as $type => $tags) {
+                foreach ($tags as $data) {
                     $product->tags()->attach(Tag::where([['name', $data], ['type', TagType::tryFrom($type)]])->get('id'));
                 }
             }

@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.8",
+        "tailwindcss-animated": "^2.0.0",
         "toastr": "^2.1.4"
     }
 }

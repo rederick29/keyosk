@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Our Values</x-slot:title>
-    <div class="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-white font-sans pt-32">
+    <div class="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-white font-sans pt-32 anim-up">
         <h1 class="misc-page-header">
             Our Values
         </h1>

@@ -6,7 +6,7 @@
     TODO:
 --}}
 
-<div {{ $attributes->merge(['class' => 'cart-item-' . $productId . ' w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 dark:bg-zinc-900 transition-colors duration-500']) }}>
+<div {{ $attributes->merge(['class' => 'cart-item-' . $productId . ' w-full px-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 dark:bg-zinc-900 hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300']) }}>
     <div class="size-32 flex items-center overflow-hidden">
         <img src="{{ $productImage }}" alt="{{ $productImage }}" width="100" height="100" class="rounded-xs" />
     </div>
