@@ -42,17 +42,17 @@ class ReviewController extends Controller
 
         if ($validatedData['subject'] == null ^ $validatedData['comment'] == null) {
             $error = 'Both the subject and review details should be set; or both should be empty';
-            return $request->ajax() ? response()->json(compact('error'), 404) : back()->with(compact('error'));
+            return $request->ajax() ? response()->json(compact('error'), 500) : back()->with(compact('error'));
         }
 
         if (!Product::findOrderedBy($productId, Auth::user())) {
             $error = 'You have not ordered this product before';
-            return $request->ajax() ? response()->json(compact('error'), 404) : back()->with(compact('error'));
+            return $request->ajax() ? response()->json(compact('error'), 500) : back()->with(compact('error'));
         }
 
         if (Review::findReview($productId, Auth::id())) {
             $error = 'You have already reviewed this product';
-            return $request->ajax() ? response()->json(compact('error'), 404) : back()->with(compact('error'));
+            return $request->ajax() ? response()->json(compact('error'), 500) : back()->with(compact('error'));
         }
 
         Review::factory()->create([
@@ -65,5 +65,43 @@ class ReviewController extends Controller
         ]);
 
         return $request->ajax() ? response()->json(['success' => 'Created review successfully']) : back()->with('success', 'Created review successfully');
+    }
+
+    public function update(Request $request, int $reviewId): RedirectResponse|JsonResponse
+    {
+        $validatedData = $request->validate([
+            'rating' => ['nullable', 'integer', 'min:1', 'max:10'],
+            'subject' => ['nullable', 'string', 'max:100'],
+            'comment' => ['nullable', 'string', 'max:1000'],
+            'anonymous' => ['nullable', 'boolean'],
+        ]);
+
+        $review = Review::find($reviewId)->where('user_id', Auth::id())->first();
+        if (!$review) {
+            $error = 'Review not found';
+            return $request->ajax() ? response()->json(compact('error'), 404) : back()->with(compact('error'));
+        }
+
+        $updates = [];
+        foreach ($validatedData as $field => $form_input) {
+            if ($form_input != null && $review->$field != $field) {
+                $updates[$field] = $form_input;
+            }
+        }
+        $review->update($updates);
+
+        return $request->ajax() ? response()->json(['success' => 'Edited review successfully']) : back()->with('success', 'Edited review successfully');
+    }
+
+
+    public function destroy(Request $request, int $reviewId): RedirectResponse|JsonResponse
+    {
+        $review = Review::find($reviewId)->where('user_id', Auth::id())->first();
+        if (!$review) {
+            $error = 'Review not found';
+            return $request->ajax() ? response()->json(compact('error'), 404) : back()->with(compact('error'));
+        }
+        $review->delete();
+        return $request->ajax() ? response()->json(['success' => 'Removed review successfully']) : back()->with('success', 'Removed review successfully');
     }
 }
