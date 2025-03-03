@@ -28,6 +28,16 @@
                         <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
                         <x-util.form.error name="product_desc"></x-util.form.error>
                     </section>
+                    <section>
+                        <div class="text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
+                            <x-util.form.label for="">Red</x-util.form.label>
+                            <x-util.form.input type="checkbox" id="product_short_desc" name="product_short_desc" required />
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </section>
                     <section class="w-full flex gap-x-5">
                         <div class="w-1/2">
                             <x-util.form.label for="product_stock">Product stock:</x-util.form.label>
@@ -40,9 +50,11 @@
                             <x-util.form.error name="product_price"></x-util.form.error>
                         </div>
                     </section>
-                    <x-util.button type="button" class="w-1/3 mt-4 self-end bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Apply Changes</x-util.button>
+                    <x-util.button type="button" class="w-full mt-4 self-end bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Apply Changes</x-util.button>
                 </div>
             </form>
+            <!-- cannot contain button in same form / not good idea -->
+            <x-util.button type="button" class="w-full mt-4 self-end bg-transparent ring-2 ring-red-500 dark:ring-red-700 text-red-500 dark:text-red-700 hover:bg-red-500 dark:hover:bg-red-700 hover:text-zinc-800 dark:hover:text-white">Delete Product</x-util.button>
         </div>
     </section>
 </x-layouts.admin-layout>
