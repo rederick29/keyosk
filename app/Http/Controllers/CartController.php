@@ -106,6 +106,12 @@ class CartController extends Controller
             return response()->json(['error' => 'Cart is empty']);
         }
 
+        if ($cart->products()->where(function ($q) {
+            $q->where('stock', 0)->orWhereColumn('products.stock', '<', 'cart_product.quantity');
+        })->exists()) {
+            return response()->json(['error' => 'Not enough stock for a product in your cart.']);
+        }
+
         // Line one/two, city, and postcode are required for an address
         // We will use these fields to search for an existing address or create a new one
         $searchCriteria = [
@@ -143,6 +149,8 @@ class CartController extends Controller
                 'price' => $product->price,
                 'quantity' => $product->pivot->quantity,
             ]);
+            $product->stock -= $product->pivot->quantity;
+            $product->save();
         });
 
         // Some stuff here about taking the money out of the account, sending it to the warehouse, etc.

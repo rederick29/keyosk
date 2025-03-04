@@ -22,7 +22,7 @@ class CartItem extends ProductComponent
         parent::__construct($product);
 
         $this->productQuantity = Auth::user()->cart->getProductQuantity($this->productId);
-        if(empty($this->productQuantity) || $this->productQuantity <= 0)
+        if($this->productQuantity == null || $this->productQuantity <= 0)
         {
             throw new Exception("Product quantity should not be null or 0");
         }

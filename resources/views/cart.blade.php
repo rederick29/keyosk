@@ -61,9 +61,14 @@
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
             <div class="py-7 mx-2">
-                @vite('resources/ts/checkout.ts')
-                <x-util.button type="a" data-checkout-button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white " type="button">Checkout</x-util.button>
-
+                @if($cart->products()->where(function($q) {
+                    $q->where('stock', 0)->orWhereColumn('products.stock', '<', 'cart_product.quantity');
+                })->exists())
+                    <p class="pt-4 text-red-600">Some products in your cart are out of stock. Please remove them to continue to checkout.</p>
+                @else
+                    @vite('resources/ts/checkout.ts')
+                    <x-util.button type="a" data-checkout-button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white " type="button">Checkout</x-util.button>
+                @endif
                 <p class="pt-4 text-sm">Any Issues, contact us at 01543 682769</p>
             </div>
 
