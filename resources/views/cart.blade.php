@@ -35,7 +35,7 @@
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
             <div class="py-7 mx-2">
-                <x-util.form.input placeholder="Promo Code"></x-util.form.input>
+                <x-util.form.input class="w-full" placeholder="Promo Code"></x-util.form.input>
             </div>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
