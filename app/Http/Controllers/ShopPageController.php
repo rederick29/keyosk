@@ -40,7 +40,7 @@ class ShopPageController extends Controller
             ->when($filters, function ($q) use ($likeOp, $filters) {
                 foreach ($filters as $filter) {
                     $q->whereHas('tags', function ($q) use ($likeOp, $filter) {
-                        $q->where(DB::raw('lower(name)'), $likeOp, "%{$filter}%");
+                        $q->where(DB::raw('lower(name)'), $likeOp, "{$filter}");
                     });
                 }
             });
