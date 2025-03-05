@@ -11,6 +11,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 
@@ -59,6 +60,10 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {

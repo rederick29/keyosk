@@ -52,7 +52,7 @@
                 @endif
             </div>
             <div class="h-[12px]"></div>
-            <x-util.button type="a" href="/"
+            <x-util.button type="a" href="/checkout"
                 class="bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                 Checkout</x-util.button>
             <div class="h-[12px]"></div>
