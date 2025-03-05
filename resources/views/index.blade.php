@@ -11,7 +11,7 @@
         <x-util.imagescroll></x-util.imagescroll>
 
         <section
-            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5"
+            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5 anim-right"
         >
             <div
                 class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl"

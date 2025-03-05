@@ -23,7 +23,7 @@ class ProductCard extends ProductComponent
         $this->productShortDescription = $product->short_description;
         if(empty($this->productShortDescription))
         {
-            throw new Exception("Product short description should be null");
+            throw new Exception("Product short description should not be null");
         }
     }
 

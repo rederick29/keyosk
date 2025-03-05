@@ -5,9 +5,9 @@
     Author(s): Ben Snaith : Main Developer
 --}}
 
-<section class="w-full min-h-[70vh] pt-24 flex items-center bg-gradient-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500" id="image-scroll">
+<section class="w-full min-h-[70vh] pt-24 flex items-center bg-linear-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500" id="image-scroll">
     <div
-        class="h-full mx-32 flex flex-col"
+        class="h-full mx-32 flex flex-col anim-right"
     >
         <x-util.logo width="600" type="div"></x-util.logo>
         <x-util.button

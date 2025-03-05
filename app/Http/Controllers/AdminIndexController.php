@@ -55,11 +55,11 @@ class AdminIndexController extends Controller
         // Order by the currently authenticated user first, then by admin status, then by name
         $users = $query->orderByRaw('id = ? desc', [Auth::id()])
             ->orderBy('is_admin', 'desc')
-            ->orderBy('name')
+            ->orderBy('last_name')
             ->paginate(24)
             ->withQueryString();
 
-        return view('admin-index', compact('users'));
+        return view('manage-users', compact('users'));
     }
 
     /**
@@ -113,5 +113,17 @@ class AdminIndexController extends Controller
         }
 
         return response()->json(['message' => 'Action performed successfully']);
+    }
+
+    public function manage_users(): View
+    {
+        return view('manage-users');
+    }
+
+    public function stats(): View
+    {
+        // TODO: query the db and get the stats.
+
+        return view('stats');
     }
 }

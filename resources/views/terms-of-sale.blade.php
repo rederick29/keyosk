@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Terms of Sale</x-slot:title>
-        <div class="terms-of-sale bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
+        <div class="terms-of-sale bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white anim-up">
             <h1 class="misc-page-header">
                 Our Terms of Sale
             </h1>
@@ -14,7 +14,7 @@
             <div class="px-8">
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Introduction</h2>
                     <br>
                     <p class="text-center mx-auto w-3/4 py-2 leading-relaxed">
                         Welcome to Keyosk's Terms of Sale page.
@@ -32,14 +32,14 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Order Process</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Order Process</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         Here's how it all works when you place an order with Keyosk:
                     </p>
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Select Your Product:</strong> Browse through our
                                 keyboard and
@@ -50,7 +50,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Checkout:</strong> Proceed to checkout, where
                                 you&apos;ll enter your
@@ -61,7 +61,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Confirmation:</strong> Once your payment is processed,
                                 you&apos;ll
@@ -77,14 +77,14 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Payment Terms</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Payment Terms</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We accept various payment methods to make your checkout process as smooth as possible:
                     </p>
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Credit/Debit Cards:</strong> Visa, Mastercard, and
                                 American
@@ -93,7 +93,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">PayPal:</strong> If you prefer PayPal, we&apos;ve got
                                 you covered.
@@ -102,7 +102,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Other Methods:</strong> We might accept other forms of
                                 payment,
@@ -117,14 +117,14 @@
 
                 <div
                     class="misc-page-container bg-stone-200 dark:bg-zinc-900">
-                    <h2 class="text-center text-2xl font-bold text-orange-500 dark:text-violet-700 tracking-wide">Shipping & Delivery</h2>
+                    <h2 class="text-center text-2xl font-semibold text-orange-500 dark:text-violet-700 tracking-wide">Shipping & Delivery</h2>
                     <p class="text-center text-zinc-800 dark:text-gray-300 mt-4 w-4/5 mx-auto leading-relaxed">
                         We know you're eager to get your hands on your new gear. Here's how we ship your goods:
                     </p>
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Processing Time:</strong> All orders are processed
                                 within
@@ -133,7 +133,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Shipping Methods:</strong> We offer standard and
                                 expedited
@@ -142,7 +142,7 @@
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Shipping Costs:</strong> Shipping costs depend on the
                                 delivery

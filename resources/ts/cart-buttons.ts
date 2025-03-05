@@ -1,4 +1,4 @@
-import {CustomWindow, handle_response, SimpleResponse} from "@ts/utils.ts";
+import { CustomWindow, handle_response, SimpleResponse } from "@ts/utils.ts";
 // TODO: rewrite this entire file
 
 declare let window: CustomWindow;
@@ -231,7 +231,7 @@ async function updateCartItemView(items: CartItemViews): Promise<void> {
         items.forEach((product) => product.save());
     } else {
         if (items.any((p) => p.fake_quantityInput !== Number(p.quantityInput.value))) {
-            items.forEach((product) => product.quantityInput.value = String(gCartQuantities.get(items.id())!));
+            items.forEach((product) => product.quantityInput.value = String(gCartQuantities.get(Number(items.id()))!));
         }
         items.forEach((product) => product.resetFake());
     }
@@ -300,11 +300,13 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
         let quantityInput = form.querySelector<HTMLInputElement>(`.cart_quantity_input-${productId}`)!;
         let deltaQuantity = form.querySelector<HTMLInputElement>(`.cart_quantity-${productId}`)!;
         let action = form.querySelector<HTMLInputElement>(`.cart_action-${productId}`)!;
+        let stockError = productComponent.querySelectorAll<HTMLParagraphElement>(`.product-stock-error`);
         const cart = new CartItem(productId, productComponent, action, deltaQuantity, quantityInput, form)!;
 
         switch (cart_action) {
             case CartUpdateAction.Increase:
             case CartUpdateAction.Decrease:
+                // TODO: when decreasing a product with a stock error, check if the new quantity OK
             case CartUpdateAction.Add:
                 if (quantity === null) {
                     throw new TypeError("Quantity is required.");
@@ -313,6 +315,10 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
                 break;
             case CartUpdateAction.Remove:
                 cart.removeItem();
+                // TODO: replace warning with checkout button instead of refreshing
+                if (stockError.length > 0) {
+                    window.location.reload();
+                }
                 break;
         }
         items.push(cart);
@@ -326,6 +332,7 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
         } else if (quantity < 1) {
             throw new Error("Quantity needs to be greater than 0.");
         }
+
         await window.axios
             .post<SimpleResponse>(window.location.origin + "/cart/update",
                 { cart_action: cart_action, quantity: quantity, product_id: productId },

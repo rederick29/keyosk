@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->enum('status', OrderStatus::getEnumValues())->default('pending');
             $table->foreignId('user_id')->constrained('users', 'id', 'idx_orders_u_id');
+            $table->foreignId('address_id')->constrained('addresses', 'id', 'idx_orders_a_id');
             $table->decimal('total_price', 8, 4);
             $table->timestamps();
         });

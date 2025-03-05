@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'carousel-container justify-items-center']) }}>
     {{ $slot }}
     <button type="button" id="back"
-        class="absolute flex justify-center items-center lg:ml-5 lg:top-1/2 top-1/4 rounded-sm overflow-hidden">
+        class="absolute flex justify-center items-center lg:ml-5 lg:top-1/2 top-1/4 rounded-xs overflow-hidden">
         <svg class="w-8 h-10 border-4 opacity-25 hover:opacity-75 border-zinc-400 text-gray-800 dark:text-white bg-zinc-400"
             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -9,7 +9,7 @@
         </svg>
     </button>
     <button type="button" id="next"
-        class="absolute flex justify-center items-center lg:ml-10 lg:top-1/2 lg:right-1/2 top-1/4 right-1 rounded-sm overflow-hidden">
+        class="absolute flex justify-center items-center lg:ml-10 lg:top-1/2 lg:right-1/2 top-1/4 right-1 rounded-xs overflow-hidden">
         <svg class="w-8 h-10 border-4 opacity-25 hover:opacity-75 border-zinc-400 text-gray-800 dark:text-white bg-zinc-400"
             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

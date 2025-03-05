@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -23,10 +24,15 @@ class Review extends Model
      */
     protected $fillable = [
         'rating',
+        'anonymous',
         'subject',
         'comment',
         'user_id',
         'product_id',
+    ];
+
+    protected $casts = [
+        'anonymous' => 'boolean',
     ];
 
     public static function boot(): void
@@ -38,6 +44,11 @@ class Review extends Model
                 throw new ValidationException('Rating must be between 0 and 10');
             }
         });
+    }
+
+    public static function findReview(int $productId, int $userId): self | null
+    {
+        return Review::where('product_id', $productId)->where('user_id', $userId)->first();
     }
 
     /**

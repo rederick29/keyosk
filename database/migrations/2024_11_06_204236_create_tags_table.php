@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('type', TagType::getEnumValues())->default('attribute');
             $table->timestamps();
+            $table->unique(['name', 'type']);
         });
     }
 
