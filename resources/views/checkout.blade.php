@@ -7,7 +7,7 @@
     <main class="min-h-screen">
 
             <div class="container min-w-full min-h-screen pb-0 mt-12 mx-auto py-6 flex flex-row">
-                <div class="container w-3/5 py-10 bg-stone-200 dark:bg-zinc-900">
+                <div class="container w-3/5 py-10 bg-white dark:bg-black">
                     <div class="container pl-10">
                         <h1>Product Checkout</h1>
                     </div>
@@ -129,7 +129,7 @@
                             </div>
                         </form>
                 </div>
-                <div class="container flex flex-col items-center w-2/5 bg-orange-500 dark:bg-violet-700">
+                <div class="container flex flex-col items-center w-2/5 bg-stone-200 dark:bg-zinc-900">
 
                     <x-util.logo type="a" href="/" width=300 class="py-10" />
                     @php

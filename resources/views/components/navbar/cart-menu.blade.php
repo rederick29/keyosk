@@ -53,21 +53,11 @@
                     </div>
                 @endif
             </div>
-<<<<<<< HEAD
-            <div class="h-[12px]"></div>
-            <x-util.button type="a" href="/checkout"
-                class="bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
-                Checkout</x-util.button>
-            <div class="h-[12px]"></div>
-            <x-util.button type="a" href="/cart"
-                class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">View
-                cart</x-util.button>
-=======
             @if (Auth::check())
                 @if (Auth::user()->cart->hasProducts())
                     <div class="h-[12px]"></div>
                     @vite('resources/ts/checkout.ts')
-                    <x-util.button type="a" data-checkout-button
+                    <x-util.button type="a" href="/checkout" data-checkout-button
                         class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                         Checkout</x-util.button>
                     <div class="h-[12px]"></div>
@@ -81,7 +71,6 @@
                         Shopping</x-util.button>
                 @endif
             @endif
->>>>>>> origin
         </div>
     </div>
 </div>

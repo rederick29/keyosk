@@ -62,14 +62,6 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
 
     // Cart Routes
-<<<<<<< HEAD
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-
-
-=======
     // DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY
     Route::middleware([NoCache::class])->group(function () {
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -80,7 +72,6 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
     Route::post('/account/edit', [UserController::class, 'update'])->name('account.edit');
->>>>>>> origin
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
