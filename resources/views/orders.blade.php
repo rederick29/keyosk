@@ -6,7 +6,7 @@ Author(s): Kai Chima : Main Developer
 
 <x-layouts.account-layout :userId="$userId" :currentPage="'Orders'">
     <section class="w-full bg-white dark:bg-zinc-950">
-        <div class="flex flex-col">
+        <div class="grid grid-cols-3 gap-5">
             @forelse ($orders->sortBy('status') as $order)
                 <x-order.order-card :oproducts="$order->products"
                     imageUrl="{{ optional($order->products->first()->images->first())->primaryImageLocation ?? 'Undefined' }}"

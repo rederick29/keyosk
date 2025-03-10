@@ -7,7 +7,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 @props(['oproducts', 'date', 'status', 'price', 'id'])
 
 @vite("resources/ts/orders.ts")
-<div class="order-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 shadow-lg mb-6 lg:mx-20 hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
+<div class="order-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col shadow-lg hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
     <div class="flex items-center gap-4">
 
