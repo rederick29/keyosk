@@ -29,7 +29,7 @@
         </section>
 
         <!-- Side bar -->
-        <aside class="w-1/3 min-h-full px-14 py-12 bg-zinc-900" id="totals">
+        <aside class="w-1/3 min-h-full px-14 py-12 bg-stone-100 dark:bg-zinc-900" id="totals">
             <h1 class="pb-3 ml-2 font-bold text-2xl">Summary</h1>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
@@ -45,7 +45,7 @@
                     SUBTOTAL
                     <span class="cart-subtotal-price">£{{ $cart->getTotalPrice() }}</span>
                 </p>
-                <p class="flex flex-row justify-between font-bold text-base text-white/50">
+                <p class="flex flex-row justify-between font-bold text-base text-black/50 dark:text-white/50">
                     SHIPPING
                     <span class="cart-subtotal-price">TBD.</span>
                 </p>
