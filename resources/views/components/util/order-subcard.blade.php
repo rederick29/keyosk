@@ -4,14 +4,20 @@ Products card for each order.
 Author(s): Kai Chima : Main Developer
 --}}
 
-<div class="bg-stone-100 dark:bg-zinc-900 border-2 border-orange-500 dark:border-violet-700 rounded-md p-6 flex flex-row gap-2 shadow-lg mb-3 mx-5">
-    <div class="product-image h-20 w-20 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden">
-        <img src="{{ $prodimg ?? '#' }}" alt="" class="h-full w-full object-cover">
+<div {{ $attributes->merge(['class' => 'w-full px-5 py-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 bg-stone-100 dark:bg-zinc-800 hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300']) }}>
+    <div class="flex items-center justify-center overflow-hidden">
+        <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-32 rounded-xs object-contain" />
     </div>
-    <div>
-        <h2 class="font-bold">{{ $productname }}</h2>
-        <p>{{ $desc }}</p>
-        <p>£{{ $prodprice }}</p>
-        <a href="" class="text-orange-500 dark:text-violet-700 underline">Add review -></a>
+    <div class="w-full flex flex-col space-y-5">
+        <div class="flex flex-col w-full items-center start-0">
+            <p class="w-full flex font-bold text-xl">{{ $productname }}</p>
+            <div class="flex flex-row justify-start items-center w-full gap-2">
+                <p class="flex flex-row text-black/30 dark:text-white/30">
+                    £
+                    <span class="">{{ $prodprice }}</span>
+                </p>
+            </div>
+        </div>
+        <x-util.button type="button" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Review Product</x-util.button>
     </div>
 </div>
