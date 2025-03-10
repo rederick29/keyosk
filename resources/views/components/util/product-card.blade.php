@@ -53,7 +53,7 @@
             <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}">
 
             <x-util.button type="button" class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Add to cart</x-util.button>
-            <x-util.button type="button" class="py-[6px] bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Buy now</x-util.button>
+            <x-util.button type="button" href="/checkout" class="py-[6px] bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Buy now</x-util.button>
 
             <div class="min-w-fit h-fit flex justify-center items-center bg-white dark:bg-zinc-800 text-white rounded-md overflow-hidden">
                 <button type="button" id="decrease-quantity-{{ $productId }}"

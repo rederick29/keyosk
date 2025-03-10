@@ -77,7 +77,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                             </button>
 
                             <!-- Buy Now Button -->
-                            <button type="submit"
+                            <button type="submit" href="/checkout"
                                 class="buy-now-btn-{{ $product->id }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                                 Buy Now
                             </button>
