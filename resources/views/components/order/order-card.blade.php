@@ -38,9 +38,9 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
     <div id="{{ $id }}" class="content content-closed overflow-hidden">
         <div class="flex flex-col gap-y-5">
         @foreach ($oproducts as $oprod)
-            <x-util.order-subcard
-                :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'">
-            </x-util.order-subcard>
+            <x-order.order-subcard
+                :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'" :prodstatus="$status">
+            </x-order.order-subcard>
         @endforeach
         </div>
     </div>

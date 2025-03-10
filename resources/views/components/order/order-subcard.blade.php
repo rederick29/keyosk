@@ -4,6 +4,7 @@ Products card for each order.
 Author(s): Kai Chima : Main Developer
 --}}
 
+@props(['prodstatus', 'prodimg', 'productname', 'prodprice'])
 <div {{ $attributes->merge(['class' => 'w-full px-5 py-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 bg-stone-100 dark:bg-zinc-800 hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300']) }}>
     <div class="flex items-center justify-center overflow-hidden">
         <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-32 rounded-xs object-contain" />
@@ -18,6 +19,8 @@ Author(s): Kai Chima : Main Developer
                 </p>
             </div>
         </div>
-        <x-util.button type="button" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Review Product</x-util.button>
+        @if($prodstatus == \App\Models\Order\OrderStatus::Completed)
+            <x-util.button type="button" class="w-1/3  self-end bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Review Product</x-util.button>
+        @endif
     </div>
 </div>
