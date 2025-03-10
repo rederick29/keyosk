@@ -48,7 +48,7 @@
 }
 
 @utility anim-right {
-  @apply animate-fade-right animate-duration-[2000ms] animate-delay-500;
+  @apply animate-fade-right animate-duration-[1000ms] animate-delay-500;
 }
 
 @utility misc-page-hr {
