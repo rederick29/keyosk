@@ -3,7 +3,7 @@
     <section class="flex w-full h-fit py-10 items-center justify-center">
         <div class="size-11/12 bg-white dark:bg-zinc-900 rounded-lg p-10 shadow-2xl">
             <!-- product preview -->
-            <section class="w-full ring-[15px] ring-black rounded-md">
+            <section class="w-full ring-[15px] ring-stone-200 dark:ring-black rounded-md">
                 <x-util.product-card :product="$product" :enable_buttons="false"></x-util.product-card>
             </section>
 

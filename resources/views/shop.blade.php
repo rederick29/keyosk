@@ -6,14 +6,14 @@
             <aside class="w-96 h-fit flex flex-col gap-4">
 
                 <!-- Keyosk+ -->
-                <div class="h-64 p-6 flex flex-col justify-between bg-zinc-900 rounded-lg">
+                <div class="h-64 p-6 flex flex-col justify-between bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <h1 class="text-xl font-bold">Harness the power of true typing proficiency</h1>
 
                     <p class="text-violet-500 hover:underline cursor-pointer">Get more from Keyosk with <span class="font-bold">Keyosk+</span></p>
                 </div>
 
                 <!-- Tags and Filters -->
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Category" class="w-full">
                         <x-accordion.accordion-item :filter="'keyboard'">Keyboard</x-accordion.accordion-item>
                         <x-accordion.accordion-item :filter="'mouse'">Mice</x-accordion.accordion-item>
@@ -23,7 +23,7 @@
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Color">
                         <x-accordion.accordion-item :filter="'black'">Black</x-accordion.accordion-item>
                         <x-accordion.accordion-item :filter="'white'">White</x-accordion.accordion-item>
@@ -34,7 +34,7 @@
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Size">
                         <x-accordion.accordion-item :filter="'large'">Large</x-accordion.accordion-item>
                         <x-accordion.accordion-item :filter="'medium'">Medium</x-accordion.accordion-item>

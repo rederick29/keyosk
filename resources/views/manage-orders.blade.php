@@ -13,9 +13,9 @@
                     <div class="w-full bg-stone-100 dark:bg-zinc-900 rounded-md p-6 hover:ring-4 flex flex-row justify-between items-center hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
                         <div>
                             <p class="font-semibold ml-1 text-xl">#{{ $order->id }}</p>
-                            <p class="font-semibold ml-1 text-white/70">{{ $order->created_at }}</p>
+                            <p class="font-semibold ml-1 text-black/70 dark:text-white/70">{{ $order->created_at }}</p>
                         </div>
-                        <p class="font-semibold mr-1 text-white text-2xl">{{ $order->status }}</p>
+                        <p class="font-semibold mr-1 text-black dark:text-white text-2xl">{{ strtoupper($order->status->value) }}</p>
                     </div>
                 </a>
             @endforeach
