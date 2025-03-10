@@ -67,7 +67,7 @@
                     <p class="pt-4 text-red-600">Some products in your cart are out of stock. Please remove them to continue to checkout.</p>
                 @else
                     @vite('resources/ts/checkout.ts')
-                    <x-util.button type="a" data-checkout-button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white " type="button">Checkout</x-util.button>
+                    <x-util.button type="a" href="/checkout" data-checkout-button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white " type="button">Checkout</x-util.button>
                 @endif
                 <p class="pt-4 text-sm">Any Issues, contact us at 01543 682769</p>
             </div>

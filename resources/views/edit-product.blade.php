@@ -13,16 +13,32 @@
             <form class="edit-product-form" method="POST" action="{{ route('product.update.pid', ['productId' => $product->id]) }}">
                 @csrf
                 <div class="flex flex-col items-center gap-4">
+                    <!-- product images -->
+                    <section class="w-full">
+                        <p class="font-semibold self-start ml-1">Product Images</p>
+                        <div class="w-full h-56 p-5 overflow-x-scroll flex flex-row gap-x-10 items-center text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
+                            @foreach($product->images as $image)
+                                <img src="{{ $image->location }}" alt="{{ $product->name }}" class="size-44 object-contain">
+                            @endforeach
+                        </div>
+                        <div class="w-full mt-4 flex">
+                            <x-util.button type="button" class="w-full mt-4 self-end bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Replace</x-util.button>
+                            <x-util.button type="button" class="w-full h-[40px] mt-4 self-end bg-transparent ring-2 ring-red-500 dark:ring-red-700 text-red-500 dark:text-red-700 hover:bg-red-500 dark:hover:bg-red-700 hover:text-zinc-800 dark:hover:text-white">Delete</x-util.button>
+                        </div>
+                    </section>
+                    <!-- product name -->
                     <section class="w-full">
                         <x-util.form.label for="product_name">Product name:</x-util.form.label>
                         <x-util.form.input type="text" id="product_name" name="product_name" class="w-full" required value="{{ $product->name }}" />
                         <x-util.form.error name="product_name"></x-util.form.error>
                     </section>
+                    <!-- product short desc -->
                     <section class="w-full">
                         <x-util.form.label for="product_short_desc">Product short description:</x-util.form.label>
                         <x-util.form.input type="text" id="product_short_desc" name="product_short_desc" class="w-full" required value="{{ $product->short_description }}" />
                         <x-util.form.error name="product_short_desc"></x-util.form.error>
                     </section>
+                    <!-- product desc -->
                     <section class="w-full">
                         <x-util.form.label for="product_desc">Product description:</x-util.form.label>
                         <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
@@ -30,58 +46,60 @@
                     </section>
                     <!-- filter selection -->
                     <section class="w-full flex gap-x-5">
-                        <div class="w-1/2 flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Black</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">White</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Red</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Blue</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Green</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">RGB</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
+                        <div class="w-1/2">
+                            <p class="font-semibold self-start ml-1">Color Tags</p>
+                            <div class="w-full max-h-40 overflow-y-scroll flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Black</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">White</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Red</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Blue</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Green</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">RGB</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                            </div>
                         </div>
 
-                        <div class="w-1/2 flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Black</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">White</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Red</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Blue</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">Green</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
-                            <x-util.form.checkbox>
-                                <x-util.form.label for="">RGB</x-util.form.label>
-                                <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                            </x-util.form.checkbox>
+                        <div class="w-1/2">
+                            <p class="font-semibold self-start ml-1">Attribute Tags</p>
+                            <div class="w-full max-h-40 overflow-y-scroll flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Keyboards</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Mice</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Switches</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Keycaps</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                                <x-util.form.checkbox>
+                                    <x-util.form.label for="">Mousepads</x-util.form.label>
+                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
+                                </x-util.form.checkbox>
+                            </div>
                         </div>
                     </section>
                     <section class="w-full flex gap-x-5">
