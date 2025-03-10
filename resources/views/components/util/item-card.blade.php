@@ -12,7 +12,7 @@ Item Card Component --}}
     'price' => 0.00
 ])
 
-<div class="relative w-72 h-[360px] bg-stone-200 dark:bg-zinc-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 flex flex-col border-2 border-orange-500 dark:border-violet-700 cursor-pointer group">
+<div class="relative w-72 h-[360px] bg-stone-200 dark:bg-zinc-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 flex flex-col hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300 group">
 
     <!-- Clickable overlay to go to product page -->
     <a href="{{ $id ? route('product.view', ['id' => $id]) : '#' }}" class="absolute inset-0 z-10"></a>
