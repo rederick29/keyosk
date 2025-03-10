@@ -33,7 +33,7 @@
                     <x-util.button  type="a" href="{{ route('orders.get') }}">
                         Orders
                     </x-util.button>
-                    <x-util.button  type="a" href="/">
+                    <x-util.button  type="a" href="/wishlist">
                         Wishlist
                     </x-util.button>
 
