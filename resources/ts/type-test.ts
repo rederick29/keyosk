@@ -654,21 +654,7 @@ function resetTest(): void {
     caretElement.style.opacity = "0";
 }
 
-// Theme toggle functionality
-document.getElementById("theme-toggle")?.addEventListener("click", () => {
-    document.documentElement.classList.toggle("dark");
     
-    // Optional: save preference to localStorage
-    const isDark = document.documentElement.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-    
-    // Redraw charts if visible
-    if (!testRunning) {
-        drawWpmGraph();
-        drawAccuracyGraph();
-        drawWordDistributionChart();
-    }
-});
 
 // Share results functionality
 document.getElementById("share-results-button")?.addEventListener("click", () => {
@@ -678,7 +664,6 @@ document.getElementById("share-results-button")?.addEventListener("click", () =>
     // Create share text
     const shareText = `I just scored ${wpm} WPM with ${accuracy} accuracy on Keyosk Typing Test!`;
     
-    // Try to use Web Share API if available
     if (navigator.share) {
         navigator.share({
             title: 'Keyosk Typing Test Results',
