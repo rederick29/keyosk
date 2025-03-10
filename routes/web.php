@@ -58,6 +58,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
+    Route::view('/wishlist', 'wishlist');
     Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
     Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
 
