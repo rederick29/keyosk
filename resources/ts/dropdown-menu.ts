@@ -97,3 +97,20 @@ export function setupMenus(menus: [DropdownMenu, boolean][]): void {
         }
     });
 }
+
+// Create an instance of the Tools dropdown menu
+const toolsMenu = new DropdownMenu("tools-icon", "tools-dropdown");
+
+// Ensure it closes when other menus are opened
+const accountMenu = new DropdownMenu("account-icon", "account-dropdown");
+
+// Register the menus with each other to auto-close
+toolsMenu.registerOtherMenu(accountMenu);
+accountMenu.registerOtherMenu(toolsMenu);
+
+// Initialize all dropdowns
+setupMenus([
+    [toolsMenu, true],
+    [accountMenu, true]
+]);
+
