@@ -10,7 +10,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
     <!-- Product Image and Info Container -->
     <section class="flex items-center justify-between gap-4 font-bold">
 
-        <p class="font-bold">#{{ $id }}</p>
+        <p class="w-[30px] font-bold">#{{ $id }}</p>
 
         @switch($status)
             @case(\App\Models\Order\OrderStatus::Completed)
@@ -46,13 +46,15 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
             {{ $date->format('d M Y, h:i') }}
         </p>
 
-        <p class="flex flex-row items-center gap-1">
+        <p class="min-w-[200px] w-[200px] max-w-[200px] flex flex-row items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             TBD
         </p>
 
         <!-- Price -->
-        <p>£{{ number_format($price, 2) }}</p>
+        <p class="min-w-[100px] w-[100px]">
+            £{{ number_format($price, 2) }}
+        </p>
 
         <x-util.button type="button" onclick="view({{ $id }})" class="toggle toggle-closed w-fit bg-stone-200 dark:bg-zinc-800 hover:bg-black/10 dark:hover:bg-white/10">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
