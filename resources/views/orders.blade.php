@@ -11,9 +11,7 @@ Author(s): Kai Chima : Main Developer
             <!-- header bar -->
             <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
                 <p>#</p>
-                <p>Date</p>
-                <p>Status</p>
-                <p>Total</p>
+
             </section>
 
             <!-- customers orders -->
