@@ -5,8 +5,13 @@
 
             <!-- header bar -->
             <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
-                <p>#</p>
-
+                <p class="w-[30px]">#</p>
+                <p class="w-[128px]">Status</p>
+                <p class="w-[200px]">Username</p>
+                <p class="w-[200px]">Order Date</p>
+                <p class="w-[200px]">Completion Date</p>
+                <p class="w-[100px]">Total</p>
+                <div class="w-[36px] bg-transparent"></div>
             </section>
 
             <!-- customers orders -->
