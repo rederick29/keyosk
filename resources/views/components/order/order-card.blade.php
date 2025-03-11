@@ -64,10 +64,10 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
     <!-- dropdown content -->
     <section class="w-full items-center content content-closed overflow-hidden">
         <div class="w-full px-1 pb-1 flex flex-col gap-y-5 pt-10">
-            <hr class="w-[99%] mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
+            <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
-            <div class="flex gap-x-20">
-                <div class="w-1/2 flex flex-col gap-y-1">
+            <div class="mx-2 flex gap-x-20">
+                <div class="w-1/2 p-5 flex flex-col gap-y-1 bg-black rounded-md">
                 <!-- products -->
                 @foreach ($oproducts as $oprod)
                     <x-order.order-subcard
@@ -77,7 +77,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
                 </div>
 
                 <!-- addr / email / buttons -->
-                <div class="w-1/2 flex flex-col justify-between">
+                <div class="w-1/2 p-5 flex flex-col justify-between">
                     <div class="flex flex-col gap-y-5 font-bold">
                         <p class="flex items-center gap-x-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
