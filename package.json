@@ -6,6 +6,7 @@
         "build": "npx tsc && vite build"
     },
     "devDependencies": {
+        "@types/three": "^0.174.0",
         "@types/toastr": "^2.1.43",
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.1.1",
@@ -17,6 +18,8 @@
     "dependencies": {
         "@tailwindcss/vite": "^4.0.8",
         "tailwindcss-animated": "^2.0.0",
+        "three": "^0.174.0",
+        "three.interactive": "^1.8.0",
         "toastr": "^2.1.4"
     }
 }

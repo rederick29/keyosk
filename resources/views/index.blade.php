@@ -8,7 +8,7 @@
     {{-- Ability to slot in a title to the layout for modularity --}}
     {{-- <x-slot:title>Example Title</x-slot:title> --}}
     <main class="min-h-screen">
-        <x-util.imagescroll></x-util.imagescroll>
+        <x-util.index-hero></x-util.index-hero>
 
         <section
             class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5 anim-right"
