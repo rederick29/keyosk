@@ -55,19 +55,19 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [UserController::class, 'create'])->name('register.get');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
+// Cart Routes
+// DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY
+Route::middleware([NoCache::class])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});
+
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
     Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
     Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
-
-    // Cart Routes
-    // DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY
-    Route::middleware([NoCache::class])->group(function () {
-        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-        Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-        Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-    });
 
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
