@@ -5,9 +5,9 @@ Author(s): Kai Chima : Main Developer
 --}}
 
 @props(['prodstatus', 'prodimg', 'productname', 'prodprice'])
-<div {{ $attributes->merge(['class' => 'w-full px-5 py-5 flex flex-row gap-5 items-center text-center rounded-lg bg-stone-100 bg-stone-100 dark:bg-zinc-800 hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300']) }}>
+<div {{ $attributes->merge(['class' => 'w-full py-3 flex flex-row gap-5 items-center text-center rounded-lg']) }}>
     <div class="flex items-center justify-center overflow-hidden">
-        <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-32 rounded-xs object-contain" />
+        <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-12 rounded-xs object-contain" />
     </div>
     <div class="w-full flex flex-col space-y-5">
         <div class="flex flex-col w-full items-center start-0">

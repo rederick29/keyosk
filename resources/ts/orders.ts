@@ -16,11 +16,15 @@ document.addEventListener("DOMContentLoaded", (): void => {
             {
                 productCardContent.classList.remove('content-open');
                 productCardContent.classList.add('content-closed');
+                toggle.classList.remove('toggle-open');
+                toggle.classList.add('toggle-closed');
                 productCardContent.style.maxHeight = '0px';
             }
             else {
                 productCardContent.classList.remove('content-closed');
                 productCardContent.classList.add('content-open');
+                toggle.classList.remove('toggle-closed');
+                toggle.classList.add('toggle-open');
                 productCardContent.style.maxHeight = `${scrollHeight}px`;
             }
         })
