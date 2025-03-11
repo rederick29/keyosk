@@ -16,7 +16,7 @@
 
             <!-- customers orders -->
             @foreach(\App\Models\Order::all()->sortBy('status')->reverse() as $order)
-                @if($order->status != \App\Models\Order\OrderStatus::Cancelled)
+                @if($order->status != \App\Models\Order\OrderStatus::Cancelled && $order->status != \App\Models\Order\OrderStatus::Completed)
                 <x-order.order-card :oproducts="$order->products"
                                     imageUrl="{{ optional($order->products->first()->images->first())->primaryImageLocation ?? 'Undefined' }}"
                                     :status="$order->status" :date="$order->created_at" :price="$order->total_price" :id="$order->id" :user="$order->user_id">

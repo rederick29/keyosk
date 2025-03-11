@@ -96,18 +96,26 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
                     </div>
 
                     @if(Auth::user()->is_admin && Request::is('*manage-orders*'))
-                        <form>
-                            <select>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
+                        <form class="my-5 flex gap-5">
+                            <select class="dropdown h-10 px-5 rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 outline-hidden transition-shadow duration-500" style="-webkit-appearance: none;">
+                                <option>Pending</option>
+                                <option>Processing</option>
+                                <option>Dispatched</option>
+                                <option>Shipped</option>
                             </select>
+
+                            <x-util.button type="button" class="w-1/3 bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Update</x-util.button>
                         </form>
                     @endif
 
-                    <div class="mt-10 flex flex-col gap-y-5">
+                    <div class="flex flex-col gap-y-5">
+                        @if(Auth::user()->is_admin && Request::is('*manage-orders*'))
+                            <x-util.button type="a" class="bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-800 text-white font-bold  overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
+                                <span>Mark Completed</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            </x-util.button>
+                        @endif
+
                         @if($status != \App\Models\Order\OrderStatus::Completed && $status != \App\Models\Order\OrderStatus::Shipped)
                             <x-util.button type="a" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-bold  overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
                                 <span>Cancel</span>
@@ -155,6 +163,9 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
     .toggle-open svg {
         transform: rotate(180deg);
         transition: transform 300ms ease;
+    }
+
+    .dropdown {
     }
 </style>
 
