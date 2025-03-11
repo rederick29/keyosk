@@ -1,5 +1,5 @@
 <x-layouts.admin-layout currentPage="Products">
-    <section class="w-11/12 py-10 flex flex-col items-center">
+    <section class="w-full flex flex-col items-center">
         <div
             class="w-full h-fit py-5 px-5 flex justify-center bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
             id="search"

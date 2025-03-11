@@ -4,8 +4,7 @@ Order-card component.
 Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
 --}}
 
-@props(['oproducts', 'date', 'status', 'price', 'id'])
-
+@props(['oproducts', 'date', 'status', 'price', 'id', 'user'])
 @vite("resources/ts/orders.ts")
 <div class="order-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col shadow-lg hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
@@ -34,9 +33,22 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
                 @break
         @endswitch
 
-        <p class="flex flex-row items-center gap-1">
+        <!-- admin sees user for sorting purposes, user doesnt need to, they know who they are -->
+        @if(Auth::user()->is_admin && Request::is('*manage-orders*'))
+            <p class="min-w-[200px] w-[200px] max-w-[200px] flex flex-row items-center gap-1 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                {{ App\Models\User::find($user)->name }}
+            </p>
+        @endif
+
+        <p class="min-w-[200px] w-[200px] max-w-[200px] flex flex-row items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             {{ $date->format('d M Y, h:i') }}
+        </p>
+
+        <p class="flex flex-row items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            TBD
         </p>
 
         <!-- Price -->
@@ -80,12 +92,20 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
                             </div>
                         </div>
                     </div>
-                    <div class="mt-10 flex flex-col gap-y-5">
-                        <x-util.button type="a" class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800 font-bold overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
-                            <span>Query Order</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        </x-util.button>
 
+                    @if(Auth::user()->is_admin && Request::is('*manage-orders*'))
+                        <form>
+                            <select>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                            </select>
+                        </form>
+                    @endif
+
+                    <div class="mt-10 flex flex-col gap-y-5">
                         @if($status != \App\Models\Order\OrderStatus::Completed && $status != \App\Models\Order\OrderStatus::Shipped)
                             <x-util.button type="a" class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-bold  overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
                                 <span>Cancel</span>
