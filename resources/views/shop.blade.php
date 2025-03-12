@@ -6,44 +6,120 @@
             <aside class="w-96 h-fit flex flex-col gap-4">
 
                 <!-- Keyosk+ -->
-                <div class="h-64 p-6 flex flex-col justify-between bg-zinc-900 rounded-lg">
+                <div class="h-64 p-6 flex flex-col justify-between bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <h1 class="text-xl font-bold">Harness the power of true typing proficiency</h1>
 
                     <p class="text-violet-500 hover:underline cursor-pointer">Get more from Keyosk with <span class="font-bold">Keyosk+</span></p>
                 </div>
 
                 <!-- Tags and Filters -->
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Category" class="w-full">
-                        <x-accordion.accordion-item :filter="'keyboard'">Keyboard</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'mouse'">Mice</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'key_switches'">Switches</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'keycaps'">Keycaps</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'mousepad'">Mousepads</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'keyboard'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Keyboard
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'mouse'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Mice
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'key_switches'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Switches
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'keycaps'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Keycaps
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'mousepad'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Mousepads
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Color">
-                        <x-accordion.accordion-item :filter="'black'">Black</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'white'">White</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'red'">Red</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'green'">Green</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'blue'">Blue</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'rgb'">RGB</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'black'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Black
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'white'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            White
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'red'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Red
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'green'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Green
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'blue'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Blue
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'rgb'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            RGB
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
                     <x-accordion.accordion label="Size">
-                        <x-accordion.accordion-item :filter="'large'">Large</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'medium'">Medium</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'small'">Small</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'full_size'">100%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'75%'">75%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'70%'">70%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'65%'">65%</x-accordion.accordion-item>
-                        <x-accordion.accordion-item :filter="'60%'">60%</x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'large'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Large
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'medium'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Medium
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'small'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            Small
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'full_size'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            100%
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'75%'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            75%
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'70%'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            70%
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'65%'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            65%
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
+                        <x-accordion.accordion-item :filter="'60%'" class="relative flex items-center justify-between accordion-tick-unselected">
+                            60%
+                            <svg class="tick absolute right-2 transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <svg class="cross absolute right-2 transition text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </x-accordion.accordion-item>
                     </x-accordion.accordion>
                 </div>
             </aside>

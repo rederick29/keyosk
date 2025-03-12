@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 address_id: address_db_used ? Number(address_id) : undefined,
                 card: card,
                 discount_code: discount_code,
-            }, '/checkout') === false) {
+            }, '/cart/checkout') === false) {
                 currentButton.disabled = false;
             } else {
                 window.location.href = '/orders';

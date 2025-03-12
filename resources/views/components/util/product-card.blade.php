@@ -40,7 +40,7 @@
     <!-- Quantity Selector and Buttons -->
     @if($enable_buttons)
     <!-- Bottom dark section -->
-    <div class="w-full h-[88px] bg-zinc-950/50 absolute z-0 bottom-0 left-0 rounded-b-md"></div>
+    <div class="w-full h-[88px] bg-stone-200/50 dark:bg-zinc-950/50 absolute z-0 bottom-0 left-0 rounded-b-md"></div>
     <div class="flex items-center gap-4 mt-4 z-20">
         <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}" class="w-full flex items-center justify-center gap-5">
             <script nonce="{{ csp_nonce() }}">
