@@ -79,6 +79,14 @@
   @apply from-yellow-500 to-red-400;
 }
 
+@utility accordion-tick-unselected {
+    @apply [&>.tick]:translate-x-10 [&>.cross]:translate-x-10 hover:[&>.tick]:translate-x-0;
+}
+
+@utility accordion-tick-selected {
+    @apply [&>.tick]:text-green-600 [&>.cross]:translate-x-10 hover:[&>.tick]:translate-x-10 hover:[&>.cross]:translate-x-0;
+}
+
 /* styling for chrome scrollbar */
 ::-webkit-scrollbar {
     width: 3px;
@@ -121,33 +129,4 @@ input[type=number] {
 .toast {
     opacity: 1 !important;
     width: 25vw !important;
-}
-
-/* styling for accordion component*/
-.accordion-content {
-    max-height: 0;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: clip;
-
-    transition: max-height 1s ease;
-}
-
-.accordion-checkbox {
-    display: none;
-}
-
-.accordion-checkbox:checked~.accordion-content {
-    max-height: 200px;
-}
-
-/* Animations */
-@keyframes accordion-slide {
-    0% {
-        height: 0;
-    }
-
-    100% {
-        height: 100%;
-    }
 }
