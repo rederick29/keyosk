@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\Country;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
@@ -12,6 +14,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Cart;
+use function PHPUnit\Framework\assertEquals;
 
 class CartController extends Controller
 {
@@ -92,12 +95,24 @@ class CartController extends Controller
     public function checkout(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
+            'save_address' => ['boolean', 'required'],
+            'address_id' => ['nullable', 'int'],
             // Address (will be used for both billing and shipping)
-            'address.line_one' => ['required', 'string', 'max:255'],
+            'address.name' => ['required_without:address_id', 'string', 'max:255'],
+            'address.line_one' => ['required_without:address_id', 'string', 'max:255'],
             'address.line_two' => ['nullable', 'string', 'max:255'],
-            'address.city' => ['required', 'string', 'max:100'],
-            // 'address.country_id' => ['required', 'exists:countries,id'],, // TODO: hmm
-            'address.postcode' => ['required', 'string', 'max:20'],
+            'address.city' => ['required_without:address_id', 'string', 'max:100'],
+            'address.postcode' => ['required_without:address_id', 'string', 'max:20'],
+            'address.country' => ['required_without:address_id', 'string', Rule::exists('countries', 'code')],
+            // contact details
+            'contact.first_name' => ['nullable', 'string', 'max:255'],
+            'contact.last_name' => ['nullable', 'string', 'max:255'],
+            'contact.email' => ['nullable', 'email', 'string', 'max:255'],
+            'card.name' => ['required', 'string', 'max:255'],
+            'card.number' => ['required', 'int'],
+            'card.expiry' => ['required', 'int'],
+            'card.cvv' => ['required', 'int'],
+            'discount_code' => ['nullable', 'string', 'max:255', Rule::exists('vouchers', 'code')],
         ]);
 
         $user = Auth::user();
@@ -112,29 +127,49 @@ class CartController extends Controller
             return response()->json(['error' => 'Not enough stock for a product in your cart.']);
         }
 
-        // Line one/two, city, and postcode are required for an address
-        // We will use these fields to search for an existing address or create a new one
-        $searchCriteria = [
-            'line_one' => $validatedData['address']['line_one'],
-            'city' => $validatedData['address']['city'],
-            'postcode' => $validatedData['address']['postcode']
-        ];
+        $address = null;
+        if ($validatedData['address_id'] !== null && $validatedData['address_id'] > -1) {
+            $address = $user->addresses()->where('priority', $validatedData['address_id'])->first();
+            if ($address == null) {
+                return response()->json(['error' => 'Saved address not found.']);
+            }
+        } else {
+            if ($validatedData['address_id'] < 0) {
+                return response()->json(['error' => 'creating new address?']);
+            }
+            $country_id = Country::where('code', $validatedData['address']['country'])->first()->id;
 
-        // Add line_two to criteria if it exists, otherwise explicitly set to null
-        $searchCriteria['line_two'] = !empty($validatedData['address']['line_two'])
-            ? $validatedData['address']['line_two']
-            : null;
+            // We will use these fields to search for an existing address or create a new one
+            $searchCriteria = [
+                'name' => $validatedData['address']['name'],
+                'line_one' => $validatedData['address']['line_one'],
+                'city' => $validatedData['address']['city'],
+                'postcode' => $validatedData['address']['postcode'],
+                'country_id' => $country_id,
+            ];
 
-        // Create the address
-        $priority = $user->addresses->isEmpty() ? 0 : $user->addresses->max('priority') + 1;
-        $address = $user->addresses()->firstOrCreate(
-            $searchCriteria,
-            [
-                'name' => $user->name,
-                'country_id' => 1, // TODO: Replace with actual country ID
-                'priority' => $priority
-            ]
-        );
+            // Add line_two to criteria if it exists, otherwise explicitly set to null
+            $searchCriteria['line_two'] = !empty($validatedData['address']['line_two'])
+                ? $validatedData['address']['line_two']
+                : null;
+
+            if (boolval($validatedData['save_address']) === true) {
+                // Create the address
+                $priority = Address::getMaxPriority($user);
+                $address = $user->addresses()->firstOrCreate(
+                    $searchCriteria,
+                    [
+                        'priority' => $priority
+                    ]
+                );
+            } else {
+                $address = Address::factory()->create(array_merge($searchCriteria, [
+                    'user_id' => $user->id,
+                    'priority' => null,
+                ]));
+                $address->delete();
+            }
+        }
 
         $order = Order::create([
             'user_id' => $user->id,

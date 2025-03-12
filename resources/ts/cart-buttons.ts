@@ -115,7 +115,7 @@ class CartItem {
 
     async submit(): Promise<boolean> {
         if (!this.dirty) return false;
-        let ret = false;
+        let ret: boolean | SimpleResponse = false;
         let data = {
             cart_action: this.fake_action!.toString(),
             product_id: this.id,
@@ -123,7 +123,13 @@ class CartItem {
         }
         await window.axios.post<SimpleResponse>(this.form.action, data)
             .then(response => {
-                ret = handle_response(response);
+                let ret2 = handle_response(response);
+                // how cooked is this
+                if (typeof ret2 != "boolean") {
+                    ret = true;
+                } else {
+                    ret = ret2;
+                }
             })
             .catch(error => console.log(error));
         return ret;
