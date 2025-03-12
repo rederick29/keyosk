@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use App\Services\CartService;
 
 class SessionController extends Controller
 {
@@ -43,6 +44,9 @@ class SessionController extends Controller
                 $redirect->with('success', 'Welcome, ' . $user->name . '!');
             }
 
+            // User is logged in, so transfer the session cart to the user's cart
+            app(CartService::class)->transferSessionCartToUser($user);
+
             $user->last_login = Carbon::now();
             return $redirect;
         }
@@ -60,6 +64,8 @@ class SessionController extends Controller
         // Invalidate the session and regenerate the token to prevent session fixation
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        // TODO: Consider transferring the user cart to the session cart?
 
         return redirect('/')->with('info', 'Sorry to see you go!');
     }
