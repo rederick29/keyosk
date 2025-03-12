@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.0.8",
+        "cannon-es": "^0.20.0",
         "tailwindcss-animated": "^2.0.0",
         "three": "^0.174.0",
         "three.interactive": "^1.8.0",
