@@ -76,4 +76,15 @@ class ProductController extends Controller
 
         return to_route('manage-products')->with('success', 'Product updated successfully.');
     }
+
+    public function review_index(int $id)
+    {
+        $product = null;
+        try {
+            $product = Product::findOrFail($id);
+        } catch (ModelNotFoundException) {
+            return to_route('index')->with('error', 'Product not found');
+        }
+        return view("review", compact('product'));
+    }
 }

@@ -56,7 +56,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Order Routes
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
-    Route::view('/review', 'review');
+    Route::get('/product/{id}/review', [ProductController::class, 'review_index'])->where('id', '[0-9]+')->name('product.review.get');
 
     // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
