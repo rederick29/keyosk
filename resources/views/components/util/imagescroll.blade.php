@@ -6,7 +6,7 @@
 --}}
 
 <section class="relative w-full min-h-[70vh] pt-24 flex items-center bg-linear-to-tr from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 overflow-hidden" id="image-scroll">
-    <div class="absolute box w-full top-0"></div>
+    <div class="absolute box w-full top-0 right-0"></div>
     <div
         class="h-full mx-32 flex flex-col anim-right"
     >
@@ -24,6 +24,7 @@
 <style>
     .box {
         background-image: url("{{ asset('svgs/keyosk_k.svg') }}");
+        width: calc(80px * 100);
         height: calc(80px * 20);
         animation: slide 4s linear infinite;
     }
