@@ -3,8 +3,6 @@
 
     Author(s): Ben Snaith : Main developer
 
-    TODO: change the size of the icons on mobile
-    TODO: Fix stupid animation pop in
 --}}
 
 @vite(['resources/js/navbar.js'])
@@ -23,14 +21,14 @@
                 New
             </a>
             <a href="/shop?sort=price_low_to_high"
-                class="hover:animate-pulse hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300"
+                class="hover:animate-pulse text-orange-500 dark:text-violet-600 transition-colors duration-300"
                 id="shop-link">
                 Sale
             </a>
         </div>
     </div>
 
-    <div class="w-fit">
+    <div class="w-fit transition hover:scale-110">
         <x-navbar.logo-link />
     </div>
 
