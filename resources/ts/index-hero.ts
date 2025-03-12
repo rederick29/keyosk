@@ -180,32 +180,32 @@ function loadModels() {
 
     //         scene.add(model);
     //     });
-}
 
-loader.load('storage/images/static/SHOP_NOW.glb', (gltf) => {
-    const shopNowModel = gltf.scene;
-    shopNowModel.scale.set(1, 1, 1);
-    shopNowModel.position.set(-10, 7, 0);
-    shopNowModel.rotation.set(deg2rad(90), 0, 0);
-    shopNowModel.userData = {
-        originalColor: 0xFFFFFF,
-        hoverColor: 0xFF00FF,
-        isClickable: true
-    };
 
-    shopNowModel.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-            child.material = physicalMat.clone();
-            child.material.color.set(0xAAAAAA);
-            child.castShadow = true;
-            child.receiveShadow = true;
-        }
+    loader.load('storage/images/static/SHOP_NOW.glb', (gltf) => {
+        const shopNowModel = gltf.scene;
+        shopNowModel.scale.set(1, 1, 1);
+        shopNowModel.position.set(-10, 7, 0);
+        shopNowModel.rotation.set(deg2rad(90), 0, 0);
+        shopNowModel.userData = {
+            originalColor: 0xFFFFFF,
+            hoverColor: 0xFF00FF,
+            isClickable: true
+        };
+
+        shopNowModel.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.material = physicalMat.clone();
+                child.material.color.set(0xAAAAAA);
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+
+        loadedModels.push(shopNowModel);
+        scene.add(shopNowModel);
+        createPhysicsBody(shopNowModel, true);
     });
-
-    loadedModels.push(shopNowModel);
-    scene.add(shopNowModel);
-    createPhysicsBody(shopNowModel, true);
-});
 }
 
 function createPhysicsBody(object, isStatic = false) {
