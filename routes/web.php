@@ -63,6 +63,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.get');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/api/v1/address', [UserController::class, 'address'])->name('api.v1.address');
 
     // Cart Routes
     // DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY

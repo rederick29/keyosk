@@ -54,7 +54,7 @@
                 @endif
             </div>
             @if (Auth::check())
-                @if (Auth::user()->cart->hasProducts())
+                @if (Auth::user()->cart && Auth::user()->cart->hasProducts())
                     <div class="h-[12px]"></div>
                     <x-util.button type="a" href="{{ route('checkout.get') }}"
                         class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">

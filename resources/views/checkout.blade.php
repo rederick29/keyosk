@@ -56,10 +56,10 @@
                         <p>Select an address:</p>
                         @foreach($addresses as $address)
                             <label for="address-{{ $address->priority }}">Address {{ $address->priority + 1 }}</label>
-                            <input type="radio" id="address-{{ $address->priority }}" name="addressId" value="{{ $address->priority }}">
+                            <input class="address-button" type="radio" id="address-{{ $address->priority }}" name="addressId" value="{{ $address->priority }}" {{ $primary_address->id == $address->id ? "checked" : "" }}>
                         @endforeach
                         <label for="new-address">New address</label>
-                        <input type="radio" id="new-address" name="addressId" value="-1">
+                        <input class="address-button" type="radio" id="new-address" name="addressId" value="-1">
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 w-2/3 pt-5">
 
@@ -69,7 +69,7 @@
                             <label for="address_name"
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Shipping Name</label>
                             <div class="mt-2.5">
-                                <input type="text" name="address_name" id="address_name"
+                                <input type="text" name="address_name" id="address_name" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value="{{ $primary_address->name ?? "" }}"
                                 >
@@ -81,7 +81,7 @@
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address
                                 1</label>
                             <div class="mt-2.5">
-                                <input type="text" name="address1" id="address1"
+                                <input type="text" name="address1" id="address1" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value="{{ $primary_address->line_one ?? "" }}"
                                 >
@@ -92,7 +92,7 @@
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address
                                 2</label>
                             <div class="mt-2.5">
-                                <input type="text" name="address2" id="address2"
+                                <input type="text" name="address2" id="address2" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value="{{ $primary_address->line_two ?? "" }}"
                                 >
@@ -102,7 +102,7 @@
                             <label for="city"
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">City</label>
                             <div class="mt-2.5">
-                                <input type="text" name="city" id="city"
+                                <input type="text" name="city" id="city" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value="{{ $primary_address->city ?? "" }}"
                                 >
@@ -112,7 +112,7 @@
                             <label for="postcode"
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Postcode</label>
                             <div class="mt-2.5">
-                                <input type="text" name="postcode" id="postcode"
+                                <input type="text" name="postcode" id="postcode" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value="{{ $primary_address->postcode ?? "" }}"
                                 >
@@ -122,25 +122,27 @@
                             <label for="country"
                                    class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Country</label>
                             <div class="mt-2.5">
-                                <select name="country" id="country" class="w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700">
+                                <select {{ $primary_address ? "readonly" : "" }} name="country" id="country" {{ $primary_address ? "disabled readonly" : "" }}
+                                class="w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700">
+                                    @php
+                                        $selected_code = \App\Models\Country::where('id', $primary_address->country_id)->first()->code;
+                                    @endphp
                                     @foreach(App\Utils\CountryCodes::get_codes() as $code => $country)
-                                        <option value="{{ $code }}">{{ $country }}</option>
+                                        <option value="{{ $code }}" {{ $selected_code == $code ? "selected" : "" }}>{{ $country }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        @if(!$primary_address)
                         <div>
                             <label for="save_address"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Save address?</label>
+                                   class="{{ $primary_address ? "invisible" : "visible" }} block text-black/50 dark:text-gray-300 text-sm font-semibold">Save address?</label>
                             <div class="mt-2.5">
                                 <input type="checkbox" name="save_address" id="save_address"
-                                       class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
+                                       class="{{ $primary_address ? "invisible" : "visible" }} font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value=""
                                 >
                             </div>
                         </div>
-                        @endif
                     </div>
                     <div
                         class="container font-semibold text-center pb-2.5 pt-10 w-3/4 border-b border-orange-500 dark:border-violet-700">

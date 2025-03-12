@@ -58,5 +58,5 @@ export function handle_response<T extends SimpleResponse>(response: AxiosRespons
         window.toastr.error(error);
         return false;
     }
-    return true;
+    return data;
 }

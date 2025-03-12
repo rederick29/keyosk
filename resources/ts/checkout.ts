@@ -1,14 +1,22 @@
 import {make_request, SimpleRequest, SimpleResponse} from "@ts/utils.ts";
 
+interface AddressRequest extends SimpleRequest {
+    priority: number;
+}
+
+interface AddressResponse extends SimpleResponse {
+    address: Address | undefined;
+}
+
 interface CheckoutRequest extends SimpleRequest {
-    address: Address | null;
+    address: Address | undefined;
     contact: {
         first_name: string;
         last_name: string;
         email: string;
-    } | null;
+    } | undefined;
     save_address: boolean;
-    address_id: number | null;
+    address_id: number | undefined;
     card: {
         number: number;
         name: string;
@@ -34,6 +42,69 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Added event listener but missing checkout form!");
         return;
     }
+    const addressButtons = form.querySelectorAll<HTMLInputElement>('.address-button');
+
+    const enableInputs = (inputs: Array<HTMLInputElement | HTMLSelectElement>) => {
+        for (let input of inputs) {
+            input.removeAttribute('disabled');
+            input.removeAttribute('readonly');
+        }
+    };
+
+    const disableInputs = (inputs: Array<HTMLInputElement | HTMLSelectElement>) => {
+        for (let input of inputs) {
+            input.setAttribute('disabled', '');
+            input.setAttribute('readonly', '');
+        }
+    };
+
+    addressButtons.forEach(button => {
+        button.addEventListener('click', async (_) => {
+            const address_priority = Number(button.value);
+            let address_id = form.querySelector<HTMLInputElement>('#addressId')!;
+            let address_name = form.querySelector<HTMLInputElement>('#address_name')!;
+            let address_line_one = form.querySelector<HTMLInputElement>('#address1')!;
+            let address_line_two = form.querySelector<HTMLInputElement>('#address2')!;
+            let address_city = form.querySelector<HTMLInputElement>('#city')!;
+            let address_postcode = form.querySelector<HTMLInputElement>('#postcode')!;
+            let address_country = form.querySelector<HTMLSelectElement>('#country')!;
+            let save_address = form.querySelector<HTMLInputElement>('#save_address')!;
+
+            if (address_priority < 0) {
+                address_name.value = '';
+                address_line_one.value = '';
+                address_line_two.value = '';
+                address_city.value = '';
+                address_postcode.value = '';
+                address_country.value = '';
+                save_address.style.visibility = 'visible';
+                save_address.labels!.forEach(label => label.style.visibility = 'visible');
+                save_address.checked = false;
+
+                enableInputs([address_name, address_line_one, address_line_two, address_city, address_postcode, address_country, save_address]);
+                address_id.value = String(address_priority);
+                return;
+            }
+
+            let ret = await make_request<AddressRequest, AddressResponse>({priority: address_priority}, '/api/v1/address');
+            if (typeof ret === 'boolean') {
+                return;
+            }
+
+            address_name.value = ret.address!.name;
+            address_line_one.value = ret.address!.line_one;
+            address_line_two.value = ret.address!.line_two;
+            address_city.value = ret.address!.city;
+            address_postcode.value = ret.address!.postcode;
+            address_country.value = ret.address!.country;
+            save_address.checked = false;
+            save_address.style.visibility = 'hidden';
+            save_address.labels?.forEach(label => label.style.visibility = 'hidden');
+
+            disableInputs([address_name, address_line_one, address_line_two, address_city, address_postcode, address_country, save_address]);
+            address_id.value = String(address_priority);
+        })
+    })
 
     checkoutButtons.forEach(button => {
         button.addEventListener('click', async (event) => {
@@ -93,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: address,
                 contact: contact,
                 save_address: save_address,
-                address_id: address_db_used ? Number(address_id) : null,
+                address_id: address_db_used ? Number(address_id) : undefined,
                 card: card,
                 discount_code: discount_code,
             }, '/checkout') === false) {

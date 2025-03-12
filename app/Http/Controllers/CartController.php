@@ -128,15 +128,12 @@ class CartController extends Controller
         }
 
         $address = null;
-        if ($validatedData['address_id'] !== null && $validatedData['address_id'] > -1) {
+        if (isset($validatedData['address_id']) && $validatedData['address_id'] > -1) {
             $address = $user->addresses()->where('priority', $validatedData['address_id'])->first();
             if ($address == null) {
                 return response()->json(['error' => 'Saved address not found.']);
             }
         } else {
-            if ($validatedData['address_id'] < 0) {
-                return response()->json(['error' => 'creating new address?']);
-            }
             $country_id = Country::where('code', $validatedData['address']['country'])->first()->id;
 
             // We will use these fields to search for an existing address or create a new one
@@ -159,7 +156,7 @@ class CartController extends Controller
                 $address = $user->addresses()->firstOrCreate(
                     $searchCriteria,
                     [
-                        'priority' => $priority
+                        'priority' => $priority + 1
                     ]
                 );
             } else {
