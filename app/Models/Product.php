@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tag\TagType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -30,6 +31,17 @@ class Product extends Model
         return $image ? $image->location : null;
     }
 
+    public static function findOrderedBy(int $productId, User $user): self | null
+    {
+        return Product::query()
+            ->join('order_product', 'order_product.product_id', '=', 'products.id')
+            ->join('orders', 'orders.id', '=', 'order_product.order_id')
+            ->where(function ($q) use ($productId, $user) {
+                $q->where('products.id', '=', $productId)
+                    ->where('orders.user_id', '=', $user->id);
+            })->first();
+    }
+
     public function getAverageRating(): float
     {
         $rating = $this->reviews()->select('rating')->avg('rating');
@@ -56,23 +68,32 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    public function wishlists(): BelongsToMany
+    {
+        return $this->belongsToMany(Wishlist::class);
+    }
+
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id')
+            ->withTimestamps();
     }
 
     public function colourTags(): BelongsToMany
     {
-        return $this->belongsToMany(ColourTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('colourTag');
     }
 
     public function attributeTags(): BelongsToMany
     {
-        return $this->belongsToMany(AttributeTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('attributeTag');
     }
 
     public function compatibilityTags(): BelongsToMany
     {
-        return $this->belongsToMany(CompatibilityTag::class, 'product_tag', 'product_id', 'tag_id');
+        return $this->belongsToMany(Tag::class)
+            ->whereHas('compatibilityTag');
     }
 }

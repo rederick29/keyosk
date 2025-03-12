@@ -62,7 +62,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                                 </button>
                                 <input type="number" id="quantity-{{ $product->id }}" name="quantity" min="1"
                                     value="1"
-                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-none border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+                                    class="w-12 h-8 text-center bg-transparent text-zinc-800 dark:text-white outline-hidden border-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
                                 <button type="button" id="increase-quantity-{{ $product->id }}"
                                     class="w-8 h-8 flex items-center justify-center text-zinc-800 dark:text-gray-400  hover:text-zinc-700 dark:hover:text-white transition duration-200 bg-stone-200 dark:bg-zinc-700 hover:bg-stone-300 dark:hover:bg-zinc-600">
                                     +
@@ -77,7 +77,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
                             </button>
 
                             <!-- Buy Now Button -->
-                            <button type="submit"
+                            <button type="submit" href="/checkout"
                                 class="buy-now-btn-{{ $product->id }} px-5 py-2 rounded-md font-semibold bg-orange-500 dark:bg-violet-700 text-zinc-800 dark:text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                                 Buy Now
                             </button>
@@ -93,15 +93,26 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             <p>{{ $product->description }}</p>
         </div>
         <div class="text-zinc-800 dark:text-white lg:px-10 pt-7 pb-6">
-            <h3 class="text-orange-500 dark:text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
+            <h3 class="reviews-holder text-orange-500 dark:text-violet-500 text-xl font-semibold pb-2">Reviews</h3>
+            @auth
+            <!-- TODO: this is a working placeholder for an actual "leave review" -->
+            @if(\App\Models\Product::findOrderedBy($product->id, Auth::user()) && !\App\Models\Review::findReview($product->id, Auth::id()))
+                <h2 class="text-orange-500 dark:text-violet-500 text-lg font-semibold pb-2">Leave a review:</h2>
+                <form class="leave-review flex flex-col outline-2 outline-orange-500 dark:outline-violet-500 rounded w-fit [&>*]:p-2 [&>input]:outline-2" method="POST" action="{{ route('review.store', ['productId' => $product->id]) }}"> @csrf
+                    <label for="new-review-rating">Rating (0-10): </label>
+                    <input type="number" id="new-review-rating" name="rating" min="0" max="10" step="1" value="" required>
+                    <label for="new-review-rating">Subject: </label>
+                    <input type="text" id="new-review-subject" name="subject" max="100">
+                    <label for="new-review-rating">Details: </label>
+                    <input type="text" id="new-review-comment" name="comment" max="1000">
+                    <label for="new-review-anonymous">Don't display name: </label>
+                    <input type="checkbox" id="new-review-anonymous" name="anonymous">
+                    <input type="submit">
+                </form>
+            @endif
+            @endauth
             @foreach ($product->reviews as $review)
-                <div class="border-t border-orange-500 dark:border-violet-700">
-                    <p class="py-2 pt-4">{{ $review->user->name }}</p>
-                    <x-products.review-rating class="w-3 h-3" rating="{{ $review->rating }}">
-                        <p id="rating" class="text-white font-semibold">&emsp;{{ $review->subject }}</p>
-                    </x-products.review-rating>
-                    <p class="py-2 pb-4">{{ $review->comment }}</p>
-                </div>
+                <x-products.review :review="$review"/>
             @endforeach
             <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
         </div>

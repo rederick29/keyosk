@@ -43,6 +43,7 @@ export class DropdownMenu {
     act(): void {
         this.parentElement.classList.toggle('dark:bg-white/5');
         this.parentElement.classList.toggle('bg-black/5');
+        this.parentElement.classList.toggle('[&>.arrow]:rotate-180')
         this.parentElement.classList.toggle('ring-2');
         this.toggleCssStyle();
         this.isOpen = !this.isOpen;

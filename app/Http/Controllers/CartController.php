@@ -11,21 +11,31 @@ use App\Utils\CartUpdateAction;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\Cart;
+use App\Services\CartService;
 
 class CartController extends Controller
 {
+    protected $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
+
     public function index(): View|RedirectResponse
     {
         // No products, so why render the cart page?
-        if (!Auth::user()->cart->hasProducts()) {
+        if (!$this->cartService->hasProducts()) {
             return redirect()->route('shop')->with('error', 'Cart is empty.');
         }
 
-        return view('cart');
+        return view('cart', [
+            'products' => $this->cartService->getProducts(),
+            'total' => $this->cartService->getTotalPrice()
+        ]);
     }
 
-    public function update(Request $request): RedirectResponse | JsonResponse
+    public function update(Request $request): RedirectResponse|JsonResponse
     {
         $validatedData = $request->validate([
             'cart_action' => ['required', Rule::enum(CartUpdateAction::class)],
@@ -39,13 +49,15 @@ class CartController extends Controller
             ],
         ]);
 
-        $user = Auth::user();
         $productId = intval($validatedData['product_id']);
         $quantity = intval($validatedData['quantity'] ?? 1);
-        $cart = $user->cart ?? Cart::factory()->forUser($user)->create();
 
         try {
-            $message = $this->processCartAction($cart, CartUpdateAction::from($validatedData['cart_action']), $productId, $quantity);
+            $message = $this->cartService->processCartAction(
+                CartUpdateAction::from($validatedData['cart_action']),
+                $productId,
+                $quantity
+            );
         } catch (\Exception $e) {
             if ($request->ajax()) {
                 return response()->json(['error' => $e->getMessage()]);
@@ -54,39 +66,14 @@ class CartController extends Controller
         }
 
         if ($request->ajax()) {
-            return response()->json(['success' => $message]);
+            return response()->json([
+                'success' => $message,
+                'total' => $this->cartService->getTotalPrice(),
+                'products' => $this->cartService->getProducts()
+            ]);
         }
+
         return redirect()->back()->with('success', $message);
-    }
-
-    /**
-     * Process the cart action based on the provided action and product details.
-     *
-     * @param Cart $cart
-     * @param CartUpdateAction $action
-     * @param int $productId
-     * @param int $quantity
-     * @return string
-     */
-    private function processCartAction(Cart $cart, CartUpdateAction $action, int $productId, int $quantity): string
-    {
-        switch ($action) {
-            case CartUpdateAction::Add:
-            case CartUpdateAction::Increase:
-                $cart->addProduct($productId, $quantity);
-                return 'Product added to cart';
-
-            case CartUpdateAction::Remove:
-                $cart->emptyItem($productId);
-                return 'Product removed from cart';
-
-            case CartUpdateAction::Decrease:
-                $cart->removeProduct($productId, $quantity);
-                return 'Product quantity decreased';
-
-            default:
-                throw new \InvalidArgumentException('Invalid cart action');
-        }
     }
 
     public function checkout(Request $request): JsonResponse
@@ -101,9 +88,21 @@ class CartController extends Controller
         ]);
 
         $user = Auth::user();
-        $cart = $user->cart;
-        if ($cart == null || !$cart->hasProducts()) {
+
+        if (!$this->cartService->hasProducts()) {
             return response()->json(['error' => 'Cart is empty']);
+        }
+
+        // For authenticated users, we need to check stock
+        if (Auth::check()) {
+            $cart = $user->cart;
+            if (
+                $cart->products()->where(function ($q) {
+                    $q->where('stock', 0)->orWhereColumn('products.stock', '<', 'cart_product.quantity');
+                })->exists()
+            ) {
+                return response()->json(['error' => 'Not enough stock for a product in your cart.']);
+            }
         }
 
         // Line one/two, city, and postcode are required for an address
@@ -134,20 +133,37 @@ class CartController extends Controller
             'user_id' => $user->id,
             'address_id' => $address->id,
             'status' => OrderStatus::Pending,
-            'total_price' => $cart->getTotalPrice()
+            'total_price' => $this->cartService->getTotalPrice()
         ]);
 
-        // Attach products to the order
-        $cart->products->each(function ($product) use ($order) {
-            $order->products()->attach($product->id, [
-                'price' => $product->price,
-                'quantity' => $product->pivot->quantity,
-            ]);
-        });
+        // Attach products to the order based on user type
+        if (Auth::check()) {
+            // For authenticated users, use the existing relationship method
+            $user->cart->products->each(function ($product) use ($order) {
+                $order->products()->attach($product->id, [
+                    'price' => $product->price,
+                    'quantity' => $product->pivot->quantity,
+                ]);
+                $product->stock -= $product->pivot->quantity;
+                $product->save();
+            });
+        } else {
+            // For guests, we need to manually loop through session cart products
+            foreach ($this->cartService->getProducts() as $product) {
+                $order->products()->attach($product['id'], [
+                    'price' => $product['price'],
+                    'quantity' => $product['quantity'],
+                ]);
 
-        // Some stuff here about taking the money out of the account, sending it to the warehouse, etc.
-        // We will just simulate it by emptying the cart
-        $cart->emptyCart();
+                // Update stock
+                $productModel = \App\Models\Product::find($product['id']);
+                $productModel->stock -= $product['quantity'];
+                $productModel->save();
+            }
+        }
+
+        // Empty the cart after successful checkout
+        $this->cartService->emptyCart();
 
         return response()->json(['success' => 'Checkout successful']);
     }

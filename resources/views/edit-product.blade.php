@@ -3,7 +3,7 @@
     <section class="flex w-full h-fit py-10 items-center justify-center">
         <div class="size-11/12 bg-white dark:bg-zinc-900 rounded-lg p-10 shadow-2xl">
             <!-- product preview -->
-            <section class="w-full ring-[15px] ring-black rounded-md">
+            <section class="w-full ring-[15px] ring-stone-200 dark:ring-black rounded-md">
                 <x-util.product-card :product="$product" :enable_buttons="false"></x-util.product-card>
             </section>
 
@@ -25,7 +25,7 @@
                     </section>
                     <section class="w-full">
                         <x-util.form.label for="product_desc">Product description:</x-util.form.label>
-                        <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-none transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
+                        <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500" id="product_desc" name="product_desc" required>{{ $product->description }}</textarea>
                         <x-util.form.error name="product_desc"></x-util.form.error>
                     </section>
                     <section class="w-full flex gap-x-5">

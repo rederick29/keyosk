@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CompatibilityTag extends Tag
+class CompatibilityTag extends Model
 {
     use hasFactory;
 

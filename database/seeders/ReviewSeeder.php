@@ -15,9 +15,14 @@ class ReviewSeeder extends Seeder
     public function run(): void
     {
         for ($i = 1; $i <= 30; $i++) {
+            $user = User::all()->random();
+            $product = Product::all()->random();
+            // ensure [user_id, product_id] is unique
+            if (Review::findReview($product->id, $user->id)) { --$i; continue; }
+
             Review::factory()
-                ->forProduct(Product::all()->random())
-                ->forUser(User::all()->random())
+                ->forProduct($product)
+                ->forUser($user)
                 ->create();
         }
     }

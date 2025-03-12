@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImageUploaderController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -11,6 +12,7 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
 
@@ -43,6 +45,7 @@ Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
+Route::get('/reviews/{reviewId}', [ReviewController::class, 'view'])->where('reviewId', '[0-9]+')->name('review.get');
 
 // Shop view
 Route::get('/shop', [ShopPageController::class, 'index'])->name('shop');
@@ -54,17 +57,19 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 Route::get('/register', [UserController::class, 'create'])->name('register.get');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');
 
+// Cart Routes
+// DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY
+Route::middleware([NoCache::class])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});
+
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
-
-    // Cart Routes
-    // DON'T CACHE CART ROUTES, THEY CHANGE FREQUENTLY
-    Route::middleware([NoCache::class])->group(function () {
-        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-        Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-        Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-    });
+    Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
+    Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
 
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
