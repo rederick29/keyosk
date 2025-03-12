@@ -30,10 +30,10 @@
 
     @keyframes slide {
         from {
-            transform: translateY(0px)
+            transform: translateY(0px) translateX(0px);
         }
         to {
-            transform: translateY(80px);
+            transform: translateY(80px) translateX(80px);
         }
     }
 </style>
