@@ -11,7 +11,7 @@
         <x-util.imagescroll></x-util.imagescroll>
 
         <section
-            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5 anim-right"
+            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5 animate-fade duration-500"
         >
             <div
                 class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl"
@@ -94,7 +94,7 @@
         <hr class="w-2/3 mx-auto border-black/20 dark:border-white/20" />
 
         <section
-            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-10"
+            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-10 animate-fade"
             id="what-we-do"
         >
             <img src="https://placehold.co/400x400" alt="" class="rounded-xl">
