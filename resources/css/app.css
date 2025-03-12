@@ -87,6 +87,22 @@
     @apply [&>.tick]:text-green-600 [&>.cross]:translate-x-10 hover:[&>.tick]:translate-x-10 hover:[&>.cross]:translate-x-0;
 }
 
+@utility click-box {
+  @apply w-[750px] h-[350px] bg-zinc-900 border-2 border-gray-700 rounded-xl shadow-xl flex items-center justify-center cursor-pointer relative overflow-hidden transition-all hover:shadow-[0px_0px_20px_rgba(255,255,255,0.2)];
+}
+
+@utility stat-box {
+  @apply w-40 h-24 flex flex-col justify-center items-center rounded-lg text-black bg-white dark:bg-zinc-900 shadow-lg border border-gray-300 dark:border-gray-700;
+}
+
+@utility stat-value {
+  @apply text-3xl font-bold;
+}
+
+@utility stat-label {
+  @apply text-sm uppercase tracking-wider;
+}
+
 /* styling for chrome scrollbar */
 ::-webkit-scrollbar {
     width: 3px;
