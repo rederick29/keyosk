@@ -23,7 +23,7 @@ const mouse = new THREE.Vector2();
 let intersectedObject = null;
 let clickedObject = null;
 let isDragging = false;
-let draggedBody = null;
+let draggedBody: CANNON.Body | null = null;
 let previousMousePosition = new THREE.Vector2();
 let mouseVelocity = new THREE.Vector2();
 let lastMousePositions = [];
@@ -188,6 +188,7 @@ function loadModels() {
         shopNowModel.position.set(-10, 7, 0);
         shopNowModel.rotation.set(deg2rad(90), 0, 0);
         shopNowModel.userData = {
+            character: 'SHOP_NOW',
             originalColor: 0xFFFFFF,
             hoverColor: 0xFF00FF,
             isClickable: true
@@ -196,7 +197,9 @@ function loadModels() {
         shopNowModel.traverse((child) => {
             if (child instanceof THREE.Mesh) {
                 child.material = physicalMat.clone();
-                child.material.color.set(0xAAAAAA);
+                child.material.color.set(0xFFFFFF);
+                child.material.clearcoat = 0.5;
+                child.material.reflectivity = 0.5;
                 child.castShadow = true;
                 child.receiveShadow = true;
             }
@@ -247,7 +250,7 @@ function createPhysicsBody(object, isStatic = false) {
     physicsBodies[object.uuid] = body;
 }
 
-let xz = 0;
+let animTimer = 0;
 
 function onMouseMove(event) {
     previousMousePosition.copy(mouse);
@@ -345,7 +348,9 @@ function onMouseUp(event) {
         calculateMouseVelocity();
 
         // Apply impulse based on mouse movement speed (flinging)
-        const impulseStrength = Math.min(mouseVelocity.length() * 20, 40);
+        const velocity: number = mouseVelocity.length();
+        // If near zero, just drop the object
+        const impulseStrength = velocity < 0.1 ? 0 : velocity;
 
         if (impulseStrength > 1) {
             // Normalize and apply velocity direction
@@ -468,6 +473,19 @@ function animate() {
         }
 
         body.position.z = 0;
+
+        if (model.userData.character === 'SHOP_NOW') {
+            const quaternionX = new CANNON.Quaternion();
+            const quaternionZ = new CANNON.Quaternion();
+
+            // NOTE: order matters, first is the rightmost one
+            quaternionX.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), deg2rad(90));
+            quaternionZ.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.sin(animTimer) * 0.1);
+
+            body.quaternion = quaternionX.mult(quaternionZ);
+
+            animTimer += 0.02;
+        }
 
         model.position.copy(body.position);
         model.quaternion.copy(body.quaternion);
