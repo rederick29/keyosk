@@ -2,14 +2,22 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as CANNON from 'cannon-es';
 
+
+
 function deg2rad(degrees) {
     return degrees * (Math.PI / 180);
 }
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(25);
-camera.position.set(0, 8.5, 45);
-camera.lookAt(0, 2, 0);
+// aruns original camera
+// const camera = new THREE.PerspectiveCamera(25);
+// camera.position.set(0, 8.5, 45);
+// camera.lookAt(0, 2, 0);
+
+// bens attempt at the wooden block camera
+const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 10, 30);
+camera.lookAt(0, 0, -6);
 
 const canvas = document.getElementById('canvas');
 const renderer = new THREE.WebGLRenderer({
@@ -70,7 +78,7 @@ const physicalMat = new THREE.MeshPhysicalMaterial({
     roughness: 0.7,
 });
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
@@ -185,7 +193,7 @@ function loadModels() {
     loader.load('storage/images/static/SHOP_NOW.glb', (gltf) => {
         const shopNowModel = gltf.scene;
         shopNowModel.scale.set(1, 1, 1);
-        shopNowModel.position.set(-10, 7, 0);
+        shopNowModel.position.set(-13, 5, 0);
         shopNowModel.rotation.set(deg2rad(90), 0, 0);
         shopNowModel.userData = {
             character: 'SHOP_NOW',
@@ -526,3 +534,27 @@ renderer.shadowMap.type = THREE.PCFShadowMap;
 
 loadModels();
 animate();
+
+// handle the switch from 2D -> 3D on home page, default to 2D for shit computers (like mine)
+document.addEventListener("DOMContentLoaded", (): void => {
+    const container: HTMLElement = document.getElementById('image-scroll') as HTMLElement;
+    const twoDElement: HTMLElement = document.getElementById('two-d-element') as HTMLElement;
+    const threeDElement: HTMLElement = document.getElementById('three-d-element') as HTMLElement;
+    const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
+
+    perspectiveSwitch.addEventListener("click", (): void => {
+        const is2D: boolean = !twoDElement.classList.contains('hidden');
+
+
+        if(is2D) {
+            twoDElement.classList.remove('flex');
+            twoDElement.classList.add('hidden');
+            threeDElement.classList.remove('hidden');
+        }
+        else {
+            threeDElement.classList.add('hidden');
+            twoDElement.classList.remove('hidden');
+            twoDElement.classList.add('flex');
+        }
+    })
+})
