@@ -25,6 +25,10 @@
             @endforeach
         </div>
         <aside class="w-full flex flex-col items-center gap-5">
+            <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
+                <p class="w-[30px] text-transparent">Filtering</p>
+            </section>
+
             <x-util.search class="w-full" placeholder=""></x-util.search>
 
             <div class="w-full p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
