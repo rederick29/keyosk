@@ -1,8 +1,8 @@
 
+@vite(['resources/ts/orders-search.ts'])
 <x-layouts.admin-layout currentPage="Orders">
-    <section class="w-full bg-white dark:bg-zinc-950">
+    <section class="w-full flex gap-5 bg-white dark:bg-zinc-950">
         <div class="flex flex-col gap-5">
-
             <!-- header bar -->
             <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
                 <p class="w-[30px]">#</p>
@@ -24,5 +24,19 @@
                 @endif
             @endforeach
         </div>
+        <aside class="w-full flex flex-col items-center gap-5">
+            <x-util.search class="w-full" placeholder=""></x-util.search>
+
+            <div class="w-full p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
+                <x-accordion.accordion label="Status" class="w-full">
+                    <x-accordion.accordion-item :filter="''">Shipped</x-accordion.accordion-item>
+                    <x-accordion.accordion-item :filter="''">Pending</x-accordion.accordion-item>
+                    <x-accordion.accordion-item :filter="''">Processing</x-accordion.accordion-item>
+                    <x-accordion.accordion-item :filter="''">Dispatched</x-accordion.accordion-item>
+                    <x-accordion.accordion-item :filter="''">Canceled</x-accordion.accordion-item>
+                    <x-accordion.accordion-item :filter="''">Completed</x-accordion.accordion-item>
+                </x-accordion.accordion>
+            </div>
+        </aside>
     </section>
 </x-layouts.admin-layout>
