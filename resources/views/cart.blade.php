@@ -55,14 +55,27 @@
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
+            <div class="hidden">
+            @if(Auth::check())
+                @foreach($cart->products()->orderBy("name")->get() as $product)
+                    <p><span class="summary-product-quantity-{{ $product->id }}">{{ $product->pivot->quantity }}</span></p>
+                @endforeach
+            @else
+                @foreach($cartService->getProducts() as $product)
+                    <p><span class="summary-product-quantity-{{ $product['id'] }}">{{ $product['quantity'] }}</span></p>
+                @endforeach
+            @endif
+            </div>
             <div class="py-7 mx-2 flex flex-col">
                 <p class="mb-2 flex flex-row justify-between font-bold text-xl">
                     SUBTOTAL
-                    <span class="cart-subtotal-price">£{{ number_format($cartService->getTotalPrice(), 2) }}</span>
+                    <span class="flex flex-row">£
+                       <span class="cart-subtotal-price">{{ number_format($cartService->getTotalPrice(), 2, '.', '') }}</span>
+                    </span>
                 </p>
                 <p class="flex flex-row justify-between font-bold text-base text-black/50 dark:text-white/50">
                     SHIPPING
-                    <span class="cart-subtotal-price">TBD.</span>
+                    <span class="">TBD.</span>
                 </p>
             </div>
 
@@ -70,7 +83,9 @@
 
             <p class="py-7 mx-2 flex flex-row justify-between font-bold text-xl">
                 ESTIMATED TOTAL
-                <span class="cart-subtotal-price">£{{ number_format($cartService->getTotalPrice(), 2) }}</span>
+                <span class="flex flex-row">£
+                    <span class="cart-subtotal-price">{{ number_format($cartService->getTotalPrice(), 2, '.', '') }}</span>
+                </span>
             </p>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />

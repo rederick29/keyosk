@@ -1,11 +1,29 @@
 @php
     use Illuminate\Support\Facades\Auth;
-    $user = Auth::user();
-    $addresses = $user->addresses;
-    $primary_address = $addresses->where('priority', 0)->first();
+    use App\Models\User;
+    $user = new User;
+    $addresses = [];
+    $primary_address = null;
+    $cart = null;
+    if (Auth::check()) {
+        $user = Auth::user();
+        $addresses = $user->addresses;
+        $primary_address = $addresses->where('priority', 0)->first();
+        $cart = $user->cart ?? App\Models\Cart::factory()->forUser($user)->create();
+    } else {
+        $user->first_name = "";
+        $user->last_name = "";
+        $user->email = "";
+        $user->id = -1;
+    }
+
+    $cartService = app(\App\Services\CartService::class);
+    $hasProducts = $cartService->hasProducts();
+    $cart_component = $cart ? "navbar.cart-item" : "navbar.guest-cart-item";
 @endphp
 <x-layouts.layout>
     <x-slot:title>Keyosk | Checkout</x-slot:title>
+    <span class="hidden user-id">{{ $user->id }}</span>
     <main class="min-h-screen">
         <div class="container min-w-full min-h-screen pb-0 pt-12 mx-auto py-6 flex flex-row">
             <div class="container w-3/5 py-10 bg-white dark:bg-black">
@@ -20,8 +38,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 w-2/3 pt-5">
                         <div>
                             <label for="first_name"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">First
-                                name</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">First name*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="first_name" id="first_name"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -30,8 +47,7 @@
                         </div>
                         <div>
                             <label for="last_name"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Last
-                                name</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Last name*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="last_name" id="last_name"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -40,7 +56,7 @@
                         </div>
                         <div class="lg:col-span-2">
                             <label for="email"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Email</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Email*</label>
                             <div class="mt-2.5">
                                 <input type="email" name="email" id="email"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -59,7 +75,7 @@
                             <input class="address-button" type="radio" id="address-{{ $address->priority }}" name="addressId" value="{{ $address->priority }}" {{ $primary_address->id == $address->id ? "checked" : "" }}>
                         @endforeach
                         <label for="new-address">New address</label>
-                        <input class="address-button" type="radio" id="new-address" name="addressId" value="-1">
+                        <input class="address-button" type="radio" id="new-address" name="addressId" value="-1" {{ empty($addresses) ? "checked" : "" }}>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 w-2/3 pt-5">
 
@@ -67,7 +83,7 @@
 
                         <div>
                             <label for="address_name"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Shipping Name</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Recipient's Name</label>
                             <div class="mt-2.5">
                                 <input type="text" name="address_name" id="address_name" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -78,8 +94,7 @@
 
                         <div>
                             <label for="address1"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address
-                                1</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address line one*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="address1" id="address1" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -89,8 +104,7 @@
                         </div>
                         <div>
                             <label for="address2"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address
-                                2</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Address line two</label>
                             <div class="mt-2.5">
                                 <input type="text" name="address2" id="address2" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -100,7 +114,7 @@
                         </div>
                         <div>
                             <label for="city"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">City</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">City*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="city" id="city" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -110,7 +124,7 @@
                         </div>
                         <div>
                             <label for="postcode"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Postcode</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Postcode*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="postcode" id="postcode" {{ $primary_address ? "disabled readonly" : "" }}
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -120,12 +134,12 @@
                         </div>
                         <div>
                             <label for="country"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Country</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Country*</label>
                             <div class="mt-2.5">
                                 <select {{ $primary_address ? "readonly" : "" }} name="country" id="country" {{ $primary_address ? "disabled readonly" : "" }}
                                 class="w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700">
                                     @php
-                                        $selected_code = \App\Models\Country::where('id', $primary_address->country_id)->first()->code;
+                                        $selected_code = \App\Models\Country::where('id', $primary_address->country_id ?? \App\Models\Country::where('code', 'GB')->first()->id)->first()->code;
                                     @endphp
                                     @foreach(App\Utils\CountryCodes::get_codes() as $code => $country)
                                         <option value="{{ $code }}" {{ $selected_code == $code ? "selected" : "" }}>{{ $country }}</option>
@@ -135,10 +149,10 @@
                         </div>
                         <div>
                             <label for="save_address"
-                                   class="{{ $primary_address ? "invisible" : "visible" }} block text-black/50 dark:text-gray-300 text-sm font-semibold">Save address?</label>
+                                   class="{{ $cart ? $primary_address ? "invisible" : "visible" : "invisible" }} block text-black/50 dark:text-gray-300 text-sm font-semibold">Save address?</label>
                             <div class="mt-2.5">
                                 <input type="checkbox" name="save_address" id="save_address"
-                                       class="{{ $primary_address ? "invisible" : "visible" }} font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
+                                       class="{{ $cart ? $primary_address ? "invisible" : "visible" : "invisible" }} font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                                        value=""
                                 >
                             </div>
@@ -151,8 +165,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-5 w-2/3 pt-5">
                         <div class="lg:col-span-2">
                             <label for="card_holder_name"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card Holder
-                                Name</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card Holder Name*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="card_holder_name" id="card_holder_name"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -161,8 +174,7 @@
                         </div>
                         <div class="lg:col-span-2">
                             <label for="card_number"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card
-                                Number</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card Number*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="card_number" id="card_number"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -174,8 +186,7 @@
 
                         <div>
                             <label for="expiry_date"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Expiry
-                                Date</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Expiry Date*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YY"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700 text-center"
@@ -184,7 +195,7 @@
                         </div>
                         <div>
                             <label for="cvv"
-                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">CVV</label>
+                                   class="block text-black/50 dark:text-gray-300 text-sm font-semibold">CVV*</label>
                             <div class="mt-2.5">
                                 <input type="text" name="cvv" id="cvv"
                                        class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
@@ -197,14 +208,9 @@
             <div class="container flex flex-col items-center w-2/5 bg-stone-200 dark:bg-zinc-900">
 
                 <x-util.logo type="a" href="/" width=300 class="py-10"/>
-                @php
-                    $user = Auth::user();
-                    $cart = $user->cart ?? App\Models\Cart::factory()->forUser($user)->create();
-                @endphp
-
                 <div class="container w-4/5 max-h-[398px] overflow-y-auto">
-                    @foreach($cart->products()->orderBy("name")->get() as $product)
-                        <x-navbar.cart-item class="border-2 border-orange-500 dark:border-violet-700"
+                    @foreach($cart ? $cart->products()->orderBy("name")->get() : $cartService->getProducts() as $product)
+                        <x-dynamic-component :component="$cart_component" class="border-2 border-orange-500 dark:border-violet-700"
                                             :product="$product"/>
                     @endforeach
                 </div>
@@ -226,16 +232,16 @@
 
                 <div
                     class="container w-2/3 justify-items-center mt-8 max-h-[100px] border-r border-l border-stone-200 dark:border-zinc-900 overflow-y-auto">
-                    @foreach($cart->products()->orderBy("name")->get() as $product)
-                        <div class="summary-product-{{ $product->id }} flex items-center gap-1">
-                            <span class="summary-product-quantity">{{ $product->pivot->quantity }}</span>
+                    @foreach($cart ? $cart->products()->orderBy("name")->get() : $cartService->getProducts() as $product)
+                        <div class="summary-product-{{ $product->id ?? $product['id'] }} flex items-center gap-1">
+                            <span class="summary-product-quantity-{{ $product->id ?? $product['id'] }}}">{{ $product->pivot->quantity ?? $product['quantity'] }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
                             </svg>
-                            {{ $product->name }}
+                            {{ $product->name ?? $product['name'] }}
                         </div>
                     @endforeach
                 </div>
@@ -243,11 +249,11 @@
                     class="mt-7 py-3 w-1/2 justify-items-center border-t border-b border-stone-200 dark:border-zinc-900">
                     <p class="flex flex-row gap-1">
                         Items:
-                        <span class="cart-total-quantity-count">{{ $cart->products->count() }}</span>
+                        <span class="cart-total-quantity-count">{{ $cart ? $cart->products->count() : count($cartService->getProducts()) }}</span>
                     </p>
                     <p class="flex flex-row">
                         Total: £
-                        <span class="cart-subtotal-price">{{ $cart->getTotalPrice() }}</span>
+                        <span class="cart-subtotal-price">{{ $cart ? $cart->getTotalPrice() : $cartService->getTotalPrice() }}</span>
                     </p>
                 </div>
                 @vite('resources/ts/checkout.ts')

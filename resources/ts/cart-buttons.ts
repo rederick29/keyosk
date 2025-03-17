@@ -200,12 +200,14 @@ class CartItemViews {
 async function updateCartItemView(items: CartItemViews): Promise<void> {
     const updateSummaryPrice = () => {
         let product_price = document.querySelector(`.cart-item-price-${items.id()}`);
-        let summary_price = document.querySelector('.cart-subtotal-price');
-        let summary_quantity = document.querySelector(`.summary-product-${items.id()} .summary-product-quantity`);
-        if (product_price && summary_quantity && summary_price) {
+        let summary_price = document.querySelectorAll<HTMLSpanElement>('.cart-subtotal-price');
+        let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`);
+        if (product_price && summary_quantity) {
             let deltaQuantity = items.pendingQuantity()! - parseInt(summary_quantity.textContent!);
             let deltaPrice = deltaQuantity * parseFloat(product_price.textContent!);
-            summary_price.textContent = String((parseFloat(summary_price.textContent!) + deltaPrice).toFixed(2));
+            summary_price.forEach(elem => {
+                elem.textContent = String((parseFloat(elem.textContent!) + deltaPrice).toFixed(2))
+            });
         }
     }
 
@@ -227,11 +229,8 @@ async function updateCartItemView(items: CartItemViews): Promise<void> {
         } else if (items.pendingAction() === CartUpdateAction.Increase || items.pendingAction() === CartUpdateAction.Decrease) {
             // update quantity and price in cart summary
             updateSummaryPrice();
-            let summary_entry = document.querySelectorAll(`.summary-product-${items.id()}`);
-            summary_entry.forEach((elem) => {
-                let summary_quantity = elem.querySelector('.summary-product-quantity')!;
-                summary_quantity.textContent = String(items.pendingQuantity());
-            })
+            let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`)!;
+            summary_quantity.textContent = String(items.pendingQuantity());
         }
 
         items.forEach((product) => product.save());

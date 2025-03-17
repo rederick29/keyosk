@@ -8,6 +8,10 @@ interface AddressResponse extends SimpleResponse {
     address: Address | undefined;
 }
 
+interface OrderPlacedResponse extends SimpleResponse {
+    order_id: number;
+}
+
 interface CheckoutRequest extends SimpleRequest {
     address: Address | undefined;
     contact: {
@@ -37,6 +41,7 @@ interface Address {
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkoutButtons = document.querySelectorAll('[data-checkout-button]');
+    const userId = document.querySelector<HTMLInputElement>('.user-id');
     const form = document.querySelector<HTMLFormElement>('#checkout-form');
     if (form === null) {
         console.log("Added event listener but missing checkout form!");
@@ -160,17 +165,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 cvv: Number(cvv),
             };
 
-            if (await make_request<CheckoutRequest, SimpleResponse>({
+            const resp = await make_request<CheckoutRequest, OrderPlacedResponse>({
                 address: address,
                 contact: contact,
                 save_address: save_address,
                 address_id: address_db_used ? Number(address_id) : undefined,
                 card: card,
                 discount_code: discount_code,
-            }, '/cart/checkout') === false) {
+            }, '/cart/checkout');
+
+            if (resp  === false) {
                 currentButton.disabled = false;
             } else {
-                window.location.href = '/orders';
+                if (typeof resp !== 'boolean') {
+                    sessionStorage.setItem('success', `Your order number #${resp.order_id} has been placed successfully.`);
+                }
+                if (userId && Number(userId) === -1) {
+                    window.location.href = '/';
+                } else {
+                    window.location.href = '/orders';
+                }
             }
         });
     });

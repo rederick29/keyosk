@@ -153,7 +153,7 @@ class CartController extends Controller
                 );
             } else {
                 $address = Address::factory()->create(array_merge($searchCriteria, [
-                    'user_id' => $user->id,
+                    'user_id' => $user ? $user->id : null,
                     'priority' => null,
                 ]));
                 $address->delete();
@@ -161,7 +161,7 @@ class CartController extends Controller
         }
 
         $order = Order::create([
-            'user_id' => $user->id,
+            'user_id' => $user ? $user->id : null,
             'address_id' => $address->id,
             'status' => OrderStatus::Pending,
             'total_price' => $this->cartService->getTotalPrice()
