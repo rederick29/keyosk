@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
     const getCardWidth = (): number => {
         const card: HTMLElement | null = container.querySelector('.product-card');
         if (card) {
-            return card.offsetWidth + 8;
+            return card.offsetWidth;
         }
         return 0;
     };
@@ -44,11 +44,9 @@ document.addEventListener("DOMContentLoaded", (): void => {
         cardWidth = getCardWidth();
         if (cardWidth) {
             // Set container width to be a multiple of card width to prevent partial cards
-            const visibleCards = window.innerWidth > 1200 ? 4 :
-                window.innerWidth > 768 ? 3 :
-                    window.innerWidth > 480 ? 2 : 1;
-            container.style.maxWidth = `${cardWidth * visibleCards}px`;
-            container.style.width = `${cardWidth * visibleCards}px`;
+            const visibleCards: number = 1;
+            container.style.maxWidth = `${(cardWidth) * visibleCards}px`;
+            container.style.width = `${(cardWidth) * visibleCards}px`;
         }
     };
 
@@ -126,10 +124,10 @@ document.addEventListener("DOMContentLoaded", (): void => {
         });
 
         // stop the padding bs
-        container.scrollBy({
-            left: cardWidth - 4,
-            behavior: "instant"
-        })
+        // container.scrollBy({
+        //     left: cardWidth - 4,
+        //     behavior: "instant"
+        // })
     };
 
     // Start everything
