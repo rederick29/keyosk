@@ -537,10 +537,13 @@ animate();
 
 // handle the switch from 2D -> 3D on home page, default to 2D for shit computers (like mine)
 document.addEventListener("DOMContentLoaded", (): void => {
-    const container: HTMLElement = document.getElementById('image-scroll') as HTMLElement;
+    // const container: HTMLElement = document.getElementById('image-scroll') as HTMLElement;
     const twoDElement: HTMLElement = document.getElementById('two-d-element') as HTMLElement;
     const threeDElement: HTMLElement = document.getElementById('three-d-element') as HTMLElement;
     const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
+
+    threeDElement.classList.add("hidden");
+    threeDElement.classList.add("w-full");
 
     perspectiveSwitch.addEventListener("click", (): void => {
         const is2D: boolean = !twoDElement.classList.contains('hidden');
