@@ -196,6 +196,6 @@ class CartController extends Controller
         // Empty the cart after successful checkout
         $this->cartService->emptyCart();
 
-        return response()->json(['success' => 'Checkout successful']);
+        return response()->json(['success' => 'Checkout successful', 'order_id' => $order->id]);
     }
 }

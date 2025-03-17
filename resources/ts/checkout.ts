@@ -41,7 +41,7 @@ interface Address {
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkoutButtons = document.querySelectorAll('[data-checkout-button]');
-    const userId = document.querySelector<HTMLInputElement>('.user-id');
+    const userId = document.querySelector<HTMLInputElement>('.user-id')!.textContent;
     const form = document.querySelector<HTMLFormElement>('#checkout-form');
     if (form === null) {
         console.log("Added event listener but missing checkout form!");
@@ -178,12 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentButton.disabled = false;
             } else {
                 if (typeof resp !== 'boolean') {
-                    sessionStorage.setItem('success', `Your order number #${resp.order_id} has been placed successfully.`);
+                    sessionStorage.setItem('success', `Your order (number #${resp.order_id}) has been placed successfully.`);
                 }
                 if (userId && Number(userId) === -1) {
-                    window.location.href = '/';
+                    window.location.replace('/');
                 } else {
-                    window.location.href = '/orders';
+                    window.location.replace('/orders');
                 }
             }
         });
