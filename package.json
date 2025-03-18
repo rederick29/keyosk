@@ -6,6 +6,7 @@
         "build": "npx tsc && vite build"
     },
     "devDependencies": {
+        "@types/node": "^22.13.5",
         "@types/toastr": "^2.1.43",
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.1.1",
