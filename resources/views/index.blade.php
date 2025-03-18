@@ -8,82 +8,43 @@
     {{-- Ability to slot in a title to the layout for modularity --}}
     {{-- <x-slot:title>Example Title</x-slot:title> --}}
     <main class="min-h-screen">
+
         <x-util.index-hero></x-util.index-hero>
 
-        <section
-            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-x-5 animate-fade duration-500"
-        >
-            <div
-                class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl"
-            >
-                <div
-                    class="p-5"
+        <section class="w-full h-fit my-20 flex flex-col justify-center items-center gap-y-5 animate-fade duration-500">
+            <div class="flex flex-row gap-x-5">
+                <x-util.category-card
+                    title="Keyboards"
+                    href="/shop"
                 >
-                    <h1
-                        class="mb-3 text-3xl font-semibold"
-                    >
-                        Custom Keyboards
-                    </h1>
-                    <p
-                        class="text-black/60 dark:text-white/60"
-                    >
-                        Choose from a bespoke selection of custom keyboards carefully created to fit your specific needs.
-                    </p>
-                    <a
-                        href="/about"
-                        class="w-fit mt-3 flex flex-row items-center font-bold underline underline-offset-8 hover:underline-offset-4 hover:text-black/60 dark:hover:text-white/60 transition-all"
-                    >
-                        Learn more
-                    </a>
-                </div>
+                    Choose from a bespoke range of Keyosk keyboards.
+                </x-util.category-card>
+                <x-util.category-card
+                    title="Mice"
+                    href="/shop"
+                >
+                    Choose from a bespoke range of Keyosk mice.
+                </x-util.category-card>
+                <x-util.category-card
+                    title="Mousepads"
+                    href="/shop"
+                >
+                    Choose from a bespoke range of Keyosk keyboards.
+                </x-util.category-card>
             </div>
-            <div
-                class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl"
-            >
-                <div
-                    class="p-5"
+            <div class="flex flew-row gap-x-5">
+                <x-util.category-card
+                    title="Switches"
+                    href="/shop"
                 >
-                    <h1
-                        class="mb-3 text-3xl font-semibold"
-                    >
-                        Custom Keyboards
-                    </h1>
-                    <p
-                        class="text-black/60 dark:text-white/60"
-                    >
-                        Choose from a bespoke selection of custom keyboards carefully created to fit your specific needs.
-                    </p>
-                    <a
-                        href="/about"
-                        class="w-fit mt-3 flex flex-row items-center font-bold underline underline-offset-8 hover:underline-offset-4 hover:text-black/60 dark:hover:text-white/60 transition-all"
-                    >
-                        Learn more
-                    </a>
-                </div>
-            </div>
-            <div
-                class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl"
-            >
-                <div
-                    class="p-5"
+                    Choose from a bespoke range of Keyosk keyboards.
+                </x-util.category-card>
+                <x-util.category-card
+                    title="Keycaps"
+                    href="/shop"
                 >
-                    <h1
-                        class="mb-3 text-3xl font-semibold"
-                    >
-                        Custom Keyboards
-                    </h1>
-                    <p
-                        class="text-black/60 dark:text-white/60"
-                    >
-                        Choose from a bespoke selection of custom keyboards carefully created to fit your specific needs.
-                    </p>
-                    <a
-                        href="/about"
-                        class="w-fit mt-3 flex flex-row items-center font-bold underline underline-offset-8 hover:underline-offset-4 hover:text-black/60 dark:hover:text-white/60 transition-all"
-                    >
-                        Learn more
-                    </a>
-                </div>
+                    Choose from a bespoke range of Keyosk keyboards.
+                </x-util.category-card>
             </div>
         </section>
 
