@@ -20,7 +20,7 @@
              Shop now
          </x-util.button>
 
-{{--         <img class="absolute right-52 top-64 rotate-45 scale-200" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" />--}}
+         <img class="absolute right-0 rotate-[50deg] scale-125" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" />
     </div>
 
     <div class="w-full h-1/2 mx-auto" id="three-d-element">
