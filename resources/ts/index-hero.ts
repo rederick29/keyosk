@@ -14,10 +14,10 @@ const scene = new THREE.Scene();
 // camera.position.set(0, 8.5, 45);
 // camera.lookAt(0, 2, 0);
 
-// bens attempt at the wooden block camera
+// bens attempt at a camera
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 10, 30);
-camera.lookAt(0, 0, -6);
+camera.position.set(0, -1, 25);
+camera.lookAt(0, -1, 0);
 
 const canvas = document.getElementById('canvas');
 const renderer = new THREE.WebGLRenderer({
@@ -111,30 +111,54 @@ function loadModels() {
             //  k
             // e y
             //o s k
+            // switch (characters[i]) {
+            //     case 'K':
+            //         if (i === 0) {
+            //             // First K
+            //             model.position.set(0, 8, 0);
+            //         } else {
+            //             // Last K
+            //             model.position.set(2.25, 1, 0);
+            //         }
+            //         break;
+            //     case 'E':
+            //         model.position.set(-1.25, 5, 0);
+            //         break;
+            //     case 'Y':
+            //         model.position.set(1.25, 5, 0);
+            //         break;
+            //     case 'O':
+            //         model.position.set(-2.25, 1, 0);
+            //         break;
+            //     case 'S':
+            //         model.position.set(0, 1, 0);
+            //         break;
+            // }
+
+            // k e y o s k
             switch (characters[i]) {
                 case 'K':
                     if (i === 0) {
                         // First K
-                        model.position.set(0, 8, 0);
+                        model.position.set(-6.25, 1, 0);
                     } else {
                         // Last K
-                        model.position.set(2.25, 1, 0);
+                        model.position.set(6.25, 1, 0);
                     }
                     break;
                 case 'E':
-                    model.position.set(-1.25, 5, 0);
+                    model.position.set(-3.75, 1, 0);
                     break;
                 case 'Y':
-                    model.position.set(1.25, 5, 0);
+                    model.position.set(-1.25, 1, 0);
                     break;
                 case 'O':
-                    model.position.set(-2.25, 1, 0);
+                    model.position.set(1.25, 1, 0);
                     break;
                 case 'S':
-                    model.position.set(0, 1, 0);
+                    model.position.set(3.75, 1, 0);
                     break;
             }
-
 
             model.traverse((child) => {
                 if (child instanceof THREE.Mesh) {
@@ -194,7 +218,7 @@ function loadModels() {
         const shopNowModel = gltf.scene;
         shopNowModel.scale.set(1, 1, 1);
         shopNowModel.position.set(-13, 5, 0);
-        shopNowModel.rotation.set(deg2rad(90), 0, 0);
+        // shopNowModel.rotation.set(deg2rad(90), 0, 0);
         shopNowModel.userData = {
             character: 'SHOP_NOW',
             originalColor: 0xFFFFFF,
@@ -482,18 +506,18 @@ function animate() {
 
         body.position.z = 0;
 
-        if (model.userData.character === 'SHOP_NOW') {
-            const quaternionX = new CANNON.Quaternion();
-            const quaternionZ = new CANNON.Quaternion();
-
-            // NOTE: order matters, first is the rightmost one
-            quaternionX.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), deg2rad(90));
-            quaternionZ.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.sin(animTimer) * 0.1);
-
-            body.quaternion = quaternionX.mult(quaternionZ);
-
-            animTimer += 0.02;
-        }
+        // if (model.userData.character === 'SHOP_NOW') {
+        //     const quaternionX = new CANNON.Quaternion();
+        //     const quaternionZ = new CANNON.Quaternion();
+        //
+        //     // NOTE: order matters, first is the rightmost one
+        //     quaternionX.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), deg2rad(90));
+        //     quaternionZ.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.sin(animTimer) * 0.1);
+        //
+        //     body.quaternion = quaternionX.mult(quaternionZ);
+        //
+        //     animTimer += 0.02;
+        // }
 
         model.position.copy(body.position);
         model.quaternion.copy(body.quaternion);
@@ -542,8 +566,8 @@ document.addEventListener("DOMContentLoaded", (): void => {
     const threeDElement: HTMLElement = document.getElementById('three-d-element') as HTMLElement;
     const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
 
-    threeDElement.classList.add("hidden");
-    threeDElement.classList.add("w-full");
+    // threeDElement.classList.add("hidden");
+    // threeDElement.classList.add("w-full");
 
     perspectiveSwitch.addEventListener("click", (): void => {
         const is2D: boolean = !twoDElement.classList.contains('hidden');
