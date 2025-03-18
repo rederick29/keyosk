@@ -50,16 +50,22 @@
                         @endif
                     </div>
                 @else
-                    <div class="w-full h-[30vh] gap-y-3 flex flex-col justify-center items-center">
-                        <span class="font-bold">Your basket looks empty... Let's change that.</span>
+                    <div class="w-full h-[30vh] gap-y-3 flex flex-col justify-center items-center relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10" cy="20.5" r="1" />
+                            <circle cx="18" cy="20.5" r="1" />
+                            <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
+                        </svg>
+                        <span class="font-bold">Your cart looks empty... Let's fix that.</span>
+                        <svg class="absolute -bottom-4 animate-bounce" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
                 @endif
             </div>
 
             @if ($hasProducts)
                 <div class="h-[12px]"></div>
-                @vite('resources/ts/checkout.ts')
-                <x-util.button type="a" href="/checkout" data-checkout-button
+                <x-util.button type="a" href="{{ route('checkout.get') }}"
                     class="bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">
                     Checkout</x-util.button>
                 <div class="h-[12px]"></div>
