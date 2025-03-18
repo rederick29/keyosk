@@ -59,6 +59,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 Route::middleware([NoCache::class])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart/checkout', [CheckoutController::class, 'index'])->name('checkout.get');
     Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 });
 
@@ -71,6 +72,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
     Route::post('/account/edit', [UserController::class, 'update'])->name('account.edit');
+    Route::post('/api/v1/address', [UserController::class, 'address'])->name('api.v1.address');
 
     // Admin Routes (must be logged in)
     Route::middleware([CheckAdminMiddleware::class])->group(function () {
