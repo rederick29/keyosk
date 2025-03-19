@@ -22,9 +22,7 @@ Author(s): Kai Chima : Main Developer
 
             <!-- customers orders -->
             @forelse ($orders->sortBy('status') as $order)
-                <x-order.order-card :oproducts="$order->products"
-                    imageUrl="{{ optional($order->products->first()->images->first())->primaryImageLocation ?? 'Undefined' }}"
-                    :status="$order->status" :date="$order->created_at" :price="$order->total_price" :id="$order->id" :user="$order->user_id">
+                <x-order.order-card :order="$order">
                 </x-order.order-card>
             @empty
                 <p class="text-zinc-800 dark:text-white">You have no orders yet.</p>
