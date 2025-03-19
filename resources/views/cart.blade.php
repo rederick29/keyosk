@@ -98,7 +98,6 @@
                 @else
                     <x-util.button type="a" href="{{ route('checkout.get') }}" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white ">Checkout</x-util.button>
                 @endif
-                <p class="pt-4 text-sm">Any Issues, contact us at 01543 682769</p>
             </div>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
