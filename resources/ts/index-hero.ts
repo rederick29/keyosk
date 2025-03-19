@@ -8,12 +8,6 @@ function deg2rad(degrees: number): number {
 }
 
 const scene = new THREE.Scene();
-// aruns original camera
-// const camera = new THREE.PerspectiveCamera(25);
-// camera.position.set(0, 8.5, 45);
-// camera.lookAt(0, 2, 0);
-
-// bens attempt at a camera
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, -1, 25);
 camera.lookAt(0, -1, 0);

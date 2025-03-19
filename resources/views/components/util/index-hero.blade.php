@@ -1,7 +1,7 @@
 {{--
     Image carousel element with split layout.
 
-    Author(s): Ben Snaith : Main Developer, Arun : Secondary Developer
+    Author(s): Ben Snaith : Main Developer, intns : Secondary Developer
 --}}
 
 @vite('resources/ts/index-hero.ts')

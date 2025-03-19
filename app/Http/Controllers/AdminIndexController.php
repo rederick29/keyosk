@@ -120,10 +120,61 @@ class AdminIndexController extends Controller
         return view('manage-users');
     }
 
-    public function stats(): View
+    public function stats(Request $request): View
     {
-        // TODO: query the db and get the stats.
-
         return view('stats');
+    }
+
+    public function stats_best_selling(Request $request, int $amount = 10): JsonResponse
+    {
+        // Validation!
+        $amount = $request->input('limit', $amount);
+        $amount = is_numeric($amount) ? max(2, min(100, intval($amount))) : 10;
+
+        $bestSellingProducts = DB::table('products')
+            ->leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
+            ->select(
+                'products.id',
+                'products.name',
+                'products.price',
+                DB::raw('COALESCE(SUM(order_product.quantity), 0) as total_sold')
+            )
+            ->groupBy('products.id', 'products.name', 'products.price')
+            ->orderBy('total_sold', 'desc')
+            ->limit($amount)
+            ->get();
+
+        return response()->json([
+            'data' => $bestSellingProducts,
+            'amount' => $bestSellingProducts->count(),
+            'generated_at' => now()->toIso8601String()
+        ]);
+    }
+
+    public function stats_worst_selling(Request $request, int $amount = 10): JsonResponse
+    {
+        // Validation!
+        $amount = $request->input('limit', $amount);
+        $amount = is_numeric($amount) ? max(2, min(100, intval($amount))) : 10;
+
+        // (copy paste above but change the order by lol)
+        $bestSellingProducts = DB::table('products')
+            ->leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
+            ->select(
+                'products.id',
+                'products.name',
+                'products.price',
+                DB::raw('COALESCE(SUM(order_product.quantity), 0) as total_sold')
+            )
+            ->groupBy('products.id', 'products.name', 'products.price')
+            ->orderBy('total_sold', 'asc')
+            ->limit($amount)
+            ->get();
+
+        return response()->json([
+            'data' => $bestSellingProducts,
+            'amount' => $bestSellingProducts->count(),
+            'generated_at' => now()->toIso8601String()
+        ]);
     }
 }
