@@ -101,6 +101,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
             Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
             Route::get('/admin/stats/best-selling', [AdminIndexController::class, 'stats_best_selling'])->name('stats.orders');
             Route::get('/admin/stats/worst-selling', [AdminIndexController::class, 'stats_worst_selling'])->name('stats.orders');
+            Route::get('/admin/stats/top-spending-users', [AdminIndexController::class, 'stats_top_spending_users'])->name('stats.orders');
         });
 
         // Only admins can view other people's accounts

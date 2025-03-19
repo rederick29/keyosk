@@ -24,6 +24,14 @@
                 <hr class="w-[95%] my-10 mx-auto border-2 rounded-xl border-stone-200 dark:border-zinc-800" />
 
                 <div class="flex flex-col items-center justify-center space-y-8">
+                    <h2 class="text-3xl font-semibold mb-2">User Spending Chart</h2>
+                    <div id="user-spending-chart" class="w-full max-w-3xl h-96 mx-auto"></div>
+                    <div id="user-spending-legend" class="flex flex-wrap justify-center gap-4 mt-4"></div>
+                </div>
+
+                <hr class="w-[95%] my-10 mx-auto border-2 rounded-xl border-stone-200 dark:border-zinc-800" />
+
+                <div class="flex flex-col items-center justify-center space-y-8">
                     <h2 class="text-3xl font-semibold mb-2">Worst Selling Products</h2>
                     <h3 class="text-m font-semibold italic">Hover over bars to view sales figures. Click to view product page.</h3>
                     <div id="product-sales-chart2" class="w-full max-w-3xl h-96 mx-auto"></div>
