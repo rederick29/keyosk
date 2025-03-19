@@ -14,7 +14,7 @@ export default defineConfig({
     plugins: [
         tailwindcss(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/cart-menu.js', 'resources/js/navbar.js', 'resources/ts/shop-search.ts', 'resources/ts/product-buttons.ts', 'resources/ts/checkout.ts', 'resources/ts/carousel.ts'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/cart-menu.js', 'resources/js/navbar.js', 'resources/ts/shop-search.ts', 'resources/ts/product-buttons.ts', 'resources/ts/checkout.ts', 'resources/ts/carousel.ts', 'resources/ts/index-hero.ts'],
             refresh: true,
         }),
     ],
