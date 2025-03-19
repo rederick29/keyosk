@@ -18,7 +18,10 @@ const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerH
 camera.position.set(0, -1, 25);
 camera.lookAt(0, -1, 0);
 
-const canvas: HTMLCanvasElement | OffscreenCanvas | undefined = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
+const canvas: HTMLCanvasElement | OffscreenCanvas | undefined  = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
+if (!(canvas instanceof HTMLCanvasElement)) {
+    throw new Error('Canvas not found');
+}
 const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
@@ -286,8 +289,11 @@ function createPhysicsBody(object: Object3D, isStatic = false) {
 function onMouseMove(event: any): void {
     previousMousePosition.copy(mouse);
 
-    // yes ik this is bad but idk what to do with it
-    const rect: any = canvas.getBoundingClientRect() as any;
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
+        throw new Error('fuck you');
+    }
+
+    const rect: DOMRect = canvas.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -318,7 +324,7 @@ function onMouseMove(event: any): void {
 }
 
 // Convert screen coordinates to world coordinates
-function screenToWorld(screenPos: any): Vector3 {
+function screenToWorld(screenPos: any)  {
     // Create a ray from the camera
     raycaster.setFromCamera(screenPos, camera);
 
@@ -333,7 +339,10 @@ function screenToWorld(screenPos: any): Vector3 {
 }
 
 function onMouseDown(event: any): void {
-    const rect = canvas.getBoundingClientRect();
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
+        throw new Error('fuck you');
+    }
+    const rect: DOMRect = canvas.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -342,7 +351,7 @@ function onMouseDown(event: any): void {
     const intersects = raycaster.intersectObjects(loadedModels, true);
 
     if (intersects.length > 0) {
-        const object: Object3D = getParentGroup(intersects[0].object);
+        const object = getParentGroup(intersects[0].object);
 
         if (object && object.userData.isClickable) {
             if (clickedObject && clickedObject !== object) {
@@ -470,7 +479,11 @@ function resetObjectColor(object: Object3D): void {
 function updateSize() {
     if (!canvas) return;
 
-    const container = canvas.parentElement;
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
+        throw new Error('fuck you');
+    }
+
+    const container: HTMLElement | null = canvas.parentElement;
     if (!container) return;
 
     const width = container.clientWidth;
