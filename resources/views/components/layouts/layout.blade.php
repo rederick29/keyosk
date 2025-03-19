@@ -43,20 +43,31 @@
 </body>
 
 {{-- IDK where to place this, but we should have it somewhere! --}}
-@if (session()->has('success') || session()->has('error') || session()->has('info'))
-    <script nonce="{{ csp_nonce() }}">
-        window.onload = () => {
-            @if (session()->has('success'))
-                toastr.success("{{ session('success') }}");
-            @endif
-            @if (session()->has('error'))
-                toastr.error("{{ session('error') }}");
-            @endif
-            @if (session()->has('info'))
-                toastr.info("{{ session('info') }}");
-            @endif
-        };
-    </script>
-@endif
+<script nonce="{{ csp_nonce() }}">
+    window.onload = () => {
+        {{-- also check the browser session for these!! --}}
+        if (sessionStorage.getItem('success')) {
+            toastr.success(sessionStorage.getItem('success'));
+            sessionStorage.removeItem('success');
+        }
+        if (sessionStorage.getItem('error')) {
+            toastr.error(sessionStorage.getItem('error'));
+            sessionStorage.removeItem('error');
+        }
+        if (sessionStorage.getItem('info')) {
+            toastr.info(sessionStorage.getItem('info'));
+            sessionStorage.removeItem('');
+        }
+        @if (session()->has('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (session()->has('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+        @if (session()->has('info'))
+            toastr.info("{{ session('info') }}");
+        @endif
+    };
+</script>
 
 </html>

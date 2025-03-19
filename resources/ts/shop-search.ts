@@ -169,6 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
             elem.addEventListener('click', handleFilterUpdate);
             if (filters.includes(elem.dataset.filter!)) {
                 elem.classList.add('dark:bg-white/5');
+                elem.classList.remove('accordion-tick-unselected');
+                elem.classList.add('accordion-tick-selected');
                 elem.classList.add('bg-black/5');
             }
         });
