@@ -22,10 +22,10 @@ interface CheckoutRequest extends SimpleRequest {
     save_address: boolean;
     address_id: number | undefined;
     card: {
-        number: number;
+        number: number | null;
         name: string;
-        expiry: number;
-        cvv: number;
+        expiry: number | null;
+        cvv: number | null;
     };
     discount_code: string;
 }
@@ -160,9 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             const card = {
                 name: card_holder_name,
-                number: Number(card_number),
-                expiry: Number(expiry_date.replace(/\D/g,'')),
-                cvv: Number(cvv),
+                number: card_number != "" ? Number(card_number) : null,
+                expiry: expiry_date.replace(/\D/g,'') != "" ? Number(expiry_date.replace(/\D/g,'')) : null,
+                cvv: cvv != "" ? Number(cvv) : null,
             };
 
             const resp = await make_request<CheckoutRequest, OrderPlacedResponse>({
