@@ -6,8 +6,9 @@
                 <p class="text-2xl font-semibold mt-2 text-orange-500 dark:text-violet-700">Enter review below</p>
             </div>
             <div class="product-image h-24 w-24 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden ">
+            <a href="/product/{{ $product->id ?? '#' }}" class="block h-full w-full">
                 <img src="{{ $product->primaryImageLocation() ?? 'Undefined'}}" alt=""
-                    class="h-full w-full object-cover">
+                    class="h-full w-full object-cover"></a>
             </div>
         </div>
         <hr class="border-2 rounded-xl mt-3 border-stone-400 dark:border-zinc-700" />
