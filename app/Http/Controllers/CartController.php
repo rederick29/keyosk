@@ -119,6 +119,15 @@ class CartController extends Controller
             }
         }
 
+        $email = null;
+        if (isset($validatedData['contact']['email'])) {
+            $email = $validatedData['contact']['email'];
+        } else if ($user) {
+            $email = $user->email;
+        } else {
+            return response()->json(['error' => 'You must provide a valid email address or log in.']);
+        }
+
         $address = null;
         if (isset($validatedData['address_id']) && $validatedData['address_id'] > -1) {
             $address = $user->addresses()->where('priority', $validatedData['address_id'])->first();
@@ -162,6 +171,7 @@ class CartController extends Controller
 
         $order = Order::create([
             'user_id' => $user ? $user->id : null,
+            'email' => $email ?? "",
             'address_id' => $address->id,
             'status' => OrderStatus::Pending,
             'total_price' => $this->cartService->getTotalPrice()
