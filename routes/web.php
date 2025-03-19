@@ -12,7 +12,6 @@ use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
 
@@ -23,6 +22,10 @@ use App\Http\Middleware\NoCache;
 
 // Routes
 Route::view('/', 'index')->name('index');
+
+//Test Routes
+Route::view('/click-speed', 'ClickSpeedTest')->name('click-speed');
+Route::view('/type-speed', 'TypeSpeedTest')->name('type-speed');
 
 // Company Routes
 Route::view('/about', 'about-us')->name('about');
