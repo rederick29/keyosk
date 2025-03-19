@@ -1,10 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as CANNON from 'cannon-es';
+import {Box3, Color, Object3D, Raycaster, Vector2} from "three";
 
-
-
-function deg2rad(degrees) {
+function deg2rad(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
 
@@ -19,26 +18,26 @@ const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerH
 camera.position.set(0, -1, 25);
 camera.lookAt(0, -1, 0);
 
-const canvas = document.getElementById('canvas');
+const canvas: HTMLCanvasElement | OffscreenCanvas | undefined = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
 const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
     alpha: true
 });
 
-const raycaster = new THREE.Raycaster();
+const raycaster: Raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-let intersectedObject = null;
-let clickedObject = null;
-let isDragging = false;
+let intersectedObject: any | null = null;
+let clickedObject: any | null = null;
+let isDragging: boolean = false;
 let draggedBody: CANNON.Body | null = null;
-let previousMousePosition = new THREE.Vector2();
-let mouseVelocity = new THREE.Vector2();
-let lastMousePositions = [];
+let previousMousePosition: Vector2 = new THREE.Vector2();
+let mouseVelocity: Vector2 = new THREE.Vector2();
+let lastMousePositions: any[] = [];
 
 const mousePositionHistorySize = 5;
 
-const loadedModels = [];
+const loadedModels: Object3D[] = [];
 const physicsBodies: { [key: string]: CANNON.Body } = {};
 
 // Create physics world
@@ -243,8 +242,8 @@ function loadModels() {
     });
 }
 
-function createPhysicsBody(object, isStatic = false) {
-    const bbox = new THREE.Box3().setFromObject(object);
+function createPhysicsBody(object: Object3D, isStatic = false) {
+    const bbox: Box3 = new THREE.Box3().setFromObject(object);
     const size = new THREE.Vector3();
     bbox.getSize(size);
 
@@ -282,12 +281,13 @@ function createPhysicsBody(object, isStatic = false) {
     physicsBodies[object.uuid] = body;
 }
 
-let animTimer = 0;
+// let animTimer: number = 0;
 
-function onMouseMove(event) {
+function onMouseMove(event: any): void {
     previousMousePosition.copy(mouse);
 
-    const rect = canvas.getBoundingClientRect();
+    // yes ik this is bad but idk what to do with it
+    const rect: any = canvas.getBoundingClientRect() as any;
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -318,7 +318,7 @@ function onMouseMove(event) {
 }
 
 // Convert screen coordinates to world coordinates
-function screenToWorld(screenPos) {
+function screenToWorld(screenPos: any): Vector3 {
     // Create a ray from the camera
     raycaster.setFromCamera(screenPos, camera);
 
@@ -332,7 +332,7 @@ function screenToWorld(screenPos) {
     return worldPos;
 }
 
-function onMouseDown(event) {
+function onMouseDown(event: any): void {
     const rect = canvas.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -342,7 +342,7 @@ function onMouseDown(event) {
     const intersects = raycaster.intersectObjects(loadedModels, true);
 
     if (intersects.length > 0) {
-        const object = getParentGroup(intersects[0].object);
+        const object: Object3D = getParentGroup(intersects[0].object);
 
         if (object && object.userData.isClickable) {
             if (clickedObject && clickedObject !== object) {
@@ -374,7 +374,7 @@ function onMouseDown(event) {
     }
 }
 
-function onMouseUp(event) {
+function onMouseUp(event: any): void {
     if (isDragging && draggedBody) {
         // Calculate mouse velocity based on recent movement history
         calculateMouseVelocity();
@@ -436,7 +436,7 @@ function calculateMouseVelocity() {
     mouseVelocity.set(deltaX / timeDiff * 10, deltaY / timeDiff * 10);
 }
 
-function getParentGroup(object) {
+function getParentGroup(object: Object3D) {
     let current = object;
 
     while (current && !current.userData.character) {
@@ -447,7 +447,7 @@ function getParentGroup(object) {
     return current.userData.character ? current : null;
 }
 
-function setObjectColor(object, color) {
+function setObjectColor(object: Object3D, color: Color): void {
     object.traverse((child) => {
         if (child instanceof THREE.Mesh &&
             child.material instanceof THREE.MeshPhysicalMaterial) {
@@ -457,7 +457,7 @@ function setObjectColor(object, color) {
     });
 }
 
-function resetObjectColor(object) {
+function resetObjectColor(object: Object3D): void {
     object.traverse((child) => {
         if (child instanceof THREE.Mesh &&
             child.material instanceof THREE.MeshPhysicalMaterial) {
@@ -561,7 +561,6 @@ animate();
 
 // handle the switch from 2D -> 3D on home page, default to 2D for shit computers (like mine)
 document.addEventListener("DOMContentLoaded", (): void => {
-    // const container: HTMLElement = document.getElementById('image-scroll') as HTMLElement;
     const twoDElement: HTMLElement = document.getElementById('two-d-element') as HTMLElement;
     const threeDElement: HTMLElement = document.getElementById('three-d-element') as HTMLElement;
     const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
