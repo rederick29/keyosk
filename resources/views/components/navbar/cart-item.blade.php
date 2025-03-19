@@ -12,7 +12,7 @@
     </div>
     <div class="w-full flex flex-col space-y-5">
         <div class="flex flex-col w-full items-center start-0">
-            <a href={{ route("product.view", ['id' => $productId]) }} class="w-full flex font-bold">{{ $productTitle }}</a>
+            <a href="{{ route("product.view", ['id' => $productId]) }}" class="w-full flex font-bold">{{ $productTitle }}</a>
             <div class="flex flex-row justify-start items-center w-full gap-2">
                 <p class="flex flex-row text-black/30 dark:text-white/30">
                     £

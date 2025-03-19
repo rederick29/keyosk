@@ -111,7 +111,7 @@
         </aside>
 
         <div
-            class="w-full h-full flex justify-center overflow-y-scroll"
+            class="w-full h-full px-10 py-10 flex justify-center overflow-y-scroll"
             id="slot"
         >
             {{ $slot }}

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\CartService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
-use App\Models\Product;
 
 
 
@@ -13,8 +12,10 @@ class CheckoutController extends Controller
 {
     public function index(): View|RedirectResponse
     {
-        $products = Product::all(); // Fetch all products
-
-        return view('checkout', compact('products'));
+        $cart = app(CartService::class);
+        if ($cart->hasProducts()) {
+            return view('checkout');
+        }
+        return to_route('index')->with('error', 'Nothing to checkout.');
     }
 }
