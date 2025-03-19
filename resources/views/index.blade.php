@@ -14,18 +14,21 @@
         <section class="w-full h-fit my-20 flex flex-col justify-center items-center gap-y-5 animate-fade duration-500">
             <div class="flex flex-row gap-x-5">
                 <x-util.category-card
+                    img_src="a75_pro_keyboard.png"
                     title="Keyboards"
                     href="/shop"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
                 <x-util.category-card
+                    img_src="standard_mouse.png"
                     title="Mice"
                     href="/shop"
                 >
                     Choose from a bespoke range of Keyosk mice.
                 </x-util.category-card>
                 <x-util.category-card
+                    img_src="expedition_mousepad.png"
                     title="Mousepads"
                     href="/shop"
                 >
@@ -34,12 +37,14 @@
             </div>
             <div class="flex flew-row gap-x-5">
                 <x-util.category-card
+                    img_src="dark_rose_key_switches.png"
                     title="Switches"
                     href="/shop"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
                 <x-util.category-card
+                    img_src="scarlet_wasd_key_caps.png"
                     title="Keycaps"
                     href="/shop"
                 >
