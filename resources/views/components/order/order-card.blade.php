@@ -108,7 +108,7 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
                     <!-- products -->
                     @foreach ($products as $oprod)
                         <x-order.order-subcard
-                            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price"
+                            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodid="$oprod->id"
                             :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'" :prodstatus="$status" :prodquant="$oprod->pivot->quantity">
                         </x-order.order-subcard>
                     @endforeach

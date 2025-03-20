@@ -2,7 +2,7 @@
     <div class="bg-stone-200 dark:bg-zinc-900 px-6 py-20 pt-35 lg:pt-36 lg:px-40">
         <div class="flex flex-rows justify-between items-center">
             <div class="max-w-full">
-                <h2 class="text-4xl text-black/50 dark:text-gray-300 lg:text-5xl">{{ $product->name }}</h2>
+                <h2 class="text-4xl font-semibold text-black/50 dark:text-gray-300 lg:text-5xl">{{ $product->name }}</h2>
                 <p class="text-2xl font-semibold mt-2 text-orange-500 dark:text-violet-700">Enter review below</p>
             </div>
             <div class="product-image h-24 w-24 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden ">
@@ -57,11 +57,11 @@
                 </svg>
                 <input class="hidden" id="rating" name="rating" value="10">
             </div>
-            <h3 class="text-2xl my-2 text-black/75 dark:text-gray-300">Subject</h3>
+            <h3 class="text-2xl font-semibold my-2 text-black/75 dark:text-gray-300">Subject</h3>
             <input type="text" id="subject" name="subject"
                 class="w-3/4 py-1 rounded-md text-black/75 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"
                 maxlength="75" required></input>
-            <h3 class="text-2xl my-2 text-black/75 dark:text-gray-300">Comment</h3>
+            <h3 class="text-2xl font-semibold my-2 text-black/75 dark:text-gray-300">Comment</h3>
             <textarea rows="5" id="comment" name="comment"
                 class="w-full py-1 rounded-md text-black/75 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700" required></textarea>
 

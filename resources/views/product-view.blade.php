@@ -98,7 +98,7 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             <!-- TODO: this is a working placeholder for an actual "leave review" -->
             @if(\App\Models\Product::findOrderedBy($product->id, Auth::user()) && !\App\Models\Review::findReview($product->id, Auth::id()))
                 <h2 class="text-orange-500 dark:text-violet-500 text-lg font-semibold pb-2">Leave a review:</h2>
-                <form class="leave-review flex flex-col outline-2 outline-orange-500 dark:outline-violet-500 rounded w-fit [&>*]:p-2 [&>input]:outline-2" method="POST" action="{{ route('review.store', ['productId' => $product->id]) }}"> @csrf
+                <form class="leave-review flex flex-col outline-2 outline-orange-500 dark:outline-violet-500 rounded w-fit [&>*]:p-2 [&>input]:outline-2" method="POST" action=""> @csrf
                     <label for="new-review-rating">Rating (0-10): </label>
                     <input type="number" id="new-review-rating" name="rating" min="0" max="10" step="1" value="" required>
                     <label for="new-review-rating">Subject: </label>

@@ -4,10 +4,10 @@ Products card for each order.
 Author(s): Kai Chima : Main Developer
 --}}
 
-@props(['prodstatus', 'prodimg', 'productname', 'prodprice', 'prodquant'])
+@props(['prodstatus', 'prodimg', 'productname', 'prodprice', 'prodquant', 'prodid'])
 <div {{ $attributes->merge(['class' => 'w-full py-3 flex flex-row gap-5 items-center text-center rounded-lg']) }}>
     <div class="flex items-center justify-center overflow-hidden">
-    <a href="/product/{{ $productId ?? '#' }}" class="block">
+    <a href="/product/{{ $prodid ?? '#' }}" class="block h-full w-full">
         <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-12 rounded-xs object-contain" />
     </a>
     </div>
@@ -23,7 +23,7 @@ Author(s): Kai Chima : Main Developer
             </div>
         </div>
         @if($prodstatus == \App\Models\Order\OrderStatus::Completed)
-            <a href="/product/{{ $productId ?? '#' }}/review">
+            <a href="/product/{{ $prodid ?? '#' }}/review">
                 <x-util.button type="button" class="w-1/3  self-end bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Review Product</x-util.button>
             </a>
         @endif
