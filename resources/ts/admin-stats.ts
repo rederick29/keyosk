@@ -163,6 +163,140 @@ function createBarChart(data: ProductData[], containerId: string, legendId: stri
     updateLegend(data, legendId);
 }
 
+function createPieChart(data: ProductData[], containerId: string, legendId: string): void {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '';
+    container.style.overflow = 'visible';
+
+    const width = container.clientWidth;
+    const height = container.clientHeight || 400;
+    const radius = Math.min(width, height) / 2;
+
+    // Create SVG
+    const svg = d3.select(`#${containerId}`)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .append('g')
+        .attr('transform', `translate(${width / 2},${height / 2})`);
+
+    // Create pie generator
+    const pie = d3.pie<ProductData>()
+        .value(d => d.sales)
+        .sort(null);
+
+    // Create arc generator
+    const arc = d3.arc<d3.PieArcDatum<ProductData>>()
+        .innerRadius(50)
+        .outerRadius(radius * 0.8);
+
+    // Create outer arc for labels
+    const outerArc = d3.arc<d3.PieArcDatum<ProductData>>()
+        .innerRadius(radius * 0.9)
+        .outerRadius(radius * 0.9);
+
+    // Create pie slices
+    const slices = svg.selectAll('.arc')
+        .data(pie(data))
+        .enter()
+        .append('g')
+        .attr('class', 'arc');
+
+    // Add paths (the actual pie slices)
+    slices.append('path')
+        .attr('d', arc)
+        .attr('fill', d => d.data.color)
+        .style('opacity', 0.8)
+        .style('stroke', 'white')
+        .style('stroke-width', 2)
+        .style('cursor', 'pointer')
+        .on('mouseover', function(event, d) {
+            d3.select(this)
+                .style('opacity', 1)
+                .attr('stroke', '#333')
+                .attr('stroke-width', 3);
+
+            // Add tooltip
+            svg.append('text')
+                .attr('class', 'tooltip')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '0.35em')
+                .style('font-size', '16px')
+                .style('font-weight', 'bold')
+                .text(`${d.data.name}: ${d.data.sales}`);
+        })
+        .on('mouseout', function() {
+            d3.select(this)
+                .style('opacity', 0.8)
+                .attr('stroke', 'white')
+                .attr('stroke-width', 2);
+
+            svg.select('.tooltip').remove();
+        })
+        .on('click', function(event, d) {
+            window.location.href = `/product/${d.data.id}`;
+        });
+
+    // Add labels with lines connecting to slices
+    // slices.append('polyline')
+    //     .attr('points', function(d) {
+    //         const pos = outerArc.centroid(d);
+    //         const midAngle = Math.atan2(pos[1], pos[0]);
+    //         const x = Math.cos(midAngle) * radius * 0.95;
+    //         const y = Math.sin(midAngle) * radius * 0.95;
+    //         return [arc.centroid(d), outerArc.centroid(d), [x, y]];
+    //     })
+    //     .style('fill', 'none')
+    //     .style('stroke', '#999')
+    //     .style('stroke-width', 1)
+    //     .style('opacity', 0.3);
+
+    // Add the text labels
+    // slices.append('text')
+    //     .attr('transform', function(d) {
+    //         const pos = outerArc.centroid(d);
+    //         const midAngle = Math.atan2(pos[1], pos[0]);
+    //         const x = Math.cos(midAngle) * radius * 0.98;
+    //         const y = Math.sin(midAngle) * radius * 0.98;
+    //         return `translate(${x},${y})`;
+    //     })
+    //     .attr('text-anchor', function(d) {
+    //         const pos = outerArc.centroid(d);
+    //         return (pos[0] >= 0) ? 'start' : 'end';
+    //     })
+    //     .text(d => {
+    //         // Only show label if it's a significant slice (>5% of total)
+    //         const total = d3.sum(data, d => d.sales);
+    //         const percentage = (d.data.sales / total) * 100;
+    //         if (percentage < 5) return '';
+    //
+    //         // Abbreviate long names
+    //         let name = d.data.name;
+    //         if (name.length > 12) {
+    //             name = name.substring(0, 10) + '...';
+    //         }
+    //         return name;
+    //     })
+    //     .style('font-size', '12px')
+    //     .style('font-weight', 'normal')
+    //     .style('pointer-events', 'none');
+
+    // Add a title
+    // svg.append('text')
+    //     .attr('x', 0)
+    //     .attr('y', -height / 2 + 20)
+    //     .attr('text-anchor', 'middle')
+    //     .style('font-size', '16px')
+    //     .style('font-weight', 'bold')
+    //     .text(' Sales Distribution');
+
+    // Update legend
+    updateLegend(data, legendId);
+}
+
 function createUserSpendingChart(data: UserSpendingData[], containerId: string, legendId: string): void {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -221,13 +355,13 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
         .selectAll('text')
         .style('font-size', '11px');
 
-    svg.append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -margin.left + 30)
-        .attr('x', -chartHeight / 2)
-        .attr('text-anchor', 'middle')
-        .text('Order Price (£)')
-        .style('font-size', '14px');
+    // svg.append('text')
+    //     .attr('transform', 'rotate(-90)')
+    //     .attr('y', -margin.left + 30)
+    //     .attr('x', -chartHeight / 2)
+    //     .attr('text-anchor', 'middle')
+    //     .text('Order Price (£)')
+    //     .style('font-size', '14px');
 
     // User groups for price range visualization
     const userGroups = svg.selectAll('.user-group')
@@ -394,7 +528,10 @@ function updateUserSpendingLegend(data: UserSpendingData[], legendId: string): v
 
     data.forEach(user => {
         const item = document.createElement('div');
-        item.className = 'flex items-center gap-2 mb-2';
+        item.className = 'flex items-center justify-between gap-2 mb-2';
+
+        const colorwithname = document.createElement('div');
+        colorwithname.className = 'flex items-center gap-2'
 
         const color = document.createElement('div');
         color.className = 'w-4 h-4 flex-shrink-0';
@@ -407,11 +544,12 @@ function updateUserSpendingLegend(data: UserSpendingData[], legendId: string): v
         link.textContent = user.userName;
 
         const stats = document.createElement('span');
-        stats.className = 'text-xs text-gray-600 ml-2';
+        stats.className = 'text-xs text-black/60 dark:text-white/60 ml-2';
         stats.textContent = `Total: £${user.totalSpent.toFixed(2)} | Avg: £${user.avgOrderPrice.toFixed(2)} | Orders: ${user.orderCount}`;
 
-        item.appendChild(color);
-        item.appendChild(link);
+        colorwithname.appendChild(color);
+        colorwithname.appendChild(link);
+        item.appendChild(colorwithname)
         item.appendChild(stats);
         container.appendChild(item);
     });
@@ -447,11 +585,12 @@ document.addEventListener('DOMContentLoaded', () => {
     Promise.all([
         queryData('best-selling', 10).then(data => {
             bestSellingData = data as ProductData[];
-            createBarChart(bestSellingData, 'product-sales-chart', 'product-legend');
+            //createBarChart(bestSellingData, 'product-sales-chart', 'product-legend');
+            createPieChart(bestSellingData, 'product-sales-chart', 'product-legend');
         }),
         queryData('worst-selling', 10).then(data => {
             worstSellingData = data as ProductData[];
-            createBarChart(worstSellingData, 'product-sales-chart2', 'product-legend2');
+            createPieChart(worstSellingData, 'product-sales-chart2', 'product-legend2');
         }),
         queryData('top-spending-users', 10).then(data => {
             topSpendingUsersData = data as UserSpendingData[];
@@ -462,8 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Handle window resizing
 window.addEventListener('resize', debounce(() => {
-    if (bestSellingData.length) createBarChart(bestSellingData, 'product-sales-chart', 'product-legend');
-    if (worstSellingData.length) createBarChart(worstSellingData, 'product-sales-chart2', 'product-legend2');
+    if (bestSellingData.length) createPieChart(bestSellingData, 'product-sales-chart', 'product-legend');
+    if (worstSellingData.length) createPieChart(worstSellingData, 'product-sales-chart2', 'product-legend2');
     if (topSpendingUsersData.length) createUserSpendingChart(topSpendingUsersData, 'user-spending-chart', 'user-spending-legend');
 }, 250));
 
