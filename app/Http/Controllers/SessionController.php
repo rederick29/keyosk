@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use App\Services\CartService;
 
 class SessionController extends Controller
 {
@@ -28,12 +30,25 @@ class SessionController extends Controller
         // If the credentials are correct, log the user in and redirect to the home page
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
+            $user = Auth::user();
 
-            if (Auth::user()->is_admin) {
-                return redirect()->route('admin.index');
+            // Determine the base redirect first
+            $path = $user->is_admin ? route('admin.index') : '/';
+            $redirect = redirect()->intended($path);
+
+            // Add appropriate message without changing destination
+            if ($user->last_login && $user->subscription && $user->last_login->lt(Carbon::now()->subDays(1))) {
+                $user->coins += 10;
+                $redirect->with('success', 'Welcome back, ' . $user->name . '! You received 10 Coins.');
+            } else {
+                $redirect->with('success', 'Welcome, ' . $user->name . '!');
             }
 
-            return redirect()->intended('/')->with('success', 'Welcome, ' . Auth::user()->name . '!');
+            // User is logged in, so transfer the session cart to the user's cart
+            app(CartService::class)->transferSessionCartToUser($user);
+
+            $user->last_login = Carbon::now();
+            return $redirect;
         }
 
         // If the credentials are incorrect, redirect back to the login page with an error message
@@ -49,6 +64,8 @@ class SessionController extends Controller
         // Invalidate the session and regenerate the token to prevent session fixation
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        // TODO: Consider transferring the user cart to the session cart?
 
         return redirect('/')->with('info', 'Sorry to see you go!');
     }

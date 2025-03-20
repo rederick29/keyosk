@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->boolean('is_admin')->default(false);
+            $table->unsignedInteger('coins')->default(0);
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
 

@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Sustainability</x-slot:title>
-    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
+    <div class="about-us bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white anim-up">
         <h1 class="misc-page-header">
             Our Sustainability Commitment
         </h1>
@@ -46,7 +46,7 @@
                 <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Eco-Friendly Materials:</strong> We prioritize sustainable
                             sourcing and use recyclable or biodegradable materials wherever possible.
@@ -54,7 +54,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Energy Efficiency:</strong> Our production facilities are
                             optimized for energy efficiency to reduce carbon emissions.
@@ -62,7 +62,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Waste Reduction:</strong> We design packaging that's
                             minimal,
@@ -71,7 +71,7 @@
                     </li>
                     <li class="flex items-start space-x-4">
                         <span
-                            class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">4</span>
+                            class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">4</span>
                         <p class="text-zinc-800 dark:text-gray-200 leading-relaxed">
                             <strong class="text-orange-500 dark:text-violet-700">Recycling Programs:</strong> We offer initiatives to help
                             customers recycle their old devices and responsibly dispose of e-waste.

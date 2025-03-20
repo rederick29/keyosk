@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +21,6 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         $user = User::all()->random();
-        $max_priority = $user->addresses->max('priority');
         return [
             'user_id' => $user->id,
             // default to account's name
@@ -30,13 +30,13 @@ class AddressFactory extends Factory
             'city' => $this->faker->city(),
             'postcode' => $this->faker->postcode(),
             'country_id' => Country::all()->random()->id,
-            'priority' => $max_priority + 1 ?? 0,
+            'priority' => Address::getMaxPriority($user) + 1,
         ];
     }
 
     public function withoutUserSaved(User $user): Factory|AddressFactory
     {
-        return $this->state(function (array $attributes) use ($user){
+        return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
                 'name' => $user->name,
@@ -48,12 +48,11 @@ class AddressFactory extends Factory
 
     public function forUser(User $user): Factory|AddressFactory
     {
-        return $this->state(function (array $attributes) use ($user)
-        {
+        return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
                 'name' => $user->name,
-                'priority' => $user->addresses()->max('priority') + 1 ?? 0,
+                'priority' => Address::getMaxPriority($user) + 1,
             ];
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id', 'idx_addresses_u_id');
+            $table->foreignId('user_id')->nullable()->constrained('users', 'id', 'idx_addresses_u_id');
             // person/company's name on delivery
             $table->string('name');
             $table->string('line_one', 200);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city', 100);
             $table->string('postcode', 20);
             $table->foreignId('country_id')->constrained('countries', 'id', 'idx_addresses_c_id');
-            $table->smallInteger('priority')->default(0);
+            $table->smallInteger('priority')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();
             // must set priority to null once soft deleted

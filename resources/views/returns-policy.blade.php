@@ -6,7 +6,7 @@
 
 <x-layouts.layout>
     <x-slot:title>Keyosk | Returns Policy</x-slot:title>
-        <div class="returns-policy bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white">
+        <div class="returns-policy bg-white dark:bg-zinc-950 pt-32 text-zinc-800 dark:text-white anim-up">
             <h1 class="misc-page-header">
                 Returns & Exchanges Policy
             </h1>
@@ -42,21 +42,21 @@
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-300 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Contact Our Support Team:</strong> Reach out to us with your order number and reason for return. We&apos;re here to help!
                             </p>
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-300 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Ship It Back:</strong> Once your return is approved, we'll provide you with a shipping label. Pack up your product (including any accessories), and send it back to us.
                             </p>
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">3</span>
                             <p class="text-zinc-800 dark:text-gray-300 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Refund or Exchange:</strong> Upon receiving your returned product, we will process your refund (back to your original payment method) or send a replacement if that's what you prefer.
                             </p>
@@ -75,14 +75,14 @@
                     <ul class="list-none mt-6 space-y-4 mx-auto w-4/5">
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">1</span>
                             <p class="text-zinc-800 dark:text-gray-300 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Opened or Used Products:</strong> If you&apos;ve already used or opened your keyboard or peripheral (we get it, it's hard to resist), we can&apos;t take it back unless it&apos;s defective.
                             </p>
                         </li>
                         <li class="flex items-start space-x-4">
                             <span
-                                class="flex-shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
+                                class="shrink-0 w-6 h-6 bg-orange-500 dark:bg-violet-700 text-white rounded-full flex items-center justify-center font-semibold">2</span>
                             <p class="text-zinc-800 dark:text-gray-300 dark:text-gray-200 leading-relaxed">
                                 <strong class="text-orange-500 dark:text-violet-700">Custom Orders:</strong> Custom-built products are final sale. If you requested a unique configuration, we&apos;re afraid we can&apos;t accept returns.
                             </p>

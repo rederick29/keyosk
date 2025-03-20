@@ -14,6 +14,7 @@ class ProductComponent extends Component
     public string $productImage;
     public string $productTitle;
     public float $productPrice;
+    public int $productStock;
 
     /**
      * Create a new component instance.
@@ -44,9 +45,15 @@ class ProductComponent extends Component
         }
 
         $this->productPrice = $product->price;
-        if(empty($this->productPrice) || $this->productPrice < 0)
+        if($this->productPrice == null || $this->productPrice < 0)
         {
             throw new Exception("Product price should not be null or less than 0");
+        }
+
+        $this->productStock = $product->stock;
+        if($this->productStock < 0)
+        {
+            throw new Exception("Product stock should not be null or less than 0");
         }
     }
 

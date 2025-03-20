@@ -168,8 +168,8 @@ class InsertRetrieveRowsTest extends TestCase
         $image = Image::factory()
             ->for($this->testProduct)
             ->create([
-               'location' => $location,
-               'priority' => $priority,
+                'location' => $location,
+                'priority' => $priority,
             ]);
 
         $newImage = Image::find($image->id);
