@@ -17,6 +17,7 @@
                     img_src="a75_pro_keyboard.png"
                     title="Keyboards"
                     href="/shop"
+                    href="/shop?filters=keyboard"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
@@ -24,13 +25,14 @@
                     img_src="standard_mouse.png"
                     title="Mice"
                     href="/shop"
+                    href="/shop?filters=mouse"
                 >
                     Choose from a bespoke range of Keyosk mice.
                 </x-util.category-card>
                 <x-util.category-card
                     img_src="expedition_mousepad.png"
                     title="Mousepads"
-                    href="/shop"
+                    href="/shop?filters=mousepad"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
@@ -39,14 +41,14 @@
                 <x-util.category-card
                     img_src="dark_rose_key_switches.png"
                     title="Switches"
-                    href="/shop"
+                    href="/shop?filters=key_switches"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
                 <x-util.category-card
                     img_src="scarlet_wasd_key_caps.png"
                     title="Keycaps"
-                    href="/shop"
+                    href="/shop?filters=keycaps"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
