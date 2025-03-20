@@ -1,4 +1,4 @@
-import {make_request, SimpleRequest, SimpleResponse} from "@ts/utils.ts";
+import { make_request, SimpleRequest, SimpleResponse } from "@ts/utils.ts";
 
 interface AddressRequest extends SimpleRequest {
     priority: number;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let ret = await make_request<AddressRequest, AddressResponse>({priority: address_priority}, '/api/v1/address');
+            let ret = await make_request<AddressRequest, AddressResponse>({ priority: address_priority }, '/api/v1/address');
             if (typeof ret === 'boolean') {
                 return;
             }
@@ -116,34 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const firstName = form.querySelector<HTMLInputElement>('#first_name')!.value.trim();
             const lastName = form.querySelector<HTMLInputElement>('#last_name')!.value.trim();
             const email = form.querySelector<HTMLInputElement>('#email')!.value.trim();
-            const address_id = form.querySelector<HTMLInputElement>('#addressId')!.value;
-            let address_db_used = false;
-            let address_name = form.querySelector<HTMLInputElement>('#address_name')?.value;
             const address_line_one = form.querySelector<HTMLInputElement>('#address1')!.value.trim();
             const address_line_two = form.querySelector<HTMLInputElement>('#address2')!.value.trim();
             const address_city = form.querySelector<HTMLInputElement>('#city')!.value.trim();
             const address_postcode = form.querySelector<HTMLInputElement>('#postcode')!.value.trim();
             const address_country = form.querySelector<HTMLSelectElement>('#country')!.value.trim();
-            let save_address = form.querySelector<HTMLInputElement>('#save_address')?.checked;
-            const card_holder_name= form.querySelector<HTMLInputElement>('#card_holder_name')!.value.trim();
+            const card_holder_name = form.querySelector<HTMLInputElement>('#card_holder_name')!.value.trim();
             const card_number = form.querySelector<HTMLInputElement>('#card_number')!.value.trim();
             const expiry_date = form.querySelector<HTMLInputElement>('#expiry_date')!.value.trim();
             const cvv = form.querySelector<HTMLInputElement>('#cvv')!.value.trim();
             const discount_code = document.querySelector<HTMLInputElement>('#discount_code')!.value.trim();
 
-            if (Number(address_id) !== -1) {
-                address_db_used = true;
-            }
+            const address_id = form.querySelector<HTMLInputElement>('#addressId')!.value;
+            const address_db_used = Number(address_id) !== -1;
 
-            if (!address_name || !(address_name.trim())) {
-                address_name = undefined;
-            } else {
-                address_name.trim();
-            }
-
-            if (!save_address) {
-                save_address = false;
-            }
+            let address_name = form.querySelector<HTMLInputElement>('#address_name')?.value?.trim() || undefined;
+            const save_address = form.querySelector<HTMLInputElement>('#save_address')?.checked || false;
 
             event.preventDefault();
             const currentButton = event.currentTarget as HTMLButtonElement;
@@ -158,10 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 postcode: address_postcode,
                 country: address_country,
             };
+
+            const expiryDate = expiry_date.replace(/\D/g, '');
             const card = {
                 name: card_holder_name,
                 number: card_number != "" ? Number(card_number) : null,
-                expiry: expiry_date.replace(/\D/g,'') != "" ? Number(expiry_date.replace(/\D/g,'')) : null,
+                expiry: expiryDate !== "" ? Number(expiryDate) : null,
                 cvv: cvv != "" ? Number(cvv) : null,
             };
 
@@ -174,17 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 discount_code: discount_code,
             }, '/cart/checkout');
 
-            if (resp  === false) {
+            if (resp === false) {
                 currentButton.disabled = false;
+                return;
+            }
+
+            if (typeof resp !== 'boolean') {
+                sessionStorage.setItem('success', `Your order (number #${resp.order_id}) has been placed successfully.`);
+            }
+
+            if (userId && Number(userId) === -1) {
+                window.location.replace('/');
             } else {
-                if (typeof resp !== 'boolean') {
-                    sessionStorage.setItem('success', `Your order (number #${resp.order_id}) has been placed successfully.`);
-                }
-                if (userId && Number(userId) === -1) {
-                    window.location.replace('/');
-                } else {
-                    window.location.replace('/orders');
-                }
+                window.location.replace('/orders');
             }
         });
     });
