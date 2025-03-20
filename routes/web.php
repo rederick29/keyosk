@@ -33,6 +33,9 @@ Route::view('/values', 'our-values')->name('values');
 Route::view('/sustainability', 'sustainability')->name('sustainability');
 Route::view('/faq', 'faq')->name('faq');
 
+// keyosk+
+Route::view('/keyosk-plus', 'keyosk-plus')->name('keyosk-plus');
+
 // Legal Routes
 Route::view('/privacy', 'privacy-policy')->name('privacy');
 Route::view('/tnc', 'terms-and-conditions')->name('terms.conditions');
