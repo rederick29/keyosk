@@ -59,109 +59,110 @@ async function queryData(endpoint: string, limit = 10): Promise<ProductData[] | 
     }
 }
 
-function createBarChart(data: ProductData[], containerId: string, legendId: string): void {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = '';
-    container.style.overflow = 'visible';
-
-    const width = container.clientWidth;
-    const height = container.clientHeight || 400;
-
-    const margin = {
-        top: Math.max(30, height * 0.08),
-        right: Math.max(30, width * 0.05),
-        bottom: Math.max(100, height * 0.25),
-        left: Math.max(50, width * 0.1)
-    };
-
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-
-    const svg = d3.select(`#${containerId}`)
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .style('overflow', 'visible')
-        .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
-
-    const x = d3.scaleBand()
-        .domain(data.map(d => d.name))
-        .range([0, chartWidth])
-        .padding(0.2);
-
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.sales) ?? 0])
-        .nice()
-        .range([chartHeight, 0]);
-
-    // X-axis with angled labels
-    const xAxis = svg.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
-        .call(d3.axisBottom(x));
-
-    xAxis.selectAll('text')
-        .style('text-anchor', 'end')
-        .style('font-size', '11px')
-        .attr('transform', `translate(-10,10)rotate(${data.length > 8 ? -45 : -30})`)
-        .style('overflow', 'visible');
-
-    svg.append('g')
-        .call(d3.axisLeft(y))
-        .selectAll('text')
-        .style('font-size', '11px');
-
-    svg.append('text')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -margin.left + 20)
-        .attr('x', -chartHeight / 2)
-        .attr('text-anchor', 'middle')
-        .text('Sales')
-        .style('font-size', '14px');
-
-    // Bars with interactive features
-    svg.selectAll('.bar-group')
-        .data(data)
-        .enter()
-        .append('a')
-        .attr('href', d => `/product/${d.id}`)
-        .attr('class', 'bar-link')
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', d => x(d.name) ?? 0)
-        .attr('y', d => y(d.sales))
-        .attr('width', x.bandwidth())
-        .attr('height', d => chartHeight - y(d.sales))
-        .attr('fill', d => d.color)
-        .style('opacity', 0.8)
-        .style('cursor', 'pointer')
-        .on('mouseover', function (event: MouseEvent, d: ProductData) {
-            d3.select(this)
-                .style('opacity', 1)
-                .attr('stroke', '#333')
-                .attr('stroke-width', 2);
-
-            svg.append('g')
-                .attr('class', 'tooltip')
-                .attr('transform', `translate(${x(d.name) ?? 0 + x.bandwidth() / 2},${y(d.sales) - 10})`)
-                .append('text')
-                .attr('text-anchor', 'middle')
-                .style('font-size', '14px')
-                .style('font-weight', 'bold')
-                .text(`${d.sales}`);
-        })
-        .on('mouseout', function () {
-            d3.select(this)
-                .style('opacity', 0.8)
-                .attr('stroke', 'none');
-            svg.select('.tooltip').remove();
-        });
-
-    updateLegend(data, legendId);
-}
+// saving this for potential future use / if we decide to go back
+// function createBarChart(data: ProductData[], containerId: string, legendId: string): void {
+//     const container = document.getElementById(containerId);
+//     if (!container) return;
+//
+//     container.innerHTML = '';
+//     container.style.overflow = 'visible';
+//
+//     const width = container.clientWidth;
+//     const height = container.clientHeight || 400;
+//
+//     const margin = {
+//         top: Math.max(30, height * 0.08),
+//         right: Math.max(30, width * 0.05),
+//         bottom: Math.max(100, height * 0.25),
+//         left: Math.max(50, width * 0.1)
+//     };
+//
+//     const chartWidth = width - margin.left - margin.right;
+//     const chartHeight = height - margin.top - margin.bottom;
+//
+//     const svg = d3.select(`#${containerId}`)
+//         .append('svg')
+//         .attr('width', width)
+//         .attr('height', height)
+//         .attr('viewBox', `0 0 ${width} ${height}`)
+//         .style('overflow', 'visible')
+//         .append('g')
+//         .attr('transform', `translate(${margin.left},${margin.top})`);
+//
+//     const x = d3.scaleBand()
+//         .domain(data.map(d => d.name))
+//         .range([0, chartWidth])
+//         .padding(0.2);
+//
+//     const y = d3.scaleLinear()
+//         .domain([0, d3.max(data, d => d.sales) ?? 0])
+//         .nice()
+//         .range([chartHeight, 0]);
+//
+//     // X-axis with angled labels
+//     const xAxis = svg.append('g')
+//         .attr('transform', `translate(0,${chartHeight})`)
+//         .call(d3.axisBottom(x));
+//
+//     xAxis.selectAll('text')
+//         .style('text-anchor', 'end')
+//         .style('font-size', '11px')
+//         .attr('transform', `translate(-10,10)rotate(${data.length > 8 ? -45 : -30})`)
+//         .style('overflow', 'visible');
+//
+//     svg.append('g')
+//         .call(d3.axisLeft(y))
+//         .selectAll('text')
+//         .style('font-size', '11px');
+//
+//     svg.append('text')
+//         .attr('transform', 'rotate(-90)')
+//         .attr('y', -margin.left + 20)
+//         .attr('x', -chartHeight / 2)
+//         .attr('text-anchor', 'middle')
+//         .text('Sales')
+//         .style('font-size', '14px');
+//
+//     // Bars with interactive features
+//     svg.selectAll('.bar-group')
+//         .data(data)
+//         .enter()
+//         .append('a')
+//         .attr('href', d => `/product/${d.id}`)
+//         .attr('class', 'bar-link')
+//         .append('rect')
+//         .attr('class', 'bar')
+//         .attr('x', d => x(d.name) ?? 0)
+//         .attr('y', d => y(d.sales))
+//         .attr('width', x.bandwidth())
+//         .attr('height', d => chartHeight - y(d.sales))
+//         .attr('fill', d => d.color)
+//         .style('opacity', 0.8)
+//         .style('cursor', 'pointer')
+//         .on('mouseover', function (event: MouseEvent, d: ProductData) {
+//             d3.select(this)
+//                 .style('opacity', 1)
+//                 .attr('stroke', '#333')
+//                 .attr('stroke-width', 2);
+//
+//             svg.append('g')
+//                 .attr('class', 'tooltip')
+//                 .attr('transform', `translate(${x(d.name) ?? 0 + x.bandwidth() / 2},${y(d.sales) - 10})`)
+//                 .append('text')
+//                 .attr('text-anchor', 'middle')
+//                 .style('font-size', '14px')
+//                 .style('font-weight', 'bold')
+//                 .text(`${d.sales}`);
+//         })
+//         .on('mouseout', function () {
+//             d3.select(this)
+//                 .style('opacity', 0.8)
+//                 .attr('stroke', 'none');
+//             svg.select('.tooltip').remove();
+//         });
+//
+//     updateLegend(data, legendId);
+// }
 
 function createPieChart(data: ProductData[], containerId: string, legendId: string): void {
     const container = document.getElementById(containerId);
@@ -192,11 +193,6 @@ function createPieChart(data: ProductData[], containerId: string, legendId: stri
     const arc = d3.arc<d3.PieArcDatum<ProductData>>()
         .innerRadius(50)
         .outerRadius(radius * 0.8);
-
-    // Create outer arc for labels
-    const outerArc = d3.arc<d3.PieArcDatum<ProductData>>()
-        .innerRadius(radius * 0.9)
-        .outerRadius(radius * 0.9);
 
     // Create pie slices
     const slices = svg.selectAll('.arc')
