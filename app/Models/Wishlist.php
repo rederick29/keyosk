@@ -13,6 +13,7 @@ class Wishlist extends BaseProductList
     use HasFactory;
     protected $pivotClass = WishlistProduct::class;
 
+    protected $fillable = ['user_id'];
     public function products(): BelongsToMany
     {
         // laravel assumes table names are in alphabetical_order, this one isn't

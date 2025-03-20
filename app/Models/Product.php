@@ -96,4 +96,16 @@ class Product extends Model
         return $this->belongsToMany(Tag::class)
             ->whereHas('compatibilityTag');
     }
+
+    public function isInWishlist($userID): bool
+    {
+        $wishlist = Wishlist::where('user_id', $userID)->first();
+
+        if(!$wishlist)
+        {
+            return false;
+        }
+
+        return $wishlist->products()->where('product_id', $this->id)->exists();
+    }
 }

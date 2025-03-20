@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -69,13 +70,20 @@ Route::middleware([NoCache::class])->group(function () {
 
 // Authenticated Routes
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
+    // Order Routes
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
     Route::post('/orders/{orderId}/cancel', [OrdersController::class, 'cancel'])->where('orderId', '[0-9]+')->name('orders.cancel');
     Route::post('/orders/{orderId}/refund', [OrdersController::class, 'refund'])->where('orderId', '[0-9]+')->name('orders.refund');
     Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
     Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
 
-    // User Route
+    // Wishlist Routes
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+
+    // User Routes
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
     Route::post('/account/edit', [UserController::class, 'update'])->name('account.edit');
     Route::post('/api/v1/address', [UserController::class, 'address'])->name('api.v1.address');

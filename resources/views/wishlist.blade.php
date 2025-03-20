@@ -5,8 +5,9 @@
             $wishlist = $user->wishlist;
         @endphp
         <div class="flex flex-col">
-            @forelse(Auth::user()->wishlist->products() as $product)
-                <p>{{ $product }}</p>
+            @vite('resources/ts/product-buttons.ts')
+            @forelse($wishlist->products as $product)
+                <x-util.product-card :product="$product" :_product="$product"></x-util.product-card>
             @empty
                 <p class="text-zinc-800 dark:text-white">Your wishlist is empty.</p>
             @endforelse
