@@ -1,7 +1,7 @@
 
 @props(['title', 'description', 'href', 'img_src'])
 <div class="max-w-96 bg-stone-200 dark:bg-zinc-900 hover:ring-4 ring-orange-500 dark:ring-violet-700 overflow-hidden transition-shadow duration-500 cursor-default rounded-xl">
-    <div class="p-5 flex justify-center bg-stone-300 dark:bg-zinc-950">
+    <div class="p-5 flex justify-center bg-stone-300 dark:bg-zinc-950/40">
         <img class="max-h-40 object-cover" src="{{asset('storage/images/db/'.$img_src)}}" alt="Category Image">
     </div>
     <div class="p-5">
