@@ -20,7 +20,19 @@
              Shop now
          </x-util.button>
 
-         <img class="absolute right-0 rotate-[50deg] scale-125" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" />
+         <!-- <img class="absolute right-0 rotate-[50deg] scale-125" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" /> -->
+         <div class="text-scroll text-9xl font-bold absolute right-30 bottom-0">
+             <p>Keyboards</p>
+             <p>Mice</p>
+             <p>Mousepads</p>
+             <p>Switches</p>
+             <p>Keycaps</p>
+             <p>Keyboards</p>
+             <p>Mice</p>
+             <p>Mousepads</p>
+             <p>Switches</p>
+             <p>Keycaps</p>
+         </div>
     </div>
 
     <div class="w-full h-1/2 mx-auto" id="three-d-element">
@@ -38,12 +50,25 @@
         animation: slide 4s linear infinite;
     }
 
+    .text-scroll {
+        animation: scroll 8s linear infinite;
+    }
+
     @keyframes slide {
         from {
             transform: translateY(0px) translateX(0px);
         }
         to {
             transform: translateY(80px) translateX(80px);
+        }
+    }
+
+    @keyframes scroll {
+        from {
+            transform: translateY(0px);
+        }
+        to {
+            transform: translateY(640px);
         }
     }
 </style>

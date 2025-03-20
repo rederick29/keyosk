@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for(let i = 0; i < filters.length; i++) {
             let filterElement: HTMLElement = document.createElement('div');
-            filterElement.className = 'clear-button w-fit h-fit p-2 flex items-center gap-2 bg-zinc-900 bg-stone-200 hover:bg-stone-300 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-lg cursor-pointer transition-all duration-300';
+            filterElement.className = 'clear-button w-fit h-fit p-2 flex items-center gap-2 dark:bg-zinc-900 bg-stone-200 hover:bg-stone-300 dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-lg cursor-pointer transition-all duration-300';
             const svgHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
             filterElement.innerHTML = svgHTML + ' ' +  toTitleCase(filters[i]);
             filterElement.id = 'clear-' + filters[i]

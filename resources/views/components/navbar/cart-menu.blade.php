@@ -70,7 +70,7 @@
                     Checkout</x-util.button>
                 <div class="h-[12px]"></div>
                 <x-util.button type="a" href="/cart"
-                    class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">View
+                    class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-700 hover:text-zinc-800 dark:hover:text-white">View
                     cart</x-util.button>
             @else
                 <div class="h-[12px]"></div>

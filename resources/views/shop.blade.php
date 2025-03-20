@@ -6,14 +6,14 @@
             <aside class="w-96 h-fit flex flex-col gap-4">
 
                 <!-- Keyosk+ -->
-                <div class="h-64 p-6 flex flex-col justify-between bg-stone-200 dark:bg-zinc-900 rounded-lg">
+                <div class="h-64 p-6 flex flex-col justify-between bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
                     <h1 class="text-xl font-bold">Harness the power of true typing proficiency</h1>
 
                     <p class="text-violet-500 hover:underline cursor-pointer">Get more from Keyosk with <span class="font-bold">Keyosk+</span></p>
                 </div>
 
                 <!-- Tags and Filters -->
-                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
                     <x-accordion.accordion label="Category" class="w-full">
                         <x-accordion.accordion-item :filter="'keyboard'" class="relative flex items-center justify-between accordion-tick-unselected">
                             Keyboard
@@ -43,7 +43,7 @@
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
                     <x-accordion.accordion label="Color">
                         <x-accordion.accordion-item :filter="'black'" class="relative flex items-center justify-between accordion-tick-unselected">
                             Black
@@ -78,7 +78,7 @@
                     </x-accordion.accordion>
                 </div>
 
-                <div class="p-4 bg-stone-200 dark:bg-zinc-900 rounded-lg">
+                <div class="p-4 bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
                     <x-accordion.accordion label="Size">
                         <x-accordion.accordion-item :filter="'large'" class="relative flex items-center justify-between accordion-tick-unselected">
                             Large
@@ -126,7 +126,7 @@
 
             <div class="w-full h-full flex flex-col space-y-5">
                 <section
-                    class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg"
+                    class="w-full h-fit py-5 px-5 flex flex-wrap items-center justify-center gap-5 bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg shadow-md"
                     id="search">
                     <x-util.button class="h-fit p-3 block lg:hidden w-full md:w-20 bg-stone-200 dark:bg-zinc-800"
                         type="button">Filters
