@@ -26,6 +26,7 @@ class OrderFactory extends Factory
             'status' => fake()->randomElement(OrderStatus::getEnumValues()),
             'user_id' => $user->id,
             'address_id' => $user->addresses->random(),
+            'email' => $user->email,
             'total_price' => fake()->randomFloat(2, 10, 100),
         ];
     }
@@ -35,6 +36,7 @@ class OrderFactory extends Factory
         return $this->state(function (array $attributes) use ($user) {
             return [
                 'user_id' => $user->id,
+                'email' => $user->email,
                 'address_id' => $user->addresses->random(),
             ];
         });
