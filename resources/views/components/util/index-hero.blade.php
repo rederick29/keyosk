@@ -21,17 +21,17 @@
          </x-util.button>
 
          <!-- <img class="absolute right-0 rotate-[50deg] scale-125" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" /> -->
-         <div class="text-scroll text-9xl font-bold absolute right-30 bottom-0">
-             <p>Keyboards</p>
-             <p>Mice</p>
-             <p>Mousepads</p>
-             <p>Switches</p>
-             <p>Keycaps</p>
-             <p>Keyboards</p>
-             <p>Mice</p>
-             <p>Mousepads</p>
-             <p>Switches</p>
-             <p>Keycaps</p>
+         <div class="flex flex-col text-scroll text-9xl font-bold absolute right-30 bottom-0">
+             <a class="hover:text-purple-600 transition" href="/shop?filters=keyboard">Keyboards</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=mouse">Mice</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=mousepads">Mousepads</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=key_switches">Switches</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=keycaps">Keycaps</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=keyboard">Keyboards</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=mouse">Mice</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=mousepads">Mousepads</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=key_switches">Switches</a>
+             <a class="hover:text-purple-600 transition" href="/shop?filters=keycaps">Keycaps</a>
          </div>
     </div>
 
