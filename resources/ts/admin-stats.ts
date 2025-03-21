@@ -468,7 +468,7 @@ function createStockBarChart(data: ProductStockData[], containerId: string, lege
         .style('font-size', '11px')
         .style('fill', textColor);
 
-    const createTooltip = (d) => {
+    const createTooltip = (d: ProductStockData) => {
         svg.append('text')
             .attr('class', 'tooltip')
             .attr('text-anchor', 'middle')
