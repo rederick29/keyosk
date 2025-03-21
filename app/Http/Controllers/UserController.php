@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
@@ -114,5 +115,23 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('success', 'The account has been updated successfully.');
+    }
+
+    public function address(Request $request, int $userId = null)
+    {
+        if ($userId === null || !Auth::user()->is_admin) {
+            $userId = Auth::id();
+        }
+        $validatedData = $request->validate(['priority' => ['required', 'integer', 'min:0']]);
+
+        $address = User::find($userId)->addresses()->where('priority', $validatedData['priority'])->first();
+        return response()->json([ 'address' => [
+            'name' => $address->name,
+            'line_one' => $address->line_one,
+            'line_two' => $address->line_two,
+            'city' => $address->city,
+            'postcode' => $address->postcode,
+            'country' => Country::find($address->country_id)->code,
+        ]]);
     }
 }

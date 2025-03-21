@@ -5,6 +5,6 @@
 
 --}}
 @props(['type'])
-<{{ $type }} {{ $attributes->merge(['class' => 'dropdown-link', 'href' => '/']) }}>
+<{{ $type }} {{ $attributes->merge(['class' => 'dropdown-link cursor-pointer', 'href' => '/']) }}>
     {{ $slot }}
 </{{ $type }}>

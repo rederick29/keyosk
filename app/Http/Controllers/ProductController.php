@@ -134,4 +134,9 @@ class ProductController extends Controller
         $product->delete();
         return back()->with('success', 'Product deleted successfully.');
     }
+
+    public function index_add(): View
+    {
+        return view('add-product');
+    }
 }

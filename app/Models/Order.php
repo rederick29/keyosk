@@ -21,6 +21,7 @@ class Order extends UserProductList
     protected $fillable = [
         'user_id',
         'address_id',
+        'email',
         'total_price',
         'status'
     ];
