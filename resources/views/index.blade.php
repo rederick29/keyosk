@@ -65,7 +65,9 @@
             class="w-full h-fit my-20 flex flex-row justify-center items-center gap-10 animate-fade"
             id="what-we-do"
         >
-            <img src="https://placehold.co/400x400" alt="" class="rounded-xl">
+            <div class="size-96 overflow-hidden rounded-xl">
+                <img src="{{ asset('storage/images/db/index-keyboard.jpg') }}" alt="What do we do?" class="size-[400px] hover:scale-110 object-cover transition duration-500">
+            </div>
             <div
                 class="w-1/3 h-fit"
             >

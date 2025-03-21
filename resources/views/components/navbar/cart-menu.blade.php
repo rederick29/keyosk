@@ -33,7 +33,7 @@
 
             <div class="px-2 mb-4 font-bold text-xl w-full justify-start">Shopping Basket</div>
             <div
-                class="flex flex-col w-full p-5 mt-0 bg-white dark:bg-zinc-950 min-h-[30vh] max-h-[30vh] overflow-y-scroll shadow-inner rounded-xl">
+                class="flex flex-col w-full p-5 mt-0 bg-stone-300 dark:bg-zinc-950 min-h-[30vh] max-h-[30vh] overflow-y-scroll shadow-inner rounded-xl">
                 @if ($hasProducts)
                     <div class="flex flex-col gap-5">
                         @vite('resources/js/cart-menu.js')
@@ -58,7 +58,6 @@
                             <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
                         </svg>
                         <span class="font-bold">Your cart looks empty... Let's fix that.</span>
-                        <svg class="absolute -bottom-4 animate-bounce" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                     </div>
                 @endif
             </div>
