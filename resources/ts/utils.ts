@@ -4,6 +4,7 @@ import toastr from "toastr";
 export interface CustomWindow extends Window {
     setupProductButtons: any;
     setupCartButtons: any;
+    previewImageUpload: (image_input: HTMLInputElement, image_preview: HTMLImageElement) => void;
     axios: AxiosStatic;
     toastr: typeof toastr;
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
@@ -18,23 +19,8 @@ class ImageUploaderController extends Controller
         return view('image-upload');
     }
 
-    public function store_db(Request $request): RedirectResponse
+    static public function store_image_product(Product $product, UploadedFile $file, int $priority = -1)
     {
-        $validatedData = $request->validate([
-            'image' => ['required', Rule::imageFile()->max(4096)->types('image/*')],
-            'product_id' => ['required', 'int', Rule::exists('products', 'id')],
-            'priority' => ['nullable', 'int', 'min:0'],
-        ]);
-
-        $productId = intval($validatedData['product_id']);
-        $priority = intval($validatedData['priority'] ?? -1);
-
-        try {
-            $product = Product::findOrFail($productId);
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'Product' . $productId . 'not found');
-        }
-
         $lowest_priority = $product->images()->max('priority') ?? -1;
 
         // 'priority' was not set in the form, set it to the lowest one
@@ -54,12 +40,37 @@ class ImageUploaderController extends Controller
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
-                return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
+                throw $e;
             }
         }
 
-        $filePath = $request->file('image')->store('images/db', 'public');
+        $filePath = $file->store('images/db', 'public');
         Image::factory()->forProduct($product)->create(['location' => $filePath, 'priority' => $priority]);
+    }
+
+    public function store_db(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'image' => ['required', Rule::imageFile()->max(4096)->types('image/*')],
+            'product_id' => ['required', 'int', Rule::exists('products', 'id')],
+            'priority' => ['nullable', 'int', 'min:0'],
+        ]);
+
+        $productId = intval($validatedData['product_id']);
+        $priority = intval($validatedData['priority'] ?? -1);
+
+        try {
+            $product = Product::findOrFail($productId);
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Product' . $productId . 'not found');
+        }
+
+        try {
+            $this->store_image_product($product, $request->file('image'), $priority);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Database error: ' . $e->getMessage());
+        }
+
         return redirect()->back()->with('success', 'Image uploaded successfully');
     }
 

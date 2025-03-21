@@ -49,56 +49,28 @@
                         <div class="w-1/2">
                             <p class="font-semibold self-start ml-1">Color Tags</p>
                             <div class="w-full max-h-40 overflow-y-scroll flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Black</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">White</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Red</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Blue</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Green</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">RGB</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
+                                @foreach(\App\Models\Tag\ColourTag::all() as $tag)
+                                    <x-util.form.checkbox title="{{ $tag->hex_code }}">
+                                        <x-util.form.label for="tags[{{ $tag->tag->id }}][value]">{{ Str::title($tag->tag->name) }}</x-util.form.label>
+                                        <x-util.form.input type="checkbox" :checked="$product->tags()->where('tag_id', $tag->tag->id)->exists()" name="tags[{{ $tag->tag->id }}][value]" class="w-fit h-fit" />
+                                        <x-util.form.error name="tag[{{ $tag->tag->id }}][value]"/>
+                                        <input type="hidden" name="tags[{{ $tag->tag->id }}][id]" value="{{ $tag->tag->id }}">
+                                    </x-util.form.checkbox>
+                                @endforeach
                             </div>
                         </div>
 
                         <div class="w-1/2">
                             <p class="font-semibold self-start ml-1">Attribute Tags</p>
                             <div class="w-full max-h-40 overflow-y-scroll flex flex-col text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 focus:outline-hidden transition-shadow duration-500">
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Keyboards</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="w-fit h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Mice</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Switches</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Keycaps</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
-                                <x-util.form.checkbox>
-                                    <x-util.form.label for="">Mousepads</x-util.form.label>
-                                    <x-util.form.input type="checkbox" id="" name="" class="h-fit" required />
-                                </x-util.form.checkbox>
+                                @foreach(\App\Models\Tag\AttributeTag::all() as $tag)
+                                    <x-util.form.checkbox title="{{ $tag->description }}">
+                                        <x-util.form.label for="tags[{{ $tag->tag->id }}][value]">{{ Str::title($tag->tag->name) }}</x-util.form.label>
+                                        <x-util.form.input type="checkbox" :checked="$product->tags()->where('tag_id', $tag->tag->id)->exists()" name="tags[{{ $tag->tag->id }}][value]" class="w-fit h-fit"/>
+                                        <x-util.form.error name="tag[{{ $tag->tag->id }}][value]"/>
+                                        <input type="hidden" name="tags[{{ $tag->tag->id }}][id]" value="{{ $tag->tag->id }}">
+                                    </x-util.form.checkbox>
+                                @endforeach
                             </div>
                         </div>
                     </section>
@@ -118,7 +90,9 @@
                 </div>
             </form>
             <!-- cannot contain button in same form / not good idea -->
-            <x-util.button type="button" class="w-full mt-4 self-end bg-transparent ring-2 ring-red-500 dark:ring-red-700 text-red-500 dark:text-red-700 hover:bg-red-500 dark:hover:bg-red-700 hover:text-zinc-800 dark:hover:text-white">Delete Product</x-util.button>
+            <form method="POST" action="{{ route('product.destroy.pid', ['productId' => $product->id]) }}"> @csrf
+                <x-util.button type="button" class="w-full mt-4 self-end bg-transparent ring-2 ring-red-500 dark:ring-red-700 text-red-500 dark:text-red-700 hover:bg-red-500 dark:hover:bg-red-700 hover:text-zinc-800 dark:hover:text-white">Delete Product</x-util.button>
+            </form>
         </div>
     </section>
 </x-layouts.admin-layout>
