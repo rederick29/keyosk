@@ -34,7 +34,9 @@ jobs:
           mv new_website website
           mkdir new_website
           mkdir -p website/storage/app/public/images/db
-          ln -s ~/website_images/* website/storage/app/public/images/db
+          mkdir -p website/storage/app/public/images/static
+          ln -s ~/website_images/db/* website/storage/app/public/images/db
+          ln -s ~/website_images/static/* website/storage/app/public/images/static
           cp .env new_website/
           cd website
           php8.2 -c ~/etc/php8.2 /usr/bin/composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist

@@ -1,24 +1,18 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as CANNON from 'cannon-es';
-import {Box3, Color, Object3D, Raycaster, Vector2} from "three";
+import { Box3, Color, Object3D, Raycaster, Vector2 } from "three";
 
 function deg2rad(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
 
 const scene = new THREE.Scene();
-// aruns original camera
-// const camera = new THREE.PerspectiveCamera(25);
-// camera.position.set(0, 8.5, 45);
-// camera.lookAt(0, 2, 0);
-
-// bens attempt at a camera
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, -1, 25);
 camera.lookAt(0, -1, 0);
 
-const canvas: HTMLCanvasElement | OffscreenCanvas | undefined  = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
+const canvas: HTMLCanvasElement | OffscreenCanvas | undefined = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
 if (!(canvas instanceof HTMLCanvasElement)) {
     throw new Error('Canvas not found');
 }
@@ -290,7 +284,7 @@ function onMouseMove(event: any): void {
     previousMousePosition.copy(mouse);
 
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
 
     const rect: DOMRect = canvas.getBoundingClientRect();
@@ -324,7 +318,7 @@ function onMouseMove(event: any): void {
 }
 
 // Convert screen coordinates to world coordinates
-function screenToWorld(screenPos: any)  {
+function screenToWorld(screenPos: any) {
     // Create a ray from the camera
     raycaster.setFromCamera(screenPos, camera);
 
@@ -340,7 +334,7 @@ function screenToWorld(screenPos: any)  {
 
 function onMouseDown(event: any): void {
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
     const rect: DOMRect = canvas.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -480,7 +474,7 @@ function updateSize() {
     if (!canvas) return;
 
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
 
     const container: HTMLElement | null = canvas.parentElement;
@@ -585,7 +579,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
         const is2D: boolean = !twoDElement.classList.contains('hidden');
 
 
-        if(is2D) {
+        if (is2D) {
             twoDElement.classList.remove('flex');
             twoDElement.classList.add('hidden');
             threeDElement.classList.remove('hidden');
