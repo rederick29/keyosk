@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
