@@ -27,7 +27,7 @@
             </div>
 
 
-            <div class="w-full flex gap-x-5">
+            <div class="w-full flex gap-x-5 pb-10">
                 <div class="w-1/2 h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                     <div class="text-center">
                         <h2 class="text-3xl font-semibold mb-2">What sells the best?</h2>
