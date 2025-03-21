@@ -9,7 +9,7 @@
     <section class="w-full">
         <div class="w-full flex flex-col gap-y-5">
             <div class="w-full flex gap-x-5">
-                <div class="w-1/2 h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-800 rounded-md">
+                <div class="w-1/2 h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                     <div class="text-center">
                         <h2 class="text-3xl font-semibold mb-2">Best Selling Products</h2>
                         <h3 class="text-m font-semibold italic">Hover over segments to view sales figures. Click to view product page.</h3>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="w-1/2 h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-800 rounded-md">
+                <div class="w-1/2 h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                     <div class="text-center">
                         <h2 class="text-3xl font-semibold mb-2">Worst Selling Products</h2>
                         <h3 class="text-m font-semibold italic">Hover over segments to view sales figures. Click to view product page.</h3>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="w-full h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-800 rounded-md">
+            <div class="w-full h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                 <h2 class="text-3xl font-semibold mb-2">User Spending Chart</h2>
                 <div class="w-full flex items-center justify-center">
                     <div id="user-spending-chart" class="w-[700px] h-96"></div>
