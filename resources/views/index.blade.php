@@ -66,7 +66,7 @@
             id="what-we-do"
         >
             <div class="size-96 overflow-hidden rounded-xl">
-                <img src="{{ asset('storage/images/static/index-keyboard.jpg') }}" alt="What do we do?" class="size-[400px] hover:scale-110 object-cover transition duration-500">
+                <img src="{{ asset('storage/images/static/index-keyboard.png') }}" alt="What do we do?" class="size-[400px] hover:scale-110 object-cover transition duration-500">
             </div>
             <div
                 class="w-1/3 h-fit"
