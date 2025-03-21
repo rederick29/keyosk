@@ -19,6 +19,14 @@ interface UserSpendingData {
     color: string;
 }
 
+interface ProductStockData {
+    id: string | number;
+    name: string;
+    stock: number;
+    price: number;
+    color: string;
+}
+
 const colorPalette = [
     "#4C72B0", "#55A868", "#C44E52", "#8172B3", "#CCB974", "#64B5CD",
     "#377EB8", "#FF7F00", "#4DAF4A", "#984EA3", "#F781BF", "#A65628"
@@ -26,6 +34,7 @@ const colorPalette = [
 
 let bestSellingData: ProductData[] = [];
 let worstSellingData: ProductData[] = [];
+let productStockData: ProductStockData[] = [];
 let topSpendingUsersData: UserSpendingData[] = [];
 
 async function queryData(endpoint: string, limit = 10): Promise<ProductData[] | UserSpendingData[]> {
@@ -59,110 +68,30 @@ async function queryData(endpoint: string, limit = 10): Promise<ProductData[] | 
     }
 }
 
-// saving this for potential future use / if we decide to go back
-// function createBarChart(data: ProductData[], containerId: string, legendId: string): void {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
-//
-//     container.innerHTML = '';
-//     container.style.overflow = 'visible';
-//
-//     const width = container.clientWidth;
-//     const height = container.clientHeight || 400;
-//
-//     const margin = {
-//         top: Math.max(30, height * 0.08),
-//         right: Math.max(30, width * 0.05),
-//         bottom: Math.max(100, height * 0.25),
-//         left: Math.max(50, width * 0.1)
-//     };
-//
-//     const chartWidth = width - margin.left - margin.right;
-//     const chartHeight = height - margin.top - margin.bottom;
-//
-//     const svg = d3.select(`#${containerId}`)
-//         .append('svg')
-//         .attr('width', width)
-//         .attr('height', height)
-//         .attr('viewBox', `0 0 ${width} ${height}`)
-//         .style('overflow', 'visible')
-//         .append('g')
-//         .attr('transform', `translate(${margin.left},${margin.top})`);
-//
-//     const x = d3.scaleBand()
-//         .domain(data.map(d => d.name))
-//         .range([0, chartWidth])
-//         .padding(0.2);
-//
-//     const y = d3.scaleLinear()
-//         .domain([0, d3.max(data, d => d.sales) ?? 0])
-//         .nice()
-//         .range([chartHeight, 0]);
-//
-//     // X-axis with angled labels
-//     const xAxis = svg.append('g')
-//         .attr('transform', `translate(0,${chartHeight})`)
-//         .call(d3.axisBottom(x));
-//
-//     xAxis.selectAll('text')
-//         .style('text-anchor', 'end')
-//         .style('font-size', '11px')
-//         .attr('transform', `translate(-10,10)rotate(${data.length > 8 ? -45 : -30})`)
-//         .style('overflow', 'visible');
-//
-//     svg.append('g')
-//         .call(d3.axisLeft(y))
-//         .selectAll('text')
-//         .style('font-size', '11px');
-//
-//     svg.append('text')
-//         .attr('transform', 'rotate(-90)')
-//         .attr('y', -margin.left + 20)
-//         .attr('x', -chartHeight / 2)
-//         .attr('text-anchor', 'middle')
-//         .text('Sales')
-//         .style('font-size', '14px');
-//
-//     // Bars with interactive features
-//     svg.selectAll('.bar-group')
-//         .data(data)
-//         .enter()
-//         .append('a')
-//         .attr('href', d => `/product/${d.id}`)
-//         .attr('class', 'bar-link')
-//         .append('rect')
-//         .attr('class', 'bar')
-//         .attr('x', d => x(d.name) ?? 0)
-//         .attr('y', d => y(d.sales))
-//         .attr('width', x.bandwidth())
-//         .attr('height', d => chartHeight - y(d.sales))
-//         .attr('fill', d => d.color)
-//         .style('opacity', 0.8)
-//         .style('cursor', 'pointer')
-//         .on('mouseover', function (event: MouseEvent, d: ProductData) {
-//             d3.select(this)
-//                 .style('opacity', 1)
-//                 .attr('stroke', '#333')
-//                 .attr('stroke-width', 2);
-//
-//             svg.append('g')
-//                 .attr('class', 'tooltip')
-//                 .attr('transform', `translate(${x(d.name) ?? 0 + x.bandwidth() / 2},${y(d.sales) - 10})`)
-//                 .append('text')
-//                 .attr('text-anchor', 'middle')
-//                 .style('font-size', '14px')
-//                 .style('font-weight', 'bold')
-//                 .text(`${d.sales}`);
-//         })
-//         .on('mouseout', function () {
-//             d3.select(this)
-//                 .style('opacity', 0.8)
-//                 .attr('stroke', 'none');
-//             svg.select('.tooltip').remove();
-//         });
-//
-//     updateLegend(data, legendId);
-// }
+async function queryStockData(limit = 10): Promise<ProductStockData[]> {
+    try {
+        const response = await fetch(`/admin/stats/stock?limit=${limit}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const { data } = await response.json();
+        if (!data || !Array.isArray(data)) throw new Error('Unexpected data format');
+
+        return data.map((product, i) => ({
+            id: product.id,
+            name: product.name,
+            stock: product.stock || 0,
+            price: product.price || 0,
+            color: product.stock <= 25
+                ? "#FF5252" // red for critical stock
+                : (product.stock <= 50
+                    ? "#FFD740" // amber for warning
+                    : "#4CAF50") // green for healthy stock
+        }));
+    } catch (error) {
+        console.error(`Error fetching stock data:`, error);
+        return [];
+    }
+}
 
 function createPieChart(data: ProductData[], containerId: string, legendId: string): void {
     const container = document.getElementById(containerId);
@@ -174,6 +103,9 @@ function createPieChart(data: ProductData[], containerId: string, legendId: stri
     const width = container.clientWidth;
     const height = container.clientHeight || 400;
     const radius = Math.min(width, height) / 2;
+
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    const textColor = isDarkMode ? '#e5e7eb' : '#333333';
 
     // Create SVG
     const svg = d3.select(`#${containerId}`)
@@ -209,7 +141,7 @@ function createPieChart(data: ProductData[], containerId: string, legendId: stri
         .style('stroke', 'white')
         .style('stroke-width', 2)
         .style('cursor', 'pointer')
-        .on('mouseover', function(event, d) {
+        .on('mouseover', function (event, d) {
             d3.select(this)
                 .style('opacity', 1)
                 .attr('stroke', '#333')
@@ -220,11 +152,12 @@ function createPieChart(data: ProductData[], containerId: string, legendId: stri
                 .attr('class', 'tooltip')
                 .attr('text-anchor', 'middle')
                 .attr('dy', '0.35em')
+                .style('fill', textColor)
                 .style('font-size', '16px')
                 .style('font-weight', 'bold')
                 .text(`${d.data.name}: ${d.data.sales}`);
         })
-        .on('mouseout', function() {
+        .on('mouseout', function () {
             d3.select(this)
                 .style('opacity', 0.8)
                 .attr('stroke', 'white')
@@ -232,62 +165,9 @@ function createPieChart(data: ProductData[], containerId: string, legendId: stri
 
             svg.select('.tooltip').remove();
         })
-        .on('click', function(event, d) {
+        .on('click', function (event, d) {
             window.location.href = `/product/${d.data.id}`;
         });
-
-    // Add labels with lines connecting to slices
-    // slices.append('polyline')
-    //     .attr('points', function(d) {
-    //         const pos = outerArc.centroid(d);
-    //         const midAngle = Math.atan2(pos[1], pos[0]);
-    //         const x = Math.cos(midAngle) * radius * 0.95;
-    //         const y = Math.sin(midAngle) * radius * 0.95;
-    //         return [arc.centroid(d), outerArc.centroid(d), [x, y]];
-    //     })
-    //     .style('fill', 'none')
-    //     .style('stroke', '#999')
-    //     .style('stroke-width', 1)
-    //     .style('opacity', 0.3);
-
-    // Add the text labels
-    // slices.append('text')
-    //     .attr('transform', function(d) {
-    //         const pos = outerArc.centroid(d);
-    //         const midAngle = Math.atan2(pos[1], pos[0]);
-    //         const x = Math.cos(midAngle) * radius * 0.98;
-    //         const y = Math.sin(midAngle) * radius * 0.98;
-    //         return `translate(${x},${y})`;
-    //     })
-    //     .attr('text-anchor', function(d) {
-    //         const pos = outerArc.centroid(d);
-    //         return (pos[0] >= 0) ? 'start' : 'end';
-    //     })
-    //     .text(d => {
-    //         // Only show label if it's a significant slice (>5% of total)
-    //         const total = d3.sum(data, d => d.sales);
-    //         const percentage = (d.data.sales / total) * 100;
-    //         if (percentage < 5) return '';
-    //
-    //         // Abbreviate long names
-    //         let name = d.data.name;
-    //         if (name.length > 12) {
-    //             name = name.substring(0, 10) + '...';
-    //         }
-    //         return name;
-    //     })
-    //     .style('font-size', '12px')
-    //     .style('font-weight', 'normal')
-    //     .style('pointer-events', 'none');
-
-    // Add a title
-    // svg.append('text')
-    //     .attr('x', 0)
-    //     .attr('y', -height / 2 + 20)
-    //     .attr('text-anchor', 'middle')
-    //     .style('font-size', '16px')
-    //     .style('font-weight', 'bold')
-    //     .text(' Sales Distribution');
 
     // Update legend
     updateLegend(data, legendId);
@@ -322,6 +202,9 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
         .append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    const textColor = isDarkMode ? '#e5e7eb' : '#333333';
+
     const x = d3.scaleBand()
         .domain(data.map(d => d.userName))
         .range([0, chartWidth])
@@ -342,6 +225,7 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
     xAxis.selectAll('text')
         .style('text-anchor', 'end')
         .style('font-size', '11px')
+        .style('fill', textColor)
         .attr('transform', `translate(-10,10)rotate(${data.length > 5 ? -45 : -30})`)
         .style('overflow', 'visible');
 
@@ -349,7 +233,8 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
     svg.append('g')
         .call(d3.axisLeft(y).tickFormat(d => `£${d3.format(",.2f")(d)}`))
         .selectAll('text')
-        .style('font-size', '11px');
+        .style('font-size', '11px')
+        .style('fill', textColor);  //
 
     // svg.append('text')
     //     .attr('transform', 'rotate(-90)')
@@ -488,6 +373,160 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
     updateUserSpendingLegend(data, legendId);
 }
 
+function createStockBarChart(data: ProductStockData[], containerId: string, legendId: string): void {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '';
+    container.style.overflow = 'visible';
+
+    const width = container.clientWidth;
+    const height = container.clientHeight || 400;
+
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    const textColor = isDarkMode ? '#e5e7eb' : '#333333';
+
+    const margin = {
+        top: Math.max(30, height * 0.08),
+        right: Math.max(50, width * 0.1),
+        bottom: height * 0.2,
+        left: Math.max(70, width * 0.15)
+    };
+
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+
+    const sortedData = [...data].sort((a, b) => a.stock - b.stock);
+
+    const svg = d3.select(`#${containerId}`)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height + margin.bottom)
+        .attr('viewBox', `0 0 ${width} ${height + margin.bottom}`)
+        .append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleBand()
+        .domain(sortedData.map(d => d.name))
+        .range([0, chartWidth])
+        .padding(0.3);
+
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(sortedData, d => d.stock) || 100])
+        .nice()
+        .range([chartHeight, 0]);
+
+    const thresholds = [
+        { value: 25, color: '#FF5252', label: 'Critical' },
+        { value: 50, color: '#FFD740', label: 'Warning' }
+    ];
+
+    thresholds.forEach(threshold => {
+        svg.append('line')
+            .attr('x1', 0)
+            .attr('x2', chartWidth)
+            .attr('y1', y(threshold.value))
+            .attr('y2', y(threshold.value))
+            .attr('stroke', threshold.color)
+            .attr('stroke-width', 1)
+            .attr('stroke-dasharray', '5,5');
+
+        svg.append('text')
+            .attr('x', chartWidth + 5)
+            .attr('y', y(threshold.value))
+            .attr('dy', '0.35em')
+            .attr('text-anchor', 'start')
+            .text(`${threshold.label} (${threshold.value})`)
+            .style('font-size', '10px')
+            .style('fill', threshold.color);
+    });
+
+    const xAxis = svg.append('g')
+        .attr('transform', `translate(0,${chartHeight})`)
+        .call(d3.axisBottom(x));
+
+    xAxis.selectAll('text')
+        .style('text-anchor', 'end')
+        .style('font-size', '11px')
+        .style('fill', textColor)
+        .style('cursor', 'pointer')
+        .attr('transform', 'translate(-10,5)rotate(-45)')
+        .attr('dy', '.15em')
+        .each(function (d) {
+            const product = sortedData.find(item => item.name === d);
+            if (product) {
+                d3.select(this)
+                    .on('click', () => window.location.href = `/admin/manage-products/${product.id}/edit-product`)
+                    .on('mouseover', function () { d3.select(this).style('text-decoration', 'underline'); })
+                    .on('mouseout', function () { d3.select(this).style('text-decoration', 'none'); });
+            }
+        });
+
+    svg.append('g')
+        .call(d3.axisLeft(y))
+        .selectAll('text')
+        .style('font-size', '11px')
+        .style('fill', textColor);
+
+    const createTooltip = (d) => {
+        svg.append('text')
+            .attr('class', 'tooltip')
+            .attr('text-anchor', 'middle')
+            .attr('x', (x(d.name) || 0) + x.bandwidth() / 2)
+            .attr('y', y(d.stock) - 10)
+            .style('font-size', '12px')
+            .style('fill', textColor)
+            .style('font-weight', 'bold')
+            .text(`${d.name}: ${d.stock}`);
+    };
+
+    svg.selectAll('.bar')
+        .data(sortedData)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.name) || 0)
+        .attr('y', d => y(d.stock))
+        .attr('width', x.bandwidth())
+        .attr('height', d => chartHeight - y(d.stock))
+        .attr('fill', d => d.color)
+        .style('cursor', 'pointer')
+        .on('mouseover', function (event, d) {
+            d3.select(this).style('opacity', 0.8);
+            createTooltip(d);
+        })
+        .on('mouseout', function () {
+            d3.select(this).style('opacity', 1);
+            svg.selectAll('.tooltip').remove();
+        })
+        .on('click', (event, d) => window.location.href = `/admin/manage-products/${d.id}/edit-product`);
+
+    svg.selectAll('.stock-label')
+        .data(sortedData)
+        .enter()
+        .append('text')
+        .attr('class', 'stock-label')
+        .attr('x', d => (x(d.name) || 0) + x.bandwidth() / 2)
+        .attr('y', d => y(d.stock) - 5)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '10px')
+        .style('font-weight', 'bold')
+        .style('fill', textColor)
+        .text(d => d.stock)
+        .style('cursor', 'pointer')
+        .on('mouseover', function (event, d) {
+            d3.select(this).style('opacity', 0.8);
+            createTooltip(d);
+        })
+        .on('mouseout', function () {
+            d3.select(this).style('opacity', 1);
+            svg.selectAll('.tooltip').remove();
+        })
+        .on('click', (event, d) => window.location.href = `/admin/manage-products/${d.id}/edit-product`);
+
+    updateStockLegend(data, legendId);
+}
+
 function updateLegend(data: ProductData[], legendId: string): void {
     const container = document.getElementById(legendId);
     if (!container) return;
@@ -551,9 +590,38 @@ function updateUserSpendingLegend(data: UserSpendingData[], legendId: string): v
     });
 }
 
-// Initialization
+function updateStockLegend(data: ProductStockData[], legendId: string): void {
+    const container = document.getElementById(legendId);
+    if (!container) return;
+
+    container.innerHTML = '';
+    container.style.overflow = 'visible';
+
+    const legend = [
+        { label: 'Critical Stock (≤ 25)', color: '#FF5252' },
+        { label: 'Warning Level (≤ 50)', color: '#FFD740' },
+        { label: 'Healthy Stock (> 50)', color: '#4CAF50' }
+    ];
+
+    legend.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'flex items-center gap-2 mb-1';
+
+        const color = document.createElement('div');
+        color.className = 'w-4 h-4 flex-shrink-0';
+        color.style.backgroundColor = item.color;
+
+        const label = document.createElement('span');
+        label.className = 'text-sm';
+        label.textContent = item.label;
+
+        itemDiv.appendChild(color);
+        itemDiv.appendChild(label);
+        container.appendChild(itemDiv);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Add styles
     document.head.appendChild(Object.assign(document.createElement('style'), {
         textContent: `
             #product-sales-chart, #product-sales-chart svg, #product-legend,
@@ -577,21 +645,27 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }));
 
-    // Load data and create charts
+    // Load data and create charts (order is important, first one seen is the stock chart)
     Promise.all([
+        queryStockData(20).then(data => {
+            productStockData = data;
+            createStockBarChart(productStockData, 'product-stock-chart', 'product-stock-legend');
+        }),
+
+        queryData('top-spending-users', 10).then(data => {
+            topSpendingUsersData = data as UserSpendingData[];
+            createUserSpendingChart(topSpendingUsersData, 'user-spending-chart', 'user-spending-legend');
+        }),
+
         queryData('best-selling', 10).then(data => {
             bestSellingData = data as ProductData[];
-            //createBarChart(bestSellingData, 'product-sales-chart', 'product-legend');
             createPieChart(bestSellingData, 'product-sales-chart', 'product-legend');
         }),
+
         queryData('worst-selling', 10).then(data => {
             worstSellingData = data as ProductData[];
             createPieChart(worstSellingData, 'product-sales-chart2', 'product-legend2');
         }),
-        queryData('top-spending-users', 10).then(data => {
-            topSpendingUsersData = data as UserSpendingData[];
-            createUserSpendingChart(topSpendingUsersData, 'user-spending-chart', 'user-spending-legend');
-        })
     ]).catch((err: Error) => console.error('Error loading chart data:', err));
 });
 

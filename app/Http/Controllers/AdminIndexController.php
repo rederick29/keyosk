@@ -237,4 +237,29 @@ class AdminIndexController extends Controller
             'generated_at' => now()->toIso8601String()
         ]);
     }
+
+    public function stats_low_stock(Request $request, int $amount = 10): JsonResponse
+    {
+        // Validation
+        $amount = $request->input('limit', $amount);
+        $amount = is_numeric($amount) ? max(2, min(100, intval($amount))) : 10;
+
+        // Get products ordered by stock level (ascending)
+        $stockProducts = DB::table('products')
+            ->select(
+                'products.id',
+                'products.name',
+                'products.price',
+                'products.stock'
+            )
+            ->orderBy('stock', 'asc')
+            ->limit($amount)
+            ->get();
+
+        return response()->json([
+            'data' => $stockProducts,
+            'amount' => $stockProducts->count(),
+            'generated_at' => now()->toIso8601String()
+        ]);
+    }
 }

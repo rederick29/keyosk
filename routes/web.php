@@ -100,9 +100,10 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
             Route::post('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'update'])->where('productId', '[0-9]+')->name('product.update.pid');
 
             Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
-            Route::get('/admin/stats/best-selling', [AdminIndexController::class, 'stats_best_selling'])->name('stats.orders');
-            Route::get('/admin/stats/worst-selling', [AdminIndexController::class, 'stats_worst_selling'])->name('stats.orders');
-            Route::get('/admin/stats/top-spending-users', [AdminIndexController::class, 'stats_top_spending_users'])->name('stats.orders');
+            Route::get('/admin/stats/best-selling', [AdminIndexController::class, 'stats_best_selling'])->name('stats.best.selling');
+            Route::get('/admin/stats/worst-selling', [AdminIndexController::class, 'stats_worst_selling'])->name('stats.worst.selling');
+            Route::get('/admin/stats/top-spending-users', [AdminIndexController::class, 'stats_top_spending_users'])->name('stats.top.spending.users');
+            Route::get('admin/stats/stock', [AdminIndexController::class, 'stats_low_stock'])->name('stats.low.stock');
         });
 
         // Only admins can view other people's accounts
