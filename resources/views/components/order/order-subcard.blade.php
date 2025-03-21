@@ -8,7 +8,7 @@ Author(s): Kai Chima : Main Developer
 <div {{ $attributes->merge(['class' => 'w-full p-3 flex flex-row gap-5 items-center text-center rounded-lg']) }}>
     <div class="w-full flex flex-col gap-2 space-y-5">
         <div class="w-full flex flex-row gap-2 items-center">
-            <div class="flex items-center justify-center overflow-hidden">
+            <div class="size-20 flex items-center justify-center overflow-hidden">
                 <a href="/product/{{ $prodid ?? '#' }}" class="size-10">
                     <img src="{{ $prodimg }}" alt="{{ $prodimg }}" width="100" height="100" class="size-12 rounded-xs object-contain" />
                 </a>
@@ -26,15 +26,14 @@ Author(s): Kai Chima : Main Developer
                     </p>
                 </div>
             </div>
-            <a href="{{ route('review.index', ['productId' => $prodid]) }}">
-                <x-util.button type="button" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">
-                    Review
-                </x-util.button>
-            </a>
+            @if($prodstatus == \App\Models\Order\OrderStatus::Completed)
+                <a href="{{ route('review.index', ['productId' => $prodid]) }}">
+                    <x-util.button type="button" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">
+                        Review
+                    </x-util.button>
+                </a>
+            @endif
         </div>
-        @if($prodstatus == \App\Models\Order\OrderStatus::Completed)
-
-        @endif
     </div>
 
 </div>
