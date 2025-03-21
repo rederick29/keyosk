@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models\Order;
+
 use App\Utils\EnumArrayHelper;
 
 enum OrderStatus: string
@@ -12,4 +14,5 @@ enum OrderStatus: string
     case Shipped = "shipped";
     case Completed = "completed";
     case Cancelled = "cancelled";
+    case Refunded = "refunded";
 }

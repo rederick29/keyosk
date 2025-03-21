@@ -1,4 +1,4 @@
-import {CustomWindow, handle_response, SimpleResponse} from "@ts/utils.ts";
+import { CustomWindow, handle_response, SimpleResponse } from "@ts/utils.ts";
 // TODO: rewrite this entire file
 
 declare let window: CustomWindow;
@@ -115,7 +115,7 @@ class CartItem {
 
     async submit(): Promise<boolean> {
         if (!this.dirty) return false;
-        let ret = false;
+        let ret: boolean | SimpleResponse = false;
         let data = {
             cart_action: this.fake_action!.toString(),
             product_id: this.id,
@@ -123,7 +123,13 @@ class CartItem {
         }
         await window.axios.post<SimpleResponse>(this.form.action, data)
             .then(response => {
-                ret = handle_response(response);
+                let ret2 = handle_response(response);
+                // how cooked is this
+                if (typeof ret2 != "boolean") {
+                    ret = true;
+                } else {
+                    ret = ret2;
+                }
             })
             .catch(error => console.log(error));
         return ret;
@@ -194,12 +200,14 @@ class CartItemViews {
 async function updateCartItemView(items: CartItemViews): Promise<void> {
     const updateSummaryPrice = () => {
         let product_price = document.querySelector(`.cart-item-price-${items.id()}`);
-        let summary_price = document.querySelector('.cart-subtotal-price');
-        let summary_quantity = document.querySelector(`.summary-product-${items.id()} .summary-product-quantity`);
-        if (product_price && summary_quantity && summary_price) {
+        let summary_price = document.querySelectorAll<HTMLSpanElement>('.cart-subtotal-price');
+        let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`);
+        if (product_price && summary_quantity) {
             let deltaQuantity = items.pendingQuantity()! - parseInt(summary_quantity.textContent!);
             let deltaPrice = deltaQuantity * parseFloat(product_price.textContent!);
-            summary_price.textContent = String((parseFloat(summary_price.textContent!) + deltaPrice).toFixed(2));
+            summary_price.forEach(elem => {
+                elem.textContent = String((parseFloat(elem.textContent!) + deltaPrice).toFixed(2))
+            });
         }
     }
 
@@ -221,17 +229,14 @@ async function updateCartItemView(items: CartItemViews): Promise<void> {
         } else if (items.pendingAction() === CartUpdateAction.Increase || items.pendingAction() === CartUpdateAction.Decrease) {
             // update quantity and price in cart summary
             updateSummaryPrice();
-            let summary_entry = document.querySelectorAll(`.summary-product-${items.id()}`);
-            summary_entry.forEach((elem) => {
-                let summary_quantity = elem.querySelector('.summary-product-quantity')!;
-                summary_quantity.textContent = String(items.pendingQuantity());
-            })
+            let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`)!;
+            summary_quantity.textContent = String(items.pendingQuantity());
         }
 
         items.forEach((product) => product.save());
     } else {
         if (items.any((p) => p.fake_quantityInput !== Number(p.quantityInput.value))) {
-            items.forEach((product) => product.quantityInput.value = String(gCartQuantities.get(items.id())!));
+            items.forEach((product) => product.quantityInput.value = String(gCartQuantities.get(Number(items.id()))!));
         }
         items.forEach((product) => product.resetFake());
     }
@@ -300,11 +305,13 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
         let quantityInput = form.querySelector<HTMLInputElement>(`.cart_quantity_input-${productId}`)!;
         let deltaQuantity = form.querySelector<HTMLInputElement>(`.cart_quantity-${productId}`)!;
         let action = form.querySelector<HTMLInputElement>(`.cart_action-${productId}`)!;
+        let stockError = productComponent.querySelectorAll<HTMLParagraphElement>(`.product-stock-error`);
         const cart = new CartItem(productId, productComponent, action, deltaQuantity, quantityInput, form)!;
 
         switch (cart_action) {
             case CartUpdateAction.Increase:
             case CartUpdateAction.Decrease:
+                // TODO: when decreasing a product with a stock error, check if the new quantity OK
             case CartUpdateAction.Add:
                 if (quantity === null) {
                     throw new TypeError("Quantity is required.");
@@ -313,6 +320,10 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
                 break;
             case CartUpdateAction.Remove:
                 cart.removeItem();
+                // TODO: replace warning with checkout button instead of refreshing
+                if (stockError.length > 0) {
+                    window.location.reload();
+                }
                 break;
         }
         items.push(cart);
@@ -326,6 +337,7 @@ export async function updateCart(cart_action: CartUpdateAction, productId: numbe
         } else if (quantity < 1) {
             throw new Error("Quantity needs to be greater than 0.");
         }
+
         await window.axios
             .post<SimpleResponse>(window.location.origin + "/cart/update",
                 { cart_action: cart_action, quantity: quantity, product_id: productId },

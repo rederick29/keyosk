@@ -2,27 +2,37 @@
 
 namespace App\Models;
 
+use App\Models\ProductList\OrderProduct;
+use App\Models\ProductList\UserProductList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Order\OrderStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Order extends Model
+class Order extends UserProductList
 {
     /** @use HasFactory<\Database\Factories\OrderFactory> */
     use HasFactory;
+    protected $pivotClass = OrderProduct::class;
+
     protected $casts = [
         'status' => OrderStatus::class,
     ];
 
-    public function user(): BelongsTo
+    protected $fillable = [
+        'user_id',
+        'address_id',
+        'email',
+        'total_price',
+        'status'
+    ];
+
+    public function address(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Address::class);
     }
 
-    public function products(): BelongsToMany
+    public function getTotalPrice(): float
     {
-        return $this->belongsToMany(Product::class);
+        return $this->total_price;
     }
 }
