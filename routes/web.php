@@ -25,14 +25,17 @@ use App\Http\Middleware\NoCache;
 Route::view('/', 'index')->name('index');
 
 //Test Routes
-Route::view('/click-speed', 'ClickSpeedTest')->name('click-speed');
-Route::view('/type-speed', 'TypeSpeedTest')->name('type-speed');
+Route::view('/click-speed', 'click-speed-test')->name('click-speed');
+Route::view('/type-speed', 'type-speed-test')->name('type-speed');
 
 // Company Routes
 Route::view('/about', 'about-us')->name('about');
 Route::view('/values', 'our-values')->name('values');
 Route::view('/sustainability', 'sustainability')->name('sustainability');
 Route::view('/faq', 'faq')->name('faq');
+
+// keyosk+
+Route::view('/keyosk-plus', 'keyosk-plus')->name('keyosk-plus');
 
 // Legal Routes
 Route::view('/privacy', 'privacy-policy')->name('privacy');
