@@ -77,35 +77,4 @@ class ProductController extends Controller
 
         return to_route('manage-products')->with('success', 'Product updated successfully.');
     }
-
-    public function review_index(int $id)
-    {
-        $product = null;
-        try {
-            $product = Product::findOrFail($id);
-        } catch (ModelNotFoundException) {
-            return to_route('index')->with('error', 'Product not found');
-        }
-        return view("review", compact('product'));
-    }
-
-    public function review_store(int $id, Request $request): RedirectResponse
-    {
-        $product = null;
-        try {
-            $product = Product::findOrFail($id);
-        } catch (ModelNotFoundException) {
-            return to_route('index')->with('error', 'Product not found');
-        }
-
-        Review::create([
-            'comment' => $request->input('comment'),
-            'subject' => $request->input('subject'),
-            'rating' => $request->input('rating'),
-            'user_id' => auth()->id(),
-            'product_id' => $id,
-        ]);
-
-        return redirect()->route('orders.get')->with('success', 'Review submitted successfully.');
-    }
 }

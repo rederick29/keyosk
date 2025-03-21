@@ -1,8 +1,8 @@
 <x-layouts.layout>
-    <div class="bg-stone-200 dark:bg-zinc-900 px-6 py-20 pt-35 lg:pt-36 lg:px-40">
+    <div class="px-6 py-20 pt-35 lg:pt-36 lg:px-40">
         <div class="flex flex-rows justify-between items-center">
             <div class="max-w-full">
-                <h2 class="text-4xl font-semibold text-black/50 dark:text-gray-300 lg:text-5xl">{{ $product->name }}</h2>
+                <h2 class="text-4xl font-semibold text-black dark:text-white lg:text-5xl">{{ $product->name }}</h2>
                 <p class="text-2xl font-semibold mt-2 text-orange-500 dark:text-violet-700">Enter review below</p>
             </div>
             <div class="product-image h-24 w-24 bg-stone-200 dark:bg-gray-800 rounded-md flex items-center justify-center overflow-hidden ">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <hr class="border-2 rounded-xl mt-3 border-stone-400 dark:border-zinc-700" />
-        <form class="mt-5" action="{{ route('product.review.store', $product->id) }}" method="POST">
+        <form class="mt-5" action="{{ route('review.store', $product->id) }}" method="POST">
             @csrf
             <div class="flex flex-row-reverse justify-end pb-2">
                 <svg class="w-10 h-10 fill-gray-600 peer peer-hover:fill-yellow-400 hover:fill-yellow-400 "

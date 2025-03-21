@@ -26,6 +26,17 @@ class ReviewController extends Controller
         return view('components/products/review', compact('review'));
     }
 
+    public function index(Request $request, int $productId): View|RedirectResponse
+    {
+        $product = Product::find($productId);
+
+        if(!$product) {
+            return back()->with(['error' => 'product ' . $productId . ' not found.']);
+        }
+
+        return view('review', compact('product'));
+    }
+
     public function store(Request $request, int $productId): RedirectResponse|JsonResponse
     {
         $validatedData = $request->validate([

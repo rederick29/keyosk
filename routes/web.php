@@ -71,13 +71,14 @@ Route::middleware([NoCache::class])->group(function () {
 Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // Order Routes
     Route::get('/orders', [OrdersController::class, 'index'])->name('orders.get');
-    Route::get('/product/{id}/review', [ProductController::class, 'review_index'])->where('id', '[0-9]+')->name('product.review.get');
-    Route::post('/product/{id}/review', [ProductController::class, 'review_store'])->where('id', '[0-9]+')->name('product.review.store');
 
     Route::post('/orders/{orderId}/cancel', [OrdersController::class, 'cancel'])->where('orderId', '[0-9]+')->name('orders.cancel');
     Route::post('/orders/{orderId}/refund', [OrdersController::class, 'refund'])->where('orderId', '[0-9]+')->name('orders.refund');
-    // Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
-    // Route::post(uri: '/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
+
+    // Review routes
+    Route::get('/product/{productId}/review', [ReviewController::class, 'index'])->where('productId', '[0-9]+')->name('review.index');
+    Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
+    Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
 
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');

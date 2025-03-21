@@ -12,6 +12,7 @@ Author(s): Kai Chima : Main Developer
     </a>
     </div>
     <div class="w-full flex flex-row gap-2 space-y-5">
+        {{-- TODO: make svg --}}
         <p>{{ $prodquant . 'x' }}</p>
         <div class="flex flex-col w-full items-center start-0">
             <p class="w-full flex font-bold text-xl">{{ $productname }}</p>
@@ -23,7 +24,7 @@ Author(s): Kai Chima : Main Developer
             </div>
         </div>
         @if($prodstatus == \App\Models\Order\OrderStatus::Completed)
-            <a href="/product/{{ $prodid ?? '#' }}/review">
+            <a href="{{ route('review.index', ['productId' => $prodid]) }}">
                 <x-util.button type="button" class="w-1/3  self-end bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Review Product</x-util.button>
             </a>
         @endif
