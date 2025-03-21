@@ -5,7 +5,7 @@ Author(s): Kai Chima : Main Developer
 --}}
 
 @props(['prodstatus', 'prodimg', 'productname', 'prodprice', 'prodquant', 'prodid'])
-<div {{ $attributes->merge(['class' => 'w-full py-3 flex flex-row gap-5 items-center text-center rounded-lg bg-pink-500']) }}>
+<div {{ $attributes->merge(['class' => 'w-full p-3 flex flex-row gap-5 items-center text-center rounded-lg']) }}>
     <div class="w-full flex flex-col gap-2 space-y-5">
         <div class="w-full flex flex-row gap-2 items-center">
             <div class="flex items-center justify-center overflow-hidden">
