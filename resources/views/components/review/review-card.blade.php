@@ -3,7 +3,7 @@
     <!-- Product Image and Info Container -->
     <div class="w-full flex items-center gap-4">
         <!-- Product Image -->
-        <a href="/product/{{ $review->product->id }}" class="size-40 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
+        <a href="/product/{{ $review->product->id }}" class="size-80 bg-stone-200 dark:bg-zinc-900 rounded-md flex items-center justify-center overflow-hidden">
             <img src="{{ $review->product->primaryImageLocation() ?? '#' }}" alt="{{ $review->product->name." Image" }}" class="h-full w-full object-contain">
         </a>
 
