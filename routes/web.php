@@ -80,6 +80,8 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::get('/product/{productId}/review', [ReviewController::class, 'index'])->where('productId', '[0-9]+')->name('review.index');
     Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->where('productId', '[0-9]+')->name('review.store');
     Route::post('/product/{productId}/review/edit', [ReviewController::class, 'update'])->where('productId', '[0-9]+')->name('review.update');
+    Route::delete('/reviews/{reviewId}/delete', [ReviewController::class, 'destroy'])->where('reviewId', '[0-9]+')->name('review.delete');
+    Route::get('/reviews', [ReviewController::class, 'bulk_index'])->name('reviews.bulk');
 
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
