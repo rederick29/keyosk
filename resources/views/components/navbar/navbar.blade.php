@@ -17,13 +17,12 @@
             <a href="/shop?sort=best_selling" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
                 Popular
             </a>
-            <a href="/shop?sort=date" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
-                New
+            <a href="/games" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300">
+                Games
             </a>
-            <a href="/shop?sort=price_low_to_high"
-                class="hover:animate-pulse text-orange-500 dark:text-violet-600 transition-colors duration-300"
-                id="shop-link">
-                Sale
+            <a href="/keyosk-plus"
+                class="hover:text-orange-500 dark:hover:text-red-700/95 transition-colors duration-300">
+                Keyosk+
             </a>
         </div>
     </div>

@@ -41,7 +41,7 @@
             <p class="pl-5 py-5 font-semibold">ADMIN</p>
             <x-util.button
                 type="{{ $statsType }}"
-                href="{{ route('stats') }}"
+                href="{{ route('admin.stats') }}"
                 class="justify-start {{ $statsStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
             >
                 <div
