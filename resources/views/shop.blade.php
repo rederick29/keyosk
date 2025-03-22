@@ -2,8 +2,8 @@
     <x-slot:title>Keyosk | Shop</x-slot:title>
 
     <main class="w-full h-fit flex justify-center pt-32 pb-[32px]">
-        <div class="w-full lg:w-4/5 h-full flex flex-row justify-center space-x-5">
-            <aside class="w-96 h-fit flex flex-col gap-4">
+        <div class="w-full lg:w-4/5 h-full px-5 md:px-0 flex flex-row justify-center space-x-5">
+            <aside class="w-96 h-fit hidden md:flex flex-col gap-4">
 
                 <!-- Keyosk+ -->
                 <div class="h-64 p-6 flex flex-col justify-between bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">

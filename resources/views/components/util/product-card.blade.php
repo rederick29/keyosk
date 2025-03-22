@@ -6,7 +6,7 @@
 @props(['enable_buttons' => true])
 <div class="product-card bg-stone-100 dark:bg-zinc-900 rounded-md p-6 flex flex-col gap-4 mb-6 relative hover:ring-4 hover:ring-orange-500 dark:hover:ring-violet-700/75 transition-all duration-300">
     <!-- Product Image and Info Container -->
-    <div class="flex items-center gap-4">
+    <div class="flex flex-col md:flex-row items-center gap-4">
         <!-- Clickable Element -->
         <a href="/product/{{ $productId }}" class="w-full h-2/3 bg-transparent absolute top-0 left-0"></a>
 
@@ -18,9 +18,9 @@
 
 
         <!-- Product Details -->
-        <div class="grow">
+        <div class="grow text-center md:text-left">
             <h3 class="product-title text-xl font-semibold text-zinc-800 dark:text-white mb-2">{{ $productTitle }}</h3>
-            <p class="product-description text-base text-black/50 dark:text-gray-300 leading-relaxed">
+            <p class="hidden md:block product-description text-base text-black/50 dark:text-gray-300 leading-relaxed">
                 {{ $productShortDescription }}
             </p>
         </div>
@@ -40,9 +40,9 @@
     <!-- Quantity Selector and Buttons -->
     @if($enable_buttons)
     <!-- Bottom dark section -->
-    <div class="w-full h-[88px] bg-stone-200/50 dark:bg-zinc-950/50 absolute z-0 bottom-0 left-0 rounded-b-md"></div>
+    <div class="w-full h-[192px] md:h-[88px] bg-stone-200/50 dark:bg-zinc-950/50 absolute z-0 bottom-0 left-0 rounded-b-md"></div>
     <div class="flex items-center gap-4 mt-4 z-20">
-        <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}" class="w-full flex items-center justify-center gap-5">
+        <form method="POST" action="{{ route('cart.update') }}" id="product-buy-form-{{ $productId }}" class="w-full flex flex-col-reverse md:flex-row items-center justify-center gap-5">
             <script nonce="{{ csp_nonce() }}">
                 document.addEventListener('DOMContentLoaded', function() {
                     setupProductButtons('{{ $productId }}');
