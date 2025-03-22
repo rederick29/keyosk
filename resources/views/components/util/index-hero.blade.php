@@ -21,17 +21,17 @@
          </x-util.button>
 
          <!-- <img class="absolute right-0 rotate-[50deg] scale-125" src="{{asset('storage/images/db/a75_pro_keyboard.png')}}" alt="keyboard" /> -->
-         <div class="flex flex-col text-scroll text-9xl font-bold absolute right-30 bottom-0">
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=keyboard">Keyboards</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=mouse">Mice</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=mousepad">Mousepads</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=key_switches">Switches</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=keycaps">Keycaps</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=keyboard">Keyboards</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=mouse">Mice</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=mousepad">Mousepads</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=key_switches">Switches</a>
-             <a class="hover:text-orange-500 dark:hover:text-purple-600 transition duration-500" href="/shop?filters=keycaps">Keycaps</a>
+         <div class="flex flex-col text-scroll text-9xl font-bold absolute right-30 bottom-0 *:hover:text-orange-500 *:dark:hover:text-purple-600 *:transition *:duration-500 *:w-fit">
+             <a href="/shop?filters=keyboard">Keyboards</a>
+             <a href="/shop?filters=mouse">Mice</a>
+             <a href="/shop?filters=mousepad">Mousepads</a>
+             <a href="/shop?filters=key_switches">Switches</a>
+             <a href="/shop?filters=keycaps">Keycaps</a>
+             <a href="/shop?filters=keyboard">Keyboards</a>
+             <a href="/shop?filters=mouse">Mice</a>
+             <a href="/shop?filters=mousepad">Mousepads</a>
+             <a href="/shop?filters=key_switches">Switches</a>
+             <a href="/shop?filters=keycaps">Keycaps</a>
          </div>
     </div>
 
