@@ -57,7 +57,7 @@
 
             <div class="hidden">
             @if(Auth::check())
-                @foreach($cart->products()->orderBy("name")->get() as $product)
+                @foreach(Auth::user()->cart->products()->orderBy("name")->get() as $product)
                     <p><span class="summary-product-quantity-{{ $product->id }}">{{ $product->pivot->quantity }}</span></p>
                 @endforeach
             @else

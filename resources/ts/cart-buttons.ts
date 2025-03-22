@@ -229,8 +229,10 @@ async function updateCartItemView(items: CartItemViews): Promise<void> {
         } else if (items.pendingAction() === CartUpdateAction.Increase || items.pendingAction() === CartUpdateAction.Decrease) {
             // update quantity and price in cart summary
             updateSummaryPrice();
-            let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`)!;
-            summary_quantity.textContent = String(items.pendingQuantity());
+            let summary_quantity = document.querySelector(`.summary-product-quantity-${items.id()}`);
+            if (summary_quantity) {
+                summary_quantity.textContent = String(items.pendingQuantity());
+            }
         }
 
         items.forEach((product) => product.save());
