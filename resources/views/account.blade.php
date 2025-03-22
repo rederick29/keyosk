@@ -33,7 +33,7 @@
                     <x-util.form.input
                         id="first_name"
                         name="first_name"
-                        class=""
+                        class="w-full"
                         placeholder="{{$user->first_name}}"
                     />
                     <x-util.form.error
@@ -50,6 +50,7 @@
                     <x-util.form.input
                         id="last_name"
                         name="last_name"
+                        class="w-full"
                         placeholder="{{$user->last_name}}"
                     />
                     <x-util.form.error
@@ -79,7 +80,7 @@
                     <x-util.form.input
                         id="email"
                         name="email"
-                        class=""
+                        class="w-full"
                         type="email"
                         placeholder="{{ $user->email }}"
                     />
@@ -111,7 +112,7 @@
                         id="current_password"
                         name="current_password"
                         type="password"
-                        class=""
+                        class="w-full"
                     />
                     <x-util.form.error
                         name="current_password"
@@ -128,6 +129,7 @@
                         id="new_password"
                         name="new_password"
                         type="password"
+                        class="w-full"
                     />
                     <x-util.form.error
                         name="new_password"

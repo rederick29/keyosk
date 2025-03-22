@@ -15,7 +15,7 @@
                 @csrf
                 <div class="flex flex-col space-y-2">
                     <x-util.form.label for="email">Email</x-util.form.label>
-                    <x-util.form.input id="email" name="email" required/>
+                    <x-util.form.input id="email" name="email" class="w-full" required/>
                     <x-util.form.error name="email"/>
                 </div>
                 <div class="flex flex-col space-y-2">
@@ -23,7 +23,7 @@
                         <x-util.form.label for="password">Password</x-util.form.label>
                         <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="/forgot">Forgot Your Password?</a></span>
                     </div>
-                    <x-util.form.input type="password" id="password" name="password" required/>
+                    <x-util.form.input type="password" id="password" name="password" class="w-full" required/>
                     <x-util.form.error name="password"/>
                 </div>
                 <!--

@@ -104,7 +104,9 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
             Route::get('/admin/manage-products', [ProductController::class, 'manage_products'])->name('manage-products');
             Route::get('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'index_edit'])->where('productId', '[0-9]+')->name('product.get.edit');
             Route::post('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'update'])->where('productId', '[0-9]+')->name('product.update.pid');
-
+            Route::post('/admin/manage-products/{productId}/delete', [ProductController::class, 'destroy'])->where('productId', '[0-9]+')->name('product.destroy.pid');
+            Route::get('/admin/manage-products/add', [ProductController::class, 'index_add'])->name('product.add');
+            Route::post('/admin/manage-products/add', [ProductController::class, 'store'])->name('product.add');
             Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
             Route::get('/admin/stats/best-selling', [AdminIndexController::class, 'stats_best_selling'])->name('stats.best.selling');
             Route::get('/admin/stats/worst-selling', [AdminIndexController::class, 'stats_worst_selling'])->name('stats.worst.selling');

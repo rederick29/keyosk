@@ -21,7 +21,7 @@
                     <x-util.form.input id="last_name" name="last_name" required value="{{ old('last_name') }}" />
                     <x-util.form.error name="last_name" />
                 </div>
-                
+
                 <div class="flex flex-col space-y-2 h-1/12 col-span-2">
                     <x-util.form.label for="email">Email Address</x-util.form.label>
                     <x-util.form.input type="email" id="email" name="email" required value="{{ old('email') }}" />
