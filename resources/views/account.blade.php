@@ -93,22 +93,27 @@
         </section>
 
         <hr class="border-zinc-800 border-1" />
-
-        <!-- Account Security -->
-
-        <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
-            <div>
-                <p class="font-semibold">Account Security</p>
-                <p class="dark:text-white/50">Manage account security</p>
-            </div>
-            <div class="flex gap-x-5">
-                <x-util.button
-                    class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
-                    type="button">Delete Account</x-util.button>
-                <x-util.button
-                    class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
-                    type="button">Log Out</x-util.button>
-            </div>
-        </section>
     </form>
+
+    <!-- Account Security -->
+    <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
+        <div>
+            <p class="font-semibold">Account Security</p>
+            <p class="dark:text-white/50">Manage account security</p>
+        </div>
+        <div class="flex gap-x-5">
+            <form class="w-1/6" action="{{ Auth::user()->is_admin ? route('account.delete.uid', ['userId' => $user->id]) : route('account.delete') }}" method="POST"> @csrf
+                <x-util.button
+                    class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
+                    type="button">Delete Account</x-util.button>
+            </form>
+            @if(Auth::id() === $user->id)
+                <form class="w-1/6" action="{{ route('logout') }}"> @csrf
+                    <x-util.button
+                        class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
+                        type="button">Log Out</x-util.button>
+                </form>
+            @endif
+        </div>
+    </section>
 </x-layouts.account-layout>

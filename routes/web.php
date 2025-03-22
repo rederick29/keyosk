@@ -86,6 +86,7 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     // User Route
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
     Route::post('/account/edit', [UserController::class, 'update'])->name('account.edit');
+    Route::post('/account/delete', [UserController::class, 'destroy'])->name('account.delete');
     Route::post('/api/v1/address', [UserController::class, 'address'])->name('api.v1.address');
 
     // Admin Routes (must be logged in)
@@ -119,5 +120,6 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
         Route::get('/user/{userId}', [UserController::class, 'index'])->where('userId', '[0-9]+')->name('account.get.uid');
         Route::get('/user/{userId}/orders', [OrdersController::class, 'index'])->where('userId', '[0-9]+')->name('orders.get.uid');
         Route::post('/user/{userId}/edit', [UserController::class, 'update'])->where('userId', '[0-9]+')->name('account.edit.uid');
+        Route::post('/user/{userId}/delete', [UserController::class, 'destroy'])->where('userId', '[0-9]+')->name('account.delete.uid');
     });
 });
