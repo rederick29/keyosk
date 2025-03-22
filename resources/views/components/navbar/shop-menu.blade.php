@@ -15,46 +15,49 @@
 
             <section class="w-full flex">
                 <section class="w-2/3 pr-5 flex flex-col">
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop" type="a" class="items-start justify-normal">
                         All
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?sort=best_selling" type="a" class="items-start justify-normal">
                         Best Selling
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?sort=price_low_to_high" type="a" class="items-start justify-normal">
                         Sale
+                    </x-util.button>
+                    <x-util.button href="/keyosk-plus" type="a" class="items-start justify-normal bg-linear-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 dark:hover:from-violet-600 dark:hover:to-pink-600 text-white">
+                        Keyosk+
                     </x-util.button>
                 </section>
 
                 <section class="w-2/3 px-5 flex flex-col border-x-4 border-zinc-700">
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=keyboard" type="a" class="items-start justify-normal">
                         Keyboards
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=keycaps" type="a" class="items-start justify-normal">
                         Keycaps
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=key_switches" type="a" class="items-start justify-normal">
                         Switches
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=mouse" type="a" class="items-start justify-normal">
                         Mice
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=mousepad" type="a" class="items-start justify-normal">
                         Mousepads
                     </x-util.button>
                 </section>
 
                 <section class="w-2/3 px-5 mr-3 flex flex-col">
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=rgb" type="a" class="items-start justify-normal">
                         Gamers
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=black" type="a" class="items-start justify-normal">
                         Professionals
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=key_switches" type="a" class="items-start justify-normal">
                         Enthusiasts
                     </x-util.button>
-                    <x-util.button type="a" class="items-start justify-normal">
+                    <x-util.button href="/shop?filters=small" type="a" class="items-start justify-normal">
                         Kawaii >.<
                     </x-util.button>
                 </section>
