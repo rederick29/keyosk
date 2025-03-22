@@ -9,22 +9,21 @@
 <nav
     class="flex flex-row fixed justify-between items-center px-5 md:px-10 lg:px-20 min-h-24 min-w-full border border-x-0 border-t-0 border-b-4 shadow-xl z-50 border-orange-500 dark:border-violet-700 bg-stone-100 dark:bg-zinc-900 ">
     {{-- Desktop Links --}}
-    <div class="hidden lg:block md:block min-w-[184px]">
+    <div class="hidden lg:block md:block min-w-[274px]">
         <div class="hidden md:flex lg:flex lg:flex-row md:flex-row items-center space-x-10 font-medium">
-            <a href="/shop" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
-                Shop
-            </a>
-            <a href="/shop?sort=best_selling" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
-                Popular
-            </a>
-            <a href="/shop?sort=date" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">
-                New
-            </a>
-            <a href="/shop?sort=price_low_to_high"
-                class="hover:animate-pulse text-orange-500 dark:text-violet-600 transition-colors duration-300"
-                id="shop-link">
-                Sale
-            </a>
+            <x-navbar.shop-menu></x-navbar.shop-menu>
+            <!-- TODO: decide what makes sense here -->
+{{--            <a href="/shop?sort=best_selling" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">--}}
+{{--                Popular--}}
+{{--            </a>--}}
+{{--            <a href="/shop?sort=date" class="hover:text-orange-500 dark:hover:text-violet-700/95 transition-colors duration-300" id="shop-link">--}}
+{{--                New--}}
+{{--            </a>--}}
+{{--            <a href="/shop?sort=price_low_to_high"--}}
+{{--                class="hover:animate-pulse text-orange-500 dark:text-violet-600 transition-colors duration-300"--}}
+{{--                id="shop-link">--}}
+{{--                Sale--}}
+{{--            </a>--}}
         </div>
     </div>
 
