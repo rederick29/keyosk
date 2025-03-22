@@ -11,30 +11,30 @@ Item Card Component --}}
     'description' => 'No description available.',
     'price' => 0.00
 ])
-<div class="w-[800px] h-[360px] flex flex-row bg-stone-200 dark:bg-zinc-900 rounded-md overflow-hidden transform transition duration-300 relative">
+<div class="w-[300px] h-[320px] md:w-[800px] md:h-[360px] flex flex-col md:flex-row bg-stone-200 dark:bg-zinc-900 rounded-md overflow-hidden transform transition duration-300 relative">
 
     <!-- Product Image -->
-    <div class="w-2/4 bg-stone-300 dark:bg-black flex justify-center items-center py-3">
+    <div class="w-full md:w-2/4 bg-stone-300 dark:bg-black flex justify-center items-center py-3">
         <img src="{{ $image ? $image : asset('images/placeholder.jpg') }}"
              alt="{{ $alt }}"
              class="h-24 w-auto object-contain">
     </div>
 
     <!-- Product Info -->
-    <section class="w-2/3 p-5 flex flex-col justify-between">
-        <div class="flex flex-col">
+    <section class="w-full md:w-2/3 h-full p-5 flex flex-col justify-between">
+        <div class="flex flex-col items-center md:items-start">
             <!-- Title with spacing -->
-            <h3 class="text-2xl font-semibold text-zinc-800 dark:text-white mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
+            <h3 class="text-lg md:text-2xl font-semibold text-zinc-800 dark:text-white mt-2 whitespace-nowrap overflow-hidden text-ellipsis">
                 {{ $title }}
             </h3>
 
             <!-- Price moved between description & button -->
-            <p class="text-xl font-bold text-zinc-800 dark:text-white mt-4">
+            <p class="text-xl font-bold text-zinc-800 dark:text-white my-4 md:mt-4">
                 £{{ number_format((float)$price, 2) }}
             </p>
 
             <!-- Description with ellipsis for long text -->
-            <p class="text-sm text-black/50 dark:text-gray-300 mt-3 line-clamp-10 overflow-hidden text-ellipsis">
+            <p class="hidden md:block text-sm text-black/50 dark:text-gray-300 mt-3 line-clamp-10 overflow-hidden text-ellipsis">
                 {{ $description }}
             </p>
         </div>

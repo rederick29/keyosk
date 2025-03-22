@@ -11,8 +11,8 @@
 
         <x-util.index-hero></x-util.index-hero>
 
-        <section class="w-full h-fit my-20 flex flex-col justify-center items-center gap-y-5 animate-fade duration-500">
-            <div class="flex flex-row gap-x-5">
+        <section class="w-full h-fit my-20 px-3 md:px-0 flex flex-col justify-center items-center gap-y-5 animate-fade duration-500">
+            <div class="flex flex-col md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5">
                 <x-util.category-card
                     img_src="a75_pro_keyboard.png"
                     title="Keyboards"
@@ -37,7 +37,7 @@
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
             </div>
-            <div class="flex flew-row gap-x-5">
+            <div class="flex flex-col md:flew-row gap-y-5 md:gap-y-0 md:gap-x-5">
                 <x-util.category-card
                     img_src="dark_rose_key_switches.png"
                     title="Switches"
@@ -62,14 +62,14 @@
         <hr class="w-2/3 mx-auto border-black/20 dark:border-white/20" />
 
         <section
-            class="w-full h-fit my-20 flex flex-row justify-center items-center gap-10 animate-fade"
+            class="w-full h-fit px-5 md:px-0 my-20 flex flex-col md:flex-row justify-center items-center gap-10 animate-fade"
             id="what-we-do"
         >
-            <div class="size-96 overflow-hidden rounded-xl">
+            <div class="size-80 md:size-96 overflow-hidden rounded-xl">
                 <img src="{{ asset('storage/images/static/index-keyboard.png') }}" alt="What do we do?" class="size-[400px] hover:scale-110 object-cover transition duration-500">
             </div>
             <div
-                class="w-1/3 h-fit"
+                class="w-full md:w-1/3 h-fit"
             >
                 <h1
                     class="mb-5 text-4xl"

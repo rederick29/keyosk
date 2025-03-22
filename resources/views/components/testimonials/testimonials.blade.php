@@ -1,9 +1,9 @@
 <section
-    class="w-full h-fit my-20 flex flex-col items-center justify-center"
+    class="w-full px-5 md:px-0 h-fit my-20 flex flex-col items-center justify-center"
     id="testimonial-section"
 >
     <div
-        class="flex flex-col items-center justify-center"
+        class="flex flex-col items-center justify-center text-center"
     >
         <h1
             class="text-4xl"
@@ -17,7 +17,7 @@
         </h2>
     </div>
     <section
-        class="flex gap-x-5"
+        class="flex flex-col md:flex-row gap-y-5 md:gap-y-0 md:gap-x-5"
         id="testimonial-cards"
     >
         <x-testimonials.testimonial-card rating="10" subject="<3" comment="I really love Keyosk. Like, a lot. Like, a whole lot. You have no idea. I love it so much that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession. I will never get tired of browing this sweet, awesome e-commerce website. It is my life goal to meet up with the developers in real life and just say hello to them.
