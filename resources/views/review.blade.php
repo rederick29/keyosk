@@ -1,4 +1,13 @@
+{{--
+
+Review products page to be used as a view on website.
+
+Author(s): Kai Chima : Main Developer
+
+--}}
+
 <x-layouts.layout>
+    <x-slot:title>Keyosk | Review</x-slot:title>
     <div class="h-screen pt-35 pb-10 flex items-center justify-center gap-10">
         <div class="size-96 rounded-md flex items-center justify-center overflow-hidden ">
             <a href="/product/{{ $product->id ?? '#' }}" class="block h-full w-full">
@@ -75,17 +84,13 @@
     let rating = 0;
     document.addEventListener('DOMContentLoaded', (e) => {
         const stars = document.querySelectorAll('svg');
-        //const rating = document.getElementById('rating');
-
         stars.forEach((star, index) => {
             star.addEventListener('click', () => {
                 stars.forEach((star, i) => {
-                    // var value = document.querySelector('#rating');
                     if (i >= index) {
                         star.classList.remove('fill-gray-600');
                         star.classList.add('fill-yellow-400');
                         rating = rating + 1;
-                        // value.innerHTML = ""+(rating);
                     } else {
                         star.classList.remove('fill-yellow-400');
                         star.classList.add('fill-gray-600');
@@ -93,9 +98,6 @@
                 });
             });
         });
-        // document.getElementById('num').innerHTML = rating;
-        // rating.textContent = `Yellow Stars: ${rating}`;
-
     });
 
     document.getElementById('submit').addEventListener('click', () => {
