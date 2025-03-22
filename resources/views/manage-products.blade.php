@@ -14,6 +14,7 @@
                     </x-shop.select>
                 </div>
             </section>
+            <x-util.button type="a" href="{{ route('product.add') }}" class="w-1/8 h-fit self-center bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Add Product</x-util.button>
         </section>
         <div class="w-full py-5 flex flex-col gap-y-5">
             @foreach(\App\Models\Product::all()->sortBy('stock') as $product)

@@ -17,6 +17,7 @@
                     img_src="a75_pro_keyboard.png"
                     title="Keyboards"
                     href="/shop"
+                    href="/shop?filters=keyboard"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
@@ -24,13 +25,14 @@
                     img_src="standard_mouse.png"
                     title="Mice"
                     href="/shop"
+                    href="/shop?filters=mouse"
                 >
                     Choose from a bespoke range of Keyosk mice.
                 </x-util.category-card>
                 <x-util.category-card
                     img_src="expedition_mousepad.png"
                     title="Mousepads"
-                    href="/shop"
+                    href="/shop?filters=mousepad"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
@@ -39,14 +41,14 @@
                 <x-util.category-card
                     img_src="dark_rose_key_switches.png"
                     title="Switches"
-                    href="/shop"
+                    href="/shop?filters=key_switches"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
                 <x-util.category-card
                     img_src="scarlet_wasd_key_caps.png"
                     title="Keycaps"
-                    href="/shop"
+                    href="/shop?filters=keycaps"
                 >
                     Choose from a bespoke range of Keyosk keyboards.
                 </x-util.category-card>
@@ -63,7 +65,9 @@
             class="w-full h-fit my-20 flex flex-row justify-center items-center gap-10 animate-fade"
             id="what-we-do"
         >
-            <img src="https://placehold.co/400x400" alt="" class="rounded-xl">
+            <div class="size-96 overflow-hidden rounded-xl">
+                <img src="{{ asset('storage/images/static/index-keyboard.png') }}" alt="What do we do?" class="size-[400px] hover:scale-110 object-cover transition duration-500">
+            </div>
             <div
                 class="w-1/3 h-fit"
             >

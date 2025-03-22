@@ -3,7 +3,7 @@
 @use(App\Models\Order\OrderStatus)
 <x-layouts.admin-layout currentPage="Orders">
     <section class="w-full flex gap-5 bg-white dark:bg-zinc-950">
-        <div class="flex flex-col gap-5">
+        <div class="w-full flex flex-col gap-5">
             <!-- header bar -->
             <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
                 <p class="w-[30px]">#</p>
@@ -21,7 +21,7 @@
                 </x-order.order-card>
             @endforeach
         </div>
-        <aside class="w-full flex flex-col items-center gap-5">
+        <aside class="w-1/3 flex flex-col items-center gap-5">
             <section class="w-full h-fit p-6 flex items-center justify-between bg-stone-100 dark:bg-zinc-900 text-zinc-800 dark:text-gray-400 rounded-lg">
                 <p class="w-[30px] text-transparent">Filtering</p>
             </section>

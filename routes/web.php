@@ -25,14 +25,17 @@ use App\Http\Middleware\NoCache;
 Route::view('/', 'index')->name('index');
 
 //Test Routes
-Route::view('/click-speed', 'ClickSpeedTest')->name('click-speed');
-Route::view('/type-speed', 'TypeSpeedTest')->name('type-speed');
+Route::view('/click-speed', 'click-speed-test')->name('click-speed');
+Route::view('/type-speed', 'type-speed-test')->name('type-speed');
 
 // Company Routes
 Route::view('/about', 'about-us')->name('about');
 Route::view('/values', 'our-values')->name('values');
 Route::view('/sustainability', 'sustainability')->name('sustainability');
 Route::view('/faq', 'faq')->name('faq');
+
+// keyosk+
+Route::view('/keyosk-plus', 'keyosk-plus')->name('keyosk-plus');
 
 // Legal Routes
 Route::view('/privacy', 'privacy-policy')->name('privacy');
@@ -44,6 +47,9 @@ Route::view('/returns', 'returns-policy')->name('returns');
 Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
+
+//Forgot Password route
+Route::view('/forgot', 'forgot-password')->name('forgot');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
@@ -103,9 +109,16 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
             Route::get('/admin/manage-orders', [OrdersController::class, 'manage_orders'])->name('manage-orders');
             Route::post('/admin/manage-orders/{orderId}/update', [OrdersController::class, 'update'])->where('orderId', '[0-9]+')->name('orders.update');
             Route::get('/admin/manage-products', [ProductController::class, 'manage_products'])->name('manage-products');
-            Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
             Route::get('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'index_edit'])->where('productId', '[0-9]+')->name('product.get.edit');
             Route::post('/admin/manage-products/{productId}/edit-product', [ProductController::class, 'update'])->where('productId', '[0-9]+')->name('product.update.pid');
+            Route::post('/admin/manage-products/{productId}/delete', [ProductController::class, 'destroy'])->where('productId', '[0-9]+')->name('product.destroy.pid');
+            Route::get('/admin/manage-products/add', [ProductController::class, 'index_add'])->name('product.add');
+            Route::post('/admin/manage-products/add', [ProductController::class, 'store'])->name('product.add');
+            Route::get('/admin/stats', [AdminIndexController::class, 'stats'])->name('stats');
+            Route::get('/admin/stats/best-selling', [AdminIndexController::class, 'stats_best_selling'])->name('stats.best.selling');
+            Route::get('/admin/stats/worst-selling', [AdminIndexController::class, 'stats_worst_selling'])->name('stats.worst.selling');
+            Route::get('/admin/stats/top-spending-users', [AdminIndexController::class, 'stats_top_spending_users'])->name('stats.top.spending.users');
+            Route::get('admin/stats/stock', [AdminIndexController::class, 'stats_low_stock'])->name('stats.low.stock');
         });
 
         // Only admins can view other people's accounts
