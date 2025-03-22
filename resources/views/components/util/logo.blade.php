@@ -4,7 +4,7 @@
     'href' => ''
     ]) }}
 >
-    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 1280 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden md:block lg:block">
+    <svg width="{{ $width }}" height="{{ $height }}" viewBox="0 0 1280 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="desktop hidden md:block lg:block">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 73.8037L201.936 0L275.739 201.936L73.8037 275.739L0 73.8037ZM107.523 87.6483V180.739H118.795V150.557L130.432 137.466L162.795 180.739H176.432L137.341 129.648L176.432 87.6483H161.705L119.886 133.83H118.795V87.6483H107.523Z" fill="currentColor"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M200.74 73.8037L402.676 0L476.479 201.936L274.544 275.739L200.74 73.8037ZM312.262 87.6483V180.739H369.171V170.739H323.535V139.103H365.535V129.103H323.535V97.6483H368.444V87.6483H312.262Z" fill="currentColor"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M401.479 73.8037L603.415 0L677.218 201.936L475.283 275.739L401.479 73.8037ZM513.098 87.6483H500.189L533.825 142.375V180.739H545.098V142.375L578.735 87.6483H565.825L540.007 131.103H538.916L513.098 87.6483Z" fill="currentColor"/>
@@ -13,7 +13,7 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M1003.7 73.8038L1205.64 0.000119359L1279.44 201.936L1077.5 275.739L1003.7 73.8038ZM1111.22 87.6484V180.739H1122.49V150.557L1134.13 137.466L1166.49 180.739H1180.13L1141.04 129.648L1180.13 87.6484H1165.4L1123.58 133.83H1122.49V87.6484H1111.22Z" fill="currentColor"/>
     </svg>
 
-    <svg width="{{ $width / 6 }}" height="{{ $height }}" viewBox="0 0 276 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="block md:hidden lg:hidden">
+    <svg width="{{ $width / 6 }}" height="{{ $height }}" viewBox="0 0 276 276" fill="none" xmlns="http://www.w3.org/2000/svg" class="mobile block md:hidden lg:hidden">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M0 73.8037L201.936 0L275.739 201.936L73.8037 275.739L0 73.8037ZM107.523 87.6483V180.739H118.795V150.557L130.432 137.466L162.795 180.739H176.432L137.341 129.648L176.432 87.6483H161.705L119.886 133.83H118.795V87.6483H107.523Z" fill="currentColor"/>
     </svg>
 </{{ $type }}>
