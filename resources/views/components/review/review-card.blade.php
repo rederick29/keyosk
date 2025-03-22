@@ -22,7 +22,7 @@
             <form action="{{ route('review.delete', ['reviewId' => $review->id]) }}" method="POST" class="w-full flex justify-end">
                 @csrf
                 @method('DELETE')
-                <x-util.button type="button" class="w-1/6 bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Delete Account</x-util.button>
+                <x-util.button type="button" class="w-1/6 bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Delete Review</x-util.button>
             </form>
         </div>
     </div>
