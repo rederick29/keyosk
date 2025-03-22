@@ -48,6 +48,9 @@ Route::redirect('/report-issue', '/contact');
 Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
+//Forgot Password route
+Route::view('/forgot', 'forgot-password')->name('forgot');
+
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');
 Route::get('/reviews/{reviewId}', [ReviewController::class, 'view'])->where('reviewId', '[0-9]+')->name('review.get');
