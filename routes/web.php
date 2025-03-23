@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
@@ -49,7 +50,11 @@ Route::view('/contact', 'contact-us')->name('contact');
 Route::post('/contact', [MailController::class, 'send'])->name('contact.send');
 
 //Forgot Password route
-Route::view('/forgot', 'forgot-password')->name('forgot');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.forgot.get');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgot_password'])->name('password.forgot.post');
+// laravel really wants these two routes looking exactly like this :D
+Route::get('/reset-password', [ForgotPasswordController::class, 'index_reset'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset_password'])->name('password.reset.post');
 
 // Product view
 Route::get('/product/{id}', [ProductController::class, 'index'])->where('id', '[0-9]+')->name('product.view');

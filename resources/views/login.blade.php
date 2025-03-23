@@ -21,7 +21,7 @@
                 <div class="flex flex-col space-y-2">
                     <div class="w-full flex flex-row justify-between">
                         <x-util.form.label for="password">Password</x-util.form.label>
-                        <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="/forgot">Forgot Your Password?</a></span>
+                        <span><a class="w-fit hover:underline text-black/50 dark:text-white/50" href="{{ route('password.forgot.get') }}">Forgot Your Password?</a></span>
                     </div>
                     <x-util.form.input type="password" id="password" name="password" class="w-full" required/>
                     <x-util.form.error name="password"/>
