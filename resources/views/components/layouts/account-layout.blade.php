@@ -3,6 +3,7 @@
     $is_account = $currentPage === 'Account';
     $is_orders = $currentPage === 'Orders';
     $is_wishlist = $currentPage === "Wishlist";
+    $is_reviews = $currentPage === "Reviews";
 
     $orderStyle = $is_orders ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $orderType = $is_orders ? "div" : "a";
@@ -12,6 +13,9 @@
 
     $wishlistStyle = $is_wishlist ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
     $wishlistType = $is_wishlist ? "div" : "a";
+
+    $reviewsStyle = $is_reviews ? "bg-orange-500 hover:bg-orange-500 dark:bg-violet-900 dark:hover:bg-violet-900 ring-orange-400 dark:ring-violet-700 pointer-events-none" : "bg-stone-200 dark:bg-zinc-900 ring-stone-400 dark:ring-zinc-600";
+    $reviewsType = $is_reviews ? "div" : "a";
 
     $accountRoute = $userId == Illuminate\Support\Facades\Auth::id() ? route('account.get') : route('account.get.uid', compact('userId'));
     $ordersRoute = $userId == Illuminate\Support\Facades\Auth::id() ? route('orders.get') : route('orders.get.uid', compact('userId'));
@@ -67,6 +71,18 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 </div>
                 Wishlist
+            </x-util.button>
+            <x-util.button
+                type="{{ $reviewsType }}"
+                href="{{ route('reviews.bulk') }}"
+                class="justify-start {{ $reviewsStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
+            >
+                <div
+                    class="p-2 bg-stone-300 dark:bg-zinc-700 rounded-md ring-inherit ring-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
+                </div>
+                Reviews
             </x-util.button>
 
             <div class="flex absolute bottom-2 left-2">

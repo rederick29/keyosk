@@ -67,5 +67,29 @@ Author(s): Ben Snaith : Main Developer, Toms Xavi : Developer
         <hr class="w-2/3 mx-auto border-black/20 dark:border-white/20" />
 
         <x-testimonials.testimonials></x-testimonials.testimonials>
+
+        @auth
+            <hr class="w-2/3 mx-auto border-black/20 dark:border-white/20" />
+            <section class="w-full my-20 flex flex-col items-center">
+                <div class="flex flex-col text-center">
+                    <h1 class="text-4xl">Make your voice heard</h1>
+                    <p class="my-7 text-black/60 dark:text-white/60">Leave a review for Keyosk</p>
+                </div>
+                <form method="POST" class="w-2/3 flex flex-col gap-y-5">
+                    <div class="flex flex-col space-y-2">
+                        <x-util.form.label for="subject">Subject</x-util.form.label>
+                        <x-util.form.input type="text" id="subject" name="subject" maxlength="75" required></x-util.form.input>
+                    </div>
+                    <div>
+                        <div class="flex flex-col space-y-2">
+                            <x-util.form.label for="comment">Comment</x-util.form.label>
+                            <textarea class="block h-32 p-3 text-xl rounded-lg bg-stone-200 dark:bg-zinc-800 w-full ring-0 focus:ring-4 focus:ring-orange-500/50 dark:focus:ring-violet-700/75 resize-none focus:outline-hidden transition-shadow duration-500" id="comment" name="comment" required></textarea>
+                        </div>
+                    </div>
+                    <x-util.button type="button" class="mt-4 rounded-md p-2 px-5 bg-orange-500  dark:bg-violet-700 text-zinc-800  dark:text-white font-semibold hover:bg-orange-600 dark:hover:bg-violet-800 text-lg hover:bg" id="submit" name="submit">Subject</x-util.button>
+                </form>
+            </section>
+
+        @endauth
     </main>
 </x-layouts.layout>

@@ -26,6 +26,31 @@ class ReviewController extends Controller
         return view('components/products/review', compact('review'));
     }
 
+    public function index(Request $request, int $productId): View|RedirectResponse
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return back()->with(['error' => 'product ' . $productId . ' not found.']);
+        }
+
+        return view('review', compact('product'));
+    }
+
+    public function bulk_index(Request $request): View|RedirectResponse|JsonResponse
+    {
+        $user = Auth::user();
+
+        if(!$user)
+        {
+            return back()->with(['error' => 'You must be logged in to perform this action.']);
+        }
+
+        $allReviews = Review::where('user_id', $user->id)->with(['product'])->orderBy('created_at', 'desc')->get();
+
+        return view('reviews', compact('allReviews', 'user'));
+    }
+
     public function store(Request $request, int $productId): RedirectResponse|JsonResponse
     {
         $validatedData = $request->validate([

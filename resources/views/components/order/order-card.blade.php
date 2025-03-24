@@ -104,11 +104,11 @@ Author(s): Toms Xavi: Developer, Kai Chima: Sub-Developer
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800"/>
 
             <div class="mx-2 flex gap-x-20">
-                <div class="w-1/2 p-5 flex flex-col gap-y-1 bg-black rounded-md">
+                <div class="w-1/2 min-h-[400px] max-h-[400px] overflow-y-scroll p-5 flex flex-col gap-y-1 bg-black rounded-md">
                     <!-- products -->
                     @foreach ($products as $oprod)
                         <x-order.order-subcard
-                            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price"
+                            :productname="$oprod->name" :desc="$oprod->description" :prodprice="$oprod->price" :prodid="$oprod->id"
                             :prodimg="$oprod->primaryImageLocation() ?? 'Undefined'" :prodstatus="$status" :prodquant="$oprod->pivot->quantity">
                         </x-order.order-subcard>
                     @endforeach
