@@ -12,7 +12,7 @@ Author(s): Kai Chima : Main Developer
         <div class="size-96 rounded-md flex items-center justify-center overflow-hidden ">
             <a href="/product/{{ $product->id ?? '#' }}" class="block h-full w-full">
                 <img src="{{ $product->primaryImageLocation() ?? 'Undefined'}}" alt=""
-                     class="h-full w-full object-cover"></a>
+                     class="h-full w-full object-contain"></a>
         </div>
         <div class="flex flex-col">
             <div class="max-w-full pb-5 pl-5">
@@ -80,7 +80,7 @@ Author(s): Kai Chima : Main Developer
     </div>
 </x-layouts.layout>
 
-<script>
+<script nonce="{{ csp_nonce() }}">
     let rating = 0;
     document.addEventListener('DOMContentLoaded', (e) => {
         const stars = document.querySelectorAll('svg');
