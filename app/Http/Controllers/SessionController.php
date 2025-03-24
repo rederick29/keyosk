@@ -33,7 +33,7 @@ class SessionController extends Controller
             $user = Auth::user();
 
             // Determine the base redirect first
-            $path = $user->is_admin ? route('admin.index') : '/';
+            $path = $user->is_admin ? route('admin.stats') : '/';
             $redirect = redirect()->intended($path);
 
             // Add appropriate message without changing destination

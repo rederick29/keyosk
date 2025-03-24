@@ -360,7 +360,7 @@ function createUserSpendingChart(data: UserSpendingData[], containerId: string, 
         .data(data)
         .enter()
         .append('a')
-        .attr('href', d => `/user/${d.userId}`)
+        .attr('href', d => `/user/${d.userId}/orders`)
         .attr('class', 'user-link')
         .append('rect')
         .attr('x', d => x(d.userName) ?? 0)
@@ -573,7 +573,7 @@ function updateUserSpendingLegend(data: UserSpendingData[], legendId: string): v
         color.style.backgroundColor = user.color;
 
         const link = document.createElement('a');
-        link.href = `/user/${user.userId}`;
+        link.href = `/user/${user.userId}/orders`;
         link.className = 'text-sm font-medium hover:underline';
         link.style.cursor = 'pointer';
         link.textContent = user.userName;

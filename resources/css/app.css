@@ -60,7 +60,7 @@
 }
 
 @utility misc-page-header {
-  @apply text-center text-4xl font-bold tracking-wide drop-shadow-lg font-sans;
+  @apply text-center text-4xl font-bold tracking-wide drop-shadow-lg font-sans pt-8;
 }
 
 @utility shop-select {

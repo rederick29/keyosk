@@ -11,7 +11,7 @@
             <div class="w-full h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                 <h2 class="text-3xl font-semibold mb-2">What stock needs replenishing?</h2>
                 <h3 class="text-m font-semibold italic">Click to edit the product.</h3>
-                <div class="w-full flex items-center justify-center">
+                <div class="w-full flex items-center justify-center pt-8">
                     <div id="product-stock-chart" class="w-3/4 h-auto"></div>
                     <div id="product-stock-legend" class="w-fit flex flex-col"></div>
                 </div>
@@ -20,7 +20,7 @@
             <div class="w-full h-fit p-5 flex flex-col items-center justify-center bg-stone-100 dark:bg-zinc-900 rounded-md">
                 <h2 class="text-3xl font-semibold mb-2">Who spends the most?</h2>
                 <h3 class="text-m font-semibold italic">Click to view the user&apos;s profile.</h3>
-                <div class="w-full flex items-center justify-center">
+                <div class="w-full flex items-center justify-center pt-8">
                     <div id="user-spending-chart" class="w-2/3 h-96"></div>
                     <div id="user-spending-legend" class="w-fit flex flex-col"></div>
                 </div>
@@ -50,14 +50,6 @@
                     </div>
                 </div>
             </div>
-
-
-{{--            <div class="flex flex-col items-center justify-center">--}}
-{{--                <h2 class="text-3xl font-semibold mb-2">Worst Selling Products</h2>--}}
-{{--                <h3 class="text-m font-semibold italic">Hover over bars to view sales figures. Click to view product page.</h3>--}}
-{{--                <div id="product-sales-chart2" class="w-full max-w-3xl h-96 mx-auto"></div>--}}
-{{--                <div id="product-legend2" class="flex flex-wrap justify-center gap-4 mt-4"></div>--}}
-{{--            </div>--}}
         </div>
     </section>
 </x-layouts.admin-layout>
