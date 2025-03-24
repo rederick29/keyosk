@@ -114,7 +114,6 @@ Author(s): Kai Chima : Main Developer, Erick Vilcica: Backend developer
             @foreach ($product->reviews as $review)
                 <x-products.review :review="$review"/>
             @endforeach
-            <a href="" class="text-orange-500 dark:text-violet-700 underline">More Reviews -></a>
         </div>
     </div>
 </x-layouts.layout>
