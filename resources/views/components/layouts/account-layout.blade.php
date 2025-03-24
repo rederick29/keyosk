@@ -62,7 +62,7 @@
             </x-util.button>
             <x-util.button
                 type="{{ $wishlistType }}"
-                href=""
+                href="/wishlist"
                 class="justify-start {{ $wishlistStyle }} w-full py-3 pl-5 rounded-none font-semibold transition-shadow duration-500"
             >
                 <div

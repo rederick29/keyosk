@@ -4,6 +4,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ImageUploaderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\CheckLoggedInMiddleware;
 use App\Http\Controllers\AdminIndexController;
 use App\Http\Middleware\CheckAdminMiddleware;
@@ -95,7 +96,13 @@ Route::middleware([CheckLoggedInMiddleware::class])->group(function () {
     Route::delete('/reviews/{reviewId}/delete', [ReviewController::class, 'destroy'])->where('reviewId', '[0-9]+')->name('review.delete');
     Route::get('/reviews', [ReviewController::class, 'bulk_index'])->name('reviews.bulk');
 
-    // User Route
+    // Wishlist Routes
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+
+    // User Routes
     Route::get('/account', [UserController::class, 'index'])->name('account.get');
     Route::post('/account/edit', [UserController::class, 'update'])->name('account.edit');
     Route::post('/account/delete', [UserController::class, 'destroy'])->name('account.delete');
