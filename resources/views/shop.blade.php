@@ -6,9 +6,8 @@
             <aside class="w-96 h-fit flex flex-col gap-4">
 
                 <!-- Keyosk+ -->
-                <div class="h-auto p-6 flex flex-col bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
+                <div class="h-64 p-6 flex flex-col justify-between bg-stone-100 dark:bg-zinc-900 rounded-lg shadow-md">
                     <h1 class="text-xl font-bold">Harness the power of true typing proficiency</h1>
-                    <br>
                     <a href="/keyosk-plus" class="text-violet-500 hover:underline cursor-pointer">Get more from Keyosk with <span class="font-bold">Keyosk+</span></a>
                 </div>
 

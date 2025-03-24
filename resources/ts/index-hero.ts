@@ -466,7 +466,9 @@ document.addEventListener("DOMContentLoaded", (): void => {
     const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
 
     // < 0.5 -> 2D, >= 0.5 -> 3D (50/50 chance)
-    const show3DInitially: boolean = Math.random() < 0.5;
+    // const show3DInitially: boolean = Math.random() < 0.5;
+    // for now keep the 2D version on the homepage by default, for low perf devices
+    const show3DInitially: boolean = false;
     if (show3DInitially) {
         twoDElement.classList.remove('flex');
         twoDElement.classList.add('hidden');
