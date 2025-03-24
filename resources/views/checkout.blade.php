@@ -181,49 +181,22 @@
 
                 <div class="flex flex-col gap-y-5 ">
                     <div class="flex flex-col space-y-2">
-{{--                        <label for="card_holder_name"--}}
-{{--                               class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card Holder Name*</label>--}}
-{{--                        <div class="mt-2.5">--}}
-{{--                            <input type="text" name="card_holder_name" id="card_holder_name"--}}
-{{--                                   class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"--}}
-{{--                                   required>--}}
-{{--                        </div>--}}
                         <x-util.form.label for="card_holder_name">Cardholder Name *</x-util.form.label>
                         <x-util.form.input type="text" name="card_holder_name" id="card_holder_name" required></x-util.form.input>
                     </div>
 
                     <div class="flex flex-col space-y-2">
-{{--                        <label for="card_number"--}}
-{{--                               class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Card Number*</label>--}}
-{{--                        <div class="mt-2.5">--}}
-{{--                            <input type="text" name="card_number" id="card_number"--}}
-{{--                                   class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"--}}
-{{--                                   required>--}}
-{{--                        </div>--}}
+
                         <x-util.form.label for="card_number">Card Number *</x-util.form.label>
                         <x-util.form.input type="text" name="card_number" id="card_number" minlength="16" maxlength="16" required></x-util.form.input>
                     </div>
 
                     <div class="flex gap-x-5">
                         <div class="flex flex-col space-y-2 w-1/2">
-    {{--                        <label for="expiry_date"--}}
-    {{--                               class="block text-black/50 dark:text-gray-300 text-sm font-semibold">Expiry Date*</label>--}}
-    {{--                        <div class="mt-2.5">--}}
-    {{--                            <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YY"--}}
-    {{--                                   class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700 text-center"--}}
-    {{--                                   required>--}}
-    {{--                        </div>--}}
                             <x-util.form.label for="expiry_date">Expiry Date *</x-util.form.label>
                             <x-util.form.input class="text-center" type="text" name="expiry_date" id="expiry_date" minlength="4" maxlength="4" placeholder="MM/YY" required></x-util.form.input>
                         </div>
                         <div class="flex flex-col space-y-2 w-1/2">
-    {{--                        <label for="cvv"--}}
-    {{--                               class="block text-black/50 dark:text-gray-300 text-sm font-semibold">CVV*</label>--}}
-    {{--                        <div class="mt-2.5">--}}
-    {{--                            <input type="text" name="cvv" id="cvv"--}}
-    {{--                                   class="font-semibold w-full rounded-lg py-2 text-black/50 dark:text-gray-300 bg-zinc-300 dark:bg-zinc-700"--}}
-    {{--                                   required>--}}
-    {{--                        </div>--}}
                             <x-util.form.label for="cvv">CVV *</x-util.form.label>
                             <x-util.form.input type="text" name="cvv" id="cvv" minlength="3" maxlength="3" required></x-util.form.input>
                         </div>
@@ -293,10 +266,6 @@
             @vite('resources/ts/checkout.ts')
             <div class="py-7 mx-2">
                 <x-util.button type="button" data-checkout-button class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white">Buy</x-util.button>
-{{--                <button type="submit"--}}
-{{--                        data-checkout-button class="btn btn-primary rounded-lg w-1/3 mt-5 bg-zinc-800 dark:bg-white text-orange-400 dark:text-violet-500 hover:bg-zinc-900 dark:hover:bg-neutral-200">--}}
-{{--                    Buy--}}
-{{--                </button>--}}
             </div>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
