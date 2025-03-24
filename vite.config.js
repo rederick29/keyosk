@@ -18,7 +18,7 @@ export default defineConfig({
                 'resources/css/app.css', 'resources/js/app.js', 'resources/js/cart-menu.js', 'resources/js/navbar.js',
                 'resources/ts/shop-search.ts', 'resources/ts/product-buttons.ts', 'resources/ts/checkout.ts',
                 'resources/ts/orders.ts', 'resources/ts/orders-search.ts', 'resources/ts/carousel.ts', 'resources/ts/index-hero.ts',
-                'resources/ts/admin-stats.ts', 'resources/ts/image-upload-preview.ts'
+                'resources/ts/admin-stats.ts', 'resources/ts/image-upload-preview.ts', 'resources/ts/click-test.ts', 'resources/ts/type-test.ts'
             ],
             refresh: true,
         }),
