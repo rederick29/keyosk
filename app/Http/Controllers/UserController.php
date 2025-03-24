@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\Review;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Exception;
 
 class UserController extends Controller
 {
-    public function index(int $userId = null): View
+    public function index(int $userId = null): View | RedirectResponse
     {
         if ($userId === null) {
             return view('account', ['user' => Auth::user()]);
@@ -24,8 +25,8 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($userId);
             return view('account', compact('user'));
-        } catch (Exception $e) {
-            return view('account', ['user' => Auth::user()]);
+        } catch (ModelNotFoundException $e) {
+            return to_route('index')->with('error', "User not found");
         }
     }
 
@@ -134,5 +135,26 @@ class UserController extends Controller
             'postcode' => $address->postcode,
             'country' => Country::find($address->country_id)->code,
         ]]);
+    }
+
+    public function destroy(Request $request, int $userId = null): RedirectResponse
+    {
+        if ($userId === null) {
+            $userId = Auth::id();
+        } else if (!User::where('id', $userId)->exists()) {
+            return redirect()->back()->with('error', 'Invalid user ID.');
+        }
+
+        $user = User::find($userId);
+
+        if (Auth::id() === $userId) {
+            Auth::logout();
+            // Invalidate the session and regenerate the token to prevent session fixation
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+        $user->delete();
+
+        return redirect('/')->with('success', 'The account has been deleted successfully.');
     }
 }

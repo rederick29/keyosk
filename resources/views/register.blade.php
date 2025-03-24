@@ -28,12 +28,12 @@
                     <x-util.form.error name="email" />
                 </div>
                 <div class="flex flex-col space-y-2 h-1/12 ">
-                    <x-util.form.label for="password">Password</x-auth.form.label>
+                    <x-util.form.label for="password">Password</x-util.form.label>
                     <x-util.form.input type="password" id="password" name="password" required />
                     <x-util.form.error name="password" />
                 </div>
                 <div class="flex flex-col space-y-2 h-1/12">
-                    <x-util.form.label for="password_confirmation">Confirm Password</x-auth.form.label>
+                    <x-util.form.label for="password_confirmation">Confirm Password</x-util.form.label>
                     <x-util.form.input type="password" id="password_confirmation" name="password_confirmation" required />
                     <x-util.form.error name="password_confirmation" />
                 </div>
