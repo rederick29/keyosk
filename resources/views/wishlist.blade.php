@@ -3,6 +3,9 @@
         @php
             $user = Auth::user();
             $wishlist = $user->wishlist;
+            if (!$wishlist) {
+                $wishlist = \App\Models\Wishlist::factory()->forUser($user)->create();
+            }
         @endphp
         <div class="flex flex-col">
             @vite('resources/ts/product-buttons.ts')
