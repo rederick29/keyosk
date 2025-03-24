@@ -62,7 +62,7 @@ class CartService
     public function hasProducts(): bool
     {
         if (Auth::check()) {
-            return Auth::user()->cart->hasProducts();
+            return Auth::user()->cart ? Auth::user()->cart->hasProducts() : false;
         }
 
         $sessionCart = $this->getSessionCart();

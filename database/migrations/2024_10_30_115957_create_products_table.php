@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('stock')->default(100);
             $table->decimal('price', 8, 4);
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

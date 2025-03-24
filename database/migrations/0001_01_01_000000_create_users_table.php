@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('coins')->default(0);
             $table->timestamp('last_login')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

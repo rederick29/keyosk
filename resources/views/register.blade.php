@@ -21,19 +21,19 @@
                     <x-util.form.input id="last_name" name="last_name" required value="{{ old('last_name') }}" />
                     <x-util.form.error name="last_name" />
                 </div>
-                
+
                 <div class="flex flex-col space-y-2 h-1/12 col-span-2">
                     <x-util.form.label for="email">Email Address</x-util.form.label>
                     <x-util.form.input type="email" id="email" name="email" required value="{{ old('email') }}" />
                     <x-util.form.error name="email" />
                 </div>
                 <div class="flex flex-col space-y-2 h-1/12 ">
-                    <x-util.form.label for="password">Password</x-auth.form.label>
+                    <x-util.form.label for="password">Password</x-util.form.label>
                     <x-util.form.input type="password" id="password" name="password" required />
                     <x-util.form.error name="password" />
                 </div>
                 <div class="flex flex-col space-y-2 h-1/12">
-                    <x-util.form.label for="password_confirmation">Confirm Password</x-auth.form.label>
+                    <x-util.form.label for="password_confirmation">Confirm Password</x-util.form.label>
                     <x-util.form.input type="password" id="password_confirmation" name="password_confirmation" required />
                     <x-util.form.error name="password_confirmation" />
                 </div>

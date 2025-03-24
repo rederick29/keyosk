@@ -40,7 +40,7 @@
                     <!-- Admin Buttons -->
                     @if(Auth::user()->is_admin)
                         <hr class="border-2 rounded-xl border-stone-200 dark:border-zinc-700" />
-                        <x-util.button  type="a" href="{{ route('stats') }}" class="bg-linear-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 dark:hover:from-violet-600 dark:hover:to-pink-600 text-white overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
+                        <x-util.button  type="a" href="{{ route('admin.stats') }}" class="bg-linear-to-bl from-orange-500 to-red-500 dark:from-violet-500 dark:to-pink-500 hover:to-red-600 hover:from-orange-600 dark:hover:from-violet-600 dark:hover:to-pink-600 text-white overflow-hidden [&>span]:translate-x-4 hover:[&>span]:translate-x-0 [&>svg]:translate-y-10 hover:[&>svg]:translate-y-0 [&>*]:transition">
                             <span>Admin Dashboard</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                         </x-util.button>

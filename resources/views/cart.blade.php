@@ -50,14 +50,14 @@
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
             <div class="py-7 mx-2">
-                <x-util.form.input placeholder="Promo Code"></x-util.form.input>
+                <x-util.form.input placeholder="Discount Code"></x-util.form.input>
             </div>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />
 
             <div class="hidden">
             @if(Auth::check())
-                @foreach($cart->products()->orderBy("name")->get() as $product)
+                @foreach(Auth::user()->cart->products()->orderBy("name")->get() as $product)
                     <p><span class="summary-product-quantity-{{ $product->id }}">{{ $product->pivot->quantity }}</span></p>
                 @endforeach
             @else
@@ -98,7 +98,6 @@
                 @else
                     <x-util.button type="a" href="{{ route('checkout.get') }}" class="bg-transparent ring-2 ring-orange-500 dark:ring-violet-700 text-orange-500 dark:text-violet-700 hover:bg-orange-500 dark:hover:bg-violet-800 hover:text-zinc-800 dark:hover:text-white ">Checkout</x-util.button>
                 @endif
-                <p class="pt-4 text-sm">Any Issues, contact us at 01543 682769</p>
             </div>
 
             <hr class="w-full mx-auto border-2 rounded-xl border-stone-300 dark:border-zinc-800" />

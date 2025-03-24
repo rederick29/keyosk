@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -52,6 +53,8 @@ class ProductController extends Controller
             'product_desc' => 'string',
             'product_stock' => 'integer',
             'product_price' => 'decimal:2,4',
+            'tags' => ['required', 'array'],
+            'tags.*.id' => ['required', 'integer', Rule::exists('tags', 'id')],
         ]);
 
         $name_map = [
@@ -74,6 +77,66 @@ class ProductController extends Controller
             $product->update($updates);
         }
 
+        foreach (request()->get('tags') as $tag) {
+            if (isset($tag['value']) && $tag['value'] === 'on') {
+                $product->tags()->attach($tag['id']);
+            } else if ($product->tags->contains('id', $tag['id'])) {
+                $product->tags()->detach($tag['id']);
+            }
+        }
+
         return to_route('manage-products')->with('success', 'Product updated successfully.');
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'product_name' => ['required', 'string'],
+            'product_short_desc' => ['required', 'string'],
+            'product_desc' => ['nullable', 'string'],
+            'product_stock' => ['required', 'integer'],
+            'product_price' => ['required', 'decimal:2,4'],
+            'product_image' => ['required', Rule::imageFile()->max(4096)->types('image/*')],
+            'tags' => ['required', 'array'],
+            'tags.*.id' => ['required', 'integer', Rule::exists('tags', 'id')],
+        ]);
+
+        $priority = 0;
+        $product = Product::factory()->create([
+            'name' => $validatedData['product_name'],
+            'short_description' => $validatedData['product_short_desc'],
+            'description' => $validatedData['product_desc'],
+            'stock' => $validatedData['product_stock'],
+            'price' => $validatedData['product_price'],
+        ]);
+
+        foreach (request()->get('tags') as $tag) {
+            if (isset($tag['value']) && $tag['value'] === 'on') {
+                $product->tags()->attach($tag['id']);
+            }
+        }
+
+        try {
+            ImageUploaderController::store_image_product($product, $request->file('product_image'), $priority);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Database error: ' . $e->getMessage());
+        }
+
+        return to_route('manage-products')->with('success', 'Product added successfully.');
+    }
+
+    public function destroy(int $productId): RedirectResponse
+    {
+        $product = Product::find($productId);
+        if (!$product) {
+            return back()->with('error', 'Product not found');
+        }
+        $product->delete();
+        return back()->with('success', 'Product deleted successfully.');
+    }
+
+    public function index_add(): View
+    {
+        return view('add-product');
     }
 }

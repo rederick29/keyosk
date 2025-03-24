@@ -1,16 +1,18 @@
-<x-layouts.account-layout :userId="$user->id" :currentPage="'Account'">
-    <form action="{{ \Illuminate\Support\Facades\Auth::user()->is_admin ? route('account.edit.uid', ['userId' => $user->id]) : route('account.edit') }}" method="POST" class="">
+<x-layouts.account-layout :currentPage="'Account'" :userId="$user->id">
+    <form
+        action="{{ \Illuminate\Support\Facades\Auth::user()->is_admin ? route('account.edit.uid', ['userId' => $user->id]) : route('account.edit') }}"
+        class="" method="POST">
         @csrf
         <div class="w-full justify-between flex px-2">
             <div class="flex-col">
-                <h1
-                    class="text-3xl font-semibold"
-                >
+                <h1 class="text-3xl font-semibold">
                     Account
                 </h1>
                 <p class="pb-5">View and edit your Keyosk account</p>
             </div>
-            <x-util.button type="button" class="w-1/6 h-1/2 self-center bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800">Apply Changes</x-util.button>
+            <x-util.button
+                class="w-1/6 h-1/2 self-center bg-orange-500 dark:bg-violet-700 text-white hover:bg-orange-600 dark:hover:bg-violet-800"
+                type="button">Apply Changes</x-util.button>
         </div>
 
         <hr class="border-zinc-800 border-1" />
@@ -24,37 +26,20 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-util.form.label
-                        for="first_name"
-                        class="ml-0"
-                    >
+                    <x-util.form.label class="ml-0" for="first_name">
                         First name
                     </x-util.form.label>
-                    <x-util.form.input
-                        id="first_name"
-                        name="first_name"
-                        class=""
-                        placeholder="{{$user->first_name}}"
-                    />
-                    <x-util.form.error
-                        name="first_name"
-                    />
+                    <x-util.form.input class="w-full" id="first_name" name="first_name"
+                        placeholder="{{ $user->first_name }}" />
+                    <x-util.form.error name="first_name" />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-util.form.label
-                        for="last_name"
-                        class="ml-0"
-                    >
+                    <x-util.form.label class="ml-0" for="last_name">
                         Last name
                     </x-util.form.label>
-                    <x-util.form.input
-                        id="last_name"
-                        name="last_name"
-                        placeholder="{{$user->last_name}}"
-                    />
-                    <x-util.form.error
-                        name="last_name"
-                    />
+                    <x-util.form.input class="w-full" id="last_name" name="last_name"
+                        placeholder="{{ $user->last_name }}" />
+                    <x-util.form.error name="last_name" />
                 </div>
             </div>
         </section>
@@ -70,22 +55,12 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-util.form.label
-                        for="email"
-                        class="ml-0"
-                    >
+                    <x-util.form.label class="ml-0" for="email">
                         Email
                     </x-util.form.label>
-                    <x-util.form.input
-                        id="email"
-                        name="email"
-                        class=""
-                        type="email"
-                        placeholder="{{ $user->email }}"
-                    />
-                    <x-util.form.error
-                        name="email"
-                    />
+                    <x-util.form.input class="w-full" id="email" name="email" placeholder="{{ $user->email }}"
+                        type="email" />
+                    <x-util.form.error name="email" />
                 </div>
             </div>
         </section>
@@ -101,54 +76,44 @@
             </div>
             <div class="flex gap-x-5">
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-util.form.label
-                        for="current_password"
-                        class="ml-0"
-                    >
+                    <x-util.form.label class="ml-0" for="current_password">
                         Current Password
                     </x-util.form.label>
-                    <x-util.form.input
-                        id="current_password"
-                        name="current_password"
-                        type="password"
-                        class=""
-                    />
-                    <x-util.form.error
-                        name="current_password"
-                    />
+                    <x-util.form.input class="w-full" id="current_password" name="current_password" type="password" />
+                    <x-util.form.error name="current_password" />
                 </div>
                 <div class="flex flex-col space-y-2 w-1/2">
-                    <x-util.form.label
-                        for="new_password"
-                        class="ml-0"
-                    >
+                    <x-util.form.label class="ml-0" for="new_password">
                         New Password
                     </x-util.form.label>
-                    <x-util.form.input
-                        id="new_password"
-                        name="new_password"
-                        type="password"
-                    />
-                    <x-util.form.error
-                        name="new_password"
-                    />
+                    <x-util.form.input class="w-full" id="new_password" name="new_password" type="password" />
+                    <x-util.form.error name="new_password" />
                 </div>
             </div>
         </section>
 
         <hr class="border-zinc-800 border-1" />
-
-        <!-- Account Security -->
-
-        <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
-            <div>
-                <p class="font-semibold">Account Security</p>
-                <p class="dark:text-white/50">Manage account security</p>
-            </div>
-            <div class="flex gap-x-5">
-                <x-util.button type="button" class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Delete Account</x-util.button>
-                <x-util.button type="button" class="w-1/6  bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold">Log Out</x-util.button>
-            </div>
-        </section>
     </form>
+
+    <!-- Account Security -->
+    <section class="w-full px-2 py-5 gap-y-5 flex flex-col">
+        <div>
+            <p class="font-semibold">Account Security</p>
+            <p class="dark:text-white/50">Manage account security</p>
+        </div>
+        <div class="flex gap-x-5">
+            <form class="w-1/6" action="{{ Auth::user()->is_admin ? route('account.delete.uid', ['userId' => $user->id]) : route('account.delete') }}" method="POST"> @csrf
+                <x-util.button
+                    class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
+                    type="button">Delete Account</x-util.button>
+            </form>
+            @if(Auth::id() === $user->id)
+                <form class="w-1/6" action="{{ route('logout') }}"> @csrf
+                    <x-util.button
+                        class="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-800 text-white font-semibold"
+                        type="button">Log Out</x-util.button>
+                </form>
+            @endif
+        </div>
+    </section>
 </x-layouts.account-layout>

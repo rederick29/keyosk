@@ -1,24 +1,18 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import * as CANNON from 'cannon-es';
-import {Box3, Color, Object3D, Raycaster, Vector2} from "three";
+import { Box3, Color, Object3D, Raycaster, Vector2 } from "three";
 
 function deg2rad(degrees: number): number {
     return degrees * (Math.PI / 180);
 }
 
 const scene = new THREE.Scene();
-// aruns original camera
-// const camera = new THREE.PerspectiveCamera(25);
-// camera.position.set(0, 8.5, 45);
-// camera.lookAt(0, 2, 0);
-
-// bens attempt at a camera
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, -1, 25);
 camera.lookAt(0, -1, 0);
 
-const canvas: HTMLCanvasElement | OffscreenCanvas | undefined  = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
+const canvas: HTMLCanvasElement | OffscreenCanvas | undefined = document.getElementById('canvas') as HTMLCanvasElement | OffscreenCanvas | undefined;
 if (!(canvas instanceof HTMLCanvasElement)) {
     throw new Error('Canvas not found');
 }
@@ -110,33 +104,6 @@ function loadModels() {
                 isClickable: true
             };
 
-            //  k
-            // e y
-            //o s k
-            // switch (characters[i]) {
-            //     case 'K':
-            //         if (i === 0) {
-            //             // First K
-            //             model.position.set(0, 8, 0);
-            //         } else {
-            //             // Last K
-            //             model.position.set(2.25, 1, 0);
-            //         }
-            //         break;
-            //     case 'E':
-            //         model.position.set(-1.25, 5, 0);
-            //         break;
-            //     case 'Y':
-            //         model.position.set(1.25, 5, 0);
-            //         break;
-            //     case 'O':
-            //         model.position.set(-2.25, 1, 0);
-            //         break;
-            //     case 'S':
-            //         model.position.set(0, 1, 0);
-            //         break;
-            // }
-
             // k e y o s k
             switch (characters[i]) {
                 case 'K':
@@ -178,71 +145,6 @@ function loadModels() {
             createPhysicsBody(model);
         });
     }
-
-    // for (let i = 0; i < 20; i++) {
-    //     const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-    //     loader.load(`storage/images/static/${randomCharacter}.glb`, (gltf) => {
-    //         const model = gltf.scene;
-
-    //         // Get a random distance away (on the z)
-    //         const distLower = -15;
-    //         const distUpper = -300;
-    //         model.position.z = Math.random() * (distUpper - distLower) + distLower;
-
-    //         // The further away, the larger the range of x (positive and negative)
-    //         const xRange = 175 + Math.abs(model.position.z) / 175;
-    //         model.position.x = (Math.random() - 0.5) * xRange;
-
-
-    //         // The further away, the bigger the letter
-    //         const distanceAway = -model.position.z;
-    //         model.scale.set(distanceAway / 15, distanceAway / 15, distanceAway / 15);
-
-    //         // Rotate the letter randomly
-    //         model.rotation.set(deg2rad(90), 0, Math.random() * Math.PI * 2);
-
-    //         model.traverse((child) => {
-    //             if (child instanceof THREE.Mesh) {
-    //                 child.material = physicalMat.clone();
-
-    //                 // TODO: mess with the color more
-    //                 const hue = Math.random();
-    //                 const color = new THREE.Color().setHSL(hue, 1, 0.1);
-    //                 child.material.color = color;
-    //             }
-    //         });
-
-    //         scene.add(model);
-    //     });
-
-
-    loader.load('storage/images/static/SHOP_NOW.glb', (gltf) => {
-        const shopNowModel = gltf.scene;
-        shopNowModel.scale.set(1, 1, 1);
-        shopNowModel.position.set(-13, 5, 0);
-        // shopNowModel.rotation.set(deg2rad(90), 0, 0);
-        shopNowModel.userData = {
-            character: 'SHOP_NOW',
-            originalColor: 0xFFFFFF,
-            hoverColor: 0xFF00FF,
-            isClickable: true
-        };
-
-        shopNowModel.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
-                child.material = physicalMat.clone();
-                child.material.color.set(0xFFFFFF);
-                child.material.clearcoat = 0.5;
-                child.material.reflectivity = 0.5;
-                child.castShadow = true;
-                child.receiveShadow = true;
-            }
-        });
-
-        loadedModels.push(shopNowModel);
-        scene.add(shopNowModel);
-        createPhysicsBody(shopNowModel, true);
-    });
 }
 
 function createPhysicsBody(object: Object3D, isStatic = false) {
@@ -284,13 +186,11 @@ function createPhysicsBody(object: Object3D, isStatic = false) {
     physicsBodies[object.uuid] = body;
 }
 
-// let animTimer: number = 0;
-
 function onMouseMove(event: any): void {
     previousMousePosition.copy(mouse);
 
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
 
     const rect: DOMRect = canvas.getBoundingClientRect();
@@ -324,7 +224,7 @@ function onMouseMove(event: any): void {
 }
 
 // Convert screen coordinates to world coordinates
-function screenToWorld(screenPos: any)  {
+function screenToWorld(screenPos: any) {
     // Create a ray from the camera
     raycaster.setFromCamera(screenPos, camera);
 
@@ -340,7 +240,7 @@ function screenToWorld(screenPos: any)  {
 
 function onMouseDown(event: any): void {
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
     const rect: DOMRect = canvas.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -480,7 +380,7 @@ function updateSize() {
     if (!canvas) return;
 
     if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
-        throw new Error('fuck you');
+        throw new Error('The canvas is not an HTMLCanvasElement, WHAT??? HOW?');
     }
 
     const container: HTMLElement | null = canvas.parentElement;
@@ -518,19 +418,6 @@ function animate() {
         }
 
         body.position.z = 0;
-
-        // if (model.userData.character === 'SHOP_NOW') {
-        //     const quaternionX = new CANNON.Quaternion();
-        //     const quaternionZ = new CANNON.Quaternion();
-        //
-        //     // NOTE: order matters, first is the rightmost one
-        //     quaternionX.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), deg2rad(90));
-        //     quaternionZ.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.sin(animTimer) * 0.1);
-        //
-        //     body.quaternion = quaternionX.mult(quaternionZ);
-        //
-        //     animTimer += 0.02;
-        // }
 
         model.position.copy(body.position);
         model.quaternion.copy(body.quaternion);
@@ -572,28 +459,37 @@ renderer.shadowMap.type = THREE.PCFShadowMap;
 loadModels();
 animate();
 
-// handle the switch from 2D -> 3D on home page, default to 2D for shit computers (like mine)
+// Handle the switch from 2D -> 3D on home page, and randomize the initial state
 document.addEventListener("DOMContentLoaded", (): void => {
     const twoDElement: HTMLElement = document.getElementById('two-d-element') as HTMLElement;
     const threeDElement: HTMLElement = document.getElementById('three-d-element') as HTMLElement;
     const perspectiveSwitch: HTMLElement = document.getElementById('perspective-switch') as HTMLElement;
 
-    // threeDElement.classList.add("hidden");
-    // threeDElement.classList.add("w-full");
+    // < 0.5 -> 2D, >= 0.5 -> 3D (50/50 chance)
+    // const show3DInitially: boolean = Math.random() < 0.5;
+    // for now keep the 2D version on the homepage by default, for low perf devices
+    const show3DInitially: boolean = false;
+    if (show3DInitially) {
+        twoDElement.classList.remove('flex');
+        twoDElement.classList.add('hidden');
+        threeDElement.classList.remove('hidden');
+    } else {
+        threeDElement.classList.add('hidden');
+        twoDElement.classList.remove('hidden');
+        twoDElement.classList.add('flex');
+    }
 
     perspectiveSwitch.addEventListener("click", (): void => {
         const is2D: boolean = !twoDElement.classList.contains('hidden');
 
-
-        if(is2D) {
+        if (is2D) {
             twoDElement.classList.remove('flex');
             twoDElement.classList.add('hidden');
             threeDElement.classList.remove('hidden');
-        }
-        else {
+        } else {
             threeDElement.classList.add('hidden');
             twoDElement.classList.remove('hidden');
             twoDElement.classList.add('flex');
         }
-    })
-})
+    });
+});

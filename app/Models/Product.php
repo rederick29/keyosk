@@ -11,11 +11,13 @@ use App\Models\Tag;
 use App\Models\Tag\ColourTag;
 use App\Models\Tag\CompatibilityTag;
 use App\Models\Tag\AttributeTag;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -23,6 +25,7 @@ class Product extends Model
         'description',
         'stock',
         'price',
+        'hidden',
     ];
 
     public function primaryImageLocation(): String | null
